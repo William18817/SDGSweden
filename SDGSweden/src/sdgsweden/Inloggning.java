@@ -2,9 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+       
 package sdgsweden;
 
 import oru.inf.InfDB;
+
+// Följande import`s är nödvändiga, vet dock inte varför. får kollas vid senare tillfälle.
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,21 +36,151 @@ public class Inloggning extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
+        PasswordField = new javax.swing.JPasswordField();
+        TextFieldEpost = new javax.swing.JTextField();
+        ButtonLoggaIn = new javax.swing.JButton();
+        LabelRubrik = new javax.swing.JLabel();
+        CheckBoxVisaLosenord = new javax.swing.JCheckBox();
+        jLabel2 = new javax.swing.JLabel();
+        LabelEpost = new javax.swing.JLabel();
+        LabelLosenord = new javax.swing.JLabel();
+
+        jMenuItem1.setText("jMenuItem1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        PasswordField.setColumns(11);
+
+        TextFieldEpost.setColumns(10);
+
+        ButtonLoggaIn.setText("Logga in");
+        ButtonLoggaIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonLoggaInActionPerformed(evt);
+            }
+        });
+
+        LabelRubrik.setText("Inloggning  SDG Sweden");
+
+        CheckBoxVisaLosenord.setText("Visa Lösenord");
+        CheckBoxVisaLosenord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckBoxVisaLosenordActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\wilhe\\Downloads\\använd.jpg")); // NOI18N
+
+        LabelEpost.setText("E-post:");
+
+        LabelLosenord.setText("Lösenord:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(ButtonLoggaIn)
+                .addContainerGap(126, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(LabelRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(LabelEpost, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TextFieldEpost, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CheckBoxVisaLosenord)))
+                .addGap(12, 12, 12))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(LabelRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextFieldEpost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelEpost))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelLosenord)
+                    .addComponent(CheckBoxVisaLosenord))
+                .addGap(18, 18, 18)
+                .addComponent(ButtonLoggaIn)
+                .addGap(20, 20, 20))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CheckBoxVisaLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxVisaLosenordActionPerformed
+       if (CheckBoxVisaLosenord.isSelected()) {
+    PasswordField.setEchoChar((char) 0); // Visa text
+} else {
+    PasswordField.setEchoChar('•'); // Dölj text
+}
+
+    }//GEN-LAST:event_CheckBoxVisaLosenordActionPerformed
+
+    private void ButtonLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLoggaInActionPerformed
+        String epost = TextFieldEpost.getText();
+String losenord = new String(PasswordField.getPassword());
+
+try {
+    // Ansluter till databas
+    Connection conn = DriverManager.getConnection(
+        "jdbc:mysql://localhost:3306/sdgsweden", // vår databas
+        "dbAdmin2024",                           // användarnamn
+        "dbAdmin2024PW"                          //  MySQL-lösenord
+    );
+
+    // SQL-fråga med placeholders för att undvika SQL injection
+    String sql = "SELECT * FROM anstalld WHERE epost = ? AND losenord = ?";
+    PreparedStatement stmt = conn.prepareStatement(sql);
+    stmt.setString(1, epost); // Vårt "användarnamn"
+    stmt.setString(2, losenord); // Lösenord
+
+    ResultSet rs = stmt.executeQuery();
+
+    if (rs.next()) {
+        //  Inloggning lyckades
+        JOptionPane.showMessageDialog(this, "Välkommen! Du kommer nu att logga in");
+
+        // Öppna nästa fönster
+        new ProgramFonster().setVisible(true);
+        this.dispose(); // Stänger login-fönstret
+    } else {
+        //  Fel uppgifter
+        JOptionPane.showMessageDialog(this, "Fel e-post eller lösenord.");
+    }
+
+    rs.close();
+    stmt.close();
+    conn.close();
+
+} catch (Exception ex) {
+    ex.printStackTrace();
+    JOptionPane.showMessageDialog(this, "Fel vid anslutning till databasen.");
+}
+
+    }//GEN-LAST:event_ButtonLoggaInActionPerformed
 
     /**
      * @param args the command line arguments
@@ -80,5 +218,14 @@ public class Inloggning extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonLoggaIn;
+    private javax.swing.JCheckBox CheckBoxVisaLosenord;
+    private javax.swing.JLabel LabelEpost;
+    private javax.swing.JLabel LabelLosenord;
+    private javax.swing.JLabel LabelRubrik;
+    private javax.swing.JPasswordField PasswordField;
+    private javax.swing.JTextField TextFieldEpost;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }
