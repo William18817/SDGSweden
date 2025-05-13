@@ -47,14 +47,12 @@
                   <Component id="LabelLosenord" alignment="1" min="-2" pref="65" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="TextFieldEpost" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="PasswordField" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="CheckBoxVisaLosenord" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="PasswordField" max="32767" attributes="0"/>
+                  <Component id="TextFieldEpost" max="32767" attributes="0"/>
               </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="CheckBoxVisaLosenord" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
@@ -124,7 +122,7 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\wilhe\Downloads\anv&#xe4;nd.jpg"/>
+          <Image iconType="3" name="/sdgsweden/bilder/anv&#xe4;nd.jpg"/>
         </Property>
       </Properties>
     </Component>
