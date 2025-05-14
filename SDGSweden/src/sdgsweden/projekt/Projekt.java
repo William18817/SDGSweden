@@ -100,7 +100,7 @@ private String handlaggarId;
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Aid (?)", "Status", "Projektnamn", "Beskrivning", "Startdatum", "Slutdatum", "Kostnad", "Prioritet"
+                "Aid", "Status", "Projektnamn", "Beskrivning", "Startdatum", "Slutdatum", "Kostnad", "Prioritet"
             }
         ) {
             Class[] types = new Class [] {
@@ -174,7 +174,7 @@ private String handlaggarId;
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(UppdateButton))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,7 +199,7 @@ private String handlaggarId;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DeleteButton)
                     .addComponent(AddButton1))
-                .addContainerGap(309, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -297,7 +297,44 @@ private String handlaggarId;
     }//GEN-LAST:event_DateTwoActionPerformed
 
     private void UppdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UppdateButtonActionPerformed
-        
+    String datumFran = DateOne.getText().trim();
+    String datumTill = DateTwo.getText().trim();
+    String valdStatus = StatusMenu.getSelectedItem().toString();
+
+    if (datumFran.isEmpty() || datumTill.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Fyll i båda datumfälten.");
+        return;
+    }
+
+    try {
+        String sql = "SELECT pid, status, projektnamn, beskrivning, startdatum, slutdatum, kostnad, prioritet "
+                   + "FROM projekt "
+                   + "WHERE startdatum >= '" + datumFran + "' AND startdatum <= '" + datumTill + "'";
+
+        // Lägg till statusfilter om det inte är "Alla"
+        if (!valdStatus.equals("Alla")) {
+            sql += " AND status = '" + valdStatus + "'";
+        }
+
+        ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
+        DefaultTableModel model = (DefaultTableModel) InfoProjectTable.getModel();
+        model.setRowCount(0);
+
+        for (HashMap<String, String> rad : resultat) {
+            model.addRow(new Object[]{
+                rad.get("pid"),
+                rad.get("status"),
+                rad.get("projektnamn"),
+                rad.get("beskrivning"),
+                rad.get("startdatum"),
+                rad.get("slutdatum"),
+                rad.get("kostnad"),
+                rad.get("prioritet"),
+            });
+        }
+    } catch (InfException e) {
+        JOptionPane.showMessageDialog(this, "Kunde inte filtrera projekt: " + e.getMessage());
+    }
     }//GEN-LAST:event_UppdateButtonActionPerformed
 
     private void EditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditButtonActionPerformed
