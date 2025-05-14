@@ -2,11 +2,12 @@
  * @author jonas
  */
 package sdgsweden.projekt;
-// import java.util.ArrayList;
-// import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import javax.swing.table.DefaultTableModel;
 
 
 
@@ -16,9 +17,9 @@ private InfDB idb;
 private String handlaggarId;
 
     
-    public Projekt(InfDB idb, String handlaggarId) {
+    public Projekt(InfDB idb) {
         this.idb = idb;
-        this.handlaggarId = handlaggarId;
+        //this.handlaggarId = handlaggarId;
         
         
         initComponents();
@@ -52,7 +53,7 @@ private String handlaggarId;
 
         setToolTipText("");
 
-        StatusMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alla", "Påbörjad", "Pausad", "Avslutad" }));
+        StatusMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alla", "Pågående", "Planerat", "Avslutat" }));
         StatusMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 StatusMenuActionPerformed(evt);
@@ -203,46 +204,88 @@ private String handlaggarId;
     }// </editor-fold>//GEN-END:initComponents
 
     private void hamtaAllaProjekt() {
-    System.out.println("handlaggarId = " + handlaggarId); // test TA BORT sen
+    
 
         
         try {
         String fraga = 
-            "SELECT p.pid, p.status, p.projektnamn, p.beskrivning, p.startdatum, p.slutdatum, p.kostnad, p.prioritet " +
-            "FROM projekt p " +
-            "JOIN anstalld a ON p.projektchef = a.aid " +
-            "WHERE a.aid = " + handlaggarId;
+            "SELECT pid, status, projektnamn, beskrivning, startdatum, slutdatum, kostnad, prioritet " +
+            "FROM projekt ";
+            //"JOIN anstalld a ON p.projektchef = a.aid " +
+            //"WHERE a.aid = " + handlaggarId;
+            
+            ArrayList<HashMap <String, String>> resultat = idb.fetchRows(fraga);
+            
+            DefaultTableModel model = (DefaultTableModel) InfoProjectTable.getModel();
 
-System.out.println("SQL-fråga: " + fraga); // Test TA BORT sen
 
-        var resultat = idb.fetchRows(fraga);
-        var modell = (javax.swing.table.DefaultTableModel) InfoProjectTable.getModel();
-        modell.setRowCount(0);
-
-        if (resultat != null) {
-            for (var rad : resultat) {
-                modell.addRow(new Object[] {
-                    rad.get("pid"),
-                    rad.get("status"),
-                    rad.get("projektnamn"),
-                    rad.get("beskrivning"),
-                    rad.get("startdatum"),
-                    rad.get("slutdatum"),
-                    rad.get("kostnad"),
-                    rad.get("prioritet")
-                });
+        // var resultat = idb.fetchRows(fraga);
+        
+        model.setRowCount(0);
+            for(HashMap<String, String> rad : resultat){
+                       model.addRow(new Object[]{
+                       rad.get("pid"),
+                       rad.get("status"),
+                       rad.get("projektnamn"),
+                       rad.get("beskrivning"),
+                       rad.get("startdatum"),
+                       rad.get("slutdatum"),
+                       rad.get("kostnad"),
+                       rad.get("prioritet"),
+                       }); 
+        
+                
             }
         }
-
-    } catch (InfException e) {
+        catch (InfException e) {
         JOptionPane.showMessageDialog(this, "Kunde inte hämta projekt: " + e.getMessage());
+
+     
     }
 }
 
     
     
     private void StatusMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatusMenuActionPerformed
-        // TODO add your handling code here:
+        String valdStatus = StatusMenu.getSelectedItem().toString();
+        
+       
+        
+        try{
+            String sql;
+            
+            if (valdStatus.equals("Alla")){
+            sql = "SELECT pid, status, projektnamn, beskrivning, startdatum, slutdatum, kostnad, prioritet "
+                    + "FROM projekt ";
+                    }
+            else{
+                sql = "SELECT pid, status, projektnamn, beskrivning, startdatum, slutdatum, kostnad, prioritet "
+                    + "FROM projekt "
+                    + "WHERE status = '" + valdStatus + "'";}
+            
+                    ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
+                    
+                    DefaultTableModel model = (DefaultTableModel) InfoProjectTable.getModel();
+                    
+                    model.setRowCount(0);
+                    
+                    for(HashMap<String, String> rad : resultat){
+                       model.addRow(new Object[]{
+                       rad.get("pid"),
+                       rad.get("status"),
+                       rad.get("projektnamn"),
+                       rad.get("beskrivning"),
+                       rad.get("startdatum"),
+                       rad.get("slutdatum"),
+                       rad.get("kostnad"),
+                       rad.get("prioritet"),
+                       }); 
+                    }
+                    
+        }
+        catch (Exception e){
+        JOptionPane.showMessageDialog(null, "Fel vid hämtning: " + e.getMessage());
+        }
     }//GEN-LAST:event_StatusMenuActionPerformed
 
     private void DateOneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateOneActionPerformed

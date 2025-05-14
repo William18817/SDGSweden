@@ -15,9 +15,9 @@ public class ProjektTest {
             // Koppla till databasenp
             idb = new InfDB("sdgsweden", "3306", "dbAdmin2024", "dbAdmin2024PW");
 
-            String handlaggarId = "10"; // hårdkodat ÄNDRA
+            //String handlaggarId = "10"; // hårdkodat ÄNDRA
             // Skapa din Projekt-panel (JPanel)
-            Projekt projektPanel = new Projekt(idb, handlaggarId);
+            Projekt projektPanel = new Projekt(idb);
 
             // Skapa ett testfönster (JFrame)
             JFrame testFrame = new JFrame("Testfönster för Projekt-panelen");
