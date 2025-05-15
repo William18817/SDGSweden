@@ -164,8 +164,10 @@ try {
     ResultSet rs = stmt.executeQuery();
 
     if (rs.next()) {
-        //  Inloggning lyckades
-        JOptionPane.showMessageDialog(this, "Välkommen! Du kommer nu att logga in");
+        String fornamn = rs.getString("fornamn");
+        String efternamn = rs.getString("efternamn");
+        
+        JOptionPane.showMessageDialog(this, "Välkommen " + fornamn + " "+ efternamn + " ! Du kommer nu att logga in");
 
         // Öppna nästa fönster
         new ProgramFonster().setVisible(true);
