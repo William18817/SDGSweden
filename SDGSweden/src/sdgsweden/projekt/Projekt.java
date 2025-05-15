@@ -2,19 +2,23 @@
  * @author jonas
  */
 package sdgsweden.projekt;
+
+import java.awt.Container;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.table.DefaultTableModel;
 
 
 
+
 public class Projekt extends javax.swing.JPanel {
 
 private InfDB idb;
-private String handlaggarId;
+//private String handlaggarId;
 
     
     public Projekt(InfDB idb) {
@@ -44,10 +48,12 @@ private String handlaggarId;
         StatusLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         InfoProjectTable = new javax.swing.JTable();
-        EditButton = new javax.swing.JButton();
+        AndraUppgifter = new javax.swing.JButton();
         AddButton = new javax.swing.JButton();
         DeleteButton = new javax.swing.JButton();
         AddButton1 = new javax.swing.JButton();
+        pidTextField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         jTextField3.setText("jTextField3");
 
@@ -76,7 +82,7 @@ private String handlaggarId;
 
         DatumLabel.setText("Sök datum");
 
-        UppdateButton.setText("Uppdatera");
+        UppdateButton.setText("Filtrera");
         UppdateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UppdateButtonActionPerformed(evt);
@@ -100,7 +106,7 @@ private String handlaggarId;
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Aid", "Status", "Projektnamn", "Beskrivning", "Startdatum", "Slutdatum", "Kostnad", "Prioritet"
+                "Pid", "Status", "Projektnamn", "Beskrivning", "Startdatum", "Slutdatum", "Kostnad", "Prioritet"
             }
         ) {
             Class[] types = new Class [] {
@@ -121,10 +127,10 @@ private String handlaggarId;
         InfoProjectTable.setToolTipText("");
         jScrollPane1.setViewportView(InfoProjectTable);
 
-        EditButton.setText("Redigera");
-        EditButton.addActionListener(new java.awt.event.ActionListener() {
+        AndraUppgifter.setText("Ändra Uppgifter");
+        AndraUppgifter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditButtonActionPerformed(evt);
+                AndraUppgifterActionPerformed(evt);
             }
         });
 
@@ -144,6 +150,10 @@ private String handlaggarId;
             }
         });
 
+        pidTextField.setColumns(2);
+
+        jLabel1.setText("Pid");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,25 +165,32 @@ private String handlaggarId;
                         .addComponent(AddButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(EditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(StatusMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(31, 31, 31))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(StatusLabel)
+                                        .addGap(80, 80, 80)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(DatumLabel)
+                                    .addComponent(DateOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(DateTwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(UppdateButton))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(StatusMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(31, 31, 31))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(StatusLabel)
-                                    .addGap(80, 80, 80)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(DatumLabel)
-                                .addComponent(DateOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(AndraUppgifter, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(DateTwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pidTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(UppdateButton))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(AddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -192,10 +209,12 @@ private String handlaggarId;
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(AddButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EditButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddButton)
+                    .addComponent(AndraUppgifter)
+                    .addComponent(pidTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DeleteButton)
                     .addComponent(AddButton1))
@@ -219,7 +238,7 @@ private String handlaggarId;
             DefaultTableModel model = (DefaultTableModel) InfoProjectTable.getModel();
 
 
-        // var resultat = idb.fetchRows(fraga);
+        
         
         model.setRowCount(0);
             for(HashMap<String, String> rad : resultat){
@@ -337,9 +356,23 @@ private String handlaggarId;
     }
     }//GEN-LAST:event_UppdateButtonActionPerformed
 
-    private void EditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EditButtonActionPerformed
+    private void AndraUppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AndraUppgifterActionPerformed
+    try {
+    
+        int pid = Integer.parseInt(pidTextField.getText().trim());
+        
+        RedigeraProjekt redigeraPanel = new RedigeraProjekt(idb, pid, this);
+        Container parent = this.getParent();
+        
+        parent.removeAll(); // Ta bort nuvarande innehåll i panelen
+        parent.add(redigeraPanel);
+        parent.revalidate();
+        parent.repaint();
+    }
+    catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Ange ett giltigt heltal för Pid.", "Fel", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_AndraUppgifterActionPerformed
 
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
         // TODO add your handling code here:
@@ -353,16 +386,19 @@ private String handlaggarId;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddButton;
     private javax.swing.JButton AddButton1;
+    private javax.swing.JButton AndraUppgifter;
     private javax.swing.JTextField DateOne;
     private javax.swing.JTextField DateTwo;
     private javax.swing.JLabel DatumLabel;
     private javax.swing.JButton DeleteButton;
-    private javax.swing.JButton EditButton;
     private javax.swing.JTable InfoProjectTable;
     private javax.swing.JLabel StatusLabel;
     private javax.swing.JComboBox<String> StatusMenu;
     private javax.swing.JButton UppdateButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField pidTextField;
     // End of variables declaration//GEN-END:variables
 }
+    

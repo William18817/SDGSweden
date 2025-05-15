@@ -27,7 +27,7 @@ public class ProjektTest {
             testFrame.setLocationRelativeTo(null); // Centrerar fönstret på skärmen
             testFrame.setVisible(true); // Visar fönstret
 
-            System.out.println("Jonas det funkar");
+            
         } catch (InfException ex) {
             System.out.println(ex.getMessage());
         }
