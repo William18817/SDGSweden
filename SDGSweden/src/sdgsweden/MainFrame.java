@@ -16,11 +16,28 @@ import oru.inf.InfException;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainFrame
-     */
+private InfDB idb;
+//Ny konstruktor för att kunna köra Inloggningssidan:
     
+    public MainFrame(InfDB idb) {
+    this.idb = idb;
+    initComponents();
+
+    try {
+    InfDB idb2 = new InfDB ("sdgsweden", "3306", "dbAdmin2024", "dbAdmin2024PW");
+    Startsida startsida = new Startsida(this, idb2);
+    mainPanel.add(startsida, "startsida");
+
+    CardLayout cl = (CardLayout) mainPanel.getLayout();
+    cl.show(mainPanel, "startsida");
+}
+    catch (InfException ex){
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Kunde inte ansluta till databasen: " + ex.getMessage());
+        }
+    }
     
+    //Gamla konstrukorn, används bara om man vill starta direkt från MainFrame istället för Inloggningsrutan.
     public MainFrame() {
          initComponents();
         try {
@@ -42,6 +59,7 @@ public class MainFrame extends javax.swing.JFrame {
         CardLayout cl = (CardLayout) mainPanel.getLayout();
         cl.show(mainPanel,namn);
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,14 +81,13 @@ public class MainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
