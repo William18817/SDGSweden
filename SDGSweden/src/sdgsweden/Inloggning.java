@@ -25,6 +25,7 @@ import javax.swing.JOptionPane;
  */
 public class Inloggning extends javax.swing.JFrame {
 
+    private InfDB idb;
     /**
      * Creates new form Inloggning
      */
@@ -56,8 +57,15 @@ public class Inloggning extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         PasswordField.setColumns(11);
+        PasswordField.setText("password456");
 
         TextFieldEpost.setColumns(10);
+        TextFieldEpost.setText("john.smith@example.com");
+        TextFieldEpost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextFieldEpostActionPerformed(evt);
+            }
+        });
 
         ButtonLoggaIn.setText("Logga in");
         ButtonLoggaIn.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +96,7 @@ public class Inloggning extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(129, 129, 129)
                 .addComponent(ButtonLoggaIn)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(LabelRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -170,7 +178,8 @@ try {
         JOptionPane.showMessageDialog(this, "Välkommen " + fornamn + " "+ efternamn + " ! Du kommer nu att logga in");
 
         // Öppna nästa fönster
-        new ProgramFonster().setVisible(true);
+        MainFrame main = new MainFrame(idb);
+        main.setVisible(true);
         this.dispose(); // Stänger login-fönstret
     } else {
         //  Fel uppgifter
@@ -187,6 +196,10 @@ try {
 }
 
     }//GEN-LAST:event_ButtonLoggaInActionPerformed
+
+    private void TextFieldEpostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldEpostActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextFieldEpostActionPerformed
 
     /**
      * @param args the command line arguments

@@ -33,16 +33,11 @@ private InfDB idb;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
         btnProjekt = new javax.swing.JButton();
+        label1 = new java.awt.Label();
         jButton1 = new javax.swing.JButton();
-
-        jTextField1.setText("Startsida");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         btnProjekt.setText("Projekt");
         btnProjekt.addActionListener(new java.awt.event.ActionListener() {
@@ -51,12 +46,21 @@ private InfDB idb;
             }
         });
 
+        label1.setText("STARTSIDA");
+
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "1. Ingen fattigdom", "2. Ingen hunger", "3. God hälsa och Välbefinnande", "4. God utbildning", "5. Jämställdhet", "6. Rent vatten och sanitet", "7. Hållbar energi för alla", "8. Anständiga arbetsvillkor och ekonomisk tillväxt", "9. Hållbar industri innovation och infrastruktur", "10. Minskad ojämlikhet", "11. Hållbara städer och samhällen", "12. Hållbar konsumtion och produktion", "13. Bekämpa klimatförändringar", "14. Hav och marina resurser", "15. Ekosystem och biologisk mångfald", "16. Fredliga och inkluderande samhällen", "17. Genomförande och globalt partnerskap" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -65,32 +69,36 @@ private InfDB idb;
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(btnProjekt))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnProjekt))
+                            .addComponent(jButton1))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(247, 247, 247)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(294, 294, 294)
-                        .addComponent(jButton1)))
-                .addContainerGap(302, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(711, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
-                .addComponent(btnProjekt)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(83, 83, 83))
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(btnProjekt)
+                        .addGap(27, 27, 27)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(526, Short.MAX_VALUE))
         );
-    }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+        label1.getAccessibleContext().setAccessibleName("Startsida");
+    }// </editor-fold>//GEN-END:initComponents
 
     private void btnProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjektActionPerformed
     Projekt projektPanel = new Projekt(idb); // Skapa projektpanelen
@@ -105,6 +113,8 @@ private InfDB idb;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnProjekt;
     private javax.swing.JButton jButton1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 }
