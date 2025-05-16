@@ -164,6 +164,7 @@ try {
     ResultSet rs = stmt.executeQuery();
 
     if (rs.next()) {
+        String aid = rs.getString("aid");
         String fornamn = rs.getString("fornamn");
         String efternamn = rs.getString("efternamn");
         
