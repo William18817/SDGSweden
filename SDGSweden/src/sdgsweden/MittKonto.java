@@ -40,7 +40,7 @@ public class MittKonto extends javax.swing.JPanel {
         hamntaAnvandarInfo();
     }
     
-    private void hamntaAnvandarInfo()
+    public void hamntaAnvandarInfo()
     {
         try{
             Connection conn = DriverManager.getConnection(
@@ -211,15 +211,15 @@ public class MittKonto extends javax.swing.JPanel {
                             .addComponent(LbFornamn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(LbEfternamn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(TfEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TfFornamn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TfAdress, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TfEpost, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TfTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TfAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TfAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(TfAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TfAdress, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                            .addComponent(TfEpost)))
                     .addComponent(SidaTitel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -229,7 +229,7 @@ public class MittKonto extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(CbRedigeraUppgifter)
-                        .addContainerGap(10, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,7 +287,7 @@ public class MittKonto extends javax.swing.JPanel {
         TfEpost.setEditable(redigera);
         TfTelefon.setEditable(redigera);
         TfLosenord.setEditable(redigera);
-        TfAvdelning.setEditable(redigera);
+        //TfAvdelning.setEditable(redigera);
         
         
     }//GEN-LAST:event_CbRedigeraUppgifterActionPerformed
@@ -295,15 +295,16 @@ public class MittKonto extends javax.swing.JPanel {
     private void BnSparaAndringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BnSparaAndringarActionPerformed
         try
         {
-           Connection conn = DriverManager.getConnection(
-           "jdbc:mysql.//localhost.3306/sdgsweden",
+           
+            Connection conn = DriverManager.getConnection(
+           "jdbc:mysql://localhost:3306/sdgsweden",
            "dbAdmin2024",
            "dbAdmin2024PW"
            );
            
-          String sql = "UPDATE anstalld"
-                  + "SET fornamn=?, efternamn=?, adress=?, epost=?, losenord=?, avdelning=?"
-                  + "WHERE aid=?";
+          String sql = "UPDATE anstalld "
+                  + "SET fornamn=?, efternamn=?, adress=?, epost=?, telefon=?, losenord=?"
+                  + "WHERE aid = " + aid;
           PreparedStatement stmt = conn.prepareStatement(sql);
           
           stmt.setString(1, TfFornamn.getText());
@@ -311,13 +312,14 @@ public class MittKonto extends javax.swing.JPanel {
           stmt.setString(3, TfAdress.getText());
           stmt.setString(4, TfEpost.getText());
           stmt.setString(5, TfTelefon.getText());
-          stmt.setString(6, TfAnstallningsdatum.getText());
-          stmt.setString(7, TfLosenord.getText());
-          stmt.setString(8, TfAvdelning.getText());
+          //stmt.setString(6, TfAnstallningsdatum.getText());
+          stmt.setString(6, TfLosenord.getText());
+          //stmt.setString(8, TfAvdelning.getText());
           
           int rows = stmt.executeUpdate();
           if (rows > 0)
           {
+              
               JOptionPane.showMessageDialog(this, "Dina Uppgifter är Uppdaterade!");
               
           
