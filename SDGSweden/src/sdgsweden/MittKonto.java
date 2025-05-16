@@ -29,11 +29,13 @@ public class MittKonto extends javax.swing.JPanel {
     /**
      * Creates new form MittKonto
      */
+    private InfDB idb;
     private String aid;
     
-    public MittKonto() 
+    public MittKonto(InfDB idb, String aid) 
     {
         initComponents();
+        this.idb = idb;
         this.aid = aid;
         hamntaAnvandarInfo();
     }
@@ -115,7 +117,7 @@ public class MittKonto extends javax.swing.JPanel {
         TfAvdelning = new javax.swing.JTextField();
         CbRedigeraUppgifter = new javax.swing.JCheckBox();
         BnSparaAndringar = new javax.swing.JButton();
-        BnTillbaka = new javax.swing.JButton();
+        btnTillbaka = new javax.swing.JButton();
         SidaTitel = new java.awt.Label();
 
         LbFornamn.setText("Förnamn :");
@@ -177,7 +179,12 @@ public class MittKonto extends javax.swing.JPanel {
             }
         });
 
-        BnTillbaka.setText("Tillbaka");
+        btnTillbaka.setText("Tillbaka");
+        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTillbakaActionPerformed(evt);
+            }
+        });
 
         SidaTitel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         SidaTitel.setText("Dina uppgifter :");
@@ -217,7 +224,7 @@ public class MittKonto extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BnTillbaka)
+                        .addComponent(btnTillbaka)
                         .addGap(21, 21, 21))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(80, 80, 80)
@@ -236,7 +243,7 @@ public class MittKonto extends javax.swing.JPanel {
                             .addComponent(TfFornamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(BnTillbaka)))
+                        .addComponent(btnTillbaka)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LbEfternamn)
@@ -334,27 +341,26 @@ public class MittKonto extends javax.swing.JPanel {
     private void TfEfternamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TfEfternamnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TfEfternamnActionPerformed
+
+    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
+        // TODO add your handling code here:
+      java.awt.Container parentContainer = this.getParent();
+while (!(parentContainer instanceof MainFrame) && parentContainer != null) {
+    parentContainer = parentContainer.getParent();
+}
+if (parentContainer instanceof MainFrame) {
+    MainFrame mainFrame = (MainFrame) parentContainer;
+    Startsida startsida = new Startsida(mainFrame, idb, aid);
+    mainFrame.visaPanel(startsida, "startsida");
+}
+
+    }//GEN-LAST:event_btnTillbakaActionPerformed
      
-    public static void main(String args[])
-    {
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
-                new MittKonto().setVisible(true);
-            
-            }
-        
-        });
-    
-    }
-    
-    
+   
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BnSparaAndringar;
-    private javax.swing.JButton BnTillbaka;
     private javax.swing.JCheckBox CbRedigeraUppgifter;
     private javax.swing.JLabel LbAdress;
     private javax.swing.JLabel LbAnstallningsdatum;
@@ -373,5 +379,6 @@ public class MittKonto extends javax.swing.JPanel {
     private javax.swing.JTextField TfFornamn;
     private javax.swing.JTextField TfLosenord;
     private javax.swing.JTextField TfTelefon;
+    private javax.swing.JButton btnTillbaka;
     // End of variables declaration//GEN-END:variables
 }

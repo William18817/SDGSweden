@@ -13,14 +13,16 @@ import sdgsweden.projekt.Projekt;
 public class Startsida extends javax.swing.JPanel {
 private MainFrame parent;
 private InfDB idb;
+private String aid;
     
     /**
      * Creates new form Startsida
      * @param parent
      */
-    public Startsida(MainFrame parent,InfDB idb) {
+    public Startsida(MainFrame parent,InfDB idb, String aid) {
             this.parent = parent;
             this.idb=idb;
+            this.aid = aid;
         initComponents();
     }
 
@@ -35,7 +37,7 @@ private InfDB idb;
 
         btnProjekt = new javax.swing.JButton();
         label1 = new java.awt.Label();
-        jButton1 = new javax.swing.JButton();
+        btnMittKonto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
 
@@ -48,10 +50,10 @@ private InfDB idb;
 
         label1.setText("STARTSIDA");
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnMittKonto.setText("Mitt Konto");
+        btnMittKonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnMittKontoActionPerformed(evt);
             }
         });
 
@@ -73,13 +75,13 @@ private InfDB idb;
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(btnProjekt))
-                            .addComponent(jButton1))
+                            .addComponent(btnMittKonto))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(711, Short.MAX_VALUE))
+                .addContainerGap(702, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,7 +92,7 @@ private InfDB idb;
                         .addGap(66, 66, 66)
                         .addComponent(btnProjekt)
                         .addGap(27, 27, 27)
-                        .addComponent(jButton1))
+                        .addComponent(btnMittKonto))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -101,18 +103,21 @@ private InfDB idb;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjektActionPerformed
-    Projekt projektPanel = new Projekt(idb); // Skapa projektpanelen
+    Projekt projektPanel = new Projekt(parent, idb,aid); // Skapa projektpanelen
     parent.visaPanel(projektPanel, "projekt"); // Visa den i MainFrame
     }//GEN-LAST:event_btnProjektActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnMittKontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMittKontoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        MittKonto mittKontoPanel = new MittKonto(idb, aid);
+        parent.visaPanel(mittKontoPanel, "mittkonto");
+
+    }//GEN-LAST:event_btnMittKontoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMittKonto;
     private javax.swing.JButton btnProjekt;
-    private javax.swing.JButton jButton1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
