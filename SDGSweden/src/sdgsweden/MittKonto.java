@@ -54,7 +54,7 @@ public class MittKonto extends javax.swing.JPanel {
                   + "WHERE aid = ?";
           
           PreparedStatement stmt = conn.prepareStatement(sql);
-          stmt.setString(2, aid);
+          stmt.setString(1, aid);
           
           ResultSet rs = stmt.executeQuery();
           
