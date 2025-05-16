@@ -67,18 +67,8 @@ private InfDB idb;
         });
 
         DateOne.setColumns(12);
-        DateOne.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DateOneActionPerformed(evt);
-            }
-        });
 
         DateTwo.setColumns(12);
-        DateTwo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DateTwoActionPerformed(evt);
-            }
-        });
 
         DatumLabel.setText("Sök datum");
 
@@ -222,7 +212,7 @@ private InfDB idb;
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void hamtaAllaProjekt() {
+    public void hamtaAllaProjekt() {
     
 
         
@@ -306,14 +296,6 @@ private InfDB idb;
         JOptionPane.showMessageDialog(null, "Fel vid hämtning: " + e.getMessage());
         }
     }//GEN-LAST:event_StatusMenuActionPerformed
-
-    private void DateOneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateOneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DateOneActionPerformed
-
-    private void DateTwoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateTwoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DateTwoActionPerformed
 
     private void UppdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UppdateButtonActionPerformed
     String datumFran = DateOne.getText().trim();

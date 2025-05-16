@@ -188,6 +188,12 @@ public class RedigeraProjekt extends javax.swing.JPanel {
 
     private void TillbakaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TillbakaKnappActionPerformed
     
+// Kontrollera om projektPanel faktiskt är ett objekt av klassen Projekt
+// Om det är en Projekt-panel, "typecasta" den från JPanel till Projekt
+        if (projektPanel instanceof Projekt) {
+        ((Projekt) projektPanel).hamtaAllaProjekt(); // Uppdatera tabellen med nya data
+    }
+        
     Container parent = RedigeraProjekt.this.getParent();  // Hämta föräldrapanelen där RedigeraProjekt ligger
     parent.removeAll();                   // Ta bort nuvarande panel (RedigeraProjekt)
     parent.add(projektPanel);            // Lägg till den sparade "tillbaka"-panelen
@@ -196,7 +202,60 @@ public class RedigeraProjekt extends javax.swing.JPanel {
     }//GEN-LAST:event_TillbakaKnappActionPerformed
 
     private void SparaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SparaButtonActionPerformed
-        // TODO add your handling code here:
+        try {
+        // Hämta värden från fält
+        String namn = projektNamnText.getText().trim();
+        String status = statusText.getText().trim();
+        String startdatum = startdatumText.getText().trim();
+        String slutdatum = slutdatumText.getText().trim();
+        String kostnad = kostnadText.getText().trim();
+        String prioritet = prioText.getText().trim();
+        String beskrivning = beskrivningText.getText().trim();
+
+        // Kontrollera att inga fält är tomma
+        if (namn.isEmpty() || status.isEmpty() || startdatum.isEmpty() || slutdatum.isEmpty() ||
+            kostnad.isEmpty() || prioritet.isEmpty() || beskrivning.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Alla fält måste fyllas i.");
+            return;
+        }
+
+        // Kontrollera datumformat (YYYY-MM-DD)
+        if (!startdatum.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            JOptionPane.showMessageDialog(this, "Startdatum måste vara i formatet YYYY-MM-DD.");
+            return;
+        }
+        // Kontrollera datumformat (YYYY-MM-DD)
+        if (!slutdatum.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            JOptionPane.showMessageDialog(this, "Slutdatum måste vara i formatet YYYY-MM-DD.");
+            return;
+        }
+
+        // Kontrollera att kostnad är ett giltigt flyttal
+        try {
+            Double.parseDouble(kostnad);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Kostnad måste vara ett tal.");
+            return;
+        }
+
+
+        // Om allt är giltigt – gör uppdateringen
+        String sql = "UPDATE projekt SET " +
+                     "projektnamn = '" + namn + "', " +
+                     "status = '" + status + "', " +
+                     "startdatum = '" + startdatum + "', " +
+                     "slutdatum = '" + slutdatum + "', " +
+                     "kostnad = '" + kostnad + "', " +
+                     "prioritet = '" + prioritet + "', " +
+                     "beskrivning = '" + beskrivning + "' " +
+                     "WHERE pid = " + pid;
+
+        idb.update(sql);
+        JOptionPane.showMessageDialog(this, "Projektet har uppdaterats!");
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Fel vid uppdatering: " + e.getMessage());
+    }
     }//GEN-LAST:event_SparaButtonActionPerformed
 
     private void fyllProjektData(){

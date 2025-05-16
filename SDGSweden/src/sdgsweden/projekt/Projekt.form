@@ -130,17 +130,11 @@
       <Properties>
         <Property name="columns" type="int" value="12"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DateOneActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="DateTwo">
       <Properties>
         <Property name="columns" type="int" value="12"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DateTwoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="DatumLabel">
       <Properties>
