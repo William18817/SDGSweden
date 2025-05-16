@@ -17,32 +17,29 @@ import oru.inf.InfException;
 public class MainFrame extends javax.swing.JFrame {
 
 private InfDB idb;
+private String aid;
 //Ny konstruktor för att kunna köra Inloggningssidan:
     
-    public MainFrame(InfDB idb) {
+    public MainFrame(InfDB idb, String aid) {
     this.idb = idb;
+    this.aid = aid;
     initComponents();
 
-    try {
-    InfDB idb2 = new InfDB ("sdgsweden", "3306", "dbAdmin2024", "dbAdmin2024PW");
-    Startsida startsida = new Startsida(this, idb2);
+   
+    Startsida startsida = new Startsida(this, idb, aid);
     mainPanel.add(startsida, "startsida");
 
     CardLayout cl = (CardLayout) mainPanel.getLayout();
     cl.show(mainPanel, "startsida");
 }
-    catch (InfException ex){
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Kunde inte ansluta till databasen: " + ex.getMessage());
-        }
-    }
+
     
     //Gamla konstrukorn, används bara om man vill starta direkt från MainFrame istället för Inloggningsrutan.
     public MainFrame() {
          initComponents();
         try {
         InfDB idb = new InfDB ("sdgsweden", "3306", "dbAdmin2024", "dbAdmin2024PW");
-        Startsida startsida = new Startsida(this, idb);
+        Startsida startsida = new Startsida(this, idb, aid);
         mainPanel.add(startsida, "startsida");
 
         // Visa startsidan som första vy

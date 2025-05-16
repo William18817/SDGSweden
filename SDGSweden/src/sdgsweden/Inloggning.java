@@ -30,6 +30,7 @@ public class Inloggning extends javax.swing.JFrame {
      * Creates new form Inloggning
      */
     public Inloggning(InfDB idb) {
+        this.idb = idb;
         initComponents();
     }
 
@@ -153,7 +154,7 @@ public class Inloggning extends javax.swing.JFrame {
 
     private void ButtonLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLoggaInActionPerformed
         String epost = TextFieldEpost.getText();
-String losenord = new String(PasswordField.getPassword());
+        String losenord = new String(PasswordField.getPassword());
 
 try {
     // Ansluter till databas
@@ -179,7 +180,7 @@ try {
         JOptionPane.showMessageDialog(this, "Välkommen " + fornamn + " "+ efternamn + " ! Du kommer nu att logga in");
 
         // Öppna nästa fönster
-        MainFrame main = new MainFrame(idb);
+        MainFrame main = new MainFrame(idb, aid);
         main.setVisible(true);
         this.dispose(); // Stänger login-fönstret
     } else {
