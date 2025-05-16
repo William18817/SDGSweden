@@ -31,10 +31,10 @@ public class MittKonto extends javax.swing.JPanel {
      */
     private String aid;
     
-    public MittKonto(String aid) 
+    public MittKonto() 
     {
-        this.aid = aid;
         initComponents();
+        this.aid = aid;
         hamntaAnvandarInfo();
     }
     
@@ -297,7 +297,7 @@ public class MittKonto extends javax.swing.JPanel {
           String sql = "UPDATE anstalld"
                   + "SET fornamn=?, efternamn=?, adress=?, epost=?, losenord=?, avdelning=?"
                   + "WHERE aid=?";
-          PreparedStatment stmt = conn.prepareStatment(sql);
+          PreparedStatement stmt = conn.prepareStatement(sql);
           
           stmt.setString(1, TfFornamn.getText());
           stmt.setString(2, TfEfternamn.getText());
@@ -324,7 +324,7 @@ public class MittKonto extends javax.swing.JPanel {
         
         catch (Exception e)
         {
-            e.printStacktrace();
+            e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Kunde ej spara ändringar.");
         
         }
