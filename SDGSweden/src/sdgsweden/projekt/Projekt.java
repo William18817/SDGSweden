@@ -235,34 +235,42 @@ private String aid;
     }// </editor-fold>//GEN-END:initComponents
 
     public void hamtaAllaProjekt() {
-        
-        try {
+         try {
         String fraga = 
-            "SELECT pid, status, projektnamn, beskrivning, startdatum, slutdatum, kostnad, prioritet " +
-            "FROM projekt ";
-        
-            //"JOIN anstalld a ON p.projektchef = a.aid " +
-            //"WHERE a.aid = " + handlaggarId;
-            
-            ArrayList<HashMap <String, String>> resultat = idb.fetchRows(fraga);
-            
-            DefaultTableModel model = (DefaultTableModel) InfoProjectTable.getModel();
-            
+            "SELECT \n" +
+            "    p.pid,\n" +
+            "    p.status,\n" +
+            "    p.projektnamn,\n" +
+            "    p.beskrivning,\n" +
+            "    p.startdatum,\n" +
+            "    p.slutdatum,\n" +
+            "    p.kostnad,\n" +
+            "    p.prioritet,\n" +
+            "    GROUP_CONCAT(pa.namn SEPARATOR ', ') AS partnernamn\n" +
+            "FROM projekt p\n" +
+            "LEFT JOIN projekt_partner pp ON p.pid = pp.pid\n" +
+            "LEFT JOIN partner pa ON pp.partner_pid = pa.pid\n" +
+            "GROUP BY p.pid";
+
+        ArrayList<HashMap<String, String>> resultat = idb.fetchRows(fraga);
+
+        DefaultTableModel model = (DefaultTableModel) InfoProjectTable.getModel();
         model.setRowCount(0);
-            for(HashMap<String, String> rad : resultat){
-                       model.addRow(new Object[]{
-                       rad.get("pid"),
-                       rad.get("projektnamn"),
-                       rad.get("prioritet"),
-                       rad.get("status"),
-                       rad.get("startdatum"),
-                       rad.get("slutdatum"),
-                       rad.get("kostnad"),
-                       rad.get("beskrivning"),
-                       }); 
-            }
+
+        for (HashMap<String, String> rad : resultat) {
+            model.addRow(new Object[]{
+                rad.get("pid"),
+                rad.get("projektnamn"),
+                rad.get("prioritet"),
+                rad.get("status"),
+                rad.get("startdatum"),
+                rad.get("slutdatum"),
+                rad.get("kostnad"),
+                rad.get("beskrivning"),
+                rad.get("partnernamn")
+            });
         }
-        catch (InfException e) {
+    } catch (InfException e) {
         JOptionPane.showMessageDialog(this, "Kunde inte hämta projekt: " + e.getMessage());
     }
 }
