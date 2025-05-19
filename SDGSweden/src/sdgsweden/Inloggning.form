@@ -91,13 +91,13 @@
     <Component class="javax.swing.JPasswordField" name="PasswordField">
       <Properties>
         <Property name="columns" type="int" value="11"/>
-        <Property name="text" type="java.lang.String" value="password456"/>
+        <Property name="text" type="java.lang.String" value="passwordxyz"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TextFieldEpost">
       <Properties>
         <Property name="columns" type="int" value="10"/>
-        <Property name="text" type="java.lang.String" value="john.smith@example.com"/>
+        <Property name="text" type="java.lang.String" value="aya.sato@example.com"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextFieldEpostActionPerformed"/>
