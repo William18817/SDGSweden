@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author wilhe
+ * @author Kalkilm
  */
 public class Inloggning extends javax.swing.JFrame {
 
@@ -32,6 +32,12 @@ public class Inloggning extends javax.swing.JFrame {
     public Inloggning(InfDB idb) {
         this.idb = idb;
         initComponents();
+    }
+    
+    public Inloggning()
+    {
+        initComponents();
+    //extra klass för att få Logga ut att köra.
     }
 
     /**
@@ -58,10 +64,10 @@ public class Inloggning extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         PasswordField.setColumns(11);
-        PasswordField.setText("password456");
+        PasswordField.setText("passwordxyz");
 
         TextFieldEpost.setColumns(10);
-        TextFieldEpost.setText("john.smith@example.com");
+        TextFieldEpost.setText("aya.sato@example.com");
         TextFieldEpost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextFieldEpostActionPerformed(evt);
