@@ -37,10 +37,8 @@ public class RedigeraProjekt extends javax.swing.JPanel {
         TillbakaKnapp = new javax.swing.JButton();
         projektNamnText = new javax.swing.JTextField();
         JLabelProjekt = new javax.swing.JLabel();
-        statusText = new javax.swing.JTextField();
         startdatumText = new javax.swing.JTextField();
         slutdatumText = new javax.swing.JTextField();
-        prioText = new javax.swing.JTextField();
         kostnadText = new javax.swing.JTextField();
         BeskrivningScrollPane = new javax.swing.JScrollPane();
         beskrivningText = new javax.swing.JTextArea();
@@ -55,6 +53,7 @@ public class RedigeraProjekt extends javax.swing.JPanel {
         prioComboBox = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setForeground(new java.awt.Color(0, 0, 255));
         setPreferredSize(new java.awt.Dimension(500, 550));
@@ -70,13 +69,9 @@ public class RedigeraProjekt extends javax.swing.JPanel {
 
         JLabelProjekt.setText("Projektnamn");
 
-        statusText.setColumns(10);
-
         startdatumText.setColumns(10);
 
         slutdatumText.setColumns(10);
-
-        prioText.setColumns(10);
 
         kostnadText.setColumns(10);
 
@@ -116,6 +111,9 @@ public class RedigeraProjekt extends javax.swing.JPanel {
 
         jLabel2.setText("YYYY-MM-DD");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setText("Redigera");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,7 +137,8 @@ public class RedigeraProjekt extends javax.swing.JPanel {
                                 .addComponent(slutdatumText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel1))
-                            .addComponent(kostnadText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(kostnadText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(JLabelProjekt)
@@ -147,33 +146,32 @@ public class RedigeraProjekt extends javax.swing.JPanel {
                             .addComponent(jLabelStatus))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(projektNamnText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(statusText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(SparaButton)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(TillbakaKnapp))
-                                .addComponent(BeskrivningScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(projektNamnText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(prioComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(prioText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(158, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(SparaButton)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(TillbakaKnapp))
+                                        .addComponent(BeskrivningScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(prioComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 108, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(projektNamnText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JLabelProjekt))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(statusText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelStatus)
                     .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -192,7 +190,6 @@ public class RedigeraProjekt extends javax.swing.JPanel {
                     .addComponent(jLabelKostnad))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(prioText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelPrioritet)
                     .addComponent(prioComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -203,7 +200,7 @@ public class RedigeraProjekt extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(SparaButton)
                     .addComponent(TillbakaKnapp))
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -226,12 +223,10 @@ public class RedigeraProjekt extends javax.swing.JPanel {
         try {
         // Hämta värden från fält
         String namn = projektNamnText.getText().trim();
-        //String status = statusText.getText().trim();
         String status = (String) statusComboBox.getSelectedItem();
         String startdatum = startdatumText.getText().trim();
         String slutdatum = slutdatumText.getText().trim();
         String kostnad = kostnadText.getText().trim().replace(',', '.');
-        //String prioritet = prioText.getText().trim();
         String prioritet = (String) prioComboBox.getSelectedItem();
         String beskrivning = beskrivningText.getText().trim();
 
@@ -295,10 +290,8 @@ public class RedigeraProjekt extends javax.swing.JPanel {
                 projektNamnText.setText(projektInfo.get("projektnamn"));
                 startdatumText.setText(projektInfo.get("startdatum"));
                 slutdatumText.setText(projektInfo.get("slutdatum"));
-                //statusText.setText(projektInfo.get("status"));
                 statusComboBox.setSelectedItem(projektInfo.get("status"));
                 kostnadText.setText(projektInfo.get("kostnad"));
-                //prioText.setText(projektInfo.get("prioritet"));
                 prioComboBox.setSelectedItem(projektInfo.get("prioritet"));
                 beskrivningText.setText(projektInfo.get("beskrivning"));
                         
@@ -321,6 +314,7 @@ public class RedigeraProjekt extends javax.swing.JPanel {
     private javax.swing.JTextArea beskrivningText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelBeskrivning;
     private javax.swing.JLabel jLabelKostnad;
     private javax.swing.JLabel jLabelPrioritet;
@@ -329,11 +323,9 @@ public class RedigeraProjekt extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelStatus;
     private javax.swing.JTextField kostnadText;
     private javax.swing.JComboBox<String> prioComboBox;
-    private javax.swing.JTextField prioText;
     private javax.swing.JTextField projektNamnText;
     private javax.swing.JTextField slutdatumText;
     private javax.swing.JTextField startdatumText;
     private javax.swing.JComboBox<String> statusComboBox;
-    private javax.swing.JTextField statusText;
     // End of variables declaration//GEN-END:variables
 }

@@ -27,7 +27,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabelPrioritet" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelKostnad" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -48,8 +48,9 @@
                           </Group>
                           <Component id="kostnadText" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="JLabelProjekt" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelBeskrivning" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -57,29 +58,29 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="projektNamnText" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="statusComboBox" min="-2" pref="124" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="statusText" min="-2" max="-2" attributes="0"/>
+                              <Component id="projektNamnText" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jLabel3" min="-2" pref="88" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="SparaButton" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="TillbakaKnapp" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="statusComboBox" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="SparaButton" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="TillbakaKnapp" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="BeskrivningScrollPane" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="prioComboBox" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="BeskrivningScrollPane" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="prioComboBox" min="-2" pref="124" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="prioText" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="108" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="158" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -88,12 +89,12 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel3" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="projektNamnText" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="JLabelProjekt" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="statusText" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="statusComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -116,7 +117,6 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="prioText" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelPrioritet" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="prioComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -130,7 +130,7 @@
                   <Component id="SparaButton" min="-2" max="-2" attributes="0"/>
                   <Component id="TillbakaKnapp" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="175" max="32767" attributes="0"/>
+              <EmptySpace pref="159" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -154,22 +154,12 @@
         <Property name="text" type="java.lang.String" value="Projektnamn"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="statusText">
-      <Properties>
-        <Property name="columns" type="int" value="10"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="startdatumText">
       <Properties>
         <Property name="columns" type="int" value="10"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="slutdatumText">
-      <Properties>
-        <Property name="columns" type="int" value="10"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="prioText">
       <Properties>
         <Property name="columns" type="int" value="10"/>
       </Properties>
@@ -276,6 +266,14 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" value="YYYY-MM-DD"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Redigera"/>
       </Properties>
     </Component>
   </SubComponents>
