@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import java.sql.DriverManager;
+import oru.inf.InfDB;
 import sdgsweden.MainFrame;
 import sdgsweden.Startsida;
 /**
@@ -17,10 +18,10 @@ import sdgsweden.Startsida;
 public class AdminPanel extends javax.swing.JPanel {
 
     private MainFrame parent;
-    private oru.inf.InfDB idb;
+    private InfDB idb;
     private String aid;
     
-    public AdminPanel(MainFrame parent, oru.inf.InfDB idb, String aid) {
+    public AdminPanel(MainFrame parent, InfDB idb, String aid) {
     this.parent = parent;
     this.idb = idb;
     this.aid = aid;
@@ -357,30 +358,20 @@ public class AdminPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_chkVisaLosenordActionPerformed
 
     private void btnRedigeraAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraAvdelningActionPerformed
-        RedigeraAvdelning nyttFönster = new RedigeraAvdelning();
-        //Denna kodrad skapar ett nytt fönster av klassen "RedigeraAvdelning".
-        //"nyttFönster" är en variabel som vi valde att döpa till "nyttFönster".
+    AdminAvdelning adminAvdelningPanel = new AdminAvdelning(parent, idb, aid);
+    parent.visaPanel(adminAvdelningPanel, "adminAvdelning");
         
-        nyttFönster.setVisible(true);
-        //Här skriver vi att vi vill att fönstret ska vara synligt.
+        
     }//GEN-LAST:event_btnRedigeraAvdelningActionPerformed
 
     private void btnRedigeraPartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraPartnerActionPerformed
-        RedigeraPartner nyttFönster = new RedigeraPartner();
-        //Denna kodrad skapar ett nytt fönster av klassen "RedigeraPartner".
-        //"nyttFönster" är en variabel som vi valde att döpa till "nyttFönster".
-        
-        nyttFönster.setVisible(true);
-        //Här vill vi att fönstret ska vara synligt.
+        AdminPartner adminPartnerPanel = new AdminPartner(parent, idb, aid);
+        parent.visaPanel(adminPartnerPanel, "adminPartner");
     }//GEN-LAST:event_btnRedigeraPartnerActionPerformed
 
     private void btnRedigeraLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraLandActionPerformed
-        RedigeraLand nyttFönster = new RedigeraLand();
-        //Denna kodrad skapar ett nytt fönster av klassen "RedigeraLand".
-        //"nyttFönster" är en variabel som vi valde att döpa till "nyttFönster".
-        
-        nyttFönster.setVisible(true);
-        //Här vill vi att fönstret ska vara synligt.
+        AdminLand adminLandPanel = new AdminLand(parent, idb, aid);
+        parent.visaPanel(adminLandPanel, "adminLand");
     }//GEN-LAST:event_btnRedigeraLandActionPerformed
 
     private void btnLaggTillAnstalldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillAnstalldActionPerformed

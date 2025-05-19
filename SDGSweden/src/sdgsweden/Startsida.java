@@ -4,6 +4,7 @@
  */
 package sdgsweden;
 import oru.inf.InfDB;
+import sdgsweden.admin.AdminPanel;
 import sdgsweden.projekt.Projekt;
 
 /**
@@ -40,7 +41,7 @@ private String aid;
         btnMittKonto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        btnLoggaUt = new javax.swing.JButton();
+        btnAdmin = new javax.swing.JButton();
 
         btnProjekt.setText("Projekt");
         btnProjekt.addActionListener(new java.awt.event.ActionListener() {
@@ -65,10 +66,10 @@ private String aid;
         });
         jScrollPane1.setViewportView(jList1);
 
-        btnLoggaUt.setText("Logga ut");
-        btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
+        btnAdmin.setText("Admin");
+        btnAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoggaUtActionPerformed(evt);
+                btnAdminActionPerformed(evt);
             }
         });
 
@@ -77,37 +78,35 @@ private String aid;
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnMittKonto)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnProjekt)
+                                    .addComponent(btnAdmin))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnProjekt))
-                    .addComponent(btnMittKonto))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 603, Short.MAX_VALUE)
-                .addComponent(btnLoggaUt)
-                .addGap(22, 22, 22))
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(702, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
                         .addComponent(btnProjekt)
                         .addGap(27, 27, 27)
-                        .addComponent(btnMittKonto))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(btnLoggaUt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnMittKonto)
+                        .addGap(32, 32, 32)
+                        .addComponent(btnAdmin)))
                 .addContainerGap(526, Short.MAX_VALUE))
         );
 
@@ -134,9 +133,14 @@ private String aid;
         new Inloggning(idb).setVisible(true);
     }//GEN-LAST:event_btnLoggaUtActionPerformed
 
+    private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
+            AdminPanel adminPanel = new AdminPanel(parent, idb, aid);
+            parent.visaPanel(adminPanel, "adminpanel");
+    }//GEN-LAST:event_btnAdminActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLoggaUt;
+    private javax.swing.JButton btnAdmin;
     private javax.swing.JButton btnMittKonto;
     private javax.swing.JButton btnProjekt;
     private javax.swing.JList<String> jList1;
