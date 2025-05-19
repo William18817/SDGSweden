@@ -53,15 +53,15 @@ public class AdminPanel extends javax.swing.JPanel {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Lägg till/Ta bort anställd"));
 
-        jLabel1.setText("Förnamn");
+        jLabel1.setText("Förnamn*");
 
-        jLabel2.setText("Efternamn");
+        jLabel2.setText("Efternamn*");
 
-        jLabel3.setText("Adress");
+        jLabel3.setText("Adress*");
 
-        jLabel4.setText("Epost");
+        jLabel4.setText("Epost*");
 
-        jLabel5.setText("Telefon");
+        jLabel5.setText("Telefon*");
 
         txtFornamn.setPreferredSize(new java.awt.Dimension(150, 24));
 
@@ -73,11 +73,11 @@ public class AdminPanel extends javax.swing.JPanel {
 
         txtTelefon.setPreferredSize(new java.awt.Dimension(150, 24));
 
-        jLabel6.setText("Anställningsdatum (yyyy-MM-dd)");
+        jLabel6.setText("Anställningsdatum (yyyy-MM-dd)*");
 
-        jLabel7.setText("Lösenord (Dolt)");
+        jLabel7.setText("Lösenord (Dolt)*");
 
-        jLabel8.setText("Avdelning (ID)");
+        jLabel8.setText("Avdelning (ID)*");
 
         txtAnstallningsdatum.setPreferredSize(new java.awt.Dimension(150, 24));
 
