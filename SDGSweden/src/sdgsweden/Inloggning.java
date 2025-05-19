@@ -17,6 +17,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 /**
@@ -164,25 +165,15 @@ public class Inloggning extends javax.swing.JFrame {
         String losenord = new String(PasswordField.getPassword());
 
 try {
-    // Ansluter till databas
-    Connection conn = DriverManager.getConnection(
-        "jdbc:mysql://localhost:3306/sdgsweden", // vår databas
-        "dbAdmin2024",                           // användarnamn
-        "dbAdmin2024PW"                          //  MySQL-lösenord
-    );
 
     // SQL-fråga med placeholders för att undvika SQL injection
-    String sql = "SELECT * FROM anstalld WHERE epost = ? AND losenord = ?";
-    PreparedStatement stmt = conn.prepareStatement(sql);
-    stmt.setString(1, epost); // Vårt "användarnamn"
-    stmt.setString(2, losenord); // Lösenord
+    String sql = "SELECT * FROM anstalld WHERE epost = '" + epost + "' AND losenord = '" + losenord + "'";
+    HashMap<String, String> user = idb.fetchRow(sql);
 
-    ResultSet rs = stmt.executeQuery();
-
-    if (rs.next()) {
-        String aid = rs.getString("aid");
-        String fornamn = rs.getString("fornamn");
-        String efternamn = rs.getString("efternamn");
+    if (user !=null) {
+        String aid = user.get("aid");
+        String fornamn = user.get("fornamn");
+        String efternamn = user.get("efternamn");
         
         JOptionPane.showMessageDialog(this, "Välkommen " + fornamn + " "+ efternamn + " ! Du kommer nu att logga in");
 
@@ -194,10 +185,6 @@ try {
         //  Fel uppgifter
         JOptionPane.showMessageDialog(this, "Fel e-post eller lösenord.");
     }
-
-    rs.close();
-    stmt.close();
-    conn.close();
 
 } catch (Exception ex) {
     ex.printStackTrace();
