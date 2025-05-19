@@ -652,7 +652,9 @@ private String aid;
         }
 
         // Hämta alla handläggare
-        ArrayList<HashMap<String, String>> handlaggareLista = idb.fetchRows("SELECT aid, fornamn, efternamn FROM handlaggare");
+        ArrayList<HashMap<String, String>> handlaggareLista = idb.fetchRows("SELECT anstalld.aid, fornamn, efternamn " +
+        "FROM handlaggare " +
+        "JOIN anstalld ON handlaggare.aid = anstalld.aid");
 
         JComboBox<String> handlerBox = new JComboBox<>();
         HashMap<String, String> namnTillAid = new HashMap<>();
