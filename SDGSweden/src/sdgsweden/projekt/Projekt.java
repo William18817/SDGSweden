@@ -634,57 +634,62 @@ private String aid;
 
     private void addHandlaggareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHandlaggareButtonActionPerformed
         try {
-        int valdRad = InfoProjectTable.getSelectedRow();
-
-        if (valdRad == -1) {
-            JOptionPane.showMessageDialog(this, "Välj ett projekt i tabellen först.");
+        int radIndex = InfoProjectTable.getSelectedRow();
+        if (radIndex == -1) {
+            JOptionPane.showMessageDialog(this, "Välj ett projekt först.");
             return;
         }
 
-        // Hämta projektets ID från första kolumnen i vald rad
-        String projektId = InfoProjectTable.getValueAt(valdRad, 0).toString();
+        String projektId = InfoProjectTable.getValueAt(radIndex, 0).toString();
+
+        // Hämta redan kopplade handläggare
+        String koppladeFraga = "SELECT aid FROM ans_proj WHERE pid = '" + projektId + "'";
+        System.out.println("Kör SQL: " + koppladeFraga);
+        ArrayList<HashMap<String, String>> kopplade = idb.fetchRows(koppladeFraga);
+        HashSet<String> redanKoppladeAid = new HashSet<>();
+        for (HashMap<String, String> rad : kopplade) {
+            redanKoppladeAid.add(rad.get("aid"));
+        }
 
         // Hämta alla handläggare
-        String fraga = "SELECT aid, fornamn, efternamn FROM handlaggare";
-        ArrayList<HashMap<String, String>> handlaggareLista = idb.fetchRows(fraga);
+        ArrayList<HashMap<String, String>> handlaggareLista = idb.fetchRows("SELECT aid, fornamn, efternamn FROM handlaggare");
 
-        if (handlaggareLista == null || handlaggareLista.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Det finns inga handläggare att välja.");
+        JComboBox<String> handlerBox = new JComboBox<>();
+        HashMap<String, String> namnTillAid = new HashMap<>();
+
+        for (HashMap<String, String> h : handlaggareLista) {
+            String hAid = h.get("aid");
+            String namn = h.get("fornamn") + " " + h.get("efternamn");
+
+            if (!redanKoppladeAid.contains(hAid)) {
+                handlerBox.addItem(namn);
+                namnTillAid.put(namn, hAid);
+            }
+        }
+
+        if (handlerBox.getItemCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Alla handläggare är redan kopplade till detta projekt.");
             return;
         }
 
-        // Skapa namnlista till comboBox
-        String[] handlaggareNamn = new String[handlaggareLista.size()];
-        for (int i = 0; i < handlaggareLista.size(); i++) {
-            HashMap<String, String> handlaggare = handlaggareLista.get(i);
-            handlaggareNamn[i] = handlaggare.get("aid") + " - " +
-                                 handlaggare.get("fornamn") + " " +
-                                 handlaggare.get("efternamn");
-        }
+        Object[] message = {
+            "Välj handläggare att koppla till projektet:", handlerBox
+        };
 
-        // Popup-panel
-        JPanel panel = new JPanel(new BorderLayout());
-        JComboBox<String> comboBox = new JComboBox<>(handlaggareNamn);
-        panel.add(new JLabel("Välj handläggare att lägga till:"), BorderLayout.NORTH);
-        panel.add(comboBox, BorderLayout.CENTER);
+        int val = JOptionPane.showConfirmDialog(this, message, "Lägg till Handläggare", JOptionPane.OK_CANCEL_OPTION);
+        if (val == JOptionPane.OK_OPTION) {
+            String valtNamn = (String) handlerBox.getSelectedItem();
+            String valdAid = namnTillAid.get(valtNamn);  // <-- bytt namn här
 
-        int result = JOptionPane.showConfirmDialog(
-            this, panel, "Lägg till handläggare", JOptionPane.OK_CANCEL_OPTION);
-
-        if (result == JOptionPane.OK_OPTION) {
-            String vald = (String) comboBox.getSelectedItem();
-            String handlaggareId = vald.split(" - ")[0]; // Ex: "5 - Anna Andersson" → "5"
-
-            // Lägg till handläggare i databasen
-            String insertFraga = "INSERT INTO ans_proj (aid, pid) VALUES (" + handlaggareId + ", " + projektId + ")";
+            String insertFraga = "INSERT INTO ans_proj (aid, pid) VALUES ('" + valdAid + "', '" + projektId + "')";
             idb.insert(insertFraga);
 
-            JOptionPane.showMessageDialog(this, "Handläggare tillagd.");
-            hamtaAllaProjekt(); // Uppdatera JTable
+            JOptionPane.showMessageDialog(this, "Handläggare kopplad till projekt!");
+            hamtaAllaProjekt(); // Uppdatera tabellen
         }
 
     } catch (InfException e) {
-        JOptionPane.showMessageDialog(this, "Fel vid tillägg av handläggare: " + e.getMessage());
+        JOptionPane.showMessageDialog(this, "Fel vid koppling av handläggare: " + e.getMessage());
     }
     }//GEN-LAST:event_addHandlaggareButtonActionPerformed
 
