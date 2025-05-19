@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,49 +44,30 @@ public class MittKonto extends javax.swing.JPanel {
     public void hamntaAnvandarInfo()
     {
         try{
-            Connection conn = DriverManager.getConnection(
-            "jdbc:mysql://localhost:3306/sdgsweden",
-            "dbAdmin2024",
-            "dbAdmin2024PW"
-           );
+            String sql = "SELECT * FROM anstalld WHERE aid = '" + aid + "'";
+            HashMap<String, String> anvandarData = idb.fetchRow(sql);
             
-            
-          String sql ="SELECT * FROM anstalld "
-                  + "WHERE aid = ?";
-          
-          PreparedStatement stmt = conn.prepareStatement(sql);
-          stmt.setString(1, aid);
-          
-          ResultSet rs = stmt.executeQuery();
-          
-          if (rs.next())
+          if (anvandarData != null)
           {
-              TfFornamn.setText(rs.getString("fornamn"));
-              TfEfternamn.setText(rs.getString("efternamn"));
-              TfAdress.setText(rs.getString("adress"));
-              TfEpost.setText(rs.getString("epost"));
-              TfTelefon.setText(rs.getString("telefon"));
-              TfAnstallningsdatum.setText(rs.getString("anstallningsdatum"));
-              TfLosenord.setText(rs.getString("losenord"));
-              TfAvdelning.setText(rs.getString("avdelning"));
-              
+              TfFornamn.setText(anvandarData.get("fornamn"));
+              TfEfternamn.setText(anvandarData.get("efternamn"));
+              TfAdress.setText(anvandarData.get("adress"));
+              TfEpost.setText(anvandarData.get("epost"));
+              TfTelefon.setText(anvandarData.get("telefon"));
+              TfAnstallningsdatum.setText(anvandarData.get("anstallningsdatum"));
+              TfLosenord.setText(anvandarData.get("losenord"));
+              TfAvdelning.setText(anvandarData.get("avdelning"));
+             
              }
-          
-          rs.close();
-          stmt.close();
-          conn.close();
-          
-          
-        
-        
-            
-        
+          else 
+          {
+               JOptionPane.showMessageDialog(this, "Användarinformation kunde inte hittas.");
+          }
         }
         catch (Exception e)
         {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Kunde inte hämnta information");
-        
         }
     
     }
@@ -289,43 +271,21 @@ public class MittKonto extends javax.swing.JPanel {
 
     private void BnSparaAndringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BnSparaAndringarActionPerformed
         try
-        {
-           
-            Connection conn = DriverManager.getConnection(
-           "jdbc:mysql://localhost:3306/sdgsweden",
-           "dbAdmin2024",
-           "dbAdmin2024PW"
-           );
-           
-          String sql = "UPDATE anstalld "
-                  + "SET fornamn=?, efternamn=?, adress=?, epost=?, telefon=?, losenord=?"
-                  + "WHERE aid = " + aid;
-          PreparedStatement stmt = conn.prepareStatement(sql);
-          
-          stmt.setString(1, TfFornamn.getText());
-          stmt.setString(2, TfEfternamn.getText());
-          stmt.setString(3, TfAdress.getText());
-          stmt.setString(4, TfEpost.getText());
-          stmt.setString(5, TfTelefon.getText());
-          //stmt.setString(6, TfAnstallningsdatum.getText());
-          stmt.setString(6, TfLosenord.getText());
-          //stmt.setString(8, TfAvdelning.getText());
-          
-          int rows = stmt.executeUpdate();
-          if (rows > 0)
-          {
-              
-              JOptionPane.showMessageDialog(this, "Dina Uppgifter är Uppdaterade!");
-              
-          
-          }
-          
-          stmt.close();
-          conn.close();
-          
-        
+        {      
+          String sql = "UPDATE anstalld SET"
+                  + "fornamn = '" + TfFornamn.getText() + "', "
+                  + "efternamn = '" + TfEfternamn.getText() + "', "
+                  + "adress = '" + TfAdress.getText() + "', "
+                  + "epost = '" + TfEpost.getText() + "', "
+                  + "telefon = '" + TfTelefon.getText() + "', "
+                  + "anstallningsdatum = '" + TfAnstallningsdatum.getText() + "', "
+                  + "losenord = '" + TfLosenord.getText() + "', "
+                  + "avdelning = '" + TfAvdelning.getText() + "' "
+                  + "WHERE aid = '" + aid + "'";
+                  
+                  idb.update(sql);
+                   JOptionPane.showMessageDialog(this, "Dina uppgifter har sparats!");
         }
-        
         catch (Exception e)
         {
             e.printStackTrace();

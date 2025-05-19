@@ -131,7 +131,7 @@ private String aid;
         javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
         
         //Öppnar vårt InLoggning.java.
-        new Inloggning().setVisible(true);
+        new Inloggning(idb).setVisible(true);
     }//GEN-LAST:event_btnLoggaUtActionPerformed
 
 
