@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -519,7 +520,6 @@ private String aid;
 
     private void addPartnerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPartnerButtonActionPerformed
         try {
-        // Hämta projektet som är markerat
         int radIndex = InfoProjectTable.getSelectedRow();
         if (radIndex == -1) {
             JOptionPane.showMessageDialog(this, "Välj ett projekt först.");
@@ -528,18 +528,30 @@ private String aid;
 
         String projektId = InfoProjectTable.getValueAt(radIndex, 0).toString();
 
-        // Hämta alla partners från databasen
-        ArrayList<HashMap<String, String>> partnerLista = idb.fetchRows("SELECT pid, namn FROM partner");
+        // Hämta redan kopplade partner_ids för projektet
+        String koppladeFraga = "SELECT partner_pid FROM projekt_partner WHERE pid = " + projektId;
+        ArrayList<HashMap<String, String>> koppladePartners = idb.fetchRows(koppladeFraga);
+        HashSet<String> redanKoppladeIds = new HashSet<>();
 
-        // Skapa dropdown med partnernamn
+        for (HashMap<String, String> rad : koppladePartners) {
+            redanKoppladeIds.add(rad.get("partner_pid"));
+        }
+
+        // Hämta alla partners
+        ArrayList<HashMap<String, String>> allaPartners = idb.fetchRows("SELECT pid, namn FROM partner");
+
         JComboBox<String> partnerBox = new JComboBox<>();
         HashMap<String, String> namnTillId = new HashMap<>();
 
-        for (HashMap<String, String> partner : partnerLista) {
-            String namn = partner.get("namn");
+        for (HashMap<String, String> partner : allaPartners) {
             String pid = partner.get("pid");
-            partnerBox.addItem(namn);
-            namnTillId.put(namn, pid);
+            String namn = partner.get("namn");
+
+            // Bara lägg till partnern om den INTE redan är kopplad till projektet
+            if (!redanKoppladeIds.contains(pid)) {
+                partnerBox.addItem(namn);
+                namnTillId.put(namn, pid);
+            }
         }
 
         Object[] message = {
@@ -551,7 +563,6 @@ private String aid;
             String valtNamn = (String) partnerBox.getSelectedItem();
             String partnerId = namnTillId.get(valtNamn);
 
-            // Lägg till kopplingen i projekt_partner
             String insertFraga = "INSERT INTO projekt_partner (pid, partner_pid) VALUES (" + projektId + ", " + partnerId + ")";
             idb.insert(insertFraga);
 
