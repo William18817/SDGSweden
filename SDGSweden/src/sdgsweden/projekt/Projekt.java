@@ -1,0 +1,487 @@
+
+package sdgsweden.projekt;
+
+import java.awt.Container;
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.JOptionPane;
+import oru.inf.InfDB;
+import oru.inf.InfException;
+import javax.swing.table.DefaultTableModel;
+import sdgsweden.MainFrame;
+import sdgsweden.Startsida;
+
+/*
+ * @author jonas
+ */
+
+public class Projekt extends javax.swing.JPanel {
+
+private InfDB idb;
+private MainFrame parent;
+private String aid;
+
+//private String handlaggarId;
+
+
+    
+    public Projekt(MainFrame parent, InfDB idb, String aid) {
+        this.parent = parent;
+        this.idb = idb;
+        this.aid = aid;
+        
+        //this.handlaggarId = handlaggarId;
+        
+        
+        initComponents();
+        hamtaAllaProjekt(); 
+    }
+
+   
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jTextField3 = new javax.swing.JTextField();
+        StatusMenu = new javax.swing.JComboBox<>();
+        DateOne = new javax.swing.JTextField();
+        DateTwo = new javax.swing.JTextField();
+        DatumLabel = new javax.swing.JLabel();
+        UppdateButton = new javax.swing.JButton();
+        StatusLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        InfoProjectTable = new javax.swing.JTable();
+        AndraUppgifter = new javax.swing.JButton();
+        addProjektButton = new javax.swing.JButton();
+        DeleteButton = new javax.swing.JButton();
+        StatistikKostnad = new javax.swing.JButton();
+        pidTextField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        btnTillbaka = new javax.swing.JButton();
+
+        jTextField3.setText("jTextField3");
+
+        setToolTipText("");
+
+        StatusMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alla", "Pågående", "Planerat", "Avslutat" }));
+        StatusMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StatusMenuActionPerformed(evt);
+            }
+        });
+
+        DateOne.setColumns(12);
+
+        DateTwo.setColumns(12);
+
+        DatumLabel.setText("Sök datum");
+
+        UppdateButton.setText("Filtrera");
+        UppdateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UppdateButtonActionPerformed(evt);
+            }
+        });
+
+        StatusLabel.setText("Status");
+
+        InfoProjectTable.setBackground(new java.awt.Color(204, 204, 204));
+        InfoProjectTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Pid", "Projektnamn", "Prioritet", "Status", "Startdatum", "Slutdatum", "Kostnad", "Beskrivning"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        InfoProjectTable.setToolTipText("");
+        jScrollPane1.setViewportView(InfoProjectTable);
+
+        AndraUppgifter.setText("Ändra Uppgifter");
+        AndraUppgifter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AndraUppgifterActionPerformed(evt);
+            }
+        });
+
+        addProjektButton.setText("Lägg till");
+        addProjektButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addProjektButtonActionPerformed(evt);
+            }
+        });
+
+        DeleteButton.setText("Ta bort");
+        DeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteButtonActionPerformed(evt);
+            }
+        });
+
+        StatistikKostnad.setText("Total kostnad");
+        StatistikKostnad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StatistikKostnadActionPerformed(evt);
+            }
+        });
+
+        pidTextField.setColumns(2);
+
+        jLabel1.setText("Pid");
+
+        btnTillbaka.setText("Tillbaka");
+        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTillbakaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(AndraUppgifter, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(pidTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(StatistikKostnad, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(addProjektButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(84, 84, 84))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(StatusMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(31, 31, 31))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(StatusLabel)
+                                    .addGap(80, 80, 80)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(DateOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(DateTwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(UppdateButton)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnTillbaka))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(DatumLabel)
+                                    .addGap(32, 32, 32))))))
+                .addContainerGap(344, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DatumLabel)
+                    .addComponent(StatusLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(StatusMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DateOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DateTwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UppdateButton)
+                    .addComponent(btnTillbaka))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addProjektButton)
+                    .addComponent(AndraUppgifter)
+                    .addComponent(pidTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(StatistikKostnad)
+                    .addComponent(DeleteButton))
+                .addContainerGap(275, Short.MAX_VALUE))
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+    public void hamtaAllaProjekt() {
+        
+        try {
+        String fraga = 
+            "SELECT pid, status, projektnamn, beskrivning, startdatum, slutdatum, kostnad, prioritet " +
+            "FROM projekt ";
+        
+            //"JOIN anstalld a ON p.projektchef = a.aid " +
+            //"WHERE a.aid = " + handlaggarId;
+            
+            ArrayList<HashMap <String, String>> resultat = idb.fetchRows(fraga);
+            
+            DefaultTableModel model = (DefaultTableModel) InfoProjectTable.getModel();
+            
+        model.setRowCount(0);
+            for(HashMap<String, String> rad : resultat){
+                       model.addRow(new Object[]{
+                       rad.get("pid"),
+                       rad.get("projektnamn"),
+                       rad.get("prioritet"),
+                       rad.get("status"),
+                       rad.get("startdatum"),
+                       rad.get("slutdatum"),
+                       rad.get("kostnad"),
+                       rad.get("beskrivning"),
+                       }); 
+            }
+        }
+        catch (InfException e) {
+        JOptionPane.showMessageDialog(this, "Kunde inte hämta projekt: " + e.getMessage());
+    }
+}
+
+    private void StatusMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatusMenuActionPerformed
+        String valdStatus = StatusMenu.getSelectedItem().toString();
+   
+        try{
+            String sql;
+            
+            if (valdStatus.equals("Alla")){
+            sql = "SELECT pid, status, projektnamn, beskrivning, startdatum, slutdatum, kostnad, prioritet "
+                    + "FROM projekt ";
+                    }
+            else{
+                sql = "SELECT pid, status, projektnamn, beskrivning, startdatum, slutdatum, kostnad, prioritet "
+                    + "FROM projekt "
+                    + "WHERE status = '" + valdStatus + "'";}
+            
+                    ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
+                    
+                    DefaultTableModel model = (DefaultTableModel) InfoProjectTable.getModel();
+                    
+                    model.setRowCount(0);
+                    
+                    for(HashMap<String, String> rad : resultat){
+                       model.addRow(new Object[]{
+                       rad.get("pid"),
+                       rad.get("status"),
+                       rad.get("projektnamn"),
+                       rad.get("beskrivning"),
+                       rad.get("startdatum"),
+                       rad.get("slutdatum"),
+                       rad.get("kostnad"),
+                       rad.get("prioritet"),
+                       }); 
+                    }
+                    
+        }
+        catch (Exception e){
+        JOptionPane.showMessageDialog(null, "Fel vid hämtning: " + e.getMessage());
+        }
+    }//GEN-LAST:event_StatusMenuActionPerformed
+
+    private void UppdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UppdateButtonActionPerformed
+    
+    String datumFran = DateOne.getText().trim();
+    String datumTill = DateTwo.getText().trim();
+    String valdStatus = StatusMenu.getSelectedItem().toString();
+
+    if (datumFran.isEmpty() || datumTill.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Fyll i båda datumfälten.");
+        return;
+    }
+
+    try {
+        String sql = "SELECT pid, status, projektnamn, beskrivning, startdatum, slutdatum, kostnad, prioritet "
+                   + "FROM projekt "
+                   + "WHERE startdatum >= '" + datumFran + "' AND startdatum <= '" + datumTill + "'";
+
+        // Lägg till statusfilter om det inte är "Alla"
+        if (!valdStatus.equals("Alla")) {
+            sql += " AND status = '" + valdStatus + "'";
+        }
+
+        ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
+        DefaultTableModel model = (DefaultTableModel) InfoProjectTable.getModel();
+        model.setRowCount(0);
+
+        for (HashMap<String, String> rad : resultat) {
+            model.addRow(new Object[]{
+                rad.get("pid"),
+                rad.get("status"),
+                rad.get("projektnamn"),
+                rad.get("beskrivning"),
+                rad.get("startdatum"),
+                rad.get("slutdatum"),
+                rad.get("kostnad"),
+                rad.get("prioritet"),
+            });
+        }
+    } catch (InfException e) {
+        JOptionPane.showMessageDialog(this, "Kunde inte filtrera projekt: " + e.getMessage());
+    }
+    }//GEN-LAST:event_UppdateButtonActionPerformed
+
+    private void AndraUppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AndraUppgifterActionPerformed
+    try {
+    
+        int pid = Integer.parseInt(pidTextField.getText().trim());
+        
+        RedigeraProjekt redigeraPanel = new RedigeraProjekt(idb, pid, this);
+        Container parentProjekt = this.getParent();
+        
+        parentProjekt.removeAll(); // Ta bort nuvarande innehåll i panelen
+        parentProjekt.add(redigeraPanel);
+        parentProjekt.revalidate();
+        parentProjekt.repaint();
+    }
+    catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Ange ett giltigt heltal för Pid.", "Fel", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_AndraUppgifterActionPerformed
+
+    private void addProjektButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProjektButtonActionPerformed
+        
+        LaggTillProjekt laggTillPanel = new LaggTillProjekt(idb, this);
+        Container parentProjekt = this.getParent();
+        
+        parentProjekt.removeAll(); // Ta bort nuvarande innehåll i panelen
+        parentProjekt.add(laggTillPanel);
+        parentProjekt.revalidate();
+        parentProjekt.repaint();
+    }//GEN-LAST:event_addProjektButtonActionPerformed
+
+    private void StatistikKostnadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatistikKostnadActionPerformed
+        try {
+        // Hämta alla projektens kostnader med SQL-fråga
+        String sql = "SELECT kostnad FROM projekt";
+        // Hämtar resultatet som en lista av HashMaps (en rad = ett projekt)
+        ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
+        
+        // Variabler för att lagra totalkostnad, max/min och antal projekt
+        double totalKostnad = 0;
+        double maxKostnad = Double.MIN_VALUE;
+        double minKostnad = Double.MAX_VALUE;
+
+        int antalProjekt = 0;
+        // Loopar igenom varje projekt och bearbetar kostnaden
+        for (HashMap<String, String> rad : resultat) {
+            double kostnad = Double.parseDouble(rad.get("kostnad"));
+
+            totalKostnad += kostnad;
+            maxKostnad = Math.max(maxKostnad, kostnad);
+            minKostnad = Math.min(minKostnad, kostnad);
+
+            antalProjekt++;
+        }
+
+        double medelKostnad = totalKostnad / antalProjekt;
+
+        // Visa resultatet i en JOptionPane
+        JOptionPane.showMessageDialog(this,
+            "Kostnadsstatistik för alla projekt:\n" +
+            "Totalkostnad: " + totalKostnad + " kr\n" +
+            "Medelkostnad: " + String.format("%.2f", medelKostnad) + " kr\n" +
+            "Högsta kostnad: " + maxKostnad + " kr\n" +
+            "Lägsta kostnad: " + minKostnad + " kr",
+            "Projektkostnad - Statistik",
+            JOptionPane.INFORMATION_MESSAGE // en blå ikon 
+        );
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Fel vid hämtning av kostnadsstatistik: " + e.getMessage());
+    }
+    }//GEN-LAST:event_StatistikKostnadActionPerformed
+
+    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
+        // TODO add your handling code here:
+        Startsida startsida = new Startsida(parent, idb, aid);
+        parent.visaPanel(startsida, "startsida");
+    }//GEN-LAST:event_btnTillbakaActionPerformed
+
+    private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
+        try {
+        // Steg 1: Fråga efter projektets ID (pid)
+        String pidStr = JOptionPane.showInputDialog(this, "Ange projektets ID (pid) som ska tas bort:");
+
+        if (pidStr == null || pidStr.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Du måste ange ett projekt-ID.");
+            return;
+        }
+
+        int pid = Integer.parseInt(pidStr.trim());
+
+        // Steg 2: Fråga användaren om bekräftelse
+        int val = JOptionPane.showConfirmDialog(this,
+            "Är du säker på att du vill ta bort projektet med ID " + pid + "?",
+            "Bekräfta borttagning",
+            JOptionPane.YES_NO_OPTION);
+
+        if (val != JOptionPane.YES_OPTION) {
+            return; // Användaren avbröt
+        }
+
+        // Steg 3: Kör DELETE-sats
+        String sql = "DELETE FROM projekt WHERE pid = " + pid;
+
+        idb.delete(sql);
+
+        JOptionPane.showMessageDialog(this, "Projektet har tagits bort.");
+
+        // Steg 4: Uppdatera tabellen
+        hamtaAllaProjekt();
+
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Projekt-ID måste vara ett heltal.");
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Fel vid borttagning: " + e.getMessage());
+    }
+    }//GEN-LAST:event_DeleteButtonActionPerformed
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AndraUppgifter;
+    private javax.swing.JTextField DateOne;
+    private javax.swing.JTextField DateTwo;
+    private javax.swing.JLabel DatumLabel;
+    private javax.swing.JButton DeleteButton;
+    private javax.swing.JTable InfoProjectTable;
+    private javax.swing.JButton StatistikKostnad;
+    private javax.swing.JLabel StatusLabel;
+    private javax.swing.JComboBox<String> StatusMenu;
+    private javax.swing.JButton UppdateButton;
+    private javax.swing.JButton addProjektButton;
+    private javax.swing.JButton btnTillbaka;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField pidTextField;
+    // End of variables declaration//GEN-END:variables
+}
+    

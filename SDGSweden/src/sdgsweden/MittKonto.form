@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="BnSparaAndringar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="LbAvdelning" alignment="0" max="32767" attributes="0"/>
+                          <Component id="LbLosenord" alignment="0" max="32767" attributes="0"/>
+                          <Component id="LbAnstallningsdatum" alignment="0" pref="113" max="32767" attributes="0"/>
+                          <Component id="LbTelefon" alignment="0" max="32767" attributes="0"/>
+                          <Component id="LbEpost" alignment="0" max="32767" attributes="0"/>
+                          <Component id="LbAdress" alignment="0" max="32767" attributes="0"/>
+                          <Component id="LbFornamn" alignment="0" max="32767" attributes="0"/>
+                          <Component id="LbEfternamn" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="TfEfternamn" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="TfFornamn" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="TfAdress" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="TfEpost" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="TfTelefon" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="TfAnstallningsdatum" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="TfLosenord" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="TfAvdelning" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="SidaTitel" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnTillbaka" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                      <Component id="CbRedigeraUppgifter" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="10" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="SidaTitel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="LbFornamn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TfFornamn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="btnTillbaka" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="LbEfternamn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TfEfternamn" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="LbAdress" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TfAdress" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="LbEpost" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TfEpost" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="LbTelefon" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TfTelefon" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="LbAnstallningsdatum" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TfAnstallningsdatum" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="LbLosenord" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TfLosenord" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="LbAvdelning" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TfAvdelning" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CbRedigeraUppgifter" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="BnSparaAndringar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="LbFornamn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="F&#xf6;rnamn :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LbEfternamn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Efternamn :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LbAdress">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Adress :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LbEpost">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="E-post :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LbTelefon">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Telefon :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LbAnstallningsdatum">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Anst&#xe4;llningsdatum :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LbLosenord">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="L&#xf6;senord :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LbAvdelning">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Avdelning :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="TfFornamn">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="TfEfternamn">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value="jTextField2"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TfEfternamnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="TfAdress">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value="jTextField3"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="TfEpost">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value="jTextField4"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="TfTelefon">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value="jTextField5"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="TfAnstallningsdatum">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value="jTextField6"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="TfLosenord">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value="jTextField7"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="TfAvdelning">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value="jTextField8"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="CbRedigeraUppgifter">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Redigera Uppgifter"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CbRedigeraUppgifterActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="BnSparaAndringar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Spara &#xe4;ndringar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BnSparaAndringarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnTillbaka">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tillbaka"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTillbakaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="java.awt.Label" name="SidaTitel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Dina uppgifter :"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

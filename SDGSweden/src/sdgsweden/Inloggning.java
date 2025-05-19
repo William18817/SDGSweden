@@ -25,10 +25,12 @@ import javax.swing.JOptionPane;
  */
 public class Inloggning extends javax.swing.JFrame {
 
+    private InfDB idb;
     /**
      * Creates new form Inloggning
      */
     public Inloggning(InfDB idb) {
+        this.idb = idb;
         initComponents();
     }
 
@@ -56,8 +58,15 @@ public class Inloggning extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         PasswordField.setColumns(11);
+        PasswordField.setText("password456");
 
         TextFieldEpost.setColumns(10);
+        TextFieldEpost.setText("john.smith@example.com");
+        TextFieldEpost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextFieldEpostActionPerformed(evt);
+            }
+        });
 
         ButtonLoggaIn.setText("Logga in");
         ButtonLoggaIn.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +97,7 @@ public class Inloggning extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(129, 129, 129)
                 .addComponent(ButtonLoggaIn)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(LabelRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -132,6 +141,7 @@ public class Inloggning extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void CheckBoxVisaLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxVisaLosenordActionPerformed
@@ -145,7 +155,7 @@ public class Inloggning extends javax.swing.JFrame {
 
     private void ButtonLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLoggaInActionPerformed
         String epost = TextFieldEpost.getText();
-String losenord = new String(PasswordField.getPassword());
+        String losenord = new String(PasswordField.getPassword());
 
 try {
     // Ansluter till databas
@@ -164,11 +174,15 @@ try {
     ResultSet rs = stmt.executeQuery();
 
     if (rs.next()) {
-        //  Inloggning lyckades
-        JOptionPane.showMessageDialog(this, "Välkommen! Du kommer nu att logga in");
+        String aid = rs.getString("aid");
+        String fornamn = rs.getString("fornamn");
+        String efternamn = rs.getString("efternamn");
+        
+        JOptionPane.showMessageDialog(this, "Välkommen " + fornamn + " "+ efternamn + " ! Du kommer nu att logga in");
 
         // Öppna nästa fönster
-        new ProgramFonster().setVisible(true);
+        MainFrame main = new MainFrame(idb, aid);
+        main.setVisible(true);
         this.dispose(); // Stänger login-fönstret
     } else {
         //  Fel uppgifter
@@ -185,6 +199,10 @@ try {
 }
 
     }//GEN-LAST:event_ButtonLoggaInActionPerformed
+
+    private void TextFieldEpostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldEpostActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextFieldEpostActionPerformed
 
     /**
      * @param args the command line arguments
