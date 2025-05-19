@@ -8,12 +8,24 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import java.sql.DriverManager;
+import sdgsweden.MainFrame;
+import sdgsweden.Startsida;
 /**
  *
  * @author willi
  */
 public class AdminPanel extends javax.swing.JPanel {
 
+    private MainFrame parent;
+    private oru.inf.InfDB idb;
+    private String aid;
+    
+    public AdminPanel(MainFrame parent, oru.inf.InfDB idb, String aid) {
+    this.parent = parent;
+    this.idb = idb;
+    this.aid = aid;
+    initComponents();
+}
     /**
      * Creates new form AdminPanel
      */
@@ -56,6 +68,7 @@ public class AdminPanel extends javax.swing.JPanel {
         btnRedigeraPartner = new javax.swing.JButton();
         btnRedigeraLand = new javax.swing.JButton();
         btnRedigeraProjekt = new javax.swing.JButton();
+        btnTillbaka = new javax.swing.JButton();
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Lägg till/Ta bort anställd"));
 
@@ -238,6 +251,13 @@ public class AdminPanel extends javax.swing.JPanel {
             }
         });
 
+        btnTillbaka.setText("Tillbaka");
+        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTillbakaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -250,6 +270,10 @@ public class AdminPanel extends javax.swing.JPanel {
                     .addComponent(btnRedigeraPartner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRedigeraAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(44, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnTillbaka)
+                .addGap(24, 24, 24))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,7 +286,9 @@ public class AdminPanel extends javax.swing.JPanel {
                 .addComponent(btnRedigeraLand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRedigeraProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnTillbaka)
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -413,6 +439,11 @@ public class AdminPanel extends javax.swing.JPanel {
         //Här skriver vi att vi vill att fönstret ska vara synligt.
     }//GEN-LAST:event_btnRedigeraProjektActionPerformed
 
+    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
+        Startsida startsida = new Startsida(parent, idb, aid);
+        parent.visaPanel(startsida, "startsida");
+    }//GEN-LAST:event_btnTillbakaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGenereraLosenord;
@@ -422,6 +453,7 @@ public class AdminPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnRedigeraPartner;
     private javax.swing.JButton btnRedigeraProjekt;
     private javax.swing.JButton btnTaBortAnstalld;
+    private javax.swing.JButton btnTillbaka;
     private javax.swing.JCheckBox chkVisaLosenord;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

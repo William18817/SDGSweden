@@ -31,10 +31,12 @@ public class MittKonto extends javax.swing.JPanel {
      */
     private InfDB idb;
     private String aid;
+    private MainFrame parent;
     
-    public MittKonto(InfDB idb, String aid) 
+    public MittKonto(MainFrame parent,InfDB idb, String aid) 
     {
         initComponents();
+        this.parent = parent;
         this.idb = idb;
         this.aid = aid;
         hamntaAnvandarInfo();
@@ -223,13 +225,13 @@ public class MittKonto extends javax.swing.JPanel {
                     .addComponent(SidaTitel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnTillbaka)
-                        .addGap(21, 21, 21))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(CbRedigeraUppgifter)
-                        .addContainerGap(10, Short.MAX_VALUE))))
+                        .addContainerGap(12, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnTillbaka)
+                        .addGap(21, 21, 21))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,19 +345,10 @@ public class MittKonto extends javax.swing.JPanel {
     }//GEN-LAST:event_TfEfternamnActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        // TODO add your handling code here:
-      java.awt.Container parentContainer = this.getParent();
-while (!(parentContainer instanceof MainFrame) && parentContainer != null) {
-    parentContainer = parentContainer.getParent();
-}
-if (parentContainer instanceof MainFrame) {
-    MainFrame mainFrame = (MainFrame) parentContainer;
-    Startsida startsida = new Startsida(mainFrame, idb, aid);
-    mainFrame.visaPanel(startsida, "startsida");
-}
-
+        Startsida startsida = new Startsida(parent, idb, aid);
+        parent.visaPanel(startsida, "startsida");  
     }//GEN-LAST:event_btnTillbakaActionPerformed
-     
+   
    
     
 

@@ -4,12 +4,10 @@
  */
 package sdgsweden;
 import oru.inf.InfDB;
+import sdgsweden.admin.AdminPanel;
 import sdgsweden.projekt.Projekt;
 
-/**
- *
- * @author User
- */
+
 public class Startsida extends javax.swing.JPanel {
 private MainFrame parent;
 private InfDB idb;
@@ -40,6 +38,7 @@ private String aid;
         btnMittKonto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        btnAdmin = new javax.swing.JButton();
 
         btnProjekt.setText("Projekt");
         btnProjekt.addActionListener(new java.awt.event.ActionListener() {
@@ -64,6 +63,13 @@ private String aid;
         });
         jScrollPane1.setViewportView(jList1);
 
+        btnAdmin.setText("Admin");
+        btnAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -72,10 +78,12 @@ private String aid;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnMittKonto)
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(btnProjekt))
-                            .addComponent(btnMittKonto))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnProjekt)
+                                    .addComponent(btnAdmin))))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -87,35 +95,42 @@ private String aid;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
                         .addComponent(btnProjekt)
                         .addGap(27, 27, 27)
-                        .addComponent(btnMittKonto))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnMittKonto)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAdmin)))
                 .addContainerGap(526, Short.MAX_VALUE))
         );
 
         label1.getAccessibleContext().setAccessibleName("Startsida");
     }// </editor-fold>//GEN-END:initComponents
 
+//Koden nedan kör metoden visaPanel som ligger i MainFrame
+// Skapar en ny instans av J-Panelklassen Projekt och skickar med parent, dbkopplingen och aid som parameter   
     private void btnProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjektActionPerformed
     Projekt projektPanel = new Projekt(parent, idb,aid); // Skapa projektpanelen
     parent.visaPanel(projektPanel, "projekt"); // Visa den i MainFrame
     }//GEN-LAST:event_btnProjektActionPerformed
 
     private void btnMittKontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMittKontoActionPerformed
-        // TODO add your handling code here:
-        MittKonto mittKontoPanel = new MittKonto(idb, aid);
+        MittKonto mittKontoPanel = new MittKonto(parent, idb, aid);
         parent.visaPanel(mittKontoPanel, "mittkonto");
 
     }//GEN-LAST:event_btnMittKontoActionPerformed
 
+    private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
+        AdminPanel adminPanel = new AdminPanel(parent, idb, aid);
+        parent.visaPanel(adminPanel, "admin");
+    }//GEN-LAST:event_btnAdminActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdmin;
     private javax.swing.JButton btnMittKonto;
     private javax.swing.JButton btnProjekt;
     private javax.swing.JList<String> jList1;

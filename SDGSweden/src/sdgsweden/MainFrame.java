@@ -2,24 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+
 package sdgsweden;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
+// MainFrame ärver klassen JFrame från java
+    public class MainFrame extends javax.swing.JFrame {
+    private InfDB idb;
+    private String aid;
 
-
-/**
- *
- * @author User
- */
-public class MainFrame extends javax.swing.JFrame {
-
-private InfDB idb;
-private String aid;
-//Ny konstruktor för att kunna köra Inloggningssidan:
     
+//Konstruktorn tar emot databasanslutningen och användarID på den inloggade personen.
     public MainFrame(InfDB idb, String aid) {
     this.idb = idb;
     this.aid = aid;
@@ -34,7 +30,7 @@ private String aid;
 }
 
     
-    //Gamla konstrukorn, används bara om man vill starta direkt från MainFrame istället för Inloggningsrutan.
+ //Gamla konstrukorn, används bara om man vill starta direkt från MainFrame istället för Inloggningsrutan.
     public MainFrame() {
          initComponents();
         try {
@@ -51,12 +47,15 @@ private String aid;
             JOptionPane.showMessageDialog(this, "Kunde inte ansluta till databasen: " + ex.getMessage());
         }
     }
+ // Metoden som används av andra klasser för att byta sida som visas i MainFrame-fönstret
     public void visaPanel(javax.swing.JPanel panel, String namn) {
         mainPanel.add(panel, namn);
         CardLayout cl = (CardLayout) mainPanel.getLayout();
         cl.show(mainPanel,namn);
     }
     
+    
+// Kod från designläget
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,7 +91,6 @@ private String aid;
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
     /**
      * @param args the command line arguments
      */
