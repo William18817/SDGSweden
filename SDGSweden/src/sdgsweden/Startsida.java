@@ -42,7 +42,7 @@ private String aid;
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         btnAdmin = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnLoggaUt = new javax.swing.JButton();
 
         btnProjekt.setText("Projekt");
         btnProjekt.addActionListener(new java.awt.event.ActionListener() {
@@ -74,10 +74,10 @@ private String aid;
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLoggaUt.setText("Logga ut");
+        btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLoggaUtActionPerformed(evt);
             }
         });
 
@@ -97,31 +97,27 @@ private String aid;
                                     .addComponent(btnAdmin))))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(109, 109, 109)
-                        .addComponent(jButton1))
+                        .addGap(29, 29, 29)
+                        .addComponent(btnLoggaUt))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(518, Short.MAX_VALUE))
+                .addContainerGap(596, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnProjekt)
-                                .addGap(27, 27, 27)
-                                .addComponent(btnMittKonto)
-                                .addGap(32, 32, 32)
-                                .addComponent(btnAdmin))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(jButton1)))
+                        .addComponent(btnProjekt)
+                        .addGap(27, 27, 27)
+                        .addComponent(btnMittKonto)
+                        .addGap(32, 32, 32)
+                        .addComponent(btnAdmin))
+                    .addComponent(btnLoggaUt))
                 .addContainerGap(526, Short.MAX_VALUE))
         );
 
@@ -153,7 +149,7 @@ private String aid;
             parent.visaPanel(adminPanel, "adminpanel");
     }//GEN-LAST:event_btnAdminActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       // stänger Jframen som innehåller den här panelen, alltså MainFrame.
         javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
       
@@ -164,9 +160,9 @@ private String aid;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdmin;
+    private javax.swing.JButton btnLoggaUt;
     private javax.swing.JButton btnMittKonto;
     private javax.swing.JButton btnProjekt;
-    private javax.swing.JButton jButton1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
