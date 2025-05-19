@@ -1,15 +1,13 @@
 
 package sdgsweden.projekt;
 
-import java.awt.BorderLayout;
+
 import java.awt.Container;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.table.DefaultTableModel;
