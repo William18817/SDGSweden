@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 /**
  * 
  * @author Kalkilm, under följer kod som gör det möjligt för intresenter att visa samnt redigera personlig information
- * som sparats i angiven databas
+ * som sparats i angiven databas.
  */
 
 public class MittKonto extends javax.swing.JPanel {
@@ -41,13 +41,16 @@ public class MittKonto extends javax.swing.JPanel {
         hamntaAnvandarInfo();
     }
     
+    //metoden hämtar info om en användare från databas,
+    //baserat på "aid". 
     public void hamntaAnvandarInfo()
     {
-        try{
+        try
+        {
             String sql = "SELECT * FROM anstalld WHERE aid = '" + aid + "'";
             HashMap<String, String> anvandarData = idb.fetchRow(sql);
             
-          if (anvandarData != null)
+          if (anvandarData != null)//kontrollerar om vi hittar en match för "aid" i databasen.
           {
               TfFornamn.setText(anvandarData.get("fornamn"));
               TfEfternamn.setText(anvandarData.get("efternamn"));
@@ -59,11 +62,13 @@ public class MittKonto extends javax.swing.JPanel {
               TfAvdelning.setText(anvandarData.get("avdelning"));
              
              }
+         //Om ingen användare hittas med "aid" visas ett popup-fönster.
           else 
           {
                JOptionPane.showMessageDialog(this, "Användarinformation kunde inte hittas.");
           }
         }
+       //om något går fel i tex databasanropet visas ett felmedelanade, samnt felet loggas i terminal.
         catch (Exception e)
         {
             e.printStackTrace();
@@ -256,6 +261,10 @@ public class MittKonto extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /*
+    Aktiverar eller inaktiverar redigeringen av vissa textfält
+    beroende på om en kryssruta är ibockad eller inte.
+    */
     private void CbRedigeraUppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbRedigeraUppgifterActionPerformed
         boolean redigera = CbRedigeraUppgifter.isSelected();
         TfFornamn.setEditable(redigera);
@@ -269,10 +278,15 @@ public class MittKonto extends javax.swing.JPanel {
         
     }//GEN-LAST:event_CbRedigeraUppgifterActionPerformed
 
+    /*
+    Den här metoden uppdaterar  en anställds uppgifter i databasen
+    utifrån det som användaren har angivit i textfälten.
+    */
+    
     private void BnSparaAndringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BnSparaAndringarActionPerformed
         try
         {      
-          String sql = "UPDATE anstalld SET"
+          String sql = "UPDATE anstalld SET "
                   + "fornamn = '" + TfFornamn.getText() + "', "
                   + "efternamn = '" + TfEfternamn.getText() + "', "
                   + "adress = '" + TfAdress.getText() + "', "
@@ -284,8 +298,11 @@ public class MittKonto extends javax.swing.JPanel {
                   + "WHERE aid = '" + aid + "'";
                   
                   idb.update(sql);
-                   JOptionPane.showMessageDialog(this, "Dina uppgifter har sparats!");
+                   //visar ett popup-fönster som medelar användaren om att uppgifterna sparats.
+                  JOptionPane.showMessageDialog(this, "Dina uppgifter har sparats!");
         }
+        
+        //om något går fel i tex databasanropet visas ett felmedelanade, samnt felet loggas i terminal.
         catch (Exception e)
         {
             e.printStackTrace();
@@ -298,18 +315,34 @@ public class MittKonto extends javax.swing.JPanel {
     private void TfEfternamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TfEfternamnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TfEfternamnActionPerformed
-
+/*
+ Metoden används när användaren klicar på en "tillbaka" knapp
+ som ska navigera användaren till startsidan i vårt mainFrame.
+*/
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        // TODO add your handling code here:
+        
       java.awt.Container parentContainer = this.getParent();
-while (!(parentContainer instanceof MainFrame) && parentContainer != null) {
-    parentContainer = parentContainer.getParent();
-}
-if (parentContainer instanceof MainFrame) {
-    MainFrame mainFrame = (MainFrame) parentContainer;
-    Startsida startsida = new Startsida(mainFrame, idb, aid);
-    mainFrame.visaPanel(startsida, "startsida");
-}
+
+      //Loop som går uppåt tills MianFrame hittas (eller andra parent)
+      while (!(parentContainer instanceof MainFrame) && parentContainer != null)
+      {
+    
+          parentContainer = parentContainer.getParent();
+
+      }
+      
+
+      //Om den hittade containern är ett MianFrame så castar den om till till den samnt sparar den som mainFrame.
+      if (parentContainer instanceof MainFrame) 
+      {
+   
+          MainFrame mainFrame = (MainFrame) parentContainer;
+    
+          Startsida startsida = new Startsida(mainFrame, idb, aid);// skapar en ny instans av Startsida, skickar med databasobjekt, aid.
+    
+          mainFrame.visaPanel(startsida, "startsida");//Anropar en metod som viasr en ny panel (Startsida)
+
+      }
 
     }//GEN-LAST:event_btnTillbakaActionPerformed
      

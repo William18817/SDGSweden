@@ -22,7 +22,8 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Kalkilm
+ * @author Kalkilm: Nedan följer kod som tillåter användare att logga in i vårt system baserat på data
+ * hämtat ur databasen, efter inloggningen lyckats så plockar den med "aid" för att kunna fortsätta hålla kopplingen individuell.
  */
 public class Inloggning extends javax.swing.JFrame {
 
@@ -35,10 +36,10 @@ public class Inloggning extends javax.swing.JFrame {
         initComponents();
     }
     
-    public Inloggning()
+    public Inloggning() //extra klass för att få Logga ut att köra.
     {
         initComponents();
-    //extra klass för att få Logga ut att köra.
+    
     }
 
     /**
@@ -153,9 +154,9 @@ public class Inloggning extends javax.swing.JFrame {
 
     private void CheckBoxVisaLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxVisaLosenordActionPerformed
        if (CheckBoxVisaLosenord.isSelected()) {
-    PasswordField.setEchoChar((char) 0); // Visa text
+    PasswordField.setEchoChar((char) 0); //Visa text
 } else {
-    PasswordField.setEchoChar('•'); // Dölj text
+    PasswordField.setEchoChar('•'); //Dölj text med karaktär
 }
 
     }//GEN-LAST:event_CheckBoxVisaLosenordActionPerformed
@@ -170,25 +171,28 @@ try {
     String sql = "SELECT * FROM anstalld WHERE epost = '" + epost + "' AND losenord = '" + losenord + "'";
     HashMap<String, String> user = idb.fetchRow(sql);
 
+    //kontrollerear om objektet "user" faktiskt har ett värde.
     if (user !=null) {
-        String aid = user.get("aid");
-        String fornamn = user.get("fornamn");
-        String efternamn = user.get("efternamn");
+        String aid = user.get("aid"); //Hämntar värdet som är kopplat till nyckeln "aid" från HasMap User.
+        String fornamn = user.get("fornamn"); //Hämtar värdet från nyckeln "fornman"
+        String efternamn = user.get("efternamn"); //Hämntar värdet från nyckeln "efternamn"
         
+       //Om användare finns i databasen och gör en lyckad inloggning visas ett fönster med följande text.
         JOptionPane.showMessageDialog(this, "Välkommen " + fornamn + " "+ efternamn + " ! Du kommer nu att logga in");
 
-        // Öppna nästa fönster
-        MainFrame main = new MainFrame(idb, aid);
+       
+        MainFrame main = new MainFrame(idb, aid); //Öppna nästa fönster
         main.setVisible(true);
-        this.dispose(); // Stänger login-fönstret
+        this.dispose(); //Stänger login-fönstret
     } else {
-        //  Fel uppgifter
+        // Fel uppgifter har angivits, intresenten tillåts inte att logga in.
         JOptionPane.showMessageDialog(this, "Fel e-post eller lösenord.");
     }
-
-} catch (Exception ex) {
-    ex.printStackTrace();
-    JOptionPane.showMessageDialog(this, "Fel vid anslutning till databasen.");
+    
+//Detta är ett felhanteringsblock som fångar upp eventuella fel som kan inteffa
+} catch (Exception ex) { //fångar alla fel av typen "exception"
+    ex.printStackTrace(); //skriver ut en detaljerad felrapport till konsolen
+    JOptionPane.showMessageDialog(this, "Fel vid anslutning till databasen.");//visar ett felmeddelandecför användaren i ett popup-fönster.
 }
 
     }//GEN-LAST:event_ButtonLoggaInActionPerformed
