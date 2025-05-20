@@ -189,6 +189,11 @@ private String aid;
         });
 
         taBortHandlaggareButton.setText("Ta bort Handläggare");
+        taBortHandlaggareButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                taBortHandlaggareButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -423,7 +428,7 @@ private String aid;
         Container parentProjekt = this.getParent();
         
         parentProjekt.removeAll(); // Ta bort nuvarande innehåll i panelen
-        parentProjekt.add(laggTillPanel);
+        parentProjekt.add(laggTillPanel); 
         parentProjekt.revalidate();
         parentProjekt.repaint();
     }//GEN-LAST:event_addProjektButtonActionPerformed
@@ -692,6 +697,59 @@ private String aid;
         JOptionPane.showMessageDialog(this, "Fel vid koppling av handläggare: " + e.getMessage());
     }
     }//GEN-LAST:event_addHandlaggareButtonActionPerformed
+
+    private void taBortHandlaggareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taBortHandlaggareButtonActionPerformed
+        try {
+        int radIndex = InfoProjectTable.getSelectedRow();
+        if (radIndex == -1) {
+            JOptionPane.showMessageDialog(this, "Välj ett projekt först.");
+            return;
+        }
+
+        String projektId = InfoProjectTable.getValueAt(radIndex, 0).toString();
+
+        // Hämta handläggare som är kopplade till projektet
+        String fraga = "SELECT anstalld.aid, anstalld.fornamn, anstalld.efternamn FROM ans_proj " +
+                       "JOIN anstalld ON ans_proj.aid = anstalld.aid " +
+                       "WHERE ans_proj.pid = " + projektId;
+
+        ArrayList<HashMap<String, String>> koppladeHandlaggare = idb.fetchRows(fraga);
+
+        if (koppladeHandlaggare == null || koppladeHandlaggare.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Det finns inga handläggare kopplade till detta projekt.");
+            return;
+        }
+
+        JComboBox<String> handlaggareBox = new JComboBox<>();
+        HashMap<String, String> namnTillId = new HashMap<>();
+
+        for (HashMap<String, String> h : koppladeHandlaggare) {
+            String namn = h.get("fornamn") + " " + h.get("efternamn");
+            String handlaggareAid = h.get("aid");
+            handlaggareBox.addItem(namn);
+            namnTillId.put(namn, handlaggareAid);
+        }
+
+        Object[] message = {
+            "Välj handläggare att ta bort från projektet:", handlaggareBox
+        };
+
+        int val = JOptionPane.showConfirmDialog(this, message, "Ta bort Handläggare", JOptionPane.OK_CANCEL_OPTION);
+        if (val == JOptionPane.OK_OPTION) {
+            String valtNamn = (String) handlaggareBox.getSelectedItem();
+            String valtHandlaggareId = namnTillId.get(valtNamn);
+
+            String deleteFraga = "DELETE FROM ans_proj WHERE pid = " + projektId + " AND aid = " + valtHandlaggareId;
+            idb.delete(deleteFraga);
+
+            JOptionPane.showMessageDialog(this, "Handläggare borttagen från projektet.");
+            hamtaAllaProjekt(); // Uppdatera tabellen om det behövs
+        }
+
+    } catch (InfException e) {
+        JOptionPane.showMessageDialog(this, "Fel vid borttagning av handläggare: " + e.getMessage());
+    }
+    }//GEN-LAST:event_taBortHandlaggareButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
