@@ -324,42 +324,47 @@ private String aid;
 
     private void StatusMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatusMenuActionPerformed
         String valdStatus = StatusMenu.getSelectedItem().toString();
-   
-        try{
-            String sql;
-            
-            if (valdStatus.equals("Alla")){
-            sql = "SELECT pid, status, projektnamn, beskrivning, startdatum, slutdatum, kostnad, prioritet "
-                    + "FROM projekt ";
-                    }
-            else{
-                sql = "SELECT pid, status, projektnamn, beskrivning, startdatum, slutdatum, kostnad, prioritet "
-                    + "FROM projekt "
-                    + "WHERE status = '" + valdStatus + "'";}
-            
-                    ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
-                    
-                    DefaultTableModel model = (DefaultTableModel) InfoProjectTable.getModel();
-                    
-                    model.setRowCount(0);
-                    
-                    for(HashMap<String, String> rad : resultat){
-                       model.addRow(new Object[]{
-                       rad.get("pid"),
-                       rad.get("status"),
-                       rad.get("projektnamn"),
-                       rad.get("beskrivning"),
-                       rad.get("startdatum"),
-                       rad.get("slutdatum"),
-                       rad.get("kostnad"),
-                       rad.get("prioritet"),
-                       }); 
-                    }
-                    
+
+    try {
+        String sql = 
+            "SELECT p.pid, p.status, p.projektnamn, p.beskrivning, p.startdatum, p.slutdatum, p.kostnad, p.prioritet, " +
+            "GROUP_CONCAT(DISTINCT pa.namn SEPARATOR ', ') AS partnernamn, " +
+            "GROUP_CONCAT(DISTINCT CONCAT(a.fornamn, ' ', a.efternamn) SEPARATOR ', ') AS handlaggare " +
+            "FROM projekt p " +
+            "LEFT JOIN projekt_partner pp ON p.pid = pp.pid " +
+            "LEFT JOIN partner pa ON pp.partner_pid = pa.pid " +
+            "LEFT JOIN ans_proj ap ON p.pid = ap.pid " +
+            "LEFT JOIN anstalld a ON ap.aid = a.aid ";
+
+        if (!valdStatus.equals("Alla")) {
+            sql += "WHERE p.status = '" + valdStatus + "' ";
         }
-        catch (Exception e){
+
+        sql += "GROUP BY p.pid";
+
+        ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
+
+        DefaultTableModel model = (DefaultTableModel) InfoProjectTable.getModel();
+        model.setRowCount(0);
+
+        for (HashMap<String, String> rad : resultat) {
+            model.addRow(new Object[]{
+                rad.get("pid"),
+                rad.get("projektnamn"),
+                rad.get("prioritet"),
+                rad.get("status"),
+                rad.get("startdatum"),
+                rad.get("slutdatum"),
+                rad.get("kostnad"),
+                rad.get("beskrivning"),
+                rad.get("partnernamn"),
+                rad.get("handlaggare"),
+            });
+        }
+
+    } catch (Exception e) {
         JOptionPane.showMessageDialog(null, "Fel vid hämtning: " + e.getMessage());
-        }
+    }
     }//GEN-LAST:event_StatusMenuActionPerformed
 
     private void UppdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UppdateButtonActionPerformed
@@ -374,14 +379,23 @@ private String aid;
     }
 
     try {
-        String sql = "SELECT pid, status, projektnamn, beskrivning, startdatum, slutdatum, kostnad, prioritet "
-                   + "FROM projekt "
-                   + "WHERE startdatum >= '" + datumFran + "' AND startdatum <= '" + datumTill + "'";
+        String sql = 
+            "SELECT p.pid, p.status, p.projektnamn, p.beskrivning, p.startdatum, p.slutdatum, p.kostnad, p.prioritet, " +
+            "GROUP_CONCAT(DISTINCT pa.namn SEPARATOR ', ') AS partnernamn, " +
+            "GROUP_CONCAT(DISTINCT CONCAT(a.fornamn, ' ', a.efternamn) SEPARATOR ', ') AS handlaggare " +
+            "FROM projekt p " +
+            "LEFT JOIN projekt_partner pp ON p.pid = pp.pid " +
+            "LEFT JOIN partner pa ON pp.partner_pid = pa.pid " +
+            "LEFT JOIN ans_proj ap ON p.pid = ap.pid " +
+            "LEFT JOIN anstalld a ON ap.aid = a.aid " +
+            "WHERE p.startdatum >= '" + datumFran + "' AND p.startdatum <= '" + datumTill + "' ";
 
         // Lägg till statusfilter om det inte är "Alla"
         if (!valdStatus.equals("Alla")) {
-            sql += " AND status = '" + valdStatus + "'";
+            sql += "AND p.status = '" + valdStatus + "' ";
         }
+
+        sql += "GROUP BY p.pid";
 
         ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
         DefaultTableModel model = (DefaultTableModel) InfoProjectTable.getModel();
@@ -390,13 +404,15 @@ private String aid;
         for (HashMap<String, String> rad : resultat) {
             model.addRow(new Object[]{
                 rad.get("pid"),
-                rad.get("status"),
                 rad.get("projektnamn"),
-                rad.get("beskrivning"),
+                rad.get("prioritet"),
+                rad.get("status"),
                 rad.get("startdatum"),
                 rad.get("slutdatum"),
                 rad.get("kostnad"),
-                rad.get("prioritet"),
+                rad.get("beskrivning"),
+                rad.get("partnernamn"),
+                rad.get("handlaggare"),
             });
         }
     } catch (InfException e) {
