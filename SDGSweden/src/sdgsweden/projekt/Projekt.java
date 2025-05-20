@@ -231,7 +231,6 @@ private String aid;
 
         avdelningLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         avdelningLabel.setToolTipText("");
-        avdelningLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         avdelningLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         avdelningLabel.setMaximumSize(new java.awt.Dimension(255, 25));
         avdelningLabel.setMinimumSize(new java.awt.Dimension(255, 25));
