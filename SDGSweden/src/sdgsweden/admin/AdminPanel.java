@@ -1,13 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package sdgsweden.admin;
-import java.util.Random;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+
 import javax.swing.JOptionPane;
-import java.sql.DriverManager;
+
 import oru.inf.InfDB;
 import sdgsweden.MainFrame;
 import sdgsweden.Startsida;
@@ -315,13 +310,14 @@ public class AdminPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenereraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenereraLosenordActionPerformed
-        String tecken = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        String tecken = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[]{}|;:,.<>?/~";
+
         //Detta betyder att den kan generera ett lösenord som inenhåller bokstäver mellan a-z (Stora och små bokstäver) samt siffrorna 0-9.
         
         StringBuilder losenord = new StringBuilder();
         //Här skapas ett tomt objekt av typen "StringBuilder". Går att använda "String" också men "StringBuilder" anses som ett bättre val gällande kommande for-loop.
         
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 15; i++)
         //Detta är en for-loop som beskriver att loopen körs 10 gånger vilket också innebär att lösenordet är 10 tecken långt.
         {
             int index = (int)(Math.random() * tecken.length());
@@ -375,50 +371,80 @@ public class AdminPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRedigeraLandActionPerformed
 
     private void btnLaggTillAnstalldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillAnstalldActionPerformed
-        try
-        //Detta är början på en try-catch sats och allt som står innaför try och catch försöker nu systemet att köra.
-            
-        {
-            Connection databas = DriverManager.getConnection("jdbc:mysql://localhost:3306/sdg_sweden", "root", "123456789");
-            //Denna kodrad försöker skapa en kontakt med vår mysql-databas där vi nämner databasens namn samt inloggningsuppgifter.
-            //Ändra denna, det ska vara infDB uppkoppling, blir komplettering annars.
-            String sqlFraga = "INSERT INTO anstalld (fornamn, efternamn, adress, epost, telefon, anstallningsdatum, losenord, avdelning) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            //Detta är en sql-fråga och därmed en "String". Här vill vi att det ska skapas en ny rad i tabellen "anstalld" där ovan information implementeras.
-            //De 8 frågetecken vi lagt in är just nu som "tomma platser" där information senare i koden kommer implementeras.
-            
-            PreparedStatement forfragan = databas.prepareStatement(sqlFraga);
-            //Detta är en redan förbered fråga som kan ta in parametrar.
-            //Denna kan tas bort.
-            
-            forfragan.setString(1, txtFornamn.getText());
-            forfragan.setString(2, txtEfternamn.getText());
-            forfragan.setString(3, txtAdress.getText());
-            forfragan.setString(4, txtEpost.getText());
-            forfragan.setString(5, txtTelefon.getText());
-            forfragan.setString(6, txtAnstallningsdatum.getText());
-            forfragan.setString(7, new String(pwdLosenord.getPassword()));
-            forfragan.setInt(8, Integer.parseInt(txtAvdelning.getText()));
-            //Varje siffra "1-8" motsvarar de 8 frågetecknen längre upp i koden.
-            //Nummer 1 som vi kan se ovan är "Förnamn" vilket sedan lägg in i frågetecken nummer 1 ovan.
-            //Nummer 7 hämtar lösenordet och gör sedan om det till en sträng, därmed "new String".
-            //Nummer 8 hämtar avdelnings-ID från vårat textfält och gör om det till en int, eftersom avdelningarna anges i sifferform.
-            
-            forfragan.executeUpdate();
-            //Det är här som själva frågan körs.
-            
-            databas.close();
-            //Här stänger vi sedan kopplingen till databasen.
-            
-            JOptionPane.showMessageDialog(null, "En ny anställd har nu blivit tillagd i systemet.");
-            //"JOptionPane.showMessageDialog" används när man vill skriva ut ett meddelande och vi vill här skriva ut det som står ovan (om inga fel upptäcks).
-            
-            }
-        catch (Exception felHittat)
-        //Här har vi slutet på try-catch satsen och om något går fel i ovan kod så kommer följande kodrad under detta att ske. "felHittat" ansåg vi var ett passande namn på variabeln.
-        {
-            JOptionPane.showMessageDialog(null, "Ett fel har upptäckts: " + felHittat.getMessage());
-            //Här visas istället ett felmeddelande som meddelar ovan information som vi angett i koden.
+        try {
+        // Hämta alla värden från formuläret
+        String fornamn = txtFornamn.getText().trim();
+        String efternamn = txtEfternamn.getText().trim();
+        String adress = txtAdress.getText().trim();
+        String epost = txtEpost.getText().trim();
+        String telefon = txtTelefon.getText().trim();
+        String datum = txtAnstallningsdatum.getText().trim();
+        String losenord = new String(pwdLosenord.getPassword()).trim();
+        String avdelningStr = txtAvdelning.getText().trim();
+
+        // Kontroll: tomma fält
+        if (fornamn.isEmpty() || efternamn.isEmpty() || adress.isEmpty() || epost.isEmpty() ||
+            telefon.isEmpty() || datum.isEmpty() || losenord.isEmpty() || avdelningStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Fyll i alla fält.");
+            return;
         }
+
+        // Kontroll: epost-format
+        if (!epost.matches("^[a-zA-Z]+\\.[a-zA-Z]+@example\\.com$")) {
+            JOptionPane.showMessageDialog(this, "E-postadressen måste vara i formatet fornamn.efternamn@example.com");
+            return;
+        }
+
+        // Kontroll: datumformat
+        try {
+            java.time.LocalDate.parse(datum); // Format: YYYY-MM-DD
+        } catch (java.time.format.DateTimeParseException e) {
+            JOptionPane.showMessageDialog(this, "Datumet måste vara i formatet YYYY-MM-DD.");
+            return;
+        }
+
+        // Konvertera avdelning till int
+        int avdelning = Integer.parseInt(avdelningStr);
+
+        // Hämta nästa lediga aid
+        String sqlNextId = "SELECT MAX(aid) + 1 FROM anstalld";
+        String nextIdStr = idb.fetchSingle(sqlNextId);
+        if (nextIdStr == null) {
+            nextIdStr = "1";
+        }
+        int nextAid = Integer.parseInt(nextIdStr);
+
+        // Skapa INSERT-fråga
+        String sql = "INSERT INTO anstalld (aid, fornamn, efternamn, adress, epost, telefon, anstallningsdatum, losenord, avdelning) "
+                   + "VALUES (" + nextAid + ", "
+                   + "'" + fornamn + "', "
+                   + "'" + efternamn + "', "
+                   + "'" + adress + "', "
+                   + "'" + epost + "', "
+                   + "'" + telefon + "', "
+                   + "'" + datum + "', "
+                   + "'" + losenord + "', "
+                   + avdelning + ")";
+
+        // Kör INSERT
+        idb.insert(sql);
+
+        JOptionPane.showMessageDialog(this, "Anställd har lagts till i systemet!");
+
+        // Rensa fält
+        txtFornamn.setText("");
+        txtEfternamn.setText("");
+        txtAdress.setText("");
+        txtEpost.setText("");
+        txtTelefon.setText("");
+        txtAnstallningsdatum.setText("");
+        pwdLosenord.setText("");
+        txtAvdelning.setText("");
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Fel: " + e.getMessage());
+        e.printStackTrace();
+    }
     }//GEN-LAST:event_btnLaggTillAnstalldActionPerformed
 
     private void btnRedigeraProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraProjektActionPerformed
