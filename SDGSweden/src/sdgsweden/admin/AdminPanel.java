@@ -1,11 +1,13 @@
 
 package sdgsweden.admin;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
-
 import oru.inf.InfDB;
 import sdgsweden.MainFrame;
 import sdgsweden.Startsida;
+import oru.inf.InfException;
 /**
  *
  * @author willi
@@ -63,20 +65,19 @@ public class AdminPanel extends javax.swing.JPanel {
         btnRedigeraAvdelning = new javax.swing.JButton();
         btnRedigeraPartner = new javax.swing.JButton();
         btnRedigeraLand = new javax.swing.JButton();
-        btnRedigeraProjekt = new javax.swing.JButton();
         btnTillbaka = new javax.swing.JButton();
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Lägg till/Ta bort anställd"));
 
-        jLabel1.setText("Förnamn");
+        jLabel1.setText("Förnamn*");
 
-        jLabel2.setText("Efternamn");
+        jLabel2.setText("Efternamn*");
 
-        jLabel3.setText("Adress");
+        jLabel3.setText("Adress*");
 
-        jLabel4.setText("Epost");
+        jLabel4.setText("Epost*");
 
-        jLabel5.setText("Telefon");
+        jLabel5.setText("Telefon*");
 
         txtFornamn.setPreferredSize(new java.awt.Dimension(150, 24));
 
@@ -88,11 +89,11 @@ public class AdminPanel extends javax.swing.JPanel {
 
         txtTelefon.setPreferredSize(new java.awt.Dimension(150, 24));
 
-        jLabel6.setText("Anställningsdatum (yyyy-MM-dd)");
+        jLabel6.setText("Anställningsdatum (yyyy-MM-dd)*");
 
-        jLabel7.setText("Lösenord (Dolt)");
+        jLabel7.setText("Lösenord (Dolt)*");
 
-        jLabel8.setText("Avdelning (ID)");
+        jLabel8.setText("Avdelning (ID)*");
 
         txtAnstallningsdatum.setPreferredSize(new java.awt.Dimension(150, 24));
 
@@ -122,6 +123,11 @@ public class AdminPanel extends javax.swing.JPanel {
         });
 
         btnTaBortAnstalld.setText("Ta bort");
+        btnTaBortAnstalld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaBortAnstalldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -239,14 +245,6 @@ public class AdminPanel extends javax.swing.JPanel {
             }
         });
 
-        btnRedigeraProjekt.setText("Projekt");
-        btnRedigeraProjekt.setPreferredSize(new java.awt.Dimension(150, 24));
-        btnRedigeraProjekt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRedigeraProjektActionPerformed(evt);
-            }
-        });
-
         btnTillbaka.setText("Tillbaka");
         btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -261,7 +259,6 @@ public class AdminPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRedigeraProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRedigeraLand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRedigeraPartner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRedigeraAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -269,7 +266,7 @@ public class AdminPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnTillbaka)
-                .addGap(24, 24, 24))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,11 +277,9 @@ public class AdminPanel extends javax.swing.JPanel {
                 .addComponent(btnRedigeraPartner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRedigeraLand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRedigeraProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnTillbaka)
-                .addGap(18, 18, 18))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -312,12 +307,12 @@ public class AdminPanel extends javax.swing.JPanel {
     private void btnGenereraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenereraLosenordActionPerformed
         String tecken = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[]{}|;:,.<>?/~";
 
-        //Detta betyder att den kan generera ett lösenord som inenhåller bokstäver mellan a-z (Stora och små bokstäver) samt siffrorna 0-9.
+        //Detta betyder att den kan generera ett lösenord som inenhåller bokstäver mellan a-z (Stora och små bokstäver) samt siffrorna 0-9 och tecken.
         
         StringBuilder losenord = new StringBuilder();
         //Här skapas ett tomt objekt av typen "StringBuilder". Går att använda "String" också men "StringBuilder" anses som ett bättre val gällande kommande for-loop.
         
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 11; i++)
         //Detta är en for-loop som beskriver att loopen körs 10 gånger vilket också innebär att lösenordet är 10 tecken långt.
         {
             int index = (int)(Math.random() * tecken.length());
@@ -447,19 +442,71 @@ public class AdminPanel extends javax.swing.JPanel {
     }
     }//GEN-LAST:event_btnLaggTillAnstalldActionPerformed
 
-    private void btnRedigeraProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraProjektActionPerformed
-        RedigeraProjekt nyttFönster = new RedigeraProjekt();
-        //Denna kodrad skapar ett nytt fönster av klassen "RedigeraProjekt".
-        //"nyttFönster" är en variabel som vi valde att döpa till "nyttFönster".
-        
-        nyttFönster.setVisible(true);
-        //Här skriver vi att vi vill att fönstret ska vara synligt.
-    }//GEN-LAST:event_btnRedigeraProjektActionPerformed
-
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         Startsida startsida = new Startsida(parent, idb, aid);
         parent.visaPanel(startsida, "startsida");
     }//GEN-LAST:event_btnTillbakaActionPerformed
+
+    private void btnTaBortAnstalldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortAnstalldActionPerformed
+        
+        //Här påbörjar vi en try-catch sats. All kod mellan try och catch kommer nu köras.
+        try
+        {
+            //Detta visar en popup-ruta som dyker upp efter man klickat på "Ta bort" och här får man ange "aid" för att ta bort en anställd.
+            String anstalldId = JOptionPane.showInputDialog(this, "Ange anställnings-ID (aid) för att ta bort:");
+
+            //Om man inte fyller i rutan med ett giltigt aid så kommer meddelandet i koden här under att visas.
+            if (anstalldId.isEmpty())
+            {
+                JOptionPane.showMessageDialog(this, "Fyll i ett anställnings-ID först.");
+                return;
+            }
+
+    // Hämta specifik information om den anställde.
+    String sql = "SELECT fornamn, efternamn FROM anstalld WHERE aid = " + anstalldId;
+
+    //Här körs SQL_frågan mot databasen.
+    ArrayList<HashMap<String, String>> anstallda = idb.fetchRows(sql);
+
+    //Om inget resultat hittas så kommer nedan meddelande att visas och sedan avbryts sekvensen på grund av "return".
+    if (anstallda == null || anstallda.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Det finns ingen anställd med detta ID.");
+        return;
+    }
+
+    // Lista namn (tekniskt sett en person, men vi håller samma struktur)
+    String[] anstalldNamnLista = new String[anstallda.size()];
+    for (int i = 0; i < anstallda.size(); i++) {
+        anstalldNamnLista[i] = anstallda.get(i).get("fornamn") + " " + anstallda.get(i).get("efternamn");
+    }
+
+    // Dialog för att bekräfta borttagning
+    String valdAnstalld = (String) JOptionPane.showInputDialog(
+        this,
+        "Bekräfta vilken anställd du vill ta bort:",
+        "Ta bort anställd",
+        JOptionPane.QUESTION_MESSAGE,
+        null,
+        anstalldNamnLista,
+        anstalldNamnLista[0]
+    );
+
+    if (valdAnstalld != null) {
+        for (HashMap<String, String> a : anstallda) {
+            String namn = a.get("fornamn") + " " + a.get("efternamn");
+            if (namn.equals(valdAnstalld)) {
+                String deleteSql = "DELETE FROM anstalld WHERE aid = " + anstalldId;
+                idb.delete(deleteSql);
+                JOptionPane.showMessageDialog(this, "Den anställde togs bort.");
+                break;
+            }
+        }
+    }
+} catch (InfException e) {
+    JOptionPane.showMessageDialog(this, "Fel vid borttagning av anställd: " + e.getMessage());
+}
+    
+    }//GEN-LAST:event_btnTaBortAnstalldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -468,7 +515,6 @@ public class AdminPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnRedigeraAvdelning;
     private javax.swing.JButton btnRedigeraLand;
     private javax.swing.JButton btnRedigeraPartner;
-    private javax.swing.JButton btnRedigeraProjekt;
     private javax.swing.JButton btnTaBortAnstalld;
     private javax.swing.JButton btnTillbaka;
     private javax.swing.JCheckBox chkVisaLosenord;
