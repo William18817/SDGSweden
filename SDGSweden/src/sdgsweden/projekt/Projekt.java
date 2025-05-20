@@ -284,17 +284,22 @@ private String aid;
     }// </editor-fold>//GEN-END:initComponents
 
     public void hamtaAllaProjekt() {
-         try {
-        String fraga = 
-    "SELECT p.pid, p.status, p.projektnamn, p.beskrivning, p.startdatum, p.slutdatum, p.kostnad, p.prioritet, " +
-    "GROUP_CONCAT(DISTINCT pa.namn SEPARATOR ', ') AS partnernamn, " +
-    "GROUP_CONCAT(DISTINCT CONCAT(a.fornamn, ' ', a.efternamn) SEPARATOR ', ') AS handlaggare " +
-    "FROM projekt p " +
-    "LEFT JOIN projekt_partner pp ON p.pid = pp.pid " +
-    "LEFT JOIN partner pa ON pp.partner_pid = pa.pid " +
-    "LEFT JOIN ans_proj ap ON p.pid = ap.pid " +
-    "LEFT JOIN anstalld a ON ap.aid = a.aid " +
-    "GROUP BY p.pid";
+             try {
+        // Hämta avdelning för inloggad användare
+        String userAvdelning = idb.fetchSingle("SELECT avdelning FROM anstalld WHERE aid = " + aid);
+
+        String fraga =
+            "SELECT DISTINCT p.pid, p.status, p.projektnamn, p.beskrivning, p.startdatum, p.slutdatum, " +
+            "p.kostnad, p.prioritet, " +
+            "GROUP_CONCAT(DISTINCT pa.namn SEPARATOR ', ') AS partnernamn, " +
+            "GROUP_CONCAT(DISTINCT CONCAT(a.fornamn, ' ', a.efternamn) SEPARATOR ', ') AS handlaggare " +
+            "FROM projekt p " +
+            "LEFT JOIN projekt_partner pp ON p.pid = pp.pid " +
+            "LEFT JOIN partner pa ON pp.partner_pid = pa.pid " +
+            "LEFT JOIN ans_proj ap ON p.pid = ap.pid " +
+            "LEFT JOIN anstalld a ON ap.aid = a.aid " +
+            "WHERE ap.aid = " + aid + " OR a.avdelning = " + userAvdelning + " " +
+            "GROUP BY p.pid";
 
         ArrayList<HashMap<String, String>> resultat = idb.fetchRows(fraga);
 
@@ -318,6 +323,7 @@ private String aid;
     } catch (InfException e) {
         JOptionPane.showMessageDialog(this, "Kunde inte hämta projekt: " + e.getMessage());
     }
+
 }
     
     
