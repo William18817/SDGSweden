@@ -1,16 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package sdgsweden.admin;
-import java.util.Random;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
-import java.sql.DriverManager;
 import oru.inf.InfDB;
 import sdgsweden.MainFrame;
 import sdgsweden.Startsida;
+import oru.inf.InfException;
 /**
  *
  * @author willi
@@ -68,20 +65,19 @@ public class AdminPanel extends javax.swing.JPanel {
         btnRedigeraAvdelning = new javax.swing.JButton();
         btnRedigeraPartner = new javax.swing.JButton();
         btnRedigeraLand = new javax.swing.JButton();
-        btnRedigeraProjekt = new javax.swing.JButton();
         btnTillbaka = new javax.swing.JButton();
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Lägg till/Ta bort anställd"));
 
-        jLabel1.setText("Förnamn");
+        jLabel1.setText("Förnamn*");
 
-        jLabel2.setText("Efternamn");
+        jLabel2.setText("Efternamn*");
 
-        jLabel3.setText("Adress");
+        jLabel3.setText("Adress*");
 
-        jLabel4.setText("Epost");
+        jLabel4.setText("Epost*");
 
-        jLabel5.setText("Telefon");
+        jLabel5.setText("Telefon*");
 
         txtFornamn.setPreferredSize(new java.awt.Dimension(150, 24));
 
@@ -93,11 +89,11 @@ public class AdminPanel extends javax.swing.JPanel {
 
         txtTelefon.setPreferredSize(new java.awt.Dimension(150, 24));
 
-        jLabel6.setText("Anställningsdatum (yyyy-MM-dd)");
+        jLabel6.setText("Anställningsdatum (yyyy-MM-dd)*");
 
-        jLabel7.setText("Lösenord (Dolt)");
+        jLabel7.setText("Lösenord (Dolt)*");
 
-        jLabel8.setText("Avdelning (ID)");
+        jLabel8.setText("Avdelning (ID)*");
 
         txtAnstallningsdatum.setPreferredSize(new java.awt.Dimension(150, 24));
 
@@ -127,6 +123,11 @@ public class AdminPanel extends javax.swing.JPanel {
         });
 
         btnTaBortAnstalld.setText("Ta bort");
+        btnTaBortAnstalld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaBortAnstalldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -244,14 +245,6 @@ public class AdminPanel extends javax.swing.JPanel {
             }
         });
 
-        btnRedigeraProjekt.setText("Projekt");
-        btnRedigeraProjekt.setPreferredSize(new java.awt.Dimension(150, 24));
-        btnRedigeraProjekt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRedigeraProjektActionPerformed(evt);
-            }
-        });
-
         btnTillbaka.setText("Tillbaka");
         btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,7 +259,6 @@ public class AdminPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRedigeraProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRedigeraLand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRedigeraPartner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRedigeraAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -274,7 +266,7 @@ public class AdminPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnTillbaka)
-                .addGap(24, 24, 24))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,11 +277,9 @@ public class AdminPanel extends javax.swing.JPanel {
                 .addComponent(btnRedigeraPartner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRedigeraLand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRedigeraProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnTillbaka)
-                .addGap(18, 18, 18))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -315,13 +305,14 @@ public class AdminPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenereraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenereraLosenordActionPerformed
-        String tecken = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        //Detta betyder att den kan generera ett lösenord som inenhåller bokstäver mellan a-z (Stora och små bokstäver) samt siffrorna 0-9.
+        String tecken = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[]{}|;:,.<>?/~";
+
+        //Detta betyder att den kan generera ett lösenord som inenhåller bokstäver mellan a-z (Stora och små bokstäver) samt siffrorna 0-9 och tecken.
         
         StringBuilder losenord = new StringBuilder();
         //Här skapas ett tomt objekt av typen "StringBuilder". Går att använda "String" också men "StringBuilder" anses som ett bättre val gällande kommande for-loop.
         
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 11; i++)
         //Detta är en for-loop som beskriver att loopen körs 10 gånger vilket också innebär att lösenordet är 10 tecken långt.
         {
             int index = (int)(Math.random() * tecken.length());
@@ -375,65 +366,147 @@ public class AdminPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRedigeraLandActionPerformed
 
     private void btnLaggTillAnstalldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillAnstalldActionPerformed
-        try
-        //Detta är början på en try-catch sats och allt som står innaför try och catch försöker nu systemet att köra.
-            
-        {
-            Connection databas = DriverManager.getConnection("jdbc:mysql://localhost:3306/sdg_sweden", "root", "123456789");
-            //Denna kodrad försöker skapa en kontakt med vår mysql-databas där vi nämner databasens namn samt inloggningsuppgifter.
-            //Ändra denna, det ska vara infDB uppkoppling, blir komplettering annars.
-            String sqlFraga = "INSERT INTO anstalld (fornamn, efternamn, adress, epost, telefon, anstallningsdatum, losenord, avdelning) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            //Detta är en sql-fråga och därmed en "String". Här vill vi att det ska skapas en ny rad i tabellen "anstalld" där ovan information implementeras.
-            //De 8 frågetecken vi lagt in är just nu som "tomma platser" där information senare i koden kommer implementeras.
-            
-            PreparedStatement forfragan = databas.prepareStatement(sqlFraga);
-            //Detta är en redan förbered fråga som kan ta in parametrar.
-            //Denna kan tas bort.
-            
-            forfragan.setString(1, txtFornamn.getText());
-            forfragan.setString(2, txtEfternamn.getText());
-            forfragan.setString(3, txtAdress.getText());
-            forfragan.setString(4, txtEpost.getText());
-            forfragan.setString(5, txtTelefon.getText());
-            forfragan.setString(6, txtAnstallningsdatum.getText());
-            forfragan.setString(7, new String(pwdLosenord.getPassword()));
-            forfragan.setInt(8, Integer.parseInt(txtAvdelning.getText()));
-            //Varje siffra "1-8" motsvarar de 8 frågetecknen längre upp i koden.
-            //Nummer 1 som vi kan se ovan är "Förnamn" vilket sedan lägg in i frågetecken nummer 1 ovan.
-            //Nummer 7 hämtar lösenordet och gör sedan om det till en sträng, därmed "new String".
-            //Nummer 8 hämtar avdelnings-ID från vårat textfält och gör om det till en int, eftersom avdelningarna anges i sifferform.
-            
-            forfragan.executeUpdate();
-            //Det är här som själva frågan körs.
-            
-            databas.close();
-            //Här stänger vi sedan kopplingen till databasen.
-            
-            JOptionPane.showMessageDialog(null, "En ny anställd har nu blivit tillagd i systemet.");
-            //"JOptionPane.showMessageDialog" används när man vill skriva ut ett meddelande och vi vill här skriva ut det som står ovan (om inga fel upptäcks).
-            
-            }
-        catch (Exception felHittat)
-        //Här har vi slutet på try-catch satsen och om något går fel i ovan kod så kommer följande kodrad under detta att ske. "felHittat" ansåg vi var ett passande namn på variabeln.
-        {
-            JOptionPane.showMessageDialog(null, "Ett fel har upptäckts: " + felHittat.getMessage());
-            //Här visas istället ett felmeddelande som meddelar ovan information som vi angett i koden.
-        }
-    }//GEN-LAST:event_btnLaggTillAnstalldActionPerformed
+        try {
+        // Hämta alla värden från formuläret
+        String fornamn = txtFornamn.getText().trim();
+        String efternamn = txtEfternamn.getText().trim();
+        String adress = txtAdress.getText().trim();
+        String epost = txtEpost.getText().trim();
+        String telefon = txtTelefon.getText().trim();
+        String datum = txtAnstallningsdatum.getText().trim();
+        String losenord = new String(pwdLosenord.getPassword()).trim();
+        String avdelningStr = txtAvdelning.getText().trim();
 
-    private void btnRedigeraProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraProjektActionPerformed
-        RedigeraProjekt nyttFönster = new RedigeraProjekt();
-        //Denna kodrad skapar ett nytt fönster av klassen "RedigeraProjekt".
-        //"nyttFönster" är en variabel som vi valde att döpa till "nyttFönster".
-        
-        nyttFönster.setVisible(true);
-        //Här skriver vi att vi vill att fönstret ska vara synligt.
-    }//GEN-LAST:event_btnRedigeraProjektActionPerformed
+        // Kontroll: tomma fält
+        if (fornamn.isEmpty() || efternamn.isEmpty() || adress.isEmpty() || epost.isEmpty() ||
+            telefon.isEmpty() || datum.isEmpty() || losenord.isEmpty() || avdelningStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Fyll i alla fält.");
+            return;
+        }
+
+        // Kontroll: epost-format
+        if (!epost.matches("^[a-zA-Z]+\\.[a-zA-Z]+@example\\.com$")) {
+            JOptionPane.showMessageDialog(this, "E-postadressen måste vara i formatet fornamn.efternamn@example.com");
+            return;
+        }
+
+        // Kontroll: datumformat
+        try {
+            java.time.LocalDate.parse(datum); // Format: YYYY-MM-DD
+        } catch (java.time.format.DateTimeParseException e) {
+            JOptionPane.showMessageDialog(this, "Datumet måste vara i formatet YYYY-MM-DD.");
+            return;
+        }
+
+        // Konvertera avdelning till int
+        int avdelning = Integer.parseInt(avdelningStr);
+
+        // Hämta nästa lediga aid
+        String sqlNextId = "SELECT MAX(aid) + 1 FROM anstalld";
+        String nextIdStr = idb.fetchSingle(sqlNextId);
+        if (nextIdStr == null) {
+            nextIdStr = "1";
+        }
+        int nextAid = Integer.parseInt(nextIdStr);
+
+        // Skapa INSERT-fråga
+        String sql = "INSERT INTO anstalld (aid, fornamn, efternamn, adress, epost, telefon, anstallningsdatum, losenord, avdelning) "
+                   + "VALUES (" + nextAid + ", "
+                   + "'" + fornamn + "', "
+                   + "'" + efternamn + "', "
+                   + "'" + adress + "', "
+                   + "'" + epost + "', "
+                   + "'" + telefon + "', "
+                   + "'" + datum + "', "
+                   + "'" + losenord + "', "
+                   + avdelning + ")";
+
+        // Kör INSERT
+        idb.insert(sql);
+
+        JOptionPane.showMessageDialog(this, "Anställd har lagts till i systemet!");
+
+        // Rensa fält
+        txtFornamn.setText("");
+        txtEfternamn.setText("");
+        txtAdress.setText("");
+        txtEpost.setText("");
+        txtTelefon.setText("");
+        txtAnstallningsdatum.setText("");
+        pwdLosenord.setText("");
+        txtAvdelning.setText("");
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Fel: " + e.getMessage());
+        e.printStackTrace();
+    }
+    }//GEN-LAST:event_btnLaggTillAnstalldActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         Startsida startsida = new Startsida(parent, idb, aid);
         parent.visaPanel(startsida, "startsida");
     }//GEN-LAST:event_btnTillbakaActionPerformed
+
+    private void btnTaBortAnstalldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortAnstalldActionPerformed
+        
+        //Här påbörjar vi en try-catch sats. All kod mellan try och catch kommer nu köras.
+        try
+        {
+            //Detta visar en popup-ruta som dyker upp efter man klickat på "Ta bort" och här får man ange "aid" för att ta bort en anställd.
+            String anstalldId = JOptionPane.showInputDialog(this, "Ange anställnings-ID (aid) för att ta bort:");
+
+            //Om man inte fyller i rutan med ett giltigt aid så kommer meddelandet i koden här under att visas.
+            if (anstalldId.isEmpty())
+            {
+                JOptionPane.showMessageDialog(this, "Fyll i ett anställnings-ID först.");
+                return;
+            }
+
+    // Hämta specifik information om den anställde.
+    String sql = "SELECT fornamn, efternamn FROM anstalld WHERE aid = " + anstalldId;
+
+    //Här körs SQL_frågan mot databasen.
+    ArrayList<HashMap<String, String>> anstallda = idb.fetchRows(sql);
+
+    //Om inget resultat hittas så kommer nedan meddelande att visas och sedan avbryts sekvensen på grund av "return".
+    if (anstallda == null || anstallda.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Det finns ingen anställd med detta ID.");
+        return;
+    }
+
+    // Lista namn (tekniskt sett en person, men vi håller samma struktur)
+    String[] anstalldNamnLista = new String[anstallda.size()];
+    for (int i = 0; i < anstallda.size(); i++) {
+        anstalldNamnLista[i] = anstallda.get(i).get("fornamn") + " " + anstallda.get(i).get("efternamn");
+    }
+
+    // Dialog för att bekräfta borttagning
+    String valdAnstalld = (String) JOptionPane.showInputDialog(
+        this,
+        "Bekräfta vilken anställd du vill ta bort:",
+        "Ta bort anställd",
+        JOptionPane.QUESTION_MESSAGE,
+        null,
+        anstalldNamnLista,
+        anstalldNamnLista[0]
+    );
+
+    if (valdAnstalld != null) {
+        for (HashMap<String, String> a : anstallda) {
+            String namn = a.get("fornamn") + " " + a.get("efternamn");
+            if (namn.equals(valdAnstalld)) {
+                String deleteSql = "DELETE FROM anstalld WHERE aid = " + anstalldId;
+                idb.delete(deleteSql);
+                JOptionPane.showMessageDialog(this, "Den anställde togs bort.");
+                break;
+            }
+        }
+    }
+} catch (InfException e) {
+    JOptionPane.showMessageDialog(this, "Fel vid borttagning av anställd: " + e.getMessage());
+}
+    
+    }//GEN-LAST:event_btnTaBortAnstalldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -442,7 +515,6 @@ public class AdminPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnRedigeraAvdelning;
     private javax.swing.JButton btnRedigeraLand;
     private javax.swing.JButton btnRedigeraPartner;
-    private javax.swing.JButton btnRedigeraProjekt;
     private javax.swing.JButton btnTaBortAnstalld;
     private javax.swing.JButton btnTillbaka;
     private javax.swing.JCheckBox chkVisaLosenord;
