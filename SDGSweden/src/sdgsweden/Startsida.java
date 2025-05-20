@@ -42,6 +42,7 @@ private String aid;
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         btnAdmin = new javax.swing.JButton();
+        btnLoggaUt_v2 = new javax.swing.JButton();
 
         btnProjekt.setText("Projekt");
         btnProjekt.addActionListener(new java.awt.event.ActionListener() {
@@ -73,6 +74,13 @@ private String aid;
             }
         });
 
+        btnLoggaUt_v2.setText("Logga ut");
+        btnLoggaUt_v2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoggaUt_v2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,26 +96,33 @@ private String aid;
                                     .addComponent(btnProjekt)
                                     .addComponent(btnAdmin))))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(78, 78, 78)
+                        .addComponent(btnLoggaUt_v2))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(702, Short.MAX_VALUE))
+                .addContainerGap(572, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnProjekt)
-                        .addGap(27, 27, 27)
-                        .addComponent(btnMittKonto)
-                        .addGap(32, 32, 32)
-                        .addComponent(btnAdmin)))
-                .addContainerGap(526, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnProjekt)
+                                .addGap(27, 27, 27)
+                                .addComponent(btnMittKonto)
+                                .addGap(32, 32, 32)
+                                .addComponent(btnAdmin))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(btnLoggaUt_v2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         label1.getAccessibleContext().setAccessibleName("Startsida");
@@ -125,22 +140,32 @@ private String aid;
 
     }//GEN-LAST:event_btnMittKontoActionPerformed
 
-    private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
-        // stänger jFramen som inehåller den här panelen, alltså MainFrame.
-        javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
-        
-        //Öppnar vårt InLoggning.java.
-        new Inloggning(idb).setVisible(true);
-    }//GEN-LAST:event_btnLoggaUtActionPerformed
-
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
             AdminPanel adminPanel = new AdminPanel(parent, idb, aid);
             parent.visaPanel(adminPanel, "adminpanel");
     }//GEN-LAST:event_btnAdminActionPerformed
 
+    
+    //Vi behöver hjälp att ta bort koden för private void btnLoggaUtActionPerformed
+    //Knappen går inte att hitta i designläget eller ta bort manuellt.
+    
+   
+    private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnLoggaUt_v2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUt_v2ActionPerformed
+           // stänger Jframen som innehåller den här panelen, alltså MainFrame.
+        javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
+      
+    //Öppnar inloggning igen
+        new Inloggning(idb).setVisible(true);
+    }//GEN-LAST:event_btnLoggaUt_v2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdmin;
+    private javax.swing.JButton btnLoggaUt_v2;
     private javax.swing.JButton btnMittKonto;
     private javax.swing.JButton btnProjekt;
     private javax.swing.JList<String> jList1;
