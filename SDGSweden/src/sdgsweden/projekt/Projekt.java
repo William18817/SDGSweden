@@ -473,15 +473,14 @@ private String aid;
     // Metod för att hämta avdelningen för den inloggade och visa den i en Jlabel.
     // Körs i konstruktorn så det visas varje gång JPanel visas.
         try {
-        System.out.println("Användarens aid: " + aid);
+        
         String sql = "SELECT av.namn AS avdelning " +
                      "FROM anstalld a " +
                      "JOIN avdelning av ON a.avdelning = av.avdid " +
                      "WHERE a.aid = " + aid;
 
         HashMap<String, String> resultat = idb.fetchRow(sql);
-        System.out.println("SQL-fråga: " + sql);
-        System.out.println("Resultat från SQL: " + resultat);
+        
 
         if (resultat != null && resultat.get("namn") != null) {
             String avdelningsnamn = resultat.get("namn");
