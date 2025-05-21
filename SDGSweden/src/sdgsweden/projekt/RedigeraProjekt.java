@@ -209,7 +209,7 @@ public class RedigeraProjekt extends javax.swing.JPanel {
 // Kontrollera om projektPanel faktiskt är ett objekt av klassen Projekt
 // Om det är en Projekt-panel, "typecasta" den från JPanel till Projekt
         if (projektPanel instanceof Projekt) {
-        ((Projekt) projektPanel).hamtaAllaProjekt(); // Uppdatera tabellen med nya data
+        ((Projekt) projektPanel).hamtaAllaAktuellaProjekt(); // Uppdatera tabellen med nya data
     }
         
     Container parent = RedigeraProjekt.this.getParent();  // Hämta föräldrapanelen där RedigeraProjekt ligger
