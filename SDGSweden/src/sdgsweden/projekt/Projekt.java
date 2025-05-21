@@ -1,7 +1,6 @@
 
 package sdgsweden.projekt;
 
-
 import java.awt.Container;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,17 +23,11 @@ private InfDB idb;
 private MainFrame parent;
 private String aid;
 
-//private String handlaggarId;
-
-
     
     public Projekt(MainFrame parent, InfDB idb, String aid) {
         this.parent = parent;
         this.idb = idb;
         this.aid = aid;
-        
-        //this.handlaggarId = handlaggarId;
-        
         
         initComponents();
         
