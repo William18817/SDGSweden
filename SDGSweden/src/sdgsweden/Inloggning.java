@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-       
 package sdgsweden;
 
 import oru.inf.InfDB;
@@ -13,7 +12,7 @@ import oru.inf.InfDB;
 //3, Skickar parametriserade SQL-frågor. Säkrare än att bygga strängar.
 //4, Gör det möjligt att läsa resultatet av SQL-fråga.
 //5, "Gör" att popup rutor eller JOptionsPane visas, Tex när vi loggar in.
-import java.sql.Connection; 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,12 +21,14 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Kalkilm: Nedan följer kod som tillåter användare att logga in i vårt system baserat på data
- * hämtat ur databasen, efter inloggningen lyckats så plockar den med "aid" för att kunna fortsätta hålla kopplingen individuell.
+ * @author Kalkilm: Nedan följer kod som tillåter användare att logga in i vårt
+ * system baserat på data hämtat ur databasen, efter inloggningen lyckats så
+ * plockar den med "aid" för att kunna fortsätta hålla kopplingen individuell.
  */
 public class Inloggning extends javax.swing.JFrame {
 
     private InfDB idb;
+
     /**
      * Creates new form Inloggning
      */
@@ -35,11 +36,11 @@ public class Inloggning extends javax.swing.JFrame {
         this.idb = idb;
         initComponents();
     }
-    
+
     public Inloggning() //extra klass för att få Logga ut att köra.
     {
         initComponents();
-    
+
     }
 
     /**
@@ -153,11 +154,11 @@ public class Inloggning extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CheckBoxVisaLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxVisaLosenordActionPerformed
-       if (CheckBoxVisaLosenord.isSelected()) {
-    PasswordField.setEchoChar((char) 0); //Visa text
-} else {
-    PasswordField.setEchoChar('•'); //Dölj text med karaktär
-}
+        if (CheckBoxVisaLosenord.isSelected()) {
+            PasswordField.setEchoChar((char) 0); //Visa text
+        } else {
+            PasswordField.setEchoChar('•'); //Dölj text med karaktär
+        }
 
     }//GEN-LAST:event_CheckBoxVisaLosenordActionPerformed
 
@@ -165,35 +166,34 @@ public class Inloggning extends javax.swing.JFrame {
         String epost = TextFieldEpost.getText();
         String losenord = new String(PasswordField.getPassword());
 
-try {
+        try {
 
-    // SQL-fråga med placeholders för att undvika SQL injection
-    String sql = "SELECT * FROM anstalld WHERE epost = '" + epost + "' AND losenord = '" + losenord + "'";
-    HashMap<String, String> user = idb.fetchRow(sql);
+            // SQL-fråga med placeholders för att undvika SQL injection
+            String sql = "SELECT * FROM anstalld WHERE epost = '" + epost + "' AND losenord = '" + losenord + "'";
+            HashMap<String, String> user = idb.fetchRow(sql);
 
-    //kontrollerear om objektet "user" faktiskt har ett värde.
-    if (user !=null) {
-        String aid = user.get("aid"); //Hämntar värdet som är kopplat till nyckeln "aid" från HasMap User.
-        String fornamn = user.get("fornamn"); //Hämtar värdet från nyckeln "fornman"
-        String efternamn = user.get("efternamn"); //Hämntar värdet från nyckeln "efternamn"
-        
-       //Om användare finns i databasen och gör en lyckad inloggning visas ett fönster med följande text.
-        JOptionPane.showMessageDialog(this, "Välkommen " + fornamn + " "+ efternamn + " ! Du kommer nu att logga in");
+            //kontrollerear om objektet "user" faktiskt har ett värde.
+            if (user != null) {
+                String aid = user.get("aid"); //Hämntar värdet som är kopplat till nyckeln "aid" från HasMap User.
+                String fornamn = user.get("fornamn"); //Hämtar värdet från nyckeln "fornman"
+                String efternamn = user.get("efternamn"); //Hämntar värdet från nyckeln "efternamn"
 
-       
-        MainFrame main = new MainFrame(idb, aid); //Öppna nästa fönster
-        main.setVisible(true);
-        this.dispose(); //Stänger login-fönstret
-    } else {
-        // Fel uppgifter har angivits, intresenten tillåts inte att logga in.
-        JOptionPane.showMessageDialog(this, "Fel e-post eller lösenord.");
-    }
-    
+                //Om användare finns i databasen och gör en lyckad inloggning visas ett fönster med följande text.
+                JOptionPane.showMessageDialog(this, "Välkommen " + fornamn + " " + efternamn + " ! Du kommer nu att logga in");
+
+                MainFrame main = new MainFrame(idb, aid); //Öppna nästa fönster
+                main.setVisible(true);
+                this.dispose(); //Stänger login-fönstret
+            } else {
+                // Fel uppgifter har angivits, intresenten tillåts inte att logga in.
+                JOptionPane.showMessageDialog(this, "Fel e-post eller lösenord.");
+            }
+
 //Detta är ett felhanteringsblock som fångar upp eventuella fel som kan inteffa
-} catch (Exception ex) { //fångar alla fel av typen "exception"
-    ex.printStackTrace(); //skriver ut en detaljerad felrapport till konsolen
-    JOptionPane.showMessageDialog(this, "Fel vid anslutning till databasen.");//visar ett felmeddelandecför användaren i ett popup-fönster.
-}
+        } catch (Exception ex) { //fångar alla fel av typen "exception"
+            ex.printStackTrace(); //skriver ut en detaljerad felrapport till konsolen
+            JOptionPane.showMessageDialog(this, "Fel vid anslutning till databasen.");//visar ett felmeddelandecför användaren i ett popup-fönster.
+        }
 
     }//GEN-LAST:event_ButtonLoggaInActionPerformed
 
