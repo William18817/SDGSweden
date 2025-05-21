@@ -1,9 +1,9 @@
-
 package sdgsweden.projekt;
 
 import java.awt.Container;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import oru.inf.InfDB;
@@ -11,19 +11,32 @@ import oru.inf.InfDB;
 /*
  * @author jonas
  */
-public class LaggTillProjekt extends javax.swing.JPanel {
+public class HanteraProjekt extends javax.swing.JPanel {
 
-   private InfDB idb;
-   
-   private JPanel projektPanel;
-   
-   
-    public LaggTillProjekt(InfDB idb, JPanel projektPanel) {
-        
+    private InfDB idb;
+    private JPanel projektPanel;
+    private boolean redigering = false;  // flagga: false = lägg till, true = redigera
+    private int pid;
+
+    // Konstruktor för att lägga till nytt projekt.
+    public HanteraProjekt(InfDB idb, JPanel projektPanel) {
+
         this.idb = idb;
         this.projektPanel = projektPanel;
-        
         initComponents();
+        redigering = false;
+        hanteraProjektButton.setText("Lägg till");
+    }
+
+    // Konstruktor för att redigera ett projekt
+    public HanteraProjekt(InfDB idb, JPanel projektPanel, int pid) {
+
+        this.idb = idb;
+        this.projektPanel = projektPanel;
+        initComponents();
+        redigering = true;
+        hanteraProjektButton.setText("Spara");
+        lasInProjektData(pid);
     }
 
     @SuppressWarnings("unchecked")
@@ -48,7 +61,7 @@ public class LaggTillProjekt extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         avbrytButton = new javax.swing.JButton();
-        laggTillButton = new javax.swing.JButton();
+        hanteraProjektButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(500, 550));
 
@@ -98,10 +111,10 @@ public class LaggTillProjekt extends javax.swing.JPanel {
             }
         });
 
-        laggTillButton.setText("Lägg Till");
-        laggTillButton.addActionListener(new java.awt.event.ActionListener() {
+        hanteraProjektButton.setText("       ");
+        hanteraProjektButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                laggTillButtonActionPerformed(evt);
+                hanteraProjektButtonActionPerformed(evt);
             }
         });
 
@@ -124,7 +137,7 @@ public class LaggTillProjekt extends javax.swing.JPanel {
                     .addComponent(projektnamnText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(laggTillButton)
+                            .addComponent(hanteraProjektButton)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(avbrytButton))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,119 +191,138 @@ public class LaggTillProjekt extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(avbrytButton)
-                    .addComponent(laggTillButton))
+                    .addComponent(hanteraProjektButton))
                 .addContainerGap(87, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void lasInProjektData(int pid) {
+        try {
+            String sql = "SELECT * FROM projekt WHERE pid = " + pid;
+
+            HashMap<String, String> projekt = idb.fetchRow(sql);  // Anpassa beroende på API för att hämta rad
+
+            if (projekt != null) {
+                projektnamnText.setText(projekt.get("projektnamn"));
+                kostnadText.setText(projekt.get("kostnad"));
+                startdatumText.setText(projekt.get("startdatum"));
+                slutdatumText.setText(projekt.get("slutdatum"));
+                statusComboBox.setSelectedItem(projekt.get("status"));
+                prioComboBox.setSelectedItem(projekt.get("prioritet"));
+                beskrivningText.setText(projekt.get("beskrivning"));
+
+                // Sätt projektchef och land om du har fält för det
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Fel vid inläsning av projekt: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     private void avbrytButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avbrytButtonActionPerformed
-       
+
 // Kontrollera om projektPanel faktiskt är ett objekt av klassen Projekt
 // Om det är en Projekt-panel, "typecasta" den från JPanel till Projekt
         if (projektPanel instanceof Projekt) {
-        ((Projekt) projektPanel).hamtaAllaAktuellaProjekt(); // Uppdatera tabellen med nya data
-    }
-        
-    Container parent = LaggTillProjekt.this.getParent();  // Hämta föräldrapanelen där RedigeraProjekt ligger
-    parent.removeAll();                   // Ta bort nuvarande panel (LaggTillProjekt)
-    parent.add(projektPanel);            // Lägg till den sparade "tillbaka"-panelen
-    parent.revalidate();                  // Uppdatera GUI
-    parent.repaint();                     // Måla om
+            ((Projekt) projektPanel).hamtaAllaAktuellaProjekt(); // Uppdatera tabellen med nya data
+        }
+
+        Container parent = HanteraProjekt.this.getParent();  // Hämta föräldrapanelen där RedigeraProjekt ligger
+        parent.removeAll();                   // Ta bort nuvarande panel (HanteraProjekt)
+        parent.add(projektPanel);            // Lägg till den sparade "tillbaka"-panelen
+        parent.revalidate();                  // Uppdatera GUI
+        parent.repaint();                     // Måla om
     }//GEN-LAST:event_avbrytButtonActionPerformed
 
-    private void laggTillButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggTillButtonActionPerformed
+    private void hanteraProjektButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hanteraProjektButtonActionPerformed
         try {
-            // 1. Hämta nästa pid
-            String sqlPid = "SELECT MAX(pid) + 1 FROM projekt";
-            String nextId = idb.fetchSingle(sqlPid);
+            // Läs in text från fälten
+            String projektnamn = projektnamnText.getText().trim();
+            String kostnad = kostnadText.getText().trim().replace(',', '.');
+            String startDatum = startdatumText.getText().trim();
+            String slutDatum = slutdatumText.getText().trim();
+            String status = (String) statusComboBox.getSelectedItem();
+            String prioritet = (String) prioComboBox.getSelectedItem();
+            String beskrivning = beskrivningText.getText().trim();
 
-        if (nextId == null) {
-            nextId = "1";  // Första projektet
+            // Validering: Inga fält får vara tomma (utom möjligtvis beskrivning, justera vid behov)
+            if (projektnamn.isEmpty() || kostnad.isEmpty() || startDatum.isEmpty() || slutDatum.isEmpty()
+                    || status == null || prioritet == null || beskrivning.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Alla fält måste fyllas i.");
+                return;
             }
 
-        int pID = Integer.parseInt(nextId);
-            
-        String projektnamn = projektnamnText.getText().trim();
-        String kostnad = kostnadText.getText().trim().replace(',', '.');
-        String startDatum = startdatumText.getText().trim();
-        String slutDatum = slutdatumText.getText().trim();
-        String status = (String) statusComboBox.getSelectedItem();
-        String prioritet = (String) prioComboBox.getSelectedItem();
-        String beskrivning = beskrivningText.getText().trim();
-        
-        String projektchef = null;
-        String land = null;
+            // Validera kostnad är ett giltigt decimalnummer
+            double kostnadDouble;
+            try {
+                kostnadDouble = Double.parseDouble(kostnad);
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(this, "Kostnad måste vara ett giltigt tal.");
+                return;
+            }
 
-        // Kolla att inga fält är tomma
-        if (projektnamn.isEmpty() || kostnad.isEmpty() || startDatum.isEmpty() || slutDatum.isEmpty() || status.isEmpty() || prioritet.isEmpty() || beskrivning.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Fyll i alla obligatoriska fält *");
-            return;
+            // Validera datumformat YYYY-MM-DD
+            // Använder java.time.LocalDate som är enklare att validera med
+            try {
+                LocalDate.parse(startDatum);
+                LocalDate.parse(slutDatum);
+            } catch (DateTimeParseException dtpe) {
+                JOptionPane.showMessageDialog(this, "Datum måste vara i formatet ÅÅÅÅ-MM-DD.");
+                return;
+            }
+
+            // Om alla valideringar går igenom, fortsätt med INSERT eller UPDATE
+            if (redigering) {
+                String sql = "UPDATE projekt SET "
+                        + "projektnamn = '" + projektnamn + "', "
+                        + "kostnad = " + kostnadDouble + ", "
+                        + "startdatum = '" + startDatum + "', "
+                        + "slutdatum = '" + slutDatum + "', "
+                        + "status = '" + status + "', "
+                        + "prioritet = '" + prioritet + "', "
+                        + "beskrivning = '" + beskrivning + "' "
+                        + "WHERE pid = " + pid;
+                idb.update(sql);
+                JOptionPane.showMessageDialog(this, "Projekt uppdaterat!");
+            } else {
+                String sqlPid = "SELECT MAX(pid) + 1 FROM projekt";
+                String nextId = idb.fetchSingle(sqlPid);
+                if (nextId == null) {
+                    nextId = "1";
+                }
+                int pID = Integer.parseInt(nextId);
+
+                String sql = "INSERT INTO projekt (pid, projektnamn, kostnad, startdatum, slutdatum, status, prioritet, beskrivning) VALUES ("
+                        + pID + ", '" + projektnamn + "', " + kostnadDouble + ", '" + startDatum + "', '" + slutDatum + "', '"
+                        + status + "', '" + prioritet + "', '" + beskrivning + "')";
+                idb.insert(sql);
+                JOptionPane.showMessageDialog(this, "Projekt tillagt!");
+            }
+
+            // Uppdatera projektpanelen
+            if (projektPanel instanceof Projekt projekt) {
+                projekt.hamtaAllaAktuellaProjekt();
+            }
+
+            // Navigera tillbaka till projektpanelen
+            Container parent = this.getParent();
+            parent.removeAll();
+            parent.add(projektPanel);
+            parent.revalidate();
+            parent.repaint();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Fel vid sparande: " + e.getMessage());
         }
-
-        
-        double kostnadDouble;
-        try {
-            kostnadDouble = Double.parseDouble(kostnad);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Kostnad måste vara ett tal.");
-            return;
-        }
-       
-
-        // Validera datumformat
-        LocalDate localStartdatum, localSlutdatum;
-        try {
-            localStartdatum = LocalDate.parse(startDatum);  // YYYY-MM-DD
-            localSlutdatum = LocalDate.parse(slutDatum);
-        } catch (DateTimeParseException e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Datum måste vara i formatet YYYY-MM-DD.");
-            return;
-        }
-
-        // Allt är OK – bygg SQL-satsen
-        String sql ="INSERT INTO projekt (" +
-             "pid, projektnamn, kostnad, startdatum, slutdatum, status, prioritet, beskrivning, projektchef, land) " +
-             "VALUES (" +
-             pID + ", '" +
-             projektnamn + "', '" +
-             kostnadDouble + "', '" +
-             localStartdatum + "', '" +
-             localSlutdatum + "', '" +
-             status + "', '" +
-             prioritet + "', '" +
-             beskrivning + "', " +
-             (projektchef == null ? "NULL" : "'" + projektchef + "'") + ", " +
-             (land == null ? "NULL" : "'" + land + "'") +
-             ")";
-
-        System.out.println("SQL-sats: " + sql);
-
-        idb.insert(sql);
-
-        javax.swing.JOptionPane.showMessageDialog(this, "Projekt tillagt!");
-
-        if (projektPanel instanceof Projekt projekt) {
-            projekt.hamtaAllaAktuellaProjekt();
-        }
-
-        // Navigera tillbaka
-        Container parent = LaggTillProjekt.this.getParent();
-        parent.removeAll();
-        parent.add(projektPanel);
-        parent.revalidate();
-        parent.repaint();
-
-    } catch (Exception e) {
-        e.printStackTrace();
-        javax.swing.JOptionPane.showMessageDialog(this, "Fel vid tillägg av projekt: " + e.getMessage());
-    }
-    }//GEN-LAST:event_laggTillButtonActionPerformed
+    }//GEN-LAST:event_hanteraProjektButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane BeskrivningScrollPane;
     private javax.swing.JButton avbrytButton;
     private javax.swing.JTextArea beskrivningText;
+    private javax.swing.JButton hanteraProjektButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -301,7 +333,6 @@ public class LaggTillProjekt extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField kostnadText;
-    private javax.swing.JButton laggTillButton;
     private javax.swing.JComboBox<String> prioComboBox;
     private javax.swing.JTextField projektnamnText;
     private javax.swing.JTextField slutdatumText;

@@ -37,7 +37,7 @@
                   <Component id="projektnamnText" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="laggTillButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="hanteraProjektButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="avbrytButton" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -106,7 +106,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="avbrytButton" min="-2" max="-2" attributes="0"/>
-                  <Component id="laggTillButton" min="-2" max="-2" attributes="0"/>
+                  <Component id="hanteraProjektButton" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="87" max="32767" attributes="0"/>
           </Group>
@@ -240,12 +240,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="avbrytButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="laggTillButton">
+    <Component class="javax.swing.JButton" name="hanteraProjektButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="L&#xe4;gg Till"/>
+        <Property name="text" type="java.lang.String" value="       "/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="laggTillButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hanteraProjektButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
