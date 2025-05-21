@@ -54,6 +54,8 @@ private String aid;
         jLabelProjektAvdelning = new javax.swing.JLabel();
         jLabelProjektVy = new javax.swing.JLabel();
         avdelningLabel = new javax.swing.JLabel();
+        visaPartnerInfoButton = new javax.swing.JButton();
+        visaLandInfoButton = new javax.swing.JButton();
         jPanelCenter = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         InfoProjectTable = new javax.swing.JTable();
@@ -117,6 +119,20 @@ private String aid;
         avdelningLabel.setMinimumSize(new java.awt.Dimension(255, 25));
         avdelningLabel.setPreferredSize(new java.awt.Dimension(255, 25));
 
+        visaPartnerInfoButton.setText("Visa Partnerinfo");
+        visaPartnerInfoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visaPartnerInfoButtonActionPerformed(evt);
+            }
+        });
+
+        visaLandInfoButton.setText("Visa Landinfo");
+        visaLandInfoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visaLandInfoButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelNorthLayout = new javax.swing.GroupLayout(jPanelNorth);
         jPanelNorth.setLayout(jPanelNorthLayout);
         jPanelNorthLayout.setHorizontalGroup(
@@ -146,13 +162,19 @@ private String aid;
                                 .addGap(207, 207, 207)))))
                 .addGap(90, 90, 90)
                 .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(StatusMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(StatusLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelProjektAvdelning)
-                    .addComponent(projektComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(81, 81, 81))
+                    .addGroup(jPanelNorthLayout.createSequentialGroup()
+                        .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(StatusMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(StatusLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelProjektAvdelning)
+                            .addComponent(projektComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanelNorthLayout.createSequentialGroup()
+                        .addComponent(visaPartnerInfoButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(visaLandInfoButton)))
+                .addGap(171, 171, 171))
         );
         jPanelNorthLayout.setVerticalGroup(
             jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,7 +200,11 @@ private String aid;
                     .addComponent(jLabelSlutdatum)
                     .addComponent(jLabelStartdatum))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(avdelningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(visaPartnerInfoButton)
+                        .addComponent(visaLandInfoButton))
+                    .addComponent(avdelningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
@@ -737,7 +763,7 @@ private String aid;
 
         // Hämta redan kopplade handläggare
         String koppladeFraga = "SELECT aid FROM ans_proj WHERE pid = '" + projektId + "'";
-        System.out.println("Kör SQL: " + koppladeFraga);
+        
         ArrayList<HashMap<String, String>> kopplade = idb.fetchRows(koppladeFraga);
         HashSet<String> redanKoppladeAid = new HashSet<>();
         for (HashMap<String, String> rad : kopplade) {
@@ -884,6 +910,111 @@ private String aid;
         }
     }//GEN-LAST:event_StatusMenuActionPerformed
 
+    private void visaPartnerInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaPartnerInfoButtonActionPerformed
+       try {
+        int radIndex = InfoProjectTable.getSelectedRow();
+        if (radIndex == -1) {
+            JOptionPane.showMessageDialog(this, "Välj ett projekt först.");
+            return;
+        }
+
+        String pid = InfoProjectTable.getValueAt(radIndex, 0).toString();
+
+        // Kontrollera behörighet till valt projekt på JTable
+        String kontrollFraga =
+            "SELECT pid FROM projekt " +
+            "WHERE pid = " + pid + " AND (projektchef = " + aid + 
+            " OR pid IN (SELECT pid FROM ans_proj WHERE aid = " + aid + "))";
+
+        String resultat = idb.fetchSingle(kontrollFraga);
+        if (resultat == null) {
+            JOptionPane.showMessageDialog(this, "Du har inte behörighet att se partner för det valda projektet.");
+            return;
+        }
+
+        // Hämta partnerinfo utan JOIN mot stad, blev bara en STOR konflikt med namnet om allt hämtades samtidigt.
+        String sqlPartner = 
+            "SELECT DISTINCT p.pid, p.namn, p.kontaktperson, p.kontaktepost, " +
+            "p.telefon, p.adress, p.branch, p.stad " +
+            "FROM partner p " +
+            "JOIN projekt_partner pp ON p.pid = pp.partner_pid " +
+            "WHERE pp.pid = " + pid;
+
+        ArrayList<HashMap<String, String>> partnerLista = idb.fetchRows(sqlPartner);
+
+        if (partnerLista == null || partnerLista.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Inga partners kopplade till projektet.");
+            return;
+        }
+
+        StringBuilder info = new StringBuilder();
+
+        for (HashMap<String, String> partner : partnerLista) {
+            // Hämtar namnet på staden här, blir ingen konflikt med "namn" då. 
+            String stadId = partner.get("stad");
+            String stadNamn = idb.fetchSingle("SELECT namn FROM stad WHERE sid = " + stadId);
+
+            info.append("Partnernamn: ").append(partner.get("namn")).append("\n");
+            info.append("Kontaktperson: ").append(partner.get("kontaktperson")).append("\n");
+            info.append("E-post: ").append(partner.get("kontaktepost")).append("\n");
+            info.append("Telefon: ").append(partner.get("telefon")).append("\n");
+            info.append("Adress: ").append(partner.get("adress")).append("\n");
+            info.append("Bransch: ").append(partner.get("branch")).append("\n");
+            info.append("Stad: ").append(stadNamn).append("\n");
+            info.append("\n-----------------------------\n\n");
+        }
+
+        JOptionPane.showMessageDialog(this, info.toString(), "Partnerinformation", JOptionPane.INFORMATION_MESSAGE);
+
+    } catch (InfException e) {
+        JOptionPane.showMessageDialog(this, "Fel vid hämtning av partnerinformation: " + e.getMessage());
+    }
+    }//GEN-LAST:event_visaPartnerInfoButtonActionPerformed
+
+    private void visaLandInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaLandInfoButtonActionPerformed
+        try {
+        int radIndex = InfoProjectTable.getSelectedRow();
+        if (radIndex == -1) {
+            JOptionPane.showMessageDialog(this, "Välj ett projekt först.");
+            return;
+        }
+
+        // Hämta projektets ID från den valda raden
+        String pid = InfoProjectTable.getValueAt(radIndex, 0).toString();
+
+        // SQL-fråga för att hämta landinformation kopplad till projektet
+        String sql = "SELECT l.namn, l.valuta, l.sprak, l.tidszon, " +
+                     "l.politisk_struktur, l.ekonomi " +
+                     "FROM land l " +
+                     "JOIN projekt p ON p.land = l.lid " +
+                     "WHERE p.pid = " + pid;
+
+        // Hämta landinfo
+        HashMap<String, String> landInfo = idb.fetchRow(sql);
+
+        // Kontrollera om någon data hittades
+        if (landInfo == null || landInfo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingen landinformation hittades.");
+            return;
+        }
+
+        // Bygg upp en sträng med landinformation
+        StringBuilder info = new StringBuilder();
+        info.append("Land: ").append(landInfo.get("namn")).append("\n");
+        info.append("Språk: ").append(landInfo.get("sprak")).append("\n");
+        info.append("Valuta: ").append(landInfo.get("valuta")).append("\n");
+        info.append("Tidszon: ").append(landInfo.get("tidszon")).append("\n");
+        info.append("Politisk struktur: ").append(landInfo.get("politisk_struktur")).append("\n");
+        info.append("Ekonomi: ").append(landInfo.get("ekonomi")).append("\n");
+
+        // Visa informationen i en popup
+        JOptionPane.showMessageDialog(this, info.toString(), "Landinformation", JOptionPane.INFORMATION_MESSAGE);
+
+    } catch (InfException e) {
+        JOptionPane.showMessageDialog(this, "Fel vid hämtning av landinformation: " + e.getMessage());
+    }
+    }//GEN-LAST:event_visaLandInfoButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AndraUppgifter;
@@ -914,6 +1045,8 @@ private String aid;
     private javax.swing.JComboBox<String> projektComboBox;
     private javax.swing.JButton taBortHandlaggareButton;
     private javax.swing.JButton taBortPartnerButton;
+    private javax.swing.JButton visaLandInfoButton;
+    private javax.swing.JButton visaPartnerInfoButton;
     // End of variables declaration//GEN-END:variables
 }
     

@@ -87,15 +87,24 @@
                   </Group>
                   <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="StatusMenu" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="StatusLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="StatusMenu" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="StatusLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabelProjektAvdelning" min="-2" max="-2" attributes="0"/>
+                              <Component id="projektComboBox" min="-2" pref="112" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="visaPartnerInfoButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="visaLandInfoButton" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabelProjektAvdelning" min="-2" max="-2" attributes="0"/>
-                      <Component id="projektComboBox" min="-2" pref="112" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -129,7 +138,13 @@
                       <Component id="jLabelStartdatum" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="avdelningLabel" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="visaPartnerInfoButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="visaLandInfoButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="avdelningLabel" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace pref="9" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -236,6 +251,22 @@
               <Dimension value="[255, 25]"/>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="visaPartnerInfoButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Visa Partnerinfo"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="visaPartnerInfoButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="visaLandInfoButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Visa Landinfo"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="visaLandInfoButtonActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
