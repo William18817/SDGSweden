@@ -15,13 +15,13 @@ import sdgsweden.Startsida;
 /*
  * @author jonas
  */
-public class Projekt extends javax.swing.JPanel {
+public class ProjektChef extends javax.swing.JPanel {
 
     private InfDB idb;
     private MainFrame parent;
     private String aid;
 
-    public Projekt(MainFrame parent, InfDB idb, String aid) {
+    public ProjektChef(MainFrame parent, InfDB idb, String aid) {
         this.parent = parent;
         this.idb = idb;
         this.aid = aid;
@@ -107,7 +107,7 @@ public class Projekt extends javax.swing.JPanel {
         jLabelProjektAvdelning.setText("Projekt");
 
         jLabelProjektVy.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabelProjektVy.setText("Projekt ALLA");
+        jLabelProjektVy.setText("Projekt CHEF");
 
         avdelningLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         avdelningLabel.setToolTipText("");

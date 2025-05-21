@@ -221,10 +221,10 @@ public class HanteraProjekt extends javax.swing.JPanel {
 
     private void avbrytButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avbrytButtonActionPerformed
 
-// Kontrollera om projektPanel faktiskt är ett objekt av klassen Projekt
-// Om det är en Projekt-panel, "typecasta" den från JPanel till Projekt
-        if (projektPanel instanceof Projekt) {
-            ((Projekt) projektPanel).hamtaAllaAktuellaProjekt(); // Uppdatera tabellen med nya data
+// Kontrollera om projektPanel faktiskt är ett objekt av klassen ProjektChef
+// Om det är en ProjektChef-panel, "typecasta" den från JPanel till ProjektChef
+        if (projektPanel instanceof ProjektChef) {
+            ((ProjektChef) projektPanel).hamtaAllaAktuellaProjekt(); // Uppdatera tabellen med nya data
         }
 
         Container parent = HanteraProjekt.this.getParent();  // Hämta föräldrapanelen där RedigeraProjekt ligger
@@ -300,7 +300,7 @@ public class HanteraProjekt extends javax.swing.JPanel {
             }
 
             // Uppdatera projektpanelen
-            if (projektPanel instanceof Projekt projekt) {
+            if (projektPanel instanceof ProjektChef projekt) {
                 projekt.hamtaAllaAktuellaProjekt();
             }
 

@@ -1,11 +1,12 @@
-
 package sdgsweden;
 
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import sdgsweden.admin.AdminPanel;
+import sdgsweden.projekt.ProjektChef;
 import sdgsweden.projekt.Projekt;
+
 
 /**
  * @author User
@@ -28,23 +29,23 @@ public class Startsida extends javax.swing.JPanel {
         initComponents();
     }
 
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnProjekt = new javax.swing.JButton();
+        btnProjektChef = new javax.swing.JButton();
         label1 = new java.awt.Label();
         btnMittKonto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         btnAdmin = new javax.swing.JButton();
         btnLoggaUt_v2 = new javax.swing.JButton();
+        btnProjektAlla = new javax.swing.JButton();
 
-        btnProjekt.setText("Projekt");
-        btnProjekt.addActionListener(new java.awt.event.ActionListener() {
+        btnProjektChef.setText("Projektchef");
+        btnProjektChef.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProjektActionPerformed(evt);
+                btnProjektChefActionPerformed(evt);
             }
         });
 
@@ -78,47 +79,49 @@ public class Startsida extends javax.swing.JPanel {
             }
         });
 
+        btnProjektAlla.setText("Projekt Alla");
+        btnProjektAlla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProjektAllaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnMittKonto)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnProjekt)
-                                    .addComponent(btnAdmin))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnProjektChef, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnProjektAlla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnMittKonto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78)
+                        .addGap(18, 18, 18)
                         .addComponent(btnLoggaUt_v2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(572, Short.MAX_VALUE))
+                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(619, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnProjekt)
-                                .addGap(27, 27, 27)
-                                .addComponent(btnMittKonto)
-                                .addGap(32, 32, 32)
-                                .addComponent(btnAdmin))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(btnLoggaUt_v2)))
+                        .addComponent(btnProjektChef)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnProjektAlla)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnMittKonto)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAdmin))
+                    .addComponent(btnLoggaUt_v2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -136,17 +139,17 @@ public class Startsida extends javax.swing.JPanel {
         }
     }
 
-    private void btnProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjektActionPerformed
+    private void btnProjektChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjektChefActionPerformed
         if (arProjektchef(aid)) {
-            Projekt projektPanel = new Projekt(parent, idb, aid);
+            ProjektChef projektPanel = new ProjektChef(parent, idb, aid);
             parent.visaPanel(projektPanel, "projekt");
         } else {
             JOptionPane.showMessageDialog(null, "Du måste vara projektchef för att öppna detta.");
         }
-    }//GEN-LAST:event_btnProjektActionPerformed
+    }//GEN-LAST:event_btnProjektChefActionPerformed
 
     private void btnMittKontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMittKontoActionPerformed
-        // TODO add your handling code here:
+
         MittKonto mittKontoPanel = new MittKonto(idb, aid);
         parent.visaPanel(mittKontoPanel, "mittkonto");
 
@@ -160,10 +163,6 @@ public class Startsida extends javax.swing.JPanel {
     //Vi behöver hjälp att ta bort koden för private void btnLoggaUtActionPerformed
     //Knappen går inte att hitta i designläget eller ta bort manuellt.
 
-    private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void btnLoggaUt_v2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUt_v2ActionPerformed
         // stänger Jframen som innehåller den här panelen, alltså MainFrame.
         javax.swing.SwingUtilities.getWindowAncestor(this).dispose();
@@ -172,12 +171,18 @@ public class Startsida extends javax.swing.JPanel {
         new Inloggning(idb).setVisible(true);
     }//GEN-LAST:event_btnLoggaUt_v2ActionPerformed
 
+    private void btnProjektAllaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjektAllaActionPerformed
+        Projekt projektPanel = new Projekt(parent, idb, aid);
+        parent.visaPanel(projektPanel, "projekt");
+    }//GEN-LAST:event_btnProjektAllaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdmin;
     private javax.swing.JButton btnLoggaUt_v2;
     private javax.swing.JButton btnMittKonto;
-    private javax.swing.JButton btnProjekt;
+    private javax.swing.JButton btnProjektAlla;
+    private javax.swing.JButton btnProjektChef;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
