@@ -156,7 +156,7 @@ public class Startsida extends javax.swing.JPanel {
     }//GEN-LAST:event_btnMittKontoActionPerformed
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
-        AdminPanel adminPanel = new AdminPanel(parent, idb, aid, avdid);
+        AdminPanel adminPanel = new AdminPanel(parent, idb, aid);
         parent.visaPanel(adminPanel, "adminpanel");
     }//GEN-LAST:event_btnAdminActionPerformed
 
