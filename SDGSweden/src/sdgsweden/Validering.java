@@ -50,7 +50,7 @@ public static boolean isValidLosenord(String losenord)
 public static boolean isValidAdress(String adress)
 {
     if (adress == null) return false;
-    return adress.matches("^[A-Za-z\\d\\-]{2,12}$");
+    return adress.matches("^[A-Za-zÅÄÖåäö\\d\\-\\s]{2,12}$");
 
 }
 
