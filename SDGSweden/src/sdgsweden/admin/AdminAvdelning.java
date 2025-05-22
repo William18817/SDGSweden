@@ -8,6 +8,7 @@ import java.util.HashMap;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import sdgsweden.MainFrame;
+import sdgsweden.Validering;
 
 /**
  *
@@ -100,6 +101,11 @@ public class AdminAvdelning extends javax.swing.JPanel {
         btnLaggTill.setText("Lägg till");
 
         btnSpara.setText("Spara");
+        btnSpara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSparaActionPerformed(evt);
+            }
+        });
 
         btnTaBort.setText("Ta bort");
 
@@ -215,6 +221,44 @@ public class AdminAvdelning extends javax.swing.JPanel {
         AdminPanel adminPanel = new AdminPanel (parent, idb, aid);
         parent.visaPanel(adminPanel, "adminPanel");
     }//GEN-LAST:event_btnTillbakaAdminActionPerformed
+
+    private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
+        if (Validering.isEmpty(txtNamn.getText()))
+        {
+           JOptionPane.showMessageDialog(this, "Namn får inte tomt.");
+           return;
+        }
+        if (!Validering.isEmpty(txtAdress.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Ogiltig adress.");
+            return;
+        }
+        if (!Validering.isEmpty(txtEpost.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Ogiltig E-postadress.");
+            return;
+        }
+        if (!Validering.isEmpty(txtTelefon.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer.");
+            return;
+        }
+        if (Validering.isEmpty(txtBeskrivning.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Beskrivning får inte vara tomt.");
+            return;
+        }
+        if (Validering.isEmpty(txtChef.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Chef får inte vara tomt.");
+            return;
+        }
+        if (Validering.isEmpty(txtStad.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Stad får inte vara tomt.");
+            return;
+        }
+    }//GEN-LAST:event_btnSparaActionPerformed
 
     
 

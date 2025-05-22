@@ -6,6 +6,8 @@ package sdgsweden.admin;
 
 import oru.inf.InfDB;
 import sdgsweden.MainFrame;
+import sdgsweden.Validering;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -95,6 +97,11 @@ public class AdminPartner extends javax.swing.JPanel {
         txtBransch.setPreferredSize(new java.awt.Dimension(150, 24));
 
         btnSpara.setText("Spara");
+        btnSpara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSparaActionPerformed(evt);
+            }
+        });
 
         btnLaggTill.setText("Lägg till");
 
@@ -199,6 +206,39 @@ public class AdminPartner extends javax.swing.JPanel {
         AdminPanel adminPanel = new AdminPanel (parent, idb, aid);
         parent.visaPanel(adminPanel, "adminPanel");
     }//GEN-LAST:event_btnTillbakaAdminActionPerformed
+
+    private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
+        if (Validering.isEmpty(txtNamn.getText()))
+        {
+           JOptionPane.showMessageDialog(this, "Namn får inte tomt.");
+           return;
+        }
+        if (Validering.isEmpty(txtKontaktPerson.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Kontaktperson får inte vara tomt.");
+            return;
+        }
+        if (!Validering.isEmpty(txtKontaktEpost.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Ogiltig E-postadress.");
+            return;
+        }
+        if (!Validering.isEmpty(txtTelefon.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer.");
+            return;
+        }
+        if (!Validering.isEmpty(txtAdress.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Ogiltig adress.");
+            return;
+        }
+        if (Validering.isEmpty(txtBransch.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Bransch får inte vara tomt.");
+            return;
+        }
+    }//GEN-LAST:event_btnSparaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
