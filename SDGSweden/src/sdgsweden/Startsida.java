@@ -6,6 +6,7 @@ import oru.inf.InfException;
 import sdgsweden.admin.AdminPanel;
 import sdgsweden.projekt.ProjektChef;
 import sdgsweden.projekt.Projekt;
+import sdgsweden.Personal;
 
 
 /**
@@ -41,6 +42,7 @@ public class Startsida extends javax.swing.JPanel {
         btnAdmin = new javax.swing.JButton();
         btnLoggaUt_v2 = new javax.swing.JButton();
         btnProjektAlla = new javax.swing.JButton();
+        btnPersonal = new javax.swing.JButton();
 
         btnProjektChef.setText("Projektchef");
         btnProjektChef.addActionListener(new java.awt.event.ActionListener() {
@@ -86,6 +88,13 @@ public class Startsida extends javax.swing.JPanel {
             }
         });
 
+        btnPersonal.setText("Personal");
+        btnPersonal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPersonalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,11 +103,13 @@ public class Startsida extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnProjektChef, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnProjektAlla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnMittKonto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnProjektChef, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnProjektAlla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnMittKonto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnPersonal))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -120,7 +131,9 @@ public class Startsida extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(btnMittKonto)
                         .addGap(18, 18, 18)
-                        .addComponent(btnAdmin))
+                        .addComponent(btnAdmin)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnPersonal))
                     .addComponent(btnLoggaUt_v2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -176,11 +189,17 @@ public class Startsida extends javax.swing.JPanel {
         parent.visaPanel(projektPanel, "projekt");
     }//GEN-LAST:event_btnProjektAllaActionPerformed
 
+    private void btnPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPersonalActionPerformed
+       Personal personalPanel = new Personal(parent, idb, aid);
+       parent.visaPanel(personalPanel, "personal");
+    }//GEN-LAST:event_btnPersonalActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdmin;
     private javax.swing.JButton btnLoggaUt_v2;
     private javax.swing.JButton btnMittKonto;
+    private javax.swing.JButton btnPersonal;
     private javax.swing.JButton btnProjektAlla;
     private javax.swing.JButton btnProjektChef;
     private javax.swing.JList<String> jList1;

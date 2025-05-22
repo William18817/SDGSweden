@@ -20,11 +20,14 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnProjektChef" max="32767" attributes="0"/>
-                          <Component id="btnProjektAlla" max="32767" attributes="0"/>
-                          <Component id="btnMittKonto" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnAdmin" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btnProjektChef" max="32767" attributes="0"/>
+                              <Component id="btnProjektAlla" max="32767" attributes="0"/>
+                              <Component id="btnMittKonto" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btnAdmin" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="btnPersonal" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="313" max="-2" attributes="0"/>
@@ -52,6 +55,8 @@
                       <Component id="btnMittKonto" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnAdmin" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnPersonal" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="btnLoggaUt_v2" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -144,6 +149,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProjektAllaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnPersonal">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Personal"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPersonalActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
