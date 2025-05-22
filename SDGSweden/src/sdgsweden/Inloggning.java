@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
  * @author Kalkilm: Nedan följer kod som tillåter användare att logga in i vårt
  * system baserat på data hämtat ur databasen, efter inloggningen lyckats så
  * plockar den med "aid" för att kunna fortsätta hålla kopplingen individuell.
+ * 
  */
 public class Inloggning extends javax.swing.JFrame {
 
@@ -236,6 +237,7 @@ public class Inloggning extends javax.swing.JFrame {
             }
         });
     }
+    //"Inveniam viam aut faciam"
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonLoggaIn;
