@@ -64,8 +64,6 @@ public class ProjektChef extends javax.swing.JPanel {
         StatistikKostnad = new javax.swing.JButton();
         btnTillbaka = new javax.swing.JButton();
         AndraUppgifter = new javax.swing.JButton();
-        pidTextField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         addProjektButton = new javax.swing.JButton();
         DeleteButton = new javax.swing.JButton();
 
@@ -286,7 +284,7 @@ public class ProjektChef extends javax.swing.JPanel {
             }
         });
 
-        StatistikKostnad.setText("Total kostnad");
+        StatistikKostnad.setText("Kostnadsstatistik");
         StatistikKostnad.setPreferredSize(new java.awt.Dimension(110, 25));
         StatistikKostnad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -310,10 +308,6 @@ public class ProjektChef extends javax.swing.JPanel {
             }
         });
 
-        pidTextField.setColumns(2);
-
-        jLabel1.setText("Pid");
-
         addProjektButton.setText("Lägg till Projekt");
         addProjektButton.setPreferredSize(new java.awt.Dimension(120, 25));
         addProjektButton.addActionListener(new java.awt.event.ActionListener() {
@@ -336,38 +330,24 @@ public class ProjektChef extends javax.swing.JPanel {
             jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelSouthLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(DeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                    .addComponent(AndraUppgifter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addProjektButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 267, Short.MAX_VALUE)
                 .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSouthLayout.createSequentialGroup()
+                        .addComponent(StatistikKostnad, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(87, 87, 87)
                         .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelSouthLayout.createSequentialGroup()
-                                .addComponent(AndraUppgifter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pidTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(StatistikKostnad, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29))
-                            .addGroup(jPanelSouthLayout.createSequentialGroup()
-                                .addComponent(addProjektButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(addHandlaggareButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(taBortHandlaggareButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(51, 51, 51)
                         .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addHandlaggareButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(taBortHandlaggareButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelSouthLayout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(btnTillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSouthLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(addPartnerButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(taBortPartnerButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap())))
-                    .addGroup(jPanelSouthLayout.createSequentialGroup()
-                        .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(addPartnerButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(taBortPartnerButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnTillbaka, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanelSouthLayout.setVerticalGroup(
             jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,18 +357,17 @@ public class ProjektChef extends javax.swing.JPanel {
                     .addComponent(addPartnerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addHandlaggareButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(StatistikKostnad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AndraUppgifter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pidTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(AndraUppgifter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(taBortPartnerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(taBortHandlaggareButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addProjektButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(taBortHandlaggareButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(addProjektButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnTillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -541,11 +520,21 @@ public class ProjektChef extends javax.swing.JPanel {
         }
 
         try {
-            // Hämta pid från kolumn 0 (eller justera om pid ligger i annan kolumn)
+            // Hämta pid från kolumn 0
             String projektId = InfoProjectTable.getValueAt(radIndex, 0).toString();
             int pid = Integer.parseInt(projektId);
 
-            // Öppna redigeringspanelen
+            // Kontrollera att inloggad användare är projektchef
+            String kontrollFraga = "SELECT pid FROM projekt "
+                    + "WHERE pid = " + pid + " AND projektchef = " + aid;
+
+            String resultat = idb.fetchSingle(kontrollFraga);
+            if (resultat == null) {
+                JOptionPane.showMessageDialog(this, "Du är inte projektchef för detta projekt och kan därför inte redigera det.");
+                return;
+            }
+
+            // Om användaren är projektchef – öppna redigeringspanelen
             HanteraProjekt redigeraPanel = new HanteraProjekt(idb, this, pid);
             Container parentProjekt = this.getParent();
             parentProjekt.removeAll();
@@ -555,7 +544,7 @@ public class ProjektChef extends javax.swing.JPanel {
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Ogiltigt projekt-ID.", "Fel", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(this, "Databasfel: " + e.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_AndraUppgifterActionPerformed
@@ -573,44 +562,39 @@ public class ProjektChef extends javax.swing.JPanel {
 
     private void StatistikKostnadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatistikKostnadActionPerformed
         try {
-            // Hämta alla projektens kostnader med SQL-fråga
-            String sql = "SELECT kostnad FROM projekt";
-            // Hämtar resultatet som en lista av HashMaps (en rad = ett projekt)
-            ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
+        // Hämta kostnader för projekt där du är projektchef
+        String sql = "SELECT kostnad FROM projekt WHERE projektchef = " + aid;
+        ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
 
-            // Variabler för att lagra totalkostnad, max/min och antal projekt
-            double totalKostnad = 0;
-            double maxKostnad = Double.MIN_VALUE;
-            double minKostnad = Double.MAX_VALUE;
+        double totalKostnad = 0;
+        double maxKostnad = Double.MIN_VALUE;
+        double minKostnad = Double.MAX_VALUE;
+        int antalProjekt = 0;
 
-            int antalProjekt = 0;
-            // Loopar igenom varje projekt och bearbetar kostnaden
-            for (HashMap<String, String> rad : resultat) {
-                double kostnad = Double.parseDouble(rad.get("kostnad"));
+        for (HashMap<String, String> rad : resultat) {
+            double kostnad = Double.parseDouble(rad.get("kostnad"));
 
-                totalKostnad += kostnad;
-                maxKostnad = Math.max(maxKostnad, kostnad);
-                minKostnad = Math.min(minKostnad, kostnad);
+            totalKostnad += kostnad;
+            maxKostnad = Math.max(maxKostnad, kostnad);
+            minKostnad = Math.min(minKostnad, kostnad);
 
-                antalProjekt++;
-            }
-
-            double medelKostnad = totalKostnad / antalProjekt;
-
-            // Visa resultatet i en JOptionPane
-            JOptionPane.showMessageDialog(this,
-                    "Kostnadsstatistik för alla projekt:\n"
-                    + "Totalkostnad: " + totalKostnad + " kr\n"
-                    + "Medelkostnad: " + String.format("%.2f", medelKostnad) + " kr\n"
-                    + "Högsta kostnad: " + maxKostnad + " kr\n"
-                    + "Lägsta kostnad: " + minKostnad + " kr",
-                    "Projektkostnad - Statistik",
-                    JOptionPane.INFORMATION_MESSAGE // en blå ikon 
-            );
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Fel vid hämtning av kostnadsstatistik: " + e.getMessage());
+            antalProjekt++;
         }
+
+        double medelKostnad = totalKostnad / antalProjekt;
+
+        JOptionPane.showMessageDialog(this,
+                "Kostnadsstatistik för dina projekt:\n"
+                + "Totalkostnad: " + totalKostnad + " kr\n"
+                + "Medelkostnad: " + String.format("%.2f", medelKostnad) + " kr\n"
+                + "Högsta kostnad: " + maxKostnad + " kr\n"
+                + "Lägsta kostnad: " + minKostnad + " kr",
+                "Projektkostnad - Statistik",
+                JOptionPane.INFORMATION_MESSAGE);
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Fel vid hämtning av kostnadsstatistik: " + e.getMessage());
+    }
     }//GEN-LAST:event_StatistikKostnadActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
@@ -1053,7 +1037,6 @@ public class ProjektChef extends javax.swing.JPanel {
     private javax.swing.JButton addProjektButton;
     private javax.swing.JLabel avdelningLabel;
     private javax.swing.JButton btnTillbaka;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelProjektAvdelning;
     private javax.swing.JLabel jLabelProjektVy;
     private javax.swing.JLabel jLabelSlutdatum;
@@ -1062,7 +1045,6 @@ public class ProjektChef extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelNorth;
     private javax.swing.JPanel jPanelSouth;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField pidTextField;
     private javax.swing.JComboBox<String> projektComboBox;
     private javax.swing.JButton taBortHandlaggareButton;
     private javax.swing.JButton taBortPartnerButton;
