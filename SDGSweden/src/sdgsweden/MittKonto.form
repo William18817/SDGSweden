@@ -36,15 +36,15 @@
                           <Component id="LbEfternamn" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="TfEfternamn" min="-2" pref="95" max="-2" attributes="0"/>
                           <Component id="TfFornamn" min="-2" pref="95" max="-2" attributes="0"/>
-                          <Component id="TfAdress" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
-                          <Component id="TfEpost" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
-                          <Component id="TfTelefon" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
                           <Component id="TfAnstallningsdatum" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
                           <Component id="TfLosenord" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
                           <Component id="TfAvdelning" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="TfEpost" pref="153" max="32767" attributes="0"/>
+                          <Component id="TfTelefon" alignment="0" max="32767" attributes="0"/>
+                          <Component id="TfAdress" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="SidaTitel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -53,7 +53,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                       <Component id="CbRedigeraUppgifter" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="12" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
