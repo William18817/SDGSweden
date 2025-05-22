@@ -8,6 +8,7 @@ import oru.inf.InfDB;
 import sdgsweden.MainFrame;
 import sdgsweden.Startsida;
 import oru.inf.InfException;
+import sdgsweden.Validering;
 /**
  *
  * @author willi
@@ -378,27 +379,68 @@ public class AdminPanel extends javax.swing.JPanel {
         String datum = txtAnstallningsdatum.getText().trim();
         String losenord = new String(pwdLosenord.getPassword()).trim();
         String avdelningStr = txtAvdelning.getText().trim();
+        
+        if (Validering.isEmpty(txtFornamn.getText()))
+        {
+           JOptionPane.showMessageDialog(this, "Förnamn får inte vara tomt.");
+           return;
+        }
+        if (Validering.isEmpty(txtEfternamn.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Efternamn får inte vara tomt.");
+            return;
+        }
+        if (Validering.isEmpty(txtAdress.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Ogiltig adress.");
+            return;
+        }
+        if (Validering.isEmpty(txtEpost.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Ogiltig E-postadress.");
+            return;
+        }
+        if (Validering.isEmpty(txtTelefon.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer.");
+            return;
+        }
+        if (Validering.isEmpty(txtAnstallningsdatum.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Ogiltigt anställningsdatum.");
+            return;
+        }
+        if (Validering.isEmpty(new String(pwdLosenord.getPassword())))
+        {
+            JOptionPane.showMessageDialog(this, "Lösenord får inte vara tomt.");
+            return;
+        }
+        if (Validering.isEmpty(txtAvdelning.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Avdelning får inte vara tomt.");
+            return;
+        }
 
         // Kontroll: tomma fält
-        if (fornamn.isEmpty() || efternamn.isEmpty() || adress.isEmpty() || epost.isEmpty() ||
-            telefon.isEmpty() || datum.isEmpty() || losenord.isEmpty() || avdelningStr.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Fyll i alla fält.");
-            return;
-        }
+        //if (fornamn.isEmpty() || efternamn.isEmpty() || adress.isEmpty() || epost.isEmpty() ||
+            //telefon.isEmpty() || datum.isEmpty() || losenord.isEmpty() || avdelningStr.isEmpty()) {
+           // JOptionPane.showMessageDialog(this, "Fyll i alla fält.");
+           // return;
+        //}
 
         // Kontroll: epost-format
-        if (!epost.matches("^[a-zA-Z]+\\.[a-zA-Z]+@example\\.com$")) {
-            JOptionPane.showMessageDialog(this, "E-postadressen måste vara i formatet fornamn.efternamn@example.com");
-            return;
-        }
+        //if (!epost.matches("^[a-zA-Z]+\\.[a-zA-Z]+@example\\.com$")) {
+          //  JOptionPane.showMessageDialog(this, "E-postadressen måste vara i formatet fornamn.efternamn@example.com");
+           // return;
+        //}
 
         // Kontroll: datumformat
-        try {
-            java.time.LocalDate.parse(datum); // Format: YYYY-MM-DD
-        } catch (java.time.format.DateTimeParseException e) {
-            JOptionPane.showMessageDialog(this, "Datumet måste vara i formatet YYYY-MM-DD.");
-            return;
-        }
+        //try {
+           // java.time.LocalDate.parse(datum); // Format: YYYY-MM-DD
+       // } catch (java.time.format.DateTimeParseException e) {
+         //   JOptionPane.showMessageDialog(this, "Datumet måste vara i formatet YYYY-MM-DD.");
+         //   return;
+        //}
 
         // Konvertera avdelning till int
         int avdelning = Integer.parseInt(avdelningStr);
