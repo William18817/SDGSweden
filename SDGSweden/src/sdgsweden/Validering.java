@@ -50,8 +50,13 @@ public static boolean isValidLosenord(String losenord)
 public static boolean isValidAdress(String adress)
 {
     if (adress == null) return false;
-    return adress.matches("^[A-Za-z\\d\\-]{12,}$");
+    return adress.matches("^[A-Za-z\\d\\-]{2,12}$");
 
+}
+
+public static boolean isValidKostnad(double kostnad)
+{
+    return kostnad >= 0 && kostnad <= 5_000_000;
 }
 
 
