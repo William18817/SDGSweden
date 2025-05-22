@@ -519,33 +519,44 @@ public class ProjektChef extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Kunde inte hämta avdelning: " + e.getMessage());
         }
     }
-    
+
     public boolean arProjektchef(String aid) {
-    try {
-        String sql = "SELECT pid FROM projekt WHERE projektchef = " + aid;
-        String resultat = idb.fetchSingle(sql);
-        return resultat != null; // true = personen är projektchef
-    } catch (InfException e) {
-        System.out.println("Fel i arProjektchef(): " + e.getMessage());
-        return false;
+        try {
+            String sql = "SELECT pid FROM projekt WHERE projektchef = " + aid;
+            String resultat = idb.fetchSingle(sql);
+            return resultat != null; // true = personen är projektchef
+        } catch (InfException e) {
+            System.out.println("Fel i arProjektchef(): " + e.getMessage());
+            return false;
+        }
     }
-}
 
 
     private void AndraUppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AndraUppgifterActionPerformed
+        int radIndex = InfoProjectTable.getSelectedRow();
+
+        if (radIndex == -1) {
+            JOptionPane.showMessageDialog(this, "Välj ett projekt först.");
+            return;
+        }
+
         try {
+            // Hämta pid från kolumn 0 (eller justera om pid ligger i annan kolumn)
+            String projektId = InfoProjectTable.getValueAt(radIndex, 0).toString();
+            int pid = Integer.parseInt(projektId);
 
-            int pid = Integer.parseInt(pidTextField.getText().trim());
-
-            HanteraProjekt laggTillPanel = new HanteraProjekt(idb, this, pid);
-        Container parentProjekt = this.getParent();
-
-            parentProjekt.removeAll(); // Ta bort nuvarande innehåll i panelen
-            parentProjekt.add(laggTillPanel);
+            // Öppna redigeringspanelen
+            HanteraProjekt redigeraPanel = new HanteraProjekt(idb, this, pid);
+            Container parentProjekt = this.getParent();
+            parentProjekt.removeAll();
+            parentProjekt.add(redigeraPanel);
             parentProjekt.revalidate();
             parentProjekt.repaint();
+
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Ange ett giltigt heltal för Pid.", "Fel", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ogiltigt projekt-ID.", "Fel", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Databasfel: " + e.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_AndraUppgifterActionPerformed
 
