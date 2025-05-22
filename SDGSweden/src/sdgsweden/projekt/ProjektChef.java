@@ -562,39 +562,39 @@ public class ProjektChef extends javax.swing.JPanel {
 
     private void StatistikKostnadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatistikKostnadActionPerformed
         try {
-        // Hämta kostnader för projekt där du är projektchef
-        String sql = "SELECT kostnad FROM projekt WHERE projektchef = " + aid;
-        ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
+            // Hämta kostnader för projekt där du är projektchef
+            String sql = "SELECT kostnad FROM projekt WHERE projektchef = " + aid;
+            ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
 
-        double totalKostnad = 0;
-        double maxKostnad = Double.MIN_VALUE;
-        double minKostnad = Double.MAX_VALUE;
-        int antalProjekt = 0;
+            double totalKostnad = 0;
+            double maxKostnad = Double.MIN_VALUE;
+            double minKostnad = Double.MAX_VALUE;
+            int antalProjekt = 0;
 
-        for (HashMap<String, String> rad : resultat) {
-            double kostnad = Double.parseDouble(rad.get("kostnad"));
+            for (HashMap<String, String> rad : resultat) {
+                double kostnad = Double.parseDouble(rad.get("kostnad"));
 
-            totalKostnad += kostnad;
-            maxKostnad = Math.max(maxKostnad, kostnad);
-            minKostnad = Math.min(minKostnad, kostnad);
+                totalKostnad += kostnad;
+                maxKostnad = Math.max(maxKostnad, kostnad);
+                minKostnad = Math.min(minKostnad, kostnad);
 
-            antalProjekt++;
+                antalProjekt++;
+            }
+
+            double medelKostnad = totalKostnad / antalProjekt;
+
+            JOptionPane.showMessageDialog(this,
+                    "Kostnadsstatistik för dina projekt:\n"
+                    + "Totalkostnad: " + totalKostnad + " kr\n"
+                    + "Medelkostnad: " + String.format("%.2f", medelKostnad) + " kr\n"
+                    + "Högsta kostnad: " + maxKostnad + " kr\n"
+                    + "Lägsta kostnad: " + minKostnad + " kr",
+                    "Projektkostnad - Statistik",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Fel vid hämtning av kostnadsstatistik: " + e.getMessage());
         }
-
-        double medelKostnad = totalKostnad / antalProjekt;
-
-        JOptionPane.showMessageDialog(this,
-                "Kostnadsstatistik för dina projekt:\n"
-                + "Totalkostnad: " + totalKostnad + " kr\n"
-                + "Medelkostnad: " + String.format("%.2f", medelKostnad) + " kr\n"
-                + "Högsta kostnad: " + maxKostnad + " kr\n"
-                + "Lägsta kostnad: " + minKostnad + " kr",
-                "Projektkostnad - Statistik",
-                JOptionPane.INFORMATION_MESSAGE);
-
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Fel vid hämtning av kostnadsstatistik: " + e.getMessage());
-    }
     }//GEN-LAST:event_StatistikKostnadActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
@@ -653,6 +653,15 @@ public class ProjektChef extends javax.swing.JPanel {
 
             String projektId = InfoProjectTable.getValueAt(radIndex, 0).toString();
 
+            // Kontrollera att användaren är projektchef
+            String kontrollFraga = "SELECT pid FROM projekt WHERE pid = '" + projektId + "' AND projektchef = '" + aid + "'";
+            String resultat = idb.fetchSingle(kontrollFraga);
+
+            if (resultat == null) {
+                JOptionPane.showMessageDialog(this, "Du är inte projektchef för detta projekt och kan därför inte lägga till partner.");
+                return;
+            }
+
             // Hämta redan kopplade partner_ids för projektet
             String koppladeFraga = "SELECT partner_pid FROM projekt_partner WHERE pid = " + projektId;
             ArrayList<HashMap<String, String>> koppladePartners = idb.fetchRows(koppladeFraga);
@@ -672,11 +681,15 @@ public class ProjektChef extends javax.swing.JPanel {
                 String pid = partner.get("pid");
                 String namn = partner.get("namn");
 
-                // Bara lägg till partnern om den INTE redan är kopplad till projektet
                 if (!redanKoppladeIds.contains(pid)) {
                     partnerBox.addItem(namn);
                     namnTillId.put(namn, pid);
                 }
+            }
+
+            if (partnerBox.getItemCount() == 0) {
+                JOptionPane.showMessageDialog(this, "Alla partners är redan kopplade till detta projekt.");
+                return;
             }
 
             Object[] message = {
@@ -710,6 +723,15 @@ public class ProjektChef extends javax.swing.JPanel {
 
             String projektId = InfoProjectTable.getValueAt(rad, 0).toString();
 
+            // Kontrollera att användaren är projektchef
+            String kontrollFraga = "SELECT pid FROM projekt WHERE pid = '" + projektId + "' AND projektchef = '" + aid + "'";
+            String resultat = idb.fetchSingle(kontrollFraga);
+
+            if (resultat == null) {
+                JOptionPane.showMessageDialog(this, "Du är inte projektchef för detta projekt och kan därför inte ta bort partner.");
+                return;
+            }
+
             // Hämta alla partners kopplade till projektet
             String sql = "SELECT pa.namn, pa.pid FROM partner pa "
                     + "JOIN projekt_partner pp ON pa.pid = pp.partner_pid "
@@ -722,13 +744,11 @@ public class ProjektChef extends javax.swing.JPanel {
                 return;
             }
 
-            // Lista partnernamn
             String[] partnerNamnLista = new String[partners.size()];
             for (int i = 0; i < partners.size(); i++) {
                 partnerNamnLista[i] = partners.get(i).get("namn");
             }
 
-            // Dialog för att välja partner att ta bort
             String valdPartner = (String) JOptionPane.showInputDialog(
                     this,
                     "Välj partner att ta bort:",
@@ -740,7 +760,6 @@ public class ProjektChef extends javax.swing.JPanel {
             );
 
             if (valdPartner != null) {
-                // Hitta partnerId baserat på det valda namnet
                 for (HashMap<String, String> p : partners) {
                     if (p.get("namn").equals(valdPartner)) {
                         String partnerId = p.get("pid");
@@ -752,6 +771,7 @@ public class ProjektChef extends javax.swing.JPanel {
                     }
                 }
             }
+
         } catch (InfException e) {
             JOptionPane.showMessageDialog(this, "Fel vid borttagning av partner: " + e.getMessage());
         }
@@ -767,9 +787,17 @@ public class ProjektChef extends javax.swing.JPanel {
 
             String projektId = InfoProjectTable.getValueAt(radIndex, 0).toString();
 
+            // Kontrollera att användaren är projektchef för projektet
+            String kontrollFraga = "SELECT pid FROM projekt WHERE pid = '" + projektId + "' AND projektchef = '" + aid + "'";
+            String resultat = idb.fetchSingle(kontrollFraga);
+
+            if (resultat == null) {
+                JOptionPane.showMessageDialog(this, "Du är inte projektchef för detta projekt och kan därför inte lägga till handläggare.");
+                return;
+            }
+
             // Hämta redan kopplade handläggare
             String koppladeFraga = "SELECT aid FROM ans_proj WHERE pid = '" + projektId + "'";
-
             ArrayList<HashMap<String, String>> kopplade = idb.fetchRows(koppladeFraga);
             HashSet<String> redanKoppladeAid = new HashSet<>();
             for (HashMap<String, String> rad : kopplade) {
@@ -777,9 +805,11 @@ public class ProjektChef extends javax.swing.JPanel {
             }
 
             // Hämta alla handläggare
-            ArrayList<HashMap<String, String>> handlaggareLista = idb.fetchRows("SELECT anstalld.aid, fornamn, efternamn "
+            ArrayList<HashMap<String, String>> handlaggareLista = idb.fetchRows(
+                    "SELECT anstalld.aid, fornamn, efternamn "
                     + "FROM handlaggare "
-                    + "JOIN anstalld ON handlaggare.aid = anstalld.aid");
+                    + "JOIN anstalld ON handlaggare.aid = anstalld.aid"
+            );
 
             JComboBox<String> handlerBox = new JComboBox<>();
             HashMap<String, String> namnTillAid = new HashMap<>();
@@ -806,7 +836,7 @@ public class ProjektChef extends javax.swing.JPanel {
             int val = JOptionPane.showConfirmDialog(this, message, "Lägg till Handläggare", JOptionPane.OK_CANCEL_OPTION);
             if (val == JOptionPane.OK_OPTION) {
                 String valtNamn = (String) handlerBox.getSelectedItem();
-                String valdAid = namnTillAid.get(valtNamn);  // <-- bytt namn här
+                String valdAid = namnTillAid.get(valtNamn);
 
                 String insertFraga = "INSERT INTO ans_proj (aid, pid) VALUES ('" + valdAid + "', '" + projektId + "')";
                 idb.insert(insertFraga);
@@ -829,6 +859,15 @@ public class ProjektChef extends javax.swing.JPanel {
             }
 
             String projektId = InfoProjectTable.getValueAt(radIndex, 0).toString();
+
+            // Kontrollera att användaren är projektchef för projektet
+            String kontrollFraga = "SELECT pid FROM projekt WHERE pid = '" + projektId + "' AND projektchef = '" + aid + "'";
+            String resultat = idb.fetchSingle(kontrollFraga);
+
+            if (resultat == null) {
+                JOptionPane.showMessageDialog(this, "Du är inte projektchef för detta projekt och kan därför inte ta bort handläggare.");
+                return;
+            }
 
             // Hämta handläggare som är kopplade till projektet
             String fraga = "SELECT anstalld.aid, anstalld.fornamn, anstalld.efternamn FROM ans_proj "
