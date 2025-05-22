@@ -24,8 +24,9 @@ public class Validering
 public static boolean isValidEpost(String epost)
 {
     if (epost == null) return false;
-    return epost.matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+    return epost.matches("^[a-zA-ZÅÄÖåäö]+\\.[a-zA-ZÅÄÖåäö]+@example\\.com{2,4}$");
 }
+//^[\\w-.]+@([\\w-]+\\.)+[\\w-]
 
 public static boolean isValidTelefon(String telefon)
 {
