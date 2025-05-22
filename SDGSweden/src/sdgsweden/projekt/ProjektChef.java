@@ -64,8 +64,6 @@ public class ProjektChef extends javax.swing.JPanel {
         StatistikKostnad = new javax.swing.JButton();
         btnTillbaka = new javax.swing.JButton();
         AndraUppgifter = new javax.swing.JButton();
-        pidTextField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         addProjektButton = new javax.swing.JButton();
         DeleteButton = new javax.swing.JButton();
 
@@ -286,7 +284,7 @@ public class ProjektChef extends javax.swing.JPanel {
             }
         });
 
-        StatistikKostnad.setText("Total kostnad");
+        StatistikKostnad.setText("Kostnadsstatistik");
         StatistikKostnad.setPreferredSize(new java.awt.Dimension(110, 25));
         StatistikKostnad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -310,10 +308,6 @@ public class ProjektChef extends javax.swing.JPanel {
             }
         });
 
-        pidTextField.setColumns(2);
-
-        jLabel1.setText("Pid");
-
         addProjektButton.setText("Lägg till Projekt");
         addProjektButton.setPreferredSize(new java.awt.Dimension(120, 25));
         addProjektButton.addActionListener(new java.awt.event.ActionListener() {
@@ -336,38 +330,24 @@ public class ProjektChef extends javax.swing.JPanel {
             jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelSouthLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(DeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                    .addComponent(AndraUppgifter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addProjektButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 267, Short.MAX_VALUE)
                 .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSouthLayout.createSequentialGroup()
+                        .addComponent(StatistikKostnad, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(87, 87, 87)
                         .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelSouthLayout.createSequentialGroup()
-                                .addComponent(AndraUppgifter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pidTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(StatistikKostnad, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29))
-                            .addGroup(jPanelSouthLayout.createSequentialGroup()
-                                .addComponent(addProjektButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(addHandlaggareButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(taBortHandlaggareButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(51, 51, 51)
                         .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addHandlaggareButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(taBortHandlaggareButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelSouthLayout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(btnTillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSouthLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(addPartnerButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(taBortPartnerButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap())))
-                    .addGroup(jPanelSouthLayout.createSequentialGroup()
-                        .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(addPartnerButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(taBortPartnerButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnTillbaka, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanelSouthLayout.setVerticalGroup(
             jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,18 +357,17 @@ public class ProjektChef extends javax.swing.JPanel {
                     .addComponent(addPartnerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addHandlaggareButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(StatistikKostnad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AndraUppgifter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pidTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(AndraUppgifter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(taBortPartnerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(taBortHandlaggareButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addProjektButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(taBortHandlaggareButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(addProjektButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnTillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -519,33 +498,54 @@ public class ProjektChef extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Kunde inte hämta avdelning: " + e.getMessage());
         }
     }
-    
+
     public boolean arProjektchef(String aid) {
-    try {
-        String sql = "SELECT pid FROM projekt WHERE projektchef = " + aid;
-        String resultat = idb.fetchSingle(sql);
-        return resultat != null; // true = personen är projektchef
-    } catch (InfException e) {
-        System.out.println("Fel i arProjektchef(): " + e.getMessage());
-        return false;
+        try {
+            String sql = "SELECT pid FROM projekt WHERE projektchef = " + aid;
+            String resultat = idb.fetchSingle(sql);
+            return resultat != null; // true = personen är projektchef
+        } catch (InfException e) {
+            System.out.println("Fel i arProjektchef(): " + e.getMessage());
+            return false;
+        }
     }
-}
 
 
     private void AndraUppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AndraUppgifterActionPerformed
+        int radIndex = InfoProjectTable.getSelectedRow();
+
+        if (radIndex == -1) {
+            JOptionPane.showMessageDialog(this, "Välj ett projekt först.");
+            return;
+        }
+
         try {
+            // Hämta pid från kolumn 0
+            String projektId = InfoProjectTable.getValueAt(radIndex, 0).toString();
+            int pid = Integer.parseInt(projektId);
 
-            int pid = Integer.parseInt(pidTextField.getText().trim());
+            // Kontrollera att inloggad användare är projektchef
+            String kontrollFraga = "SELECT pid FROM projekt "
+                    + "WHERE pid = " + pid + " AND projektchef = " + aid;
 
-            HanteraProjekt laggTillPanel = new HanteraProjekt(idb, this, pid);
-        Container parentProjekt = this.getParent();
+            String resultat = idb.fetchSingle(kontrollFraga);
+            if (resultat == null) {
+                JOptionPane.showMessageDialog(this, "Du är inte projektchef för detta projekt och kan därför inte redigera det.");
+                return;
+            }
 
-            parentProjekt.removeAll(); // Ta bort nuvarande innehåll i panelen
-            parentProjekt.add(laggTillPanel);
+            // Om användaren är projektchef – öppna redigeringspanelen
+            HanteraProjekt redigeraPanel = new HanteraProjekt(idb, this, pid);
+            Container parentProjekt = this.getParent();
+            parentProjekt.removeAll();
+            parentProjekt.add(redigeraPanel);
             parentProjekt.revalidate();
             parentProjekt.repaint();
+
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Ange ett giltigt heltal för Pid.", "Fel", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ogiltigt projekt-ID.", "Fel", JOptionPane.ERROR_MESSAGE);
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(this, "Databasfel: " + e.getMessage(), "Fel", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_AndraUppgifterActionPerformed
 
@@ -562,18 +562,15 @@ public class ProjektChef extends javax.swing.JPanel {
 
     private void StatistikKostnadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatistikKostnadActionPerformed
         try {
-            // Hämta alla projektens kostnader med SQL-fråga
-            String sql = "SELECT kostnad FROM projekt";
-            // Hämtar resultatet som en lista av HashMaps (en rad = ett projekt)
+            // Hämta kostnader för projekt där du är projektchef
+            String sql = "SELECT kostnad FROM projekt WHERE projektchef = " + aid;
             ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
 
-            // Variabler för att lagra totalkostnad, max/min och antal projekt
             double totalKostnad = 0;
             double maxKostnad = Double.MIN_VALUE;
             double minKostnad = Double.MAX_VALUE;
-
             int antalProjekt = 0;
-            // Loopar igenom varje projekt och bearbetar kostnaden
+
             for (HashMap<String, String> rad : resultat) {
                 double kostnad = Double.parseDouble(rad.get("kostnad"));
 
@@ -586,16 +583,14 @@ public class ProjektChef extends javax.swing.JPanel {
 
             double medelKostnad = totalKostnad / antalProjekt;
 
-            // Visa resultatet i en JOptionPane
             JOptionPane.showMessageDialog(this,
-                    "Kostnadsstatistik för alla projekt:\n"
+                    "Kostnadsstatistik för dina projekt:\n"
                     + "Totalkostnad: " + totalKostnad + " kr\n"
                     + "Medelkostnad: " + String.format("%.2f", medelKostnad) + " kr\n"
                     + "Högsta kostnad: " + maxKostnad + " kr\n"
                     + "Lägsta kostnad: " + minKostnad + " kr",
                     "Projektkostnad - Statistik",
-                    JOptionPane.INFORMATION_MESSAGE // en blå ikon 
-            );
+                    JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Fel vid hämtning av kostnadsstatistik: " + e.getMessage());
@@ -658,6 +653,15 @@ public class ProjektChef extends javax.swing.JPanel {
 
             String projektId = InfoProjectTable.getValueAt(radIndex, 0).toString();
 
+            // Kontrollera att användaren är projektchef
+            String kontrollFraga = "SELECT pid FROM projekt WHERE pid = '" + projektId + "' AND projektchef = '" + aid + "'";
+            String resultat = idb.fetchSingle(kontrollFraga);
+
+            if (resultat == null) {
+                JOptionPane.showMessageDialog(this, "Du är inte projektchef för detta projekt och kan därför inte lägga till partner.");
+                return;
+            }
+
             // Hämta redan kopplade partner_ids för projektet
             String koppladeFraga = "SELECT partner_pid FROM projekt_partner WHERE pid = " + projektId;
             ArrayList<HashMap<String, String>> koppladePartners = idb.fetchRows(koppladeFraga);
@@ -677,11 +681,15 @@ public class ProjektChef extends javax.swing.JPanel {
                 String pid = partner.get("pid");
                 String namn = partner.get("namn");
 
-                // Bara lägg till partnern om den INTE redan är kopplad till projektet
                 if (!redanKoppladeIds.contains(pid)) {
                     partnerBox.addItem(namn);
                     namnTillId.put(namn, pid);
                 }
+            }
+
+            if (partnerBox.getItemCount() == 0) {
+                JOptionPane.showMessageDialog(this, "Alla partners är redan kopplade till detta projekt.");
+                return;
             }
 
             Object[] message = {
@@ -715,6 +723,15 @@ public class ProjektChef extends javax.swing.JPanel {
 
             String projektId = InfoProjectTable.getValueAt(rad, 0).toString();
 
+            // Kontrollera att användaren är projektchef
+            String kontrollFraga = "SELECT pid FROM projekt WHERE pid = '" + projektId + "' AND projektchef = '" + aid + "'";
+            String resultat = idb.fetchSingle(kontrollFraga);
+
+            if (resultat == null) {
+                JOptionPane.showMessageDialog(this, "Du är inte projektchef för detta projekt och kan därför inte ta bort partner.");
+                return;
+            }
+
             // Hämta alla partners kopplade till projektet
             String sql = "SELECT pa.namn, pa.pid FROM partner pa "
                     + "JOIN projekt_partner pp ON pa.pid = pp.partner_pid "
@@ -727,13 +744,11 @@ public class ProjektChef extends javax.swing.JPanel {
                 return;
             }
 
-            // Lista partnernamn
             String[] partnerNamnLista = new String[partners.size()];
             for (int i = 0; i < partners.size(); i++) {
                 partnerNamnLista[i] = partners.get(i).get("namn");
             }
 
-            // Dialog för att välja partner att ta bort
             String valdPartner = (String) JOptionPane.showInputDialog(
                     this,
                     "Välj partner att ta bort:",
@@ -745,7 +760,6 @@ public class ProjektChef extends javax.swing.JPanel {
             );
 
             if (valdPartner != null) {
-                // Hitta partnerId baserat på det valda namnet
                 for (HashMap<String, String> p : partners) {
                     if (p.get("namn").equals(valdPartner)) {
                         String partnerId = p.get("pid");
@@ -757,6 +771,7 @@ public class ProjektChef extends javax.swing.JPanel {
                     }
                 }
             }
+
         } catch (InfException e) {
             JOptionPane.showMessageDialog(this, "Fel vid borttagning av partner: " + e.getMessage());
         }
@@ -772,9 +787,17 @@ public class ProjektChef extends javax.swing.JPanel {
 
             String projektId = InfoProjectTable.getValueAt(radIndex, 0).toString();
 
+            // Kontrollera att användaren är projektchef för projektet
+            String kontrollFraga = "SELECT pid FROM projekt WHERE pid = '" + projektId + "' AND projektchef = '" + aid + "'";
+            String resultat = idb.fetchSingle(kontrollFraga);
+
+            if (resultat == null) {
+                JOptionPane.showMessageDialog(this, "Du är inte projektchef för detta projekt och kan därför inte lägga till handläggare.");
+                return;
+            }
+
             // Hämta redan kopplade handläggare
             String koppladeFraga = "SELECT aid FROM ans_proj WHERE pid = '" + projektId + "'";
-
             ArrayList<HashMap<String, String>> kopplade = idb.fetchRows(koppladeFraga);
             HashSet<String> redanKoppladeAid = new HashSet<>();
             for (HashMap<String, String> rad : kopplade) {
@@ -782,9 +805,11 @@ public class ProjektChef extends javax.swing.JPanel {
             }
 
             // Hämta alla handläggare
-            ArrayList<HashMap<String, String>> handlaggareLista = idb.fetchRows("SELECT anstalld.aid, fornamn, efternamn "
+            ArrayList<HashMap<String, String>> handlaggareLista = idb.fetchRows(
+                    "SELECT anstalld.aid, fornamn, efternamn "
                     + "FROM handlaggare "
-                    + "JOIN anstalld ON handlaggare.aid = anstalld.aid");
+                    + "JOIN anstalld ON handlaggare.aid = anstalld.aid"
+            );
 
             JComboBox<String> handlerBox = new JComboBox<>();
             HashMap<String, String> namnTillAid = new HashMap<>();
@@ -811,7 +836,7 @@ public class ProjektChef extends javax.swing.JPanel {
             int val = JOptionPane.showConfirmDialog(this, message, "Lägg till Handläggare", JOptionPane.OK_CANCEL_OPTION);
             if (val == JOptionPane.OK_OPTION) {
                 String valtNamn = (String) handlerBox.getSelectedItem();
-                String valdAid = namnTillAid.get(valtNamn);  // <-- bytt namn här
+                String valdAid = namnTillAid.get(valtNamn);
 
                 String insertFraga = "INSERT INTO ans_proj (aid, pid) VALUES ('" + valdAid + "', '" + projektId + "')";
                 idb.insert(insertFraga);
@@ -834,6 +859,15 @@ public class ProjektChef extends javax.swing.JPanel {
             }
 
             String projektId = InfoProjectTable.getValueAt(radIndex, 0).toString();
+
+            // Kontrollera att användaren är projektchef för projektet
+            String kontrollFraga = "SELECT pid FROM projekt WHERE pid = '" + projektId + "' AND projektchef = '" + aid + "'";
+            String resultat = idb.fetchSingle(kontrollFraga);
+
+            if (resultat == null) {
+                JOptionPane.showMessageDialog(this, "Du är inte projektchef för detta projekt och kan därför inte ta bort handläggare.");
+                return;
+            }
 
             // Hämta handläggare som är kopplade till projektet
             String fraga = "SELECT anstalld.aid, anstalld.fornamn, anstalld.efternamn FROM ans_proj "
@@ -1042,7 +1076,6 @@ public class ProjektChef extends javax.swing.JPanel {
     private javax.swing.JButton addProjektButton;
     private javax.swing.JLabel avdelningLabel;
     private javax.swing.JButton btnTillbaka;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelProjektAvdelning;
     private javax.swing.JLabel jLabelProjektVy;
     private javax.swing.JLabel jLabelSlutdatum;
@@ -1051,7 +1084,6 @@ public class ProjektChef extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelNorth;
     private javax.swing.JPanel jPanelSouth;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField pidTextField;
     private javax.swing.JComboBox<String> projektComboBox;
     private javax.swing.JButton taBortHandlaggareButton;
     private javax.swing.JButton taBortPartnerButton;

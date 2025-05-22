@@ -43,8 +43,20 @@ public static boolean isValidAnstallningsdatum(String anstallningsdatum)
 public static boolean isValidLosenord(String losenord)
 {
     if (losenord == null) return false;
-    return losenord.matches("^[A-Za-z\\d]{8,}$");
+    return losenord.matches("^[A-Za-z\\d]{11,}$");
 
+}
+
+public static boolean isValidAdress(String adress)
+{
+    if (adress == null) return false;
+    return adress.matches("^[A-Za-z\\d\\-]{2,12}$");
+
+}
+
+public static boolean isValidKostnad(double kostnad)
+{
+    return kostnad >= 0 && kostnad <= 5_000_000;
 }
 
 
