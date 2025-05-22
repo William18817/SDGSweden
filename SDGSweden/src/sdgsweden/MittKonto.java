@@ -5,14 +5,6 @@
 package sdgsweden;
 
 import oru.inf.InfDB;
-
-//Följande import`s är nödvändiga:
-//1, importerar klassen för att skapa en anslutning till en databas.
-//2, Gör det möjligt att etablera databasanslutning via JDBC.
-//3, Skickar parametriserade SQL-frågor. Säkrare än att bygga strängar.
-//4, Gör det möjligt att läsa resultatet av SQL-fråga.
-//5, "Gör" att popup rutor eller JOptionsPane visas, Tex när vi loggar in.
-
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import sdgsweden.Validering;
@@ -269,7 +261,7 @@ public class MittKonto extends javax.swing.JPanel {
         TfEpost.setEditable(redigera);
         TfTelefon.setEditable(redigera);
         TfLosenord.setEditable(redigera);
-        //TfAvdelning.setEditable(redigera);
+        
 
 
     }//GEN-LAST:event_CbRedigeraUppgifterActionPerformed
@@ -281,27 +273,39 @@ public class MittKonto extends javax.swing.JPanel {
 
     private void BnSparaAndringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BnSparaAndringarActionPerformed
        
-    if (Validering.isEmpty(TfFornamn.getText())) {
+    if (Validering.isEmpty(TfFornamn.getText())) 
+    {
         JOptionPane.showMessageDialog(this, "Förnamn får inte vara tomt.");
         return;
     }
+    
+    if (Validering.isEmpty(TfEfternamn.getText()))
+    {
+        JOptionPane.showMessageDialog(this, "Efternamn får inte vara tomt");
+        return;
+    
+    }
 
-    if (!Validering.isValidEpost(TfEpost.getText())) {
+    if (!Validering.isValidEpost(TfEpost.getText())) 
+    {
         JOptionPane.showMessageDialog(this, "Ogiltig e-postadress.");
         return;
     }
 
-    if (!Validering.isValidTelefon(TfTelefon.getText())) {
+    if (!Validering.isValidTelefon(TfTelefon.getText())) 
+    {
         JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer.");
         return;
     }
 
-    if (!Validering.isValidAnstallningsdatum(TfAnstallningsdatum.getText())) {
+    if (!Validering.isValidAnstallningsdatum(TfAnstallningsdatum.getText())) 
+    {
         JOptionPane.showMessageDialog(this, "Anställningsdatum måste ha formatet ÅÅÅÅ-MM-DD.");
         return;
     }
 
-    if (!Validering.isValidLosenord(TfLosenord.getText())) {
+    if (!Validering.isValidLosenord(TfLosenord.getText())) 
+    {
         JOptionPane.showMessageDialog(this, "Lösenordet måste vara minst 8 tecken långt och innehålla både bokstäver och siffror.");
         return;
     } 
