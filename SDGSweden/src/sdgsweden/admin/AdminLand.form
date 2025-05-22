@@ -28,8 +28,6 @@
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               <Component id="btnLaggTill" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnAvbryt" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="btnTaBort" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -52,7 +50,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="49" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -112,7 +110,6 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnSpara" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnLaggTill" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnAvbryt" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnTaBort" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="154" max="32767" attributes="0"/>
@@ -236,11 +233,6 @@
     <Component class="javax.swing.JButton" name="btnLaggTill">
       <Properties>
         <Property name="text" type="java.lang.String" value="L&#xe4;gg till"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnAvbryt">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Avbryt"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnTaBort">

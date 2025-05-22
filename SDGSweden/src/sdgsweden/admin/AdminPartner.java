@@ -16,6 +16,7 @@ public class AdminPartner extends javax.swing.JPanel {
     private MainFrame parent;
     private InfDB idb;
     private String aid;
+    
     /**
      * Creates new form AdminPartner
      */
@@ -23,6 +24,7 @@ public class AdminPartner extends javax.swing.JPanel {
         this.parent = parent;
         this.idb = idb;
         this.aid = aid;
+        
         initComponents();
     }
 
@@ -53,7 +55,6 @@ public class AdminPartner extends javax.swing.JPanel {
         txtBransch = new javax.swing.JTextField();
         btnSpara = new javax.swing.JButton();
         btnLaggTill = new javax.swing.JButton();
-        btnAvbryt = new javax.swing.JButton();
         btnTaBort = new javax.swing.JButton();
 
         jLabel1.setText("Partner");
@@ -97,8 +98,6 @@ public class AdminPartner extends javax.swing.JPanel {
 
         btnLaggTill.setText("Lägg till");
 
-        btnAvbryt.setText("Avbryt");
-
         btnTaBort.setText("Ta bort");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -119,7 +118,7 @@ public class AdminPartner extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                                         .addComponent(txtKontaktPerson, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2)
@@ -146,10 +145,8 @@ public class AdminPartner extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnLaggTill)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnAvbryt)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnTaBort)
-                                .addContainerGap(47, Short.MAX_VALUE))))))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnTillbakaAdmin)
@@ -191,7 +188,6 @@ public class AdminPartner extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSpara)
                             .addComponent(btnLaggTill)
-                            .addComponent(btnAvbryt)
                             .addComponent(btnTaBort))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addComponent(btnTillbakaAdmin)
@@ -206,7 +202,6 @@ public class AdminPartner extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAvbryt;
     private javax.swing.JButton btnLaggTill;
     private javax.swing.JButton btnSpara;
     private javax.swing.JButton btnTaBort;
