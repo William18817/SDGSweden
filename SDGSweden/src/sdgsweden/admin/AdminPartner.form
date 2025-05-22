@@ -31,7 +31,7 @@
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace pref="104" max="32767" attributes="0"/>
                                       <Component id="txtKontaktPerson" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
@@ -67,10 +67,8 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="btnLaggTill" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnAvbryt" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="btnTaBort" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="47" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -125,7 +123,6 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnSpara" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnLaggTill" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnAvbryt" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnTaBort" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -251,11 +248,6 @@
     <Component class="javax.swing.JButton" name="btnLaggTill">
       <Properties>
         <Property name="text" type="java.lang.String" value="L&#xe4;gg till"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnAvbryt">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Avbryt"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnTaBort">

@@ -17,6 +17,7 @@ public class AdminLand extends javax.swing.JPanel {
     private InfDB idb;
     String aid;
     
+    
     /**
      * Creates new form AdminLand
      */
@@ -24,6 +25,7 @@ public class AdminLand extends javax.swing.JPanel {
             this.parent = parent;
             this.idb = idb;
             this.aid = aid;
+            
         initComponents();
     }
 
@@ -54,7 +56,6 @@ public class AdminLand extends javax.swing.JPanel {
         txtEkonomi = new javax.swing.JTextField();
         btnSpara = new javax.swing.JButton();
         btnLaggTill = new javax.swing.JButton();
-        btnAvbryt = new javax.swing.JButton();
         btnTaBort = new javax.swing.JButton();
 
         jLabel1.setText("Land");
@@ -98,8 +99,6 @@ public class AdminLand extends javax.swing.JPanel {
 
         btnLaggTill.setText("Lägg till");
 
-        btnAvbryt.setText("Avbryt");
-
         btnTaBort.setText("Ta bort");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -118,8 +117,6 @@ public class AdminLand extends javax.swing.JPanel {
                                 .addGap(15, 15, 15)
                                 .addComponent(btnLaggTill)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnAvbryt)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnTaBort))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,7 +134,7 @@ public class AdminLand extends javax.swing.JPanel {
                                     .addComponent(txtTidszon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtPolitiskStruktur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtEkonomi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 49, Short.MAX_VALUE))
+                        .addGap(0, 56, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnTillbakaAdmin)))
@@ -183,7 +180,6 @@ public class AdminLand extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSpara)
                     .addComponent(btnLaggTill)
-                    .addComponent(btnAvbryt)
                     .addComponent(btnTaBort))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
                 .addComponent(btnTillbakaAdmin)
@@ -198,7 +194,6 @@ public class AdminLand extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAvbryt;
     private javax.swing.JButton btnLaggTill;
     private javax.swing.JButton btnSpara;
     private javax.swing.JButton btnTaBort;
