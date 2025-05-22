@@ -30,7 +30,7 @@ public static boolean isValidEpost(String epost)
 public static boolean isValidTelefon(String telefon)
 {
    if (telefon == null) return false;
-    return telefon.matches("^\\d{7,15}$");
+    return telefon.matches("^[\\d-]{7,15}$");
 }
 
 public static boolean isValidAnstallningsdatum(String anstallningsdatum)
@@ -43,7 +43,7 @@ public static boolean isValidAnstallningsdatum(String anstallningsdatum)
 public static boolean isValidLosenord(String losenord)
 {
     if (losenord == null) return false;
-    return losenord.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{11,}$");
+    return losenord.matches("^[A-Za-z\\d]{8,}$");
 
 }
 

@@ -5,14 +5,6 @@
 package sdgsweden;
 
 import oru.inf.InfDB;
-
-//Följande import`s är nödvändiga:
-//1, importerar klassen för att skapa en anslutning till en databas.
-//2, Gör det möjligt att etablera databasanslutning via JDBC.
-//3, Skickar parametriserade SQL-frågor. Säkrare än att bygga strängar.
-//4, Gör det möjligt att läsa resultatet av SQL-fråga.
-//5, "Gör" att popup rutor eller JOptionsPane visas, Tex när vi loggar in.
-
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import sdgsweden.Validering;
