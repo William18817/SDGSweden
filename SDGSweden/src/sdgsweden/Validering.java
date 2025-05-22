@@ -2,7 +2,7 @@
 package sdgsweden;
 
 /*
- * @author Kalkilm
+ * @author Kalkilm: Nedan har vi vår valideringsklass, vars syfte är att bara hålla tillåtna värden ocg gränssnitt att läggas till i databasen.
  */
 public class Validering 
 {
