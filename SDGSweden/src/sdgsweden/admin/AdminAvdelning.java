@@ -4,9 +4,11 @@
  */
 package sdgsweden.admin;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
+import oru.inf.InfException;
 import sdgsweden.MainFrame;
 import sdgsweden.Validering;
 
@@ -99,6 +101,11 @@ public class AdminAvdelning extends javax.swing.JPanel {
         txtTelefon.setPreferredSize(new java.awt.Dimension(150, 24));
 
         btnLaggTill.setText("Lägg till");
+        btnLaggTill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillActionPerformed(evt);
+            }
+        });
 
         btnSpara.setText("Spara");
         btnSpara.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +115,11 @@ public class AdminAvdelning extends javax.swing.JPanel {
         });
 
         btnTaBort.setText("Ta bort");
+        btnTaBort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaBortActionPerformed(evt);
+            }
+        });
 
         chkRedigeraInformation.setText("Redigera uppgifter");
 
@@ -205,13 +217,13 @@ public class AdminAvdelning extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSpara)
                     .addComponent(btnLaggTill)
                     .addComponent(btnTaBort)
                     .addComponent(chkRedigeraInformation))
-                .addGap(68, 68, 68)
+                .addGap(62, 62, 62)
                 .addComponent(btnTillbakaAdmin)
                 .addContainerGap())
         );
@@ -228,17 +240,17 @@ public class AdminAvdelning extends javax.swing.JPanel {
            JOptionPane.showMessageDialog(this, "Namn får inte tomt.");
            return;
         }
-        if (!Validering.isEmpty(txtAdress.getText()))
+        if (Validering.isEmpty(txtAdress.getText()))
         {
             JOptionPane.showMessageDialog(this, "Ogiltig adress.");
             return;
         }
-        if (!Validering.isEmpty(txtEpost.getText()))
+        if (Validering.isEmpty(txtEpost.getText()))
         {
             JOptionPane.showMessageDialog(this, "Ogiltig E-postadress.");
             return;
         }
-        if (!Validering.isEmpty(txtTelefon.getText()))
+        if (Validering.isEmpty(txtTelefon.getText()))
         {
             JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer.");
             return;
@@ -259,6 +271,148 @@ public class AdminAvdelning extends javax.swing.JPanel {
             return;
         }
     }//GEN-LAST:event_btnSparaActionPerformed
+
+    private void btnLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillActionPerformed
+        try {
+    // Hämta alla värden från formuläret
+    String namn = txtNamn.getText().trim();
+    String adress = txtAdress.getText().trim();
+    String epost = txtEpost.getText().trim();
+    String telefon = txtTelefon.getText().trim();
+    String beskrivning = txtBeskrivning.getText().trim();
+    String chefStr = txtChef.getText().trim();
+    String stadStr = txtStad.getText().trim();
+
+    if (Validering.isEmpty(txtNamn.getText())) {
+        JOptionPane.showMessageDialog(this, "Namn får inte vara tomt.");
+        return;
+    }
+    if (Validering.isEmpty(txtAdress.getText())) {
+        JOptionPane.showMessageDialog(this, "Adress får inte vara tomt.");
+        return;
+    }
+    if (Validering.isEmpty(txtEpost.getText())) {
+        JOptionPane.showMessageDialog(this, "Ogiltig E-postadress.");
+        return;
+    }
+    if (Validering.isEmpty(txtTelefon.getText())) {
+        JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer.");
+        return;
+    }
+    if (Validering.isEmpty(txtBeskrivning.getText())) {
+        JOptionPane.showMessageDialog(this, "Beskrivning får inte vara tom.");
+        return;
+    }
+    if (Validering.isEmpty(txtChef.getText())) {
+        JOptionPane.showMessageDialog(this, "Chef (ID) får inte vara tomt.");
+        return;
+    }
+    if (Validering.isEmpty(txtStad.getText())) {
+        JOptionPane.showMessageDialog(this, "Stad (ID) får inte vara tomt.");
+        return;
+    }
+
+    // Konvertera chef/stad till int
+    int chef = Integer.parseInt(chefStr);
+    int stad = Integer.parseInt(stadStr);
+
+    // Hämta nästa lediga avdid
+    String sqlNextId = "SELECT MAX(avdid) + 1 FROM avdelning";
+    String nextIdStr = idb.fetchSingle(sqlNextId);
+    if (nextIdStr == null) {
+        nextIdStr = "1";
+    }
+    int nextAvdid = Integer.parseInt(nextIdStr);
+
+    // Skapa INSERT-fråga
+    String sql = "INSERT INTO avdelning (avdid, namn, adress, epost, telefon, beskrivning, chef, stad) "
+               + "VALUES (" + nextAvdid + ", "
+               + "'" + namn + "', "
+               + "'" + adress + "', "
+               + "'" + epost + "', "
+               + "'" + telefon + "', "
+               + "'" + beskrivning + "', "
+               + chef + ", "
+               + stad + ")";
+
+    // Kör INSERT
+    idb.insert(sql);
+
+    JOptionPane.showMessageDialog(this, "Avdelning har lagts till i systemet!");
+
+    // Rensa fält
+    txtNamn.setText("");
+    txtAdress.setText("");
+    txtEpost.setText("");
+    txtTelefon.setText("");
+    txtBeskrivning.setText("");
+    txtChef.setText("");
+    txtStad.setText("");
+        }
+        catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(this, "Fel: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnLaggTillActionPerformed
+
+    private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
+        try
+{
+    // Detta visar en popup-ruta där man får ange avdelnings-ID
+    String avdelningsId = JOptionPane.showInputDialog(this, "Ange avdelnings-ID (avdid) för att ta bort:");
+
+    // Om man inte fyller i rutan med ett giltigt avdid
+    if (avdelningsId.isEmpty())
+    {
+        JOptionPane.showMessageDialog(this, "Fyll i ett avdelnings-ID först.");
+        return;
+    }
+
+    // Hämta specifik information om avdelningen
+    String sql = "SELECT namn FROM avdelning WHERE avdid = " + avdelningsId;
+
+    // Kör SQL-frågan
+    ArrayList<HashMap<String, String>> avdelningar = idb.fetchRows(sql);
+
+    // Om ingen avdelning hittas
+    if (avdelningar == null || avdelningar.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Det finns ingen avdelning med detta ID.");
+        return;
+    }
+
+    // Lista namn (även om det bara är en)
+    String[] avdelningsNamnLista = new String[avdelningar.size()];
+    for (int i = 0; i < avdelningar.size(); i++) {
+        avdelningsNamnLista[i] = avdelningar.get(i).get("namn");
+    }
+
+    // Dialog för att bekräfta borttagning
+    String valdAvdelning = (String) JOptionPane.showInputDialog(
+        this,
+        "Bekräfta vilken avdelning du vill ta bort:",
+        "Ta bort avdelning",
+        JOptionPane.QUESTION_MESSAGE,
+        null,
+        avdelningsNamnLista,
+        avdelningsNamnLista[0]
+    );
+
+    if (valdAvdelning != null) {
+        for (HashMap<String, String> a : avdelningar) {
+            String namn = a.get("namn");
+            if (namn.equals(valdAvdelning)) {
+                String deleteSql = "DELETE FROM avdelning WHERE avdid = " + avdelningsId;
+                idb.delete(deleteSql);
+                JOptionPane.showMessageDialog(this, "Avdelningen togs bort.");
+                break;
+            }
+        }
+    }
+} catch (InfException e) {
+    JOptionPane.showMessageDialog(this, "Fel vid borttagning av avdelning: " + e.getMessage());
+}
+    }//GEN-LAST:event_btnTaBortActionPerformed
 
     
 

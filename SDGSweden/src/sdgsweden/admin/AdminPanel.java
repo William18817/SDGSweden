@@ -390,33 +390,35 @@ public class AdminPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Efternamn får inte vara tomt.");
             return;
         }
-        if (!Validering.isEmpty(txtAdress.getText()))
+        if (Validering.isEmpty(txtAdress.getText()))
         {
             JOptionPane.showMessageDialog(this, "Ogiltig adress.");
             return;
         }
-        if (!Validering.isEmpty(txtEpost.getText()))
+        if (Validering.isEmpty(txtEpost.getText()))
         {
             JOptionPane.showMessageDialog(this, "Ogiltig E-postadress.");
             return;
         }
-        if (!Validering.isEmpty(txtTelefon.getText()))
+        if (Validering.isEmpty(txtTelefon.getText()))
         {
             JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer.");
             return;
         }
-        if (!Validering.isEmpty(txtAnstallningsdatum.getText()))
+        if (Validering.isEmpty(txtAnstallningsdatum.getText()))
         {
             JOptionPane.showMessageDialog(this, "Ogiltigt anställningsdatum.");
             return;
         }
-        if (!Validering.isEmpty(pwdLosenord.getText()))
+        if (Validering.isEmpty(new String(pwdLosenord.getPassword())))
         {
             JOptionPane.showMessageDialog(this, "Lösenord får inte vara tomt.");
+            return;
         }
-        if (!Validering.isEmpty(txtAvdelning.getText()))
+        if (Validering.isEmpty(txtAvdelning.getText()))
         {
             JOptionPane.showMessageDialog(this, "Avdelning får inte vara tomt.");
+            return;
         }
 
         // Kontroll: tomma fält
