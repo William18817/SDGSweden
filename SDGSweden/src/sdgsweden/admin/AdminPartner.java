@@ -6,6 +6,8 @@ package sdgsweden.admin;
 
 import oru.inf.InfDB;
 import sdgsweden.MainFrame;
+import sdgsweden.Validering;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -56,6 +58,7 @@ public class AdminPartner extends javax.swing.JPanel {
         btnSpara = new javax.swing.JButton();
         btnLaggTill = new javax.swing.JButton();
         btnTaBort = new javax.swing.JButton();
+        chkRedigeraUppgifter = new javax.swing.JCheckBox();
 
         jLabel1.setText("Partner");
 
@@ -95,10 +98,17 @@ public class AdminPartner extends javax.swing.JPanel {
         txtBransch.setPreferredSize(new java.awt.Dimension(150, 24));
 
         btnSpara.setText("Spara");
+        btnSpara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSparaActionPerformed(evt);
+            }
+        });
 
         btnLaggTill.setText("Lägg till");
 
         btnTaBort.setText("Ta bort");
+
+        chkRedigeraUppgifter.setText("Redigera uppgifter");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -118,7 +128,7 @@ public class AdminPartner extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(txtKontaktPerson, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2)
@@ -146,6 +156,8 @@ public class AdminPartner extends javax.swing.JPanel {
                                 .addComponent(btnLaggTill)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnTaBort)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(chkRedigeraUppgifter)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -188,7 +200,8 @@ public class AdminPartner extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSpara)
                             .addComponent(btnLaggTill)
-                            .addComponent(btnTaBort))))
+                            .addComponent(btnTaBort)
+                            .addComponent(chkRedigeraUppgifter))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addComponent(btnTillbakaAdmin)
                 .addContainerGap())
@@ -200,12 +213,46 @@ public class AdminPartner extends javax.swing.JPanel {
         parent.visaPanel(adminPanel, "adminPanel");
     }//GEN-LAST:event_btnTillbakaAdminActionPerformed
 
+    private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
+        if (Validering.isEmpty(txtNamn.getText()))
+        {
+           JOptionPane.showMessageDialog(this, "Namn får inte tomt.");
+           return;
+        }
+        if (Validering.isEmpty(txtKontaktPerson.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Kontaktperson får inte vara tomt.");
+            return;
+        }
+        if (!Validering.isEmpty(txtKontaktEpost.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Ogiltig E-postadress.");
+            return;
+        }
+        if (!Validering.isEmpty(txtTelefon.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer.");
+            return;
+        }
+        if (!Validering.isEmpty(txtAdress.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Ogiltig adress.");
+            return;
+        }
+        if (Validering.isEmpty(txtBransch.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Bransch får inte vara tomt.");
+            return;
+        }
+    }//GEN-LAST:event_btnSparaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLaggTill;
     private javax.swing.JButton btnSpara;
     private javax.swing.JButton btnTaBort;
     private javax.swing.JButton btnTillbakaAdmin;
+    private javax.swing.JCheckBox chkRedigeraUppgifter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
