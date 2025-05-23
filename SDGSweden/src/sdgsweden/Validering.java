@@ -26,7 +26,7 @@ public static boolean isValidEpost(String epost)
     if (epost == null) return false;
     return epost.matches("^[a-zA-ZÅÄÖåäö]+\\.[a-zA-ZÅÄÖåäö]+@example\\.com$");
 }
-//^[\\w-.]+@([\\w-]+\\.)+[\\w-]
+
 
 public static boolean isValidTelefon(String telefon)
 {

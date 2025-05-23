@@ -119,6 +119,11 @@ public class MittKonto extends javax.swing.JPanel {
 
         TfAdress.setEditable(false);
         TfAdress.setText("jTextField3");
+        TfAdress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TfAdressActionPerformed(evt);
+            }
+        });
 
         TfEpost.setEditable(false);
         TfEpost.setText("jTextField4");
@@ -363,6 +368,10 @@ public class MittKonto extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_btnTillbakaActionPerformed
+
+    private void TfAdressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TfAdressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TfAdressActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
