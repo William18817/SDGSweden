@@ -59,7 +59,6 @@ public class AdminLand extends javax.swing.JPanel {
         btnSpara = new javax.swing.JButton();
         btnLaggTill = new javax.swing.JButton();
         btnTaBort = new javax.swing.JButton();
-        chkRedigeraUppgifter = new javax.swing.JCheckBox();
 
         jLabel1.setText("Land");
 
@@ -109,8 +108,6 @@ public class AdminLand extends javax.swing.JPanel {
 
         btnTaBort.setText("Ta bort");
 
-        chkRedigeraUppgifter.setText("Redigera uppgifter");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,10 +140,8 @@ public class AdminLand extends javax.swing.JPanel {
                                 .addGap(15, 15, 15)
                                 .addComponent(btnLaggTill)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnTaBort)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(chkRedigeraUppgifter)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(btnTaBort)))
+                        .addGap(0, 57, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnTillbakaAdmin)))
@@ -192,8 +187,7 @@ public class AdminLand extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSpara)
                     .addComponent(btnLaggTill)
-                    .addComponent(btnTaBort)
-                    .addComponent(chkRedigeraUppgifter))
+                    .addComponent(btnTaBort))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
                 .addComponent(btnTillbakaAdmin)
                 .addContainerGap())
@@ -244,7 +238,6 @@ public class AdminLand extends javax.swing.JPanel {
     private javax.swing.JButton btnSpara;
     private javax.swing.JButton btnTaBort;
     private javax.swing.JButton btnTillbakaAdmin;
-    private javax.swing.JCheckBox chkRedigeraUppgifter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
