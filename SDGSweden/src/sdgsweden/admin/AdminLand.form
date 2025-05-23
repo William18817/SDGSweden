@@ -48,11 +48,9 @@
                               <Component id="btnLaggTill" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="btnTaBort" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="chkRedigeraUppgifter" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="57" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -113,7 +111,6 @@
                   <Component id="btnSpara" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnLaggTill" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnTaBort" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="chkRedigeraUppgifter" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="154" max="32767" attributes="0"/>
               <Component id="btnTillbakaAdmin" min="-2" max="-2" attributes="0"/>
@@ -244,11 +241,6 @@
     <Component class="javax.swing.JButton" name="btnTaBort">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ta bort"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="chkRedigeraUppgifter">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Redigera uppgifter"/>
       </Properties>
     </Component>
   </SubComponents>

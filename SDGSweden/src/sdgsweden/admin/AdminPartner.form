@@ -31,7 +31,7 @@
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace pref="113" max="32767" attributes="0"/>
                                       <Component id="txtKontaktPerson" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
@@ -68,8 +68,6 @@
                               <Component id="btnLaggTill" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="btnTaBort" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="chkRedigeraUppgifter" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -126,7 +124,6 @@
                           <Component id="btnSpara" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnLaggTill" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnTaBort" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="chkRedigeraUppgifter" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -259,11 +256,6 @@
     <Component class="javax.swing.JButton" name="btnTaBort">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ta bort"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="chkRedigeraUppgifter">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Redigera uppgifter"/>
       </Properties>
     </Component>
   </SubComponents>
