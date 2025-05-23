@@ -11,6 +11,7 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 import sdgsweden.MainFrame;
 import sdgsweden.Validering;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -32,7 +33,24 @@ public class AdminAvdelning extends javax.swing.JPanel {
         this.idb = idb;
         this.aid = aid;
        
+       
         initComponents();
+        fyllAvdelningarITabell();
+        
+        jTableAvdelningar.getSelectionModel().addListSelectionListener(e -> {
+    if (!e.getValueIsAdjusting()) {
+        int rad = jTableAvdelningar.getSelectedRow();
+        if (rad != -1) {
+            txtNamn.setText(jTableAvdelningar.getValueAt(rad, 1).toString());
+            txtBeskrivning.setText(jTableAvdelningar.getValueAt(rad, 2).toString());
+            txtAdress.setText(jTableAvdelningar.getValueAt(rad, 3).toString());
+            txtEpost.setText(jTableAvdelningar.getValueAt(rad, 4).toString());
+            txtTelefon.setText(jTableAvdelningar.getValueAt(rad, 5).toString());
+            txtStad.setText(jTableAvdelningar.getValueAt(rad, 6).toString());
+            txtChef.setText(jTableAvdelningar.getValueAt(rad, 7).toString());
+        }
+    }
+});
     }
 
     /**
@@ -47,7 +65,7 @@ public class AdminAvdelning extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         btnTillbakaAdmin = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableAvdelningar = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -61,7 +79,6 @@ public class AdminAvdelning extends javax.swing.JPanel {
         btnLaggTill = new javax.swing.JButton();
         btnSpara = new javax.swing.JButton();
         btnTaBort = new javax.swing.JButton();
-        chkRedigeraInformation = new javax.swing.JCheckBox();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtChef = new javax.swing.JTextField();
@@ -76,9 +93,9 @@ public class AdminAvdelning extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setColumnSelectionAllowed(true);
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTableAvdelningar.setColumnSelectionAllowed(true);
+        jScrollPane1.setViewportView(jTableAvdelningar);
+        jTableAvdelningar.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jLabel2.setText("Namn");
 
@@ -121,8 +138,6 @@ public class AdminAvdelning extends javax.swing.JPanel {
             }
         });
 
-        chkRedigeraInformation.setText("Redigera uppgifter");
-
         jLabel7.setText("Chef");
 
         jLabel8.setText("Stad");
@@ -138,55 +153,63 @@ public class AdminAvdelning extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnTillbakaAdmin)
-                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnSpara)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnLaggTill)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnTaBort)
-                                .addGap(26, 26, 26)
-                                .addComponent(chkRedigeraInformation))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel7)
-                                            .addComponent(jLabel8))))
-                                .addGap(174, 174, 174)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel2)
+                                                .addComponent(jLabel3)
+                                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(1, 1, 1)
+                                                .addComponent(jLabel5))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jLabel6)))
+                                .addGap(15, 15, 15)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtAdress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEpost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtBeskrivning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtChef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtStad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(txtBeskrivning, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+                                    .addComponent(txtTelefon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtEpost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtAdress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtNamn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addGap(50, 50, 50)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtStad, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtChef, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnSpara)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnLaggTill)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnTaBort)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTillbakaAdmin)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -203,9 +226,9 @@ public class AdminAvdelning extends javax.swing.JPanel {
                             .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtBeskrivning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(txtBeskrivning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
@@ -213,22 +236,45 @@ public class AdminAvdelning extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(txtStad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                            .addComponent(txtStad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSpara)
-                    .addComponent(btnLaggTill)
-                    .addComponent(btnTaBort)
-                    .addComponent(chkRedigeraInformation))
-                .addGap(62, 62, 62)
-                .addComponent(btnTillbakaAdmin)
+                    .addComponent(btnTillbakaAdmin)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnSpara)
+                        .addComponent(btnLaggTill)
+                        .addComponent(btnTaBort)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void fyllAvdelningarITabell() {
+    try {
+        String sql = "SELECT * FROM avdelning";
+        ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
+
+        String[] kolumner = {"avdid", "namn", "beskrivning", "adress", "epost", "telefon", "stad", "chef"};
+        DefaultTableModel modell = new DefaultTableModel();
+
+        for (String kolumn : kolumner) {
+            modell.addColumn(kolumn);
+        }
+
+        for (HashMap<String, String> rad : resultat) {
+            String[] radensVarden = new String[kolumner.length];
+            for (int i = 0; i < kolumner.length; i++) {
+                radensVarden[i] = rad.get(kolumner[i]);
+            }
+            modell.addRow(radensVarden);
+        }
+
+        jTableAvdelningar.setModel(modell);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Kunde inte visa avdelningar.");
+        e.printStackTrace();
+    }
+}
+    
     private void btnTillbakaAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaAdminActionPerformed
         AdminPanel adminPanel = new AdminPanel (parent, idb, aid);
         parent.visaPanel(adminPanel, "adminPanel");
@@ -270,6 +316,52 @@ public class AdminAvdelning extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Stad får inte vara tomt.");
             return;
         }
+        // Kolla att en rad är vald i tabellen
+    int valdRad = jTableAvdelningar.getSelectedRow();
+    if (valdRad == -1) {
+        JOptionPane.showMessageDialog(this, "Du måste klicka på en rad i tabellen först.");
+        return;
+    }
+
+    // Läs in alla värden från textfälten
+    String namn = txtNamn.getText().trim();
+    String adress = txtAdress.getText().trim();
+    String epost = txtEpost.getText().trim();
+    String telefon = txtTelefon.getText().trim();
+    String beskrivning = txtBeskrivning.getText().trim();
+    String chef = txtChef.getText().trim();
+    String stad = txtStad.getText().trim();
+    
+    try {
+        // Hämta ID från vald rad
+        String avdid = jTableAvdelningar.getValueAt(valdRad, 0).toString();
+
+        // Skapa SQL-fråga för att uppdatera
+        String sql = "UPDATE avdelning SET namn = '" + namn + "', adress = '" + adress + "', epost = '" + epost + "', telefon = '" + telefon + "', beskrivning = '" + beskrivning + "', chef = " + chef + ", stad = " + stad + " WHERE avdid = " + avdid;
+
+        // Kör SQL-frågan
+        idb.update(sql);
+
+        // Visa meddelande
+        JOptionPane.showMessageDialog(this, "Ändring sparad!");
+
+        // Töm textfälten
+        txtNamn.setText("");
+        txtAdress.setText("");
+        txtEpost.setText("");
+        txtTelefon.setText("");
+        txtBeskrivning.setText("");
+        txtChef.setText("");
+        txtStad.setText("");
+
+        // Uppdatera tabellen
+        fyllAvdelningarITabell();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Något gick fel: " + e.getMessage());
+        e.printStackTrace();
+    }
+        
     }//GEN-LAST:event_btnSparaActionPerformed
 
     private void btnLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillActionPerformed
@@ -315,25 +407,35 @@ public class AdminAvdelning extends javax.swing.JPanel {
     // Konvertera chef/stad till int
     int chef = Integer.parseInt(chefStr);
     int stad = Integer.parseInt(stadStr);
+   
 
-    // Hämta nästa lediga avdid
-    String sqlNextId = "SELECT MAX(avdid) + 1 FROM avdelning";
-    String nextIdStr = idb.fetchSingle(sqlNextId);
-    if (nextIdStr == null) {
-        nextIdStr = "1";
-    }
-    int nextAvdid = Integer.parseInt(nextIdStr);
+    // Kolla om chef finns
+        String sqlChef = "SELECT aid FROM anstalld WHERE aid = " + chef;
+        String chefResultat = idb.fetchSingle(sqlChef);
+        if (chefResultat == null) {
+            JOptionPane.showMessageDialog(this, "Chef-ID finns inte.");
+            return;
+        }
 
-    // Skapa INSERT-fråga
-    String sql = "INSERT INTO avdelning (avdid, namn, adress, epost, telefon, beskrivning, chef, stad) "
-               + "VALUES (" + nextAvdid + ", "
-               + "'" + namn + "', "
-               + "'" + adress + "', "
-               + "'" + epost + "', "
-               + "'" + telefon + "', "
-               + "'" + beskrivning + "', "
-               + chef + ", "
-               + stad + ")";
+        // Kolla om stad finns
+        String sqlStad = "SELECT sid FROM stad WHERE sid = " + stad;
+        String stadResultat = idb.fetchSingle(sqlStad);
+        if (stadResultat == null) {
+            JOptionPane.showMessageDialog(this, "Stad-ID finns inte.");
+            return;
+        }
+
+        // Hämta nästa avdid
+        String sqlNextId = "SELECT MAX(avdid) FROM avdelning";
+        String nextIdStr = idb.fetchSingle(sqlNextId);
+        int nextAvdid = 1; // starta på 1
+        if (nextIdStr != null && !nextIdStr.isEmpty()) {
+            nextAvdid = Integer.parseInt(nextIdStr) + 1;
+        }
+
+        // Skapa SQL-fråga
+        String sql = "INSERT INTO avdelning (avdid, namn, adress, epost, telefon, beskrivning, chef, stad) " +
+                     "VALUES (" + nextAvdid + ", '" + namn + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + beskrivning + "', " + chef + ", " + stad + ")";
 
     // Kör INSERT
     idb.insert(sql);
@@ -354,6 +456,7 @@ public class AdminAvdelning extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Fel: " + e.getMessage());
             e.printStackTrace();
         }
+        fyllAvdelningarITabell();
     }//GEN-LAST:event_btnLaggTillActionPerformed
 
     private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
@@ -363,7 +466,7 @@ public class AdminAvdelning extends javax.swing.JPanel {
     String avdelningsId = JOptionPane.showInputDialog(this, "Ange avdelnings-ID (avdid) för att ta bort:");
 
     // Om man inte fyller i rutan med ett giltigt avdid
-    if (avdelningsId.isEmpty())
+    if (avdelningsId == null || avdelningsId.isEmpty())
     {
         JOptionPane.showMessageDialog(this, "Fyll i ett avdelnings-ID först.");
         return;
@@ -405,6 +508,7 @@ public class AdminAvdelning extends javax.swing.JPanel {
                 String deleteSql = "DELETE FROM avdelning WHERE avdid = " + avdelningsId;
                 idb.delete(deleteSql);
                 JOptionPane.showMessageDialog(this, "Avdelningen togs bort.");
+                fyllAvdelningarITabell();
                 break;
             }
         }
@@ -421,7 +525,6 @@ public class AdminAvdelning extends javax.swing.JPanel {
     private javax.swing.JButton btnSpara;
     private javax.swing.JButton btnTaBort;
     private javax.swing.JButton btnTillbakaAdmin;
-    private javax.swing.JCheckBox chkRedigeraInformation;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -431,7 +534,7 @@ public class AdminAvdelning extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableAvdelningar;
     private javax.swing.JTextField txtAdress;
     private javax.swing.JTextField txtBeskrivning;
     private javax.swing.JTextField txtChef;

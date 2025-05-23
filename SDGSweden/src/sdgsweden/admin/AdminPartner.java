@@ -58,7 +58,6 @@ public class AdminPartner extends javax.swing.JPanel {
         btnSpara = new javax.swing.JButton();
         btnLaggTill = new javax.swing.JButton();
         btnTaBort = new javax.swing.JButton();
-        chkRedigeraUppgifter = new javax.swing.JCheckBox();
 
         jLabel1.setText("Partner");
 
@@ -108,8 +107,6 @@ public class AdminPartner extends javax.swing.JPanel {
 
         btnTaBort.setText("Ta bort");
 
-        chkRedigeraUppgifter.setText("Redigera uppgifter");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,7 +125,7 @@ public class AdminPartner extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                                         .addComponent(txtKontaktPerson, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2)
@@ -156,8 +153,6 @@ public class AdminPartner extends javax.swing.JPanel {
                                 .addComponent(btnLaggTill)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnTaBort)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(chkRedigeraUppgifter)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -200,8 +195,7 @@ public class AdminPartner extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSpara)
                             .addComponent(btnLaggTill)
-                            .addComponent(btnTaBort)
-                            .addComponent(chkRedigeraUppgifter))))
+                            .addComponent(btnTaBort))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addComponent(btnTillbakaAdmin)
                 .addContainerGap())
@@ -252,7 +246,6 @@ public class AdminPartner extends javax.swing.JPanel {
     private javax.swing.JButton btnSpara;
     private javax.swing.JButton btnTaBort;
     private javax.swing.JButton btnTillbakaAdmin;
-    private javax.swing.JCheckBox chkRedigeraUppgifter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
