@@ -205,26 +205,26 @@ public class Projekt extends javax.swing.JPanel {
         InfoProjectTable.setBackground(new java.awt.Color(204, 204, 204));
         InfoProjectTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Pid", "Projektnamn", "Prioritet", "Status", "Startdatum", "Slutdatum", "Kostnad", "Beskrivning", "Partner", "Handläggare"
+                "Pid", "Projektnamn", "Prioritet", "Status", "Startdatum", "Slutdatum", "Kostnad", "Beskrivning", "Partner", "Handläggare", "Land"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -301,27 +301,33 @@ public class Projekt extends javax.swing.JPanel {
             String valdVy = projektComboBox.getSelectedItem().toString(); // "Mina projekt" eller "Avdelningens projekt"
 
             String fraga
-                    = "SELECT DISTINCT p.pid, p.status, p.projektnamn, p.beskrivning, p.startdatum, p.slutdatum, p.kostnad, p.prioritet, "
+                    = "SELECT p.pid, p.status, p.projektnamn, p.beskrivning, p.startdatum, p.slutdatum, "
+                    + "p.kostnad, p.prioritet, "
                     + "GROUP_CONCAT(DISTINCT pa.namn SEPARATOR ', ') AS partnernamn, "
-                    + "GROUP_CONCAT(DISTINCT CONCAT(a.fornamn, ' ', a.efternamn) SEPARATOR ', ') AS handlaggare "
+                    + "GROUP_CONCAT(DISTINCT CONCAT(a.fornamn, ' ', a.efternamn) SEPARATOR ', ') AS handlaggare, "
+                    + "l.namn "
                     + "FROM projekt p "
+                    + "LEFT JOIN land l ON p.land = l.lid "
                     + "LEFT JOIN projekt_partner pp ON p.pid = pp.pid "
-                    + "LEFT JOIN partner pa ON pp.partner_pid = pa.pid "
-                    + "LEFT JOIN ans_proj ap ON p.pid = ap.pid "
-                    + "LEFT JOIN anstalld a ON ap.aid = a.aid ";
+                    + "LEFT JOIN partner pa ON pp.partner_pid = pa.pid ";
 
             boolean harVillkor = false;
 
-            // Koppling till aid eller avdelning
+            // Hantera vyval
             if (valdVy.equals("Mina projekt")) {
-                fraga += "WHERE projektchef = " + this.aid + " ";
+                fraga += "LEFT JOIN ans_proj ap ON p.pid = ap.pid "
+                        + "LEFT JOIN anstalld a ON ap.aid = a.aid "
+                        + "WHERE p.projektchef = " + this.aid + " ";
                 harVillkor = true;
             } else if (valdVy.equals("Avdelningens projekt")) {
-                fraga += "JOIN anstalld an ON ap.aid = an.aid WHERE an.avdelning = (SELECT avdelning FROM anstalld WHERE aid = " + this.aid + ") ";
+                fraga += "JOIN ans_proj ap ON p.pid = ap.pid "
+                        + "JOIN anstalld an ON ap.aid = an.aid "
+                        + "LEFT JOIN anstalld a ON ap.aid = a.aid "
+                        + "WHERE an.avdelning = (SELECT avdelning FROM anstalld WHERE aid = " + this.aid + ") ";
                 harVillkor = true;
             }
 
-            // Datumfilter: anpassa efter vad som är ifyllt
+            // Datumfilter
             if (!datumFran.isEmpty() && !datumTill.isEmpty()) {
                 fraga += (harVillkor ? "AND " : "WHERE ");
                 fraga += "p.startdatum >= '" + datumFran + "' AND p.slutdatum <= '" + datumTill + "' ";
@@ -350,6 +356,7 @@ public class Projekt extends javax.swing.JPanel {
             model.setRowCount(0);
 
             for (HashMap<String, String> rad : resultat) {
+
                 model.addRow(new Object[]{
                     rad.get("pid"),
                     rad.get("projektnamn"),
@@ -360,7 +367,8 @@ public class Projekt extends javax.swing.JPanel {
                     rad.get("kostnad"),
                     rad.get("beskrivning"),
                     rad.get("partnernamn"),
-                    rad.get("handlaggare")
+                    rad.get("handlaggare"),
+                    rad.get("namn")
                 });
             }
 
@@ -392,17 +400,17 @@ public class Projekt extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Kunde inte hämta avdelning: " + e.getMessage());
         }
     }
-    
+
     public boolean arProjektchef(String aid) {
-    try {
-        String sql = "SELECT pid FROM projekt WHERE projektchef = " + aid;
-        String resultat = idb.fetchSingle(sql);
-        return resultat != null; // true = personen är projektchef
-    } catch (InfException e) {
-        System.out.println("Fel i arProjektchef(): " + e.getMessage());
-        return false;
+        try {
+            String sql = "SELECT pid FROM projekt WHERE projektchef = " + aid;
+            String resultat = idb.fetchSingle(sql);
+            return resultat != null; // true = personen är projektchef
+        } catch (InfException e) {
+            System.out.println("Fel i arProjektchef(): " + e.getMessage());
+            return false;
+        }
     }
-}
 
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed

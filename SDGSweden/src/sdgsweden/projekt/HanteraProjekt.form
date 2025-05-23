@@ -35,53 +35,50 @@
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="19" max="32767" attributes="0"/>
+                      <EmptySpace pref="66" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="kostnadText" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="slutdatumText" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="projektnamnText" min="-2" max="-2" attributes="0"/>
-                          <Component id="statusComboBox" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
-                          <Component id="prioComboBox" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
-                          <Component id="BeskrivningScrollPane" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="startdatumText" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="kostnadText" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="projektnamnText" min="-2" max="-2" attributes="0"/>
+                                  <Component id="statusComboBox" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
+                                  <Component id="prioComboBox" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
+                                  <Component id="BeskrivningScrollPane" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="startdatumText" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="projektchefComboBox" min="-2" pref="120" max="-2" attributes="0"/>
+                                  <Component id="landComboBox" min="-2" pref="120" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="landText" pref="120" max="32767" attributes="0"/>
-                          <Component id="stadText" pref="120" max="32767" attributes="0"/>
-                          <Component id="projektchefText" alignment="0" pref="120" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="projektchefComboBox" pref="120" max="32767" attributes="0"/>
-                          <Component id="landComboBox" max="32767" attributes="0"/>
-                          <Component id="stadComboBox" alignment="0" max="32767" attributes="0"/>
-                      </Group>
+                      <EmptySpace pref="208" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="hanteraProjektButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
                       <Component id="avbrytButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="394" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="117" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -98,7 +95,6 @@
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="projektchefText" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="projektchefComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -137,16 +133,7 @@
                       <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="landText" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="landComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="stadText" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="stadComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="landComboBox" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -305,10 +292,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hanteraProjektButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="projektchefText">
-    </Component>
-    <Component class="javax.swing.JTextField" name="landText">
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
         <Property name="text" type="java.lang.String" value="Projektchef"/>
@@ -317,13 +300,6 @@
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
         <Property name="text" type="java.lang.String" value="Land"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="stadText">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel12">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Stad"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="projektchefComboBox">
@@ -337,16 +313,6 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JComboBox" name="landComboBox">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="stadComboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
