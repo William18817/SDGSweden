@@ -103,10 +103,10 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="visaLandInfoButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="visaprojektchefButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="visaProjektchefButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -144,7 +144,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="visaPartnerInfoButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="visaLandInfoButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="visaprojektchefButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="visaProjektchefButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="avdelningLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -271,10 +271,13 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="visaLandInfoButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="visaprojektchefButton">
+        <Component class="javax.swing.JButton" name="visaProjektchefButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Visa Projekchef"/>
+            <Property name="text" type="java.lang.String" value="Visa Projektchef"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="visaProjektchefButtonActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
