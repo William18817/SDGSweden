@@ -4,7 +4,13 @@
  */
 package sdgsweden;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import oru.inf.InfDB;
+import oru.inf.InfException;
 public class Personal extends javax.swing.JPanel {
 
     private InfDB idb;
@@ -15,8 +21,39 @@ public class Personal extends javax.swing.JPanel {
         this.parent = parent;
         this.idb = idb;
         this.aid = aid;
-               
         initComponents();
+        fyllPersonalTabell("");
+    }
+    
+    public void fyllPersonalTabell(String fornamnSok ){
+        try { 
+            String sqlFraga;
+            
+           if (fornamnSok == null || fornamnSok.trim().isEmpty()) {
+            sqlFraga = "SELECT * FROM anstalld";
+        } else {
+                sqlFraga = "SELECT * FROM anstalld WHERE LOWER(fornamn) LIKE '%" + fornamnSok.toLowerCase() + "%'";
+                }
+            
+            ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sqlFraga);
+            DefaultTableModel model = (DefaultTableModel) tabelPersonal.getModel();
+            model.setRowCount(0);
+            
+            for (HashMap<String, String> rad : resultat) {
+                model.addRow(new Object[] {
+                rad.get("aid"),
+                rad.get("fornamn"),
+                rad.get("efternamn"),
+                rad.get("epost"),
+                rad.get("telefon"),
+                });
+                        }
+            
+            
+            
+        } catch (InfException ex) {
+            Logger.getLogger(Personal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -29,36 +66,21 @@ public class Personal extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         btnTillbaka = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelPersonal = new javax.swing.JTable();
+        txtSokFornamn = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtSokEfternamn = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setLayout(null);
 
-        jLabel1.setText("Lista över all personal");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Personal");
         add(jLabel1);
-        jLabel1.setBounds(40, 40, 113, 16);
-
-        jLabel2.setText("Söka efter Personal");
-        add(jLabel2);
-        jLabel2.setBounds(180, 40, 100, 16);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        add(jScrollPane1);
-        jScrollPane1.setBounds(20, 80, 500, 320);
+        jLabel1.setBounds(0, 0, 840, 30);
 
         btnTillbaka.setText("Tillbaka");
         btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +89,47 @@ public class Personal extends javax.swing.JPanel {
             }
         });
         add(btnTillbaka);
-        btnTillbaka.setBounds(510, 30, 72, 23);
+        btnTillbaka.setBounds(700, 40, 110, 23);
+
+        tabelPersonal.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Anställningsnummer", "Förnamn", "Efternamn", "Epost", "Telefon"
+            }
+        ));
+        jScrollPane1.setViewportView(tabelPersonal);
+
+        add(jScrollPane1);
+        jScrollPane1.setBounds(20, 120, 790, 320);
+
+        txtSokFornamn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSokFornamnActionPerformed(evt);
+            }
+        });
+        add(txtSokFornamn);
+        txtSokFornamn.setBounds(180, 90, 120, 22);
+
+        jLabel2.setText("Sök på förnamn");
+        add(jLabel2);
+        jLabel2.setBounds(180, 70, 120, 16);
+
+        txtSokEfternamn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSokEfternamnActionPerformed(evt);
+            }
+        });
+        add(txtSokEfternamn);
+        txtSokEfternamn.setBounds(500, 90, 100, 22);
+
+        jLabel3.setText("Sök på Epost");
+        add(jLabel3);
+        jLabel3.setBounds(500, 70, 110, 16);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
@@ -75,12 +137,23 @@ public class Personal extends javax.swing.JPanel {
         parent.visaPanel(startsida, "startsida");
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
+    private void txtSokFornamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSokFornamnActionPerformed
+        fyllPersonalTabell(txtSokFornamn.getText());
+    }//GEN-LAST:event_txtSokFornamnActionPerformed
+
+    private void txtSokEfternamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSokEfternamnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSokEfternamnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnTillbaka;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabelPersonal;
+    private javax.swing.JTextField txtSokEfternamn;
+    private javax.swing.JTextField txtSokFornamn;
     // End of variables declaration//GEN-END:variables
 }
