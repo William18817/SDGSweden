@@ -11,6 +11,7 @@ import oru.inf.InfException;
 import javax.swing.table.DefaultTableModel;
 import sdgsweden.MainFrame;
 import sdgsweden.Startsida;
+import sdgsweden.Validering;
 
 /*
  * @author jonas
@@ -54,7 +55,7 @@ public class Projekt extends javax.swing.JPanel {
         visaLandInfoButton = new javax.swing.JButton();
         visaProjektchefButton = new javax.swing.JButton();
         jPanelCenter = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPaneProjekt = new javax.swing.JScrollPane();
         InfoProjectTable = new javax.swing.JTable();
         jPanelSouth = new javax.swing.JPanel();
         btnTillbaka = new javax.swing.JButton();
@@ -241,9 +242,9 @@ public class Projekt extends javax.swing.JPanel {
             }
         });
         InfoProjectTable.setToolTipText("");
-        jScrollPane1.setViewportView(InfoProjectTable);
+        jScrollPaneProjekt.setViewportView(InfoProjectTable);
 
-        jPanelCenter.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        jPanelCenter.add(jScrollPaneProjekt, java.awt.BorderLayout.CENTER);
 
         btnTillbaka.setText("Tillbaka");
         btnTillbaka.setPreferredSize(new java.awt.Dimension(110, 25));
@@ -437,15 +438,13 @@ public class Projekt extends javax.swing.JPanel {
         String datumFran = DateOne.getText().trim();
         String datumTill = DateTwo.getText().trim();
 
-        String datumRegex = "^\\d{4}-\\d{2}-\\d{2}$";
-
         // Kontrollera om datumen är i rätt format (om de är ifyllda)
-        if (!datumFran.isEmpty() && !datumFran.matches(datumRegex)) {
+        if (!datumFran.isEmpty() && !Validering.isValidAnstallningsdatum(datumFran)) {
             JOptionPane.showMessageDialog(this, "Startdatum måste vara i formatet ÅÅÅÅ-MM-DD.");
             return;
         }
 
-        if (!datumTill.isEmpty() && !datumTill.matches(datumRegex)) {
+        if (!datumTill.isEmpty() && !Validering.isValidAnstallningsdatum(datumTill)) {
             JOptionPane.showMessageDialog(this, "Slutdatum måste vara i formatet ÅÅÅÅ-MM-DD.");
             return;
         }
@@ -627,7 +626,7 @@ public class Projekt extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelCenter;
     private javax.swing.JPanel jPanelNorth;
     private javax.swing.JPanel jPanelSouth;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPaneProjekt;
     private javax.swing.JComboBox<String> projektComboBox;
     private javax.swing.JButton visaLandInfoButton;
     private javax.swing.JButton visaPartnerInfoButton;
