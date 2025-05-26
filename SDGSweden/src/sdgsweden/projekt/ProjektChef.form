@@ -25,9 +25,12 @@
                   <Component id="jPanelNorth" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jPanelSouth" max="32767" attributes="0"/>
-                          <Component id="jPanelCenter" pref="952" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                              <Component id="jPanelSouth" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jPanelCenter" min="-2" pref="972" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -399,23 +402,19 @@
                       <Component id="addProjektButton" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="267" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="StatistikKostnad" min="-2" pref="120" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="addHandlaggareButton" min="-2" pref="150" max="-2" attributes="0"/>
-                              <Component id="taBortHandlaggareButton" min="-2" pref="150" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="addPartnerButton" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
-                              <Component id="taBortPartnerButton" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Component id="btnTillbaka" alignment="1" min="-2" pref="112" max="-2" attributes="0"/>
+                  <Component id="StatistikKostnad" min="-2" pref="140" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="taBortHandlaggareButton" pref="160" max="32767" attributes="0"/>
+                      <Component id="addHandlaggareButton" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="addPartnerButton" pref="150" max="32767" attributes="0"/>
+                      <Component id="btnTillbaka" min="-2" pref="112" max="-2" attributes="0"/>
+                      <Component id="taBortPartnerButton" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
