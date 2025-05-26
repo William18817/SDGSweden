@@ -2,7 +2,7 @@
 package sdgsweden;
 
 /*
- * @author Kalkilm: Nedan har vi vår valideringsklass, vars syfte är att bara hålla tillåtna värden ocg gränssnitt att läggas till i databasen.
+ * @author Kalkilm: Nedan har vi vår valideringsklass, vars syfte är att bara hålla tillåtna värden och gränssnitt att läggas till i databasen.
  */
 public class Validering 
 {
@@ -24,9 +24,9 @@ public class Validering
 public static boolean isValidEpost(String epost)
 {
     if (epost == null) return false;
-    return epost.matches("^[a-zA-ZÅÄÖåäö]+\\.[a-zA-ZÅÄÖåäö]+@example\\.com{2,4}$");
+    return epost.matches("^[a-zA-ZÅÄÖåäö]+\\.[a-zA-ZÅÄÖåäö]+@example\\.com$");
 }
-//^[\\w-.]+@([\\w-]+\\.)+[\\w-]
+
 
 public static boolean isValidTelefon(String telefon)
 {
@@ -60,6 +60,11 @@ public static boolean isValidKostnad(double kostnad)
     return kostnad >= 0 && kostnad <= 5_000_000;
 }
 
-
+public static boolean allaFältIfyllda(String... fält) {
+    for (String fältet : fält) {
+        if (isEmpty(fältet)) return false;
+    }
+    return true;
+}
 
 }

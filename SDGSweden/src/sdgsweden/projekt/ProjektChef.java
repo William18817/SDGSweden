@@ -11,6 +11,7 @@ import oru.inf.InfException;
 import javax.swing.table.DefaultTableModel;
 import sdgsweden.MainFrame;
 import sdgsweden.Startsida;
+import sdgsweden.Validering;
 
 /*
  * @author jonas
@@ -54,7 +55,7 @@ public class ProjektChef extends javax.swing.JPanel {
         visaLandInfoButton = new javax.swing.JButton();
         visaProjektchefButton = new javax.swing.JButton();
         jPanelCenter = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPaneProjektChef = new javax.swing.JScrollPane();
         InfoProjectTable = new javax.swing.JTable();
         jPanelSouth = new javax.swing.JPanel();
         addPartnerButton = new javax.swing.JButton();
@@ -250,9 +251,9 @@ public class ProjektChef extends javax.swing.JPanel {
         });
         InfoProjectTable.setToolTipText("");
         InfoProjectTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(InfoProjectTable);
+        jScrollPaneProjektChef.setViewportView(InfoProjectTable);
 
-        jPanelCenter.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        jPanelCenter.add(jScrollPaneProjektChef, java.awt.BorderLayout.CENTER);
 
         addPartnerButton.setText("Lägg till Partner");
         addPartnerButton.setMaximumSize(new java.awt.Dimension(110, 25));
@@ -341,19 +342,17 @@ public class ProjektChef extends javax.swing.JPanel {
                     .addComponent(AndraUppgifter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(addProjektButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 267, Short.MAX_VALUE)
-                .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSouthLayout.createSequentialGroup()
-                        .addComponent(StatistikKostnad, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(87, 87, 87)
-                        .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addHandlaggareButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(taBortHandlaggareButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(51, 51, 51)
-                        .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addPartnerButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(taBortPartnerButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnTillbaka, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addComponent(StatistikKostnad, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67)
+                .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(taBortHandlaggareButton, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                    .addComponent(addHandlaggareButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(addPartnerButton, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(btnTillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(taBortPartnerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
         jPanelSouthLayout.setVerticalGroup(
             jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,9 +386,11 @@ public class ProjektChef extends javax.swing.JPanel {
                     .addComponent(jPanelNorth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanelSouth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelCenter, javax.swing.GroupLayout.DEFAULT_SIZE, 952, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jPanelSouth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanelCenter, javax.swing.GroupLayout.PREFERRED_SIZE, 972, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -565,12 +566,12 @@ public class ProjektChef extends javax.swing.JPanel {
     private void addProjektButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProjektButtonActionPerformed
 
         HanteraProjekt laggTillPanel = new HanteraProjekt(idb, this);
-        Container parentProjekt = this.getParent();
+        Container parentProjektChef = this.getParent();
 
-        parentProjekt.removeAll(); // Ta bort nuvarande innehåll i panelen
-        parentProjekt.add(laggTillPanel);
-        parentProjekt.revalidate();
-        parentProjekt.repaint();
+        parentProjektChef.removeAll(); // Ta bort nuvarande innehåll i panelen
+        parentProjektChef.add(laggTillPanel);
+        parentProjektChef.revalidate();
+        parentProjektChef.repaint();
     }//GEN-LAST:event_addProjektButtonActionPerformed
 
     private void StatistikKostnadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatistikKostnadActionPerformed
@@ -618,7 +619,6 @@ public class ProjektChef extends javax.swing.JPanel {
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
         try {
-            // Steg 1: Fråga efter projektets ID (pid)
             String pidStr = JOptionPane.showInputDialog(this, "Ange projektets ID (pid) som ska tas bort:");
 
             if (pidStr == null || pidStr.trim().isEmpty()) {
@@ -628,24 +628,26 @@ public class ProjektChef extends javax.swing.JPanel {
 
             int pid = Integer.parseInt(pidStr.trim());
 
-            // Steg 2: Fråga användaren om bekräftelse
             int val = JOptionPane.showConfirmDialog(this,
                     "Är du säker på att du vill ta bort projektet med ID " + pid + "?",
                     "Bekräfta borttagning",
                     JOptionPane.YES_NO_OPTION);
 
             if (val != JOptionPane.YES_OPTION) {
-                return; // Användaren avbröt
+                return;
             }
 
-            // Steg 3: Kör DELETE-sats
-            String sql = "DELETE FROM projekt WHERE pid = " + pid;
+            // Steg 1: Ta bort kopplingar från relaterade tabeller
+            idb.delete("DELETE FROM ans_proj WHERE pid = " + pid);
+            idb.delete("DELETE FROM projekt_partner WHERE pid = " + pid);
+            idb.delete("DELETE FROM proj_hallbarhet WHERE pid = " + pid);
 
-            idb.delete(sql);
+            // Steg 2: Ta bort projektet
+            idb.delete("DELETE FROM projekt WHERE pid = " + pid);
 
             JOptionPane.showMessageDialog(this, "Projektet har tagits bort.");
 
-            // Steg 4: Uppdatera tabellen
+            // Steg 3: Uppdatera tabellen
             hamtaAllaAktuellaProjekt();
 
         } catch (NumberFormatException e) {
@@ -938,15 +940,14 @@ public class ProjektChef extends javax.swing.JPanel {
         String datumFran = DateOne.getText().trim();
         String datumTill = DateTwo.getText().trim();
 
-        String datumRegex = "^\\d{4}-\\d{2}-\\d{2}$";
 
         // Kontrollera om datumen är i rätt format (om de är ifyllda)
-        if (!datumFran.isEmpty() && !datumFran.matches(datumRegex)) {
+        if (!datumFran.isEmpty() && !Validering.isValidAnstallningsdatum(datumFran)) {
             JOptionPane.showMessageDialog(this, "Startdatum måste vara i formatet ÅÅÅÅ-MM-DD.");
             return;
         }
 
-        if (!datumTill.isEmpty() && !datumTill.matches(datumRegex)) {
+        if (!datumTill.isEmpty() && !Validering.isValidAnstallningsdatum(datumTill)) {
             JOptionPane.showMessageDialog(this, "Slutdatum måste vara i formatet ÅÅÅÅ-MM-DD.");
             return;
         }
@@ -1134,7 +1135,7 @@ public class ProjektChef extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelCenter;
     private javax.swing.JPanel jPanelNorth;
     private javax.swing.JPanel jPanelSouth;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPaneProjektChef;
     private javax.swing.JComboBox<String> projektComboBox;
     private javax.swing.JButton taBortHandlaggareButton;
     private javax.swing.JButton taBortPartnerButton;
