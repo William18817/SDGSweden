@@ -297,6 +297,7 @@ public class HanteraProjekt extends javax.swing.JPanel {
 
         projektchefComboBox.removeAllItems();
         ArrayList<HashMap<String, String>> anstallda = idb.fetchRows("SELECT aid, fornamn, efternamn FROM anstalld");
+
         for (HashMap<String, String> a : anstallda) {
             String namn = a.get("fornamn") + " " + a.get("efternamn");
             projektchefComboBox.addItem(namn);
@@ -337,11 +338,12 @@ public class HanteraProjekt extends javax.swing.JPanel {
             String status = (String) statusComboBox.getSelectedItem();
             String prioritet = (String) prioComboBox.getSelectedItem();
             String beskrivning = beskrivningText.getText().trim();
-            String valtLand = (String) landComboBox.getSelectedItem(); // ← Nytt: Land från ComboBox
+            String valtLand = (String) landComboBox.getSelectedItem();
+            String valdChef = (String) projektchefComboBox.getSelectedItem(); // Förnamn + Efternamn
 
             // Validering
             if (projektnamn.isEmpty() || kostnad.isEmpty() || startDatum.isEmpty() || slutDatum.isEmpty()
-                    || status == null || prioritet == null || beskrivning.isEmpty() || valtLand == null) {
+                    || status == null || prioritet == null || beskrivning.isEmpty() || valtLand == null || valdChef == null) {
                 JOptionPane.showMessageDialog(this, "Alla fält måste fyllas i.");
                 return;
             }
@@ -371,6 +373,24 @@ public class HanteraProjekt extends javax.swing.JPanel {
                 return;
             }
 
+            // Hämta projektchefens aid
+            String[] namnSplit = valdChef.split(" ");
+            if (namnSplit.length < 2) {
+                JOptionPane.showMessageDialog(this, "Ogiltigt namnformat på projektchef.");
+                return;
+            }
+            String fornamn = namnSplit[0];
+            String efternamn = namnSplit[1];
+
+            String projektchefAid = idb.fetchSingle(
+                    "SELECT aid FROM anstalld WHERE fornamn = '" + fornamn + "' AND efternamn = '" + efternamn + "'"
+            );
+
+            if (projektchefAid == null) {
+                JOptionPane.showMessageDialog(this, "Projektchefen kunde inte hittas i databasen.");
+                return;
+            }
+
             if (redigering) {
                 // Uppdatera befintligt projekt
                 String sql = "UPDATE projekt SET "
@@ -381,12 +401,11 @@ public class HanteraProjekt extends javax.swing.JPanel {
                         + "status = '" + status + "', "
                         + "prioritet = '" + prioritet + "', "
                         + "beskrivning = '" + beskrivning + "', "
-                        + "land = " + landId + " "
+                        + "land = " + landId + ", "
+                        + "projektchef = " + projektchefAid + " "
                         + "WHERE pid = " + pid;
 
                 idb.update(sql);
-                
-
                 JOptionPane.showMessageDialog(this, "Projektet uppdaterades!");
 
             } else {
@@ -398,9 +417,9 @@ public class HanteraProjekt extends javax.swing.JPanel {
                 }
                 int pID = Integer.parseInt(nextId);
 
-                String sql = "INSERT INTO projekt (pid, projektnamn, kostnad, startdatum, slutdatum, status, prioritet, beskrivning, land) VALUES ("
+                String sql = "INSERT INTO projekt (pid, projektnamn, kostnad, startdatum, slutdatum, status, prioritet, beskrivning, land, projektchef) VALUES ("
                         + pID + ", '" + projektnamn + "', " + kostnadDouble + ", '" + startDatum + "', '" + slutDatum + "', '"
-                        + status + "', '" + prioritet + "', '" + beskrivning + "', " + landId + ")";
+                        + status + "', '" + prioritet + "', '" + beskrivning + "', " + landId + ", " + projektchefAid + ")";
 
                 idb.insert(sql);
                 JOptionPane.showMessageDialog(this, "Projekt tillagt!");

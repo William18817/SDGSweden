@@ -52,7 +52,7 @@ public class ProjektChef extends javax.swing.JPanel {
         avdelningLabel = new javax.swing.JLabel();
         visaPartnerInfoButton = new javax.swing.JButton();
         visaLandInfoButton = new javax.swing.JButton();
-        visaprojektchefButton = new javax.swing.JToggleButton();
+        visaProjektchefButton = new javax.swing.JButton();
         jPanelCenter = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         InfoProjectTable = new javax.swing.JTable();
@@ -128,7 +128,12 @@ public class ProjektChef extends javax.swing.JPanel {
             }
         });
 
-        visaprojektchefButton.setText("Visa Projekchef");
+        visaProjektchefButton.setText("Visa Projektchef");
+        visaProjektchefButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visaProjektchefButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelNorthLayout = new javax.swing.GroupLayout(jPanelNorth);
         jPanelNorth.setLayout(jPanelNorthLayout);
@@ -172,7 +177,7 @@ public class ProjektChef extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(visaLandInfoButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(visaprojektchefButton)))
+                        .addComponent(visaProjektchefButton)))
                 .addGap(54, 54, 54))
         );
         jPanelNorthLayout.setVerticalGroup(
@@ -203,7 +208,7 @@ public class ProjektChef extends javax.swing.JPanel {
                     .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(visaPartnerInfoButton)
                         .addComponent(visaLandInfoButton)
-                        .addComponent(visaprojektchefButton))
+                        .addComponent(visaProjektchefButton))
                     .addComponent(avdelningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(9, Short.MAX_VALUE))
         );
@@ -244,6 +249,7 @@ public class ProjektChef extends javax.swing.JPanel {
             }
         });
         InfoProjectTable.setToolTipText("");
+        InfoProjectTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(InfoProjectTable);
 
         jPanelCenter.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -1066,6 +1072,44 @@ public class ProjektChef extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_visaLandInfoButtonActionPerformed
 
+    private void visaProjektchefButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaProjektchefButtonActionPerformed
+        try {
+            int rad = InfoProjectTable.getSelectedRow();
+            if (rad == -1) {
+                JOptionPane.showMessageDialog(this, "Välj ett projekt först.");
+                return;
+            }
+
+            // Hämta pid från första kolumnen
+            String pid = InfoProjectTable.getValueAt(rad, 0).toString();
+
+            // SQL för att hämta projektchefens uppgifter inklusive avdelningsnamn
+            String sql = """
+            SELECT a.fornamn, a.efternamn, a.telefon, a.epost, av.namn 
+            FROM projekt p
+            JOIN anstalld a ON p.projektchef = a.aid
+            JOIN avdelning av ON a.avdelning = av.avdid
+            WHERE p.pid = """ + pid;
+
+            HashMap<String, String> chefInfo = idb.fetchRow(sql);
+
+            if (chefInfo != null) {
+                String info = "Namn: " + chefInfo.get("fornamn") + " " + chefInfo.get("efternamn") + "\n"
+                        + "Telefon: " + chefInfo.get("telefon") + "\n"
+                        + "E-post: " + chefInfo.get("epost") + "\n"
+                        + "Avdelning: " + chefInfo.get("namn");
+
+                JOptionPane.showMessageDialog(this, info, "Projektchef", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Projektchef kunde inte hittas.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Fel vid hämtning av projektchef: " + e.getMessage());
+        }
+    }//GEN-LAST:event_visaProjektchefButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AndraUppgifter;
@@ -1096,6 +1140,6 @@ public class ProjektChef extends javax.swing.JPanel {
     private javax.swing.JButton taBortPartnerButton;
     private javax.swing.JButton visaLandInfoButton;
     private javax.swing.JButton visaPartnerInfoButton;
-    private javax.swing.JToggleButton visaprojektchefButton;
+    private javax.swing.JButton visaProjektchefButton;
     // End of variables declaration//GEN-END:variables
 }
