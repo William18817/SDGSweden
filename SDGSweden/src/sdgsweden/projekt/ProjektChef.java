@@ -618,7 +618,6 @@ public class ProjektChef extends javax.swing.JPanel {
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
         try {
-            // Steg 1: Fråga efter projektets ID (pid)
             String pidStr = JOptionPane.showInputDialog(this, "Ange projektets ID (pid) som ska tas bort:");
 
             if (pidStr == null || pidStr.trim().isEmpty()) {
@@ -628,24 +627,26 @@ public class ProjektChef extends javax.swing.JPanel {
 
             int pid = Integer.parseInt(pidStr.trim());
 
-            // Steg 2: Fråga användaren om bekräftelse
             int val = JOptionPane.showConfirmDialog(this,
                     "Är du säker på att du vill ta bort projektet med ID " + pid + "?",
                     "Bekräfta borttagning",
                     JOptionPane.YES_NO_OPTION);
 
             if (val != JOptionPane.YES_OPTION) {
-                return; // Användaren avbröt
+                return;
             }
 
-            // Steg 3: Kör DELETE-sats
-            String sql = "DELETE FROM projekt WHERE pid = " + pid;
+            // Steg 1: Ta bort kopplingar från relaterade tabeller
+            idb.delete("DELETE FROM ans_proj WHERE pid = " + pid);
+            idb.delete("DELETE FROM projekt_partner WHERE pid = " + pid);
+            idb.delete("DELETE FROM proj_hallbarhet WHERE pid = " + pid);
 
-            idb.delete(sql);
+            // Steg 2: Ta bort projektet
+            idb.delete("DELETE FROM projekt WHERE pid = " + pid);
 
             JOptionPane.showMessageDialog(this, "Projektet har tagits bort.");
 
-            // Steg 4: Uppdatera tabellen
+            // Steg 3: Uppdatera tabellen
             hamtaAllaAktuellaProjekt();
 
         } catch (NumberFormatException e) {
