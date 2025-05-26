@@ -23,8 +23,6 @@ public class AdminAvdelning extends javax.swing.JPanel {
     private InfDB idb;
     private String aid;
     
-    
-
     /**
      * Creates new form AdminAvdelning
      */
@@ -37,10 +35,22 @@ public class AdminAvdelning extends javax.swing.JPanel {
         initComponents();
         fyllAvdelningarITabell();
         
+        //Den här raden lägger till en "Lyssnare" till tabellen "Avdelningar".
+        //Varje gång användaren markerar en avdelnings så körs koden inuti "e -> {...}"
         jTableAvdelningar.getSelectionModel().addListSelectionListener(e -> {
-    if (!e.getValueIsAdjusting()) {
+            
+            //Detta är en if-sats som kontrollerar att koden bara körs när användaren har avslutat sin radmarkering.
+            if (!e.getValueIsAdjusting()) {
+                
+        //Här hämtas radnummer för den rad som användaren klickat på.
+        //rad är av datatypen "int" vilket innebär att resultatet visar siffor.
         int rad = jTableAvdelningar.getSelectedRow();
+        
+        //Om en rad inte är vald kommer kommer "-1" att "visas". Om en rad är ifylld som kommer koden här nedan att visas i textfälten.
         if (rad != -1) {
+            
+            //Dessa kodrader hämtar värden från varje kolumn i "jTableAvdelning". 
+            //Den informationen visas sen i respektive textält till höger, exempelvis "txtAdress" - textfältet. 
             txtNamn.setText(jTableAvdelningar.getValueAt(rad, 1).toString());
             txtBeskrivning.setText(jTableAvdelningar.getValueAt(rad, 2).toString());
             txtAdress.setText(jTableAvdelningar.getValueAt(rad, 3).toString());
@@ -107,7 +117,7 @@ public class AdminAvdelning extends javax.swing.JPanel {
 
         jLabel6.setText("Beskrivning");
 
-        txtNamn.setPreferredSize(new java.awt.Dimension(150, 24));
+        txtNamn.setPreferredSize(new java.awt.Dimension(220, 24));
 
         txtAdress.setPreferredSize(new java.awt.Dimension(150, 24));
 
@@ -174,12 +184,12 @@ public class AdminAvdelning extends javax.swing.JPanel {
                                         .addGap(6, 6, 6)
                                         .addComponent(jLabel6)))
                                 .addGap(15, 15, 15)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtBeskrivning, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
-                                    .addComponent(txtTelefon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtEpost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtAdress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtNamn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtNamn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtAdress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtEpost, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtTelefon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtBeskrivning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,9 +198,10 @@ public class AdminAvdelning extends javax.swing.JPanel {
                                 .addGap(50, 50, 50)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtStad, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtChef, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(txtChef, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 764, Short.MAX_VALUE)
                         .addComponent(btnSpara)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnLaggTill)
@@ -228,8 +239,8 @@ public class AdminAvdelning extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(txtBeskrivning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(txtBeskrivning, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(txtChef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -237,50 +248,91 @@ public class AdminAvdelning extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(txtStad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTillbakaAdmin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnSpara)
                         .addComponent(btnLaggTill)
-                        .addComponent(btnTaBort)))
+                        .addComponent(btnTaBort))
+                    .addComponent(btnTillbakaAdmin))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    //Detta är en metod som inte returnerar något, utan dess syfte är att fylla tabellen "jTableAvdelningar" med information från databasen.
     private void fyllAvdelningarITabell() {
+     
+    //Början på en try-catch sats vars syfte är att försöka köra specifik kod, och vid eventuella fel fångar "Catch" det.
     try {
-        String sql = "SELECT * FROM avdelning";
-        ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
+        
+        //Detta är en vanlig sql-fråga vars syfte är att hämta all information från avdelning.
+        String sqlFraga = "SELECT * FROM avdelning";
+        
+        //ArrayList och HashMap används här för att spara information i listor.
+        //Dessa behöver importeras (Se högst upp) för att kunna användas.
+        //Sedan körs sql-frågan via vår databasanslutning "idb".
+        ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sqlFraga);
 
+        //Detta är en Array (String[]) med "Kolumner" som variabelnamn.
+        //Det är dessa kolumner som vi vill visa i vår tabell.
         String[] kolumner = {"avdid", "namn", "beskrivning", "adress", "epost", "telefon", "stad", "chef"};
+        
+        //Denna raden skapar ett tomt tabellmodell-objekt som våra kolumner och rader ligger i i "jTableAvdelningar".
         DefaultTableModel modell = new DefaultTableModel();
 
-        for (String kolumn : kolumner) {
+        //Detta är en for-each loop som går igenom varje kolumnnamn och lägger till det som en kolumn i vår modell.
+        for (String kolumn: kolumner) {
             modell.addColumn(kolumn);
         }
 
+        //Detta är också en for-each loop som går igenom varje rad frå databasen.
         for (HashMap<String, String> rad : resultat) {
+            
+            //"String[] radensVarden" är en array som skapar lika många fält som kolumner för att kunna spara alla värden.
             String[] radensVarden = new String[kolumner.length];
+            
+            //Detta är en for-loop som går igenom varje rad i varje kolumn.
             for (int i = 0; i < kolumner.length; i++) {
+                
+                //Här hämtas rätt värde från "rad" genom "rad.get(kolumner[i])".
+                //Informationen sparad sedan i arrayen "radensVarden".
                 radensVarden[i] = rad.get(kolumner[i]);
             }
+            
+            //Detta är en "add" där vi lägger till varje rad i modellen efter vi fått in alla värden.
             modell.addRow(radensVarden);
         }
 
+        //Här kopplas modellen till vår tabell "jTabelAvdelningar" vilket gör att användaren visuellt kan se den.
         jTableAvdelningar.setModel(modell);
-    } catch (Exception e) {
+        
+      //Slutet på try-catch satsen där vi i detta skede fångar eventuella fel som finns i koden mellan try och catch.
+      //Felet "lagras" i variabeln vi döpt till "ettFel".
+    } catch (Exception ettFel) {
+        
+        //Här visas det ett felmeddelande i en pop-up ruta med nedan angivna felmeddelande.
         JOptionPane.showMessageDialog(this, "Kunde inte visa avdelningar.");
-        e.printStackTrace();
+        
+        //Detta skriver ut felet i konsolen.
+        ettFel.printStackTrace();
     }
 }
-    
+    //En metod som körs när vi trycker på "Tillbaka" knappen.
     private void btnTillbakaAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaAdminActionPerformed
+        
+        //Här skapas ett nytt objekt av "AdminPanel" i form av att ett nytt GUI-panel_fönster dyker upp.
+        //Den får med sig tre saker från konstruktorn i form av "Parent (MainFrame), idb (databaskopplingen) och aid (användarens id).
         AdminPanel adminPanel = new AdminPanel (parent, idb, aid);
+        
+        //Detta är ett metodanrop vars syfte är att visa "adminPanel".
         parent.visaPanel(adminPanel, "adminPanel");
     }//GEN-LAST:event_btnTillbakaAdminActionPerformed
 
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
+        
+        //Dessa "if;s" nedan är en validering där det ställs olika krav på de attibut som står angivna.
+        //Exempelvis om man anger fel format på e-post så får man felmeddelandet "Ogitlig E-postadress".
+        //Allt detta är sedan kopplat till en egen valideringsklass som importers (Se högst upp).
         if (Validering.isEmpty(txtNamn.getText()))
         {
            JOptionPane.showMessageDialog(this, "Namn får inte tomt.");
@@ -316,14 +368,19 @@ public class AdminAvdelning extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Stad får inte vara tomt.");
             return;
         }
-        // Kolla att en rad är vald i tabellen
+        
+    //Detta hämtar den rad som är markerad i tabellen "jTableAvdelningar".
     int valdRad = jTableAvdelningar.getSelectedRow();
+    
+    //Om inget är valt, alltså om -1 returneras...
     if (valdRad == -1) {
+        
+        //... så visas detta meddelande.
         JOptionPane.showMessageDialog(this, "Du måste klicka på en rad i tabellen först.");
         return;
     }
 
-    // Läs in alla värden från textfälten
+    //Här blir alla fält inlästa och "trim()" kontrollerar och tar bort mellanslag i kodraden.
     String namn = txtNamn.getText().trim();
     String adress = txtAdress.getText().trim();
     String epost = txtEpost.getText().trim();
@@ -332,20 +389,22 @@ public class AdminAvdelning extends javax.swing.JPanel {
     String chef = txtChef.getText().trim();
     String stad = txtStad.getText().trim();
     
+    //Början på en try-catch sats.
     try {
-        // Hämta ID från vald rad
+        
+        //Här hämtar vi avdid från kolumn 0 på vald rad.
         String avdid = jTableAvdelningar.getValueAt(valdRad, 0).toString();
 
-        // Skapa SQL-fråga för att uppdatera
-        String sql = "UPDATE avdelning SET namn = '" + namn + "', adress = '" + adress + "', epost = '" + epost + "', telefon = '" + telefon + "', beskrivning = '" + beskrivning + "', chef = " + chef + ", stad = " + stad + " WHERE avdid = " + avdid;
+        //Här skapas en sql-fråga (sqlFraga) som uppdaterar informationen i databasen för specifikt valt avdid.
+        String sqlFraga = "UPDATE avdelning SET namn = '" + namn + "', adress = '" + adress + "', epost = '" + epost + "', telefon = '" + telefon + "', beskrivning = '" + beskrivning + "', chef = " + chef + ", stad = " + stad + " WHERE avdid = " + avdid;
 
-        // Kör SQL-frågan
-        idb.update(sql);
+        //Här körs frågan så att uppdateringen implementeras i databasen.
+        idb.update(sqlFraga);
 
-        // Visa meddelande
+        //Här visas ett meddelande om hur uppdateringen gick.
         JOptionPane.showMessageDialog(this, "Ändring sparad!");
 
-        // Töm textfälten
+        //Dessa kodrader tömmer varje textfält efter att ädnringen har skett för att underlätta inför nästa gång man ska skriva in något.
         txtNamn.setText("");
         txtAdress.setText("");
         txtEpost.setText("");
@@ -354,19 +413,27 @@ public class AdminAvdelning extends javax.swing.JPanel {
         txtChef.setText("");
         txtStad.setText("");
 
-        // Uppdatera tabellen
+        //Här sker ett internt metodanrop för att hämta den nya datan.
         fyllAvdelningarITabell();
 
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Något gick fel: " + e.getMessage());
-        e.printStackTrace();
+      //Detta är slutet på try-catch satsen. Om något går fel så fångar catch det här.
+    } catch (Exception ettFel) {
+        
+        //Följande meddelande skrivs ut vid fel.
+        JOptionPane.showMessageDialog(this, "Något gick fel: " + ettFel.getMessage());
+        
+        //printStackTrace skriver ut felet i terminalen för att kunna felsöka.
+        ettFel.printStackTrace();
     }
         
     }//GEN-LAST:event_btnSparaActionPerformed
 
     private void btnLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillActionPerformed
+        
+        //Början på en try-catch sats. All kod mellan try och catch kommer nu att testköras.
         try {
-    // Hämta alla värden från formuläret
+            
+    //Här hämtas alla värden från textfälten där "trim()" tar bort mellanslag i varje kodrad.
     String namn = txtNamn.getText().trim();
     String adress = txtAdress.getText().trim();
     String epost = txtEpost.getText().trim();
@@ -375,6 +442,9 @@ public class AdminAvdelning extends javax.swing.JPanel {
     String chefStr = txtChef.getText().trim();
     String stadStr = txtStad.getText().trim();
 
+    //Dessa "if;s" nedan är en validering där det ställs olika krav på de attibut som står angivna.
+    //Exempelvis om man anger fel format på e-post så får man felmeddelandet "Ogitlig E-postadress".
+    //Allt detta är sedan kopplat till en egen valideringsklass som importers (Se högst upp).
     if (Validering.isEmpty(txtNamn.getText())) {
         JOptionPane.showMessageDialog(this, "Namn får inte vara tomt.");
         return;
@@ -404,45 +474,53 @@ public class AdminAvdelning extends javax.swing.JPanel {
         return;
     }
 
-    // Konvertera chef/stad till int
+    //Här sker en konvertering där "chef" och "stad" görs om till helttal (int).
     int chef = Integer.parseInt(chefStr);
     int stad = Integer.parseInt(stadStr);
    
 
-    // Kolla om chef finns
+        //Här ställs en sql-fråga där vi vill hämta "aid" från anställd.
         String sqlChef = "SELECT aid FROM anstalld WHERE aid = " + chef;
+        
+        //Om inget resultat hittas, Om resultat är exakt icke-existerande (==) så returneras nedan meddelande.
         String chefResultat = idb.fetchSingle(sqlChef);
         if (chefResultat == null) {
             JOptionPane.showMessageDialog(this, "Chef-ID finns inte.");
             return;
         }
 
-        // Kolla om stad finns
+        //Här ställs en sql-fråga där vi vill hämta "sid" från stad.
         String sqlStad = "SELECT sid FROM stad WHERE sid = " + stad;
+        
+        //Om inget resultat hittas, Om resultat är exakt icke-existerande (==) så returneras nedan meddelande.
         String stadResultat = idb.fetchSingle(sqlStad);
         if (stadResultat == null) {
             JOptionPane.showMessageDialog(this, "Stad-ID finns inte.");
             return;
         }
 
-        // Hämta nästa avdid
+        //Här hämtas det högsta avdid som existerar för stunden och lägger till + 1.
         String sqlNextId = "SELECT MAX(avdid) FROM avdelning";
         String nextIdStr = idb.fetchSingle(sqlNextId);
-        int nextAvdid = 1; // starta på 1
+      
+        //Om inga avdelningar finns så vill vi starta på 1.
+        int nextAvdid = 1;
         if (nextIdStr != null && !nextIdStr.isEmpty()) {
             nextAvdid = Integer.parseInt(nextIdStr) + 1;
         }
 
-        // Skapa SQL-fråga
-        String sql = "INSERT INTO avdelning (avdid, namn, adress, epost, telefon, beskrivning, chef, stad) " +
+        //Här skapas en sql-fråga där vi vill inserta (lägga till en ny rad) i avdelningstabellen.
+        String sqlFraga = "INSERT INTO avdelning (avdid, namn, adress, epost, telefon, beskrivning, chef, stad) " +
                      "VALUES (" + nextAvdid + ", '" + namn + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + beskrivning + "', " + chef + ", " + stad + ")";
 
-    // Kör INSERT
-    idb.insert(sql);
+    //Här körs sql frågan.
+    idb.insert(sqlFraga);
 
+    //Detta skrivs ut ifall vi lyckats med att lägga till en avdelning.
     JOptionPane.showMessageDialog(this, "Avdelning har lagts till i systemet!");
 
-    // Rensa fält
+    //Dessa kodrader tömmer varje textfält efter att ädnringen har skett
+    //för att underlätta inför nästa gång man ska skriva in något.
     txtNamn.setText("");
     txtAdress.setText("");
     txtEpost.setText("");
@@ -451,70 +529,105 @@ public class AdminAvdelning extends javax.swing.JPanel {
     txtChef.setText("");
     txtStad.setText("");
         }
-        catch (Exception e)
+        
+        //Detta är slutet på try-catch satsen och här fångas eventuella fel.
+        catch (Exception ettFel)
         {
-            JOptionPane.showMessageDialog(this, "Fel: " + e.getMessage());
-            e.printStackTrace();
+            
+            //Här skrivs följande felmeddelande ut vid fel som fångats i "catch".
+            JOptionPane.showMessageDialog(this, "Fel: " + ettFel.getMessage());
+            
+            //Här skrivs felmeddelandet ut i terminalen.
+            ettFel.printStackTrace();
         }
+        
+        //Här uppdateras tabellen så den nya avdelningen syns.
         fyllAvdelningarITabell();
     }//GEN-LAST:event_btnLaggTillActionPerformed
 
     private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
         try
 {
-    // Detta visar en popup-ruta där man får ange avdelnings-ID
+    // Detta visar en popup-ruta där man får ange avdelnings-ID.
     String avdelningsId = JOptionPane.showInputDialog(this, "Ange avdelnings-ID (avdid) för att ta bort:");
 
-    // Om man inte fyller i rutan med ett giltigt avdid
+    // Om man inte fyller i rutan med ett giltigt avdid.
     if (avdelningsId == null || avdelningsId.isEmpty())
     {
+        //Detta skrivs ut ifall ett ogiltigt avdelnings-id anges.
         JOptionPane.showMessageDialog(this, "Fyll i ett avdelnings-ID först.");
         return;
     }
 
-    // Hämta specifik information om avdelningen
-    String sql = "SELECT namn FROM avdelning WHERE avdid = " + avdelningsId;
+    // Här hämtar vi genom en sql-fråga namn på avdelning genom att ange specifikt avdid.
+    String sqlFraga = "SELECT namn FROM avdelning WHERE avdid = " + avdelningsId;
 
-    // Kör SQL-frågan
-    ArrayList<HashMap<String, String>> avdelningar = idb.fetchRows(sql);
+    //Här kör vi sql-frågan.
+    ArrayList<HashMap<String, String>> avdelningar = idb.fetchRows(sqlFraga);
 
-    // Om ingen avdelning hittas
+    // Om ingen avdelning hittas...
     if (avdelningar == null || avdelningar.isEmpty()) {
+        
+        //...Så kommer följande felmeddelande att visas.
         JOptionPane.showMessageDialog(this, "Det finns ingen avdelning med detta ID.");
         return;
     }
 
-    // Lista namn (även om det bara är en)
+    //Här skapas en array med namnen på samtliga avdelningar.
     String[] avdelningsNamnLista = new String[avdelningar.size()];
+    
+    //En for-loop körs och går igenom alla avdelningar.
     for (int i = 0; i < avdelningar.size(); i++) {
+        
+        //Här hämtar vi index och namn på avdelningarna från arrayen "avdelningsNamnLista".
         avdelningsNamnLista[i] = avdelningar.get(i).get("namn");
     }
 
-    // Dialog för att bekräfta borttagning
+    //Här visas en popup-ruta genom "JOptionPane.QUESTION_MESSAGE" där man måste bekräfta vilken avdelning man vill ta bort.
     String valdAvdelning = (String) JOptionPane.showInputDialog(
-        this,
-        "Bekräfta vilken avdelning du vill ta bort:",
-        "Ta bort avdelning",
+        this, "Bekräfta vilken avdelning du vill ta bort:", "Ta bort avdelning",
         JOptionPane.QUESTION_MESSAGE,
         null,
+        
+        //Detta är lista med alternativ att välja mellan.
         avdelningsNamnLista,
+        
+        //Detta är standardvalet som är förvalt inför varje gång rutan öppnas.
         avdelningsNamnLista[0]
     );
 
+    //Om användaren inte har tryckt avbryt.
     if (valdAvdelning != null) {
-        for (HashMap<String, String> a : avdelningar) {
+        
+        //Då kör den en for-each loop där den går igenom resultatet från databasen
+        //Och jämför det med det som anvöndaren matade in.
+        for (HashMap<String, String> a: avdelningar) {
             String namn = a.get("namn");
+            
+            //Om namnet på avdelningen stämmer överens med vad som matades in.
             if (namn.equals(valdAvdelning)) {
+                
+                //Så körs denna sql-fråga vars syfte är att ta bort avdelningen från databasen.
                 String deleteSql = "DELETE FROM avdelning WHERE avdid = " + avdelningsId;
+                
+                //Här körs frågan.
                 idb.delete(deleteSql);
+                
+                //Detta skrivs ut efter att borttagningen utförts.
                 JOptionPane.showMessageDialog(this, "Avdelningen togs bort.");
                 fyllAvdelningarITabell();
+                
+                //Detta avslutar loopen och därmed metoden.
                 break;
             }
         }
     }
-} catch (InfException e) {
-    JOptionPane.showMessageDialog(this, "Fel vid borttagning av avdelning: " + e.getMessage());
+    
+  //Här fångas eventuella fel.
+} catch (InfException ettFel) {
+    
+    //Detta är det som skrivs ut vid ett fel av borttagningen av en avdelning.
+    JOptionPane.showMessageDialog(this, "Fel vid borttagning av avdelning: " + ettFel.getMessage());
 }
     }//GEN-LAST:event_btnTaBortActionPerformed
 

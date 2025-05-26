@@ -420,28 +420,7 @@ public class AdminPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Avdelning får inte vara tomt.");
             return;
         }
-
-        // Kontroll: tomma fält
-        //if (fornamn.isEmpty() || efternamn.isEmpty() || adress.isEmpty() || epost.isEmpty() ||
-            //telefon.isEmpty() || datum.isEmpty() || losenord.isEmpty() || avdelningStr.isEmpty()) {
-           // JOptionPane.showMessageDialog(this, "Fyll i alla fält.");
-           // return;
-        //}
-
-        // Kontroll: epost-format
-        //if (!epost.matches("^[a-zA-Z]+\\.[a-zA-Z]+@example\\.com$")) {
-          //  JOptionPane.showMessageDialog(this, "E-postadressen måste vara i formatet fornamn.efternamn@example.com");
-           // return;
-        //}
-
-        // Kontroll: datumformat
-        //try {
-           // java.time.LocalDate.parse(datum); // Format: YYYY-MM-DD
-       // } catch (java.time.format.DateTimeParseException e) {
-         //   JOptionPane.showMessageDialog(this, "Datumet måste vara i formatet YYYY-MM-DD.");
-         //   return;
-        //}
-
+        
         // Konvertera avdelning till int
         int avdelning = Integer.parseInt(avdelningStr);
 
