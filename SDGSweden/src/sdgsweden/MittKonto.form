@@ -53,7 +53,11 @@
                       <Component id="SidaTitel" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="77" max="32767" attributes="0"/>
+              <EmptySpace pref="141" max="32767" attributes="0"/>
+              <Component id="LbDinMentor" min="-2" pref="103" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="TfDinMentor" min="-2" pref="141" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnTillbaka" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
@@ -69,6 +73,8 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="LbFornamn" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="TfFornamn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TfDinMentor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="LbDinMentor" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -249,6 +255,19 @@
           <Font name="Dialog" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Dina uppgifter :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="TfDinMentor">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TfDinMentorActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LbDinMentor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Din Mentor :"/>
       </Properties>
     </Component>
   </SubComponents>

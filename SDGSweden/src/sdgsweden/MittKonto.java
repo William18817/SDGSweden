@@ -47,11 +47,30 @@ public class MittKonto extends javax.swing.JPanel {
                 TfLosenord.setText(anvandarData.get("losenord"));
                 TfAvdelning.setText(anvandarData.get("avdelning"));
 
-            } //Om ingen användare hittas med "aid" visas ett popup-fönster.
-            else {
-                JOptionPane.showMessageDialog(this, "Användarinformation kunde inte hittas.");
+            
+             String sqlMentor = ""
+              + "SELECT fornamn, efternamn "
+              + "FROM anstallda  "
+              + "JOIN anstalld ON handlaggare = aid "
+              + "WHERE mentor = '" + aid + "'";
+            HashMap<String,String> m = idb.fetchRow(sqlMentor);
+            if (m != null) 
+            {
+                TfDinMentor.setText(m.get("fornamn") + " " + m.get("efternamn"));
+            } 
+            else 
+            {
+                TfDinMentor.setText("Ingen mentor");
             }
-        } //om något går fel i tex databasanropet visas ett felmedelanade, samnt felet loggas i terminal.
+            } 
+            else 
+            {
+                JOptionPane.showMessageDialog(this, "användar data hittades inte");
+            
+            }//Om ingen användare hittas med "aid" visas ett popup-fönster.
+            
+            
+        }//om något går fel i tex databasanropet visas ett felmedelanade, samnt felet loggas i terminal.
         catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Kunde inte hämnta information");
@@ -88,6 +107,8 @@ public class MittKonto extends javax.swing.JPanel {
         BnSparaAndringar = new javax.swing.JButton();
         btnTillbaka = new javax.swing.JButton();
         SidaTitel = new java.awt.Label();
+        TfDinMentor = new javax.swing.JTextField();
+        LbDinMentor = new javax.swing.JLabel();
 
         LbFornamn.setText("Förnamn :");
 
@@ -164,6 +185,15 @@ public class MittKonto extends javax.swing.JPanel {
         SidaTitel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         SidaTitel.setText("Dina uppgifter :");
 
+        TfDinMentor.setEditable(false);
+        TfDinMentor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TfDinMentorActionPerformed(evt);
+            }
+        });
+
+        LbDinMentor.setText("Din Mentor :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -199,7 +229,11 @@ public class MittKonto extends javax.swing.JPanel {
                                 .addComponent(TfTelefon)
                                 .addComponent(TfAdress)))
                         .addComponent(SidaTitel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                .addComponent(LbDinMentor, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(TfDinMentor, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnTillbaka)
                 .addGap(21, 21, 21))
         );
@@ -212,7 +246,9 @@ public class MittKonto extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LbFornamn)
-                            .addComponent(TfFornamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(TfFornamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TfDinMentor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LbDinMentor)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(btnTillbaka)))
@@ -373,6 +409,10 @@ public class MittKonto extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_TfAdressActionPerformed
 
+    private void TfDinMentorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TfDinMentorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TfDinMentorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BnSparaAndringar;
@@ -380,6 +420,7 @@ public class MittKonto extends javax.swing.JPanel {
     private javax.swing.JLabel LbAdress;
     private javax.swing.JLabel LbAnstallningsdatum;
     private javax.swing.JLabel LbAvdelning;
+    private javax.swing.JLabel LbDinMentor;
     private javax.swing.JLabel LbEfternamn;
     private javax.swing.JLabel LbEpost;
     private javax.swing.JLabel LbFornamn;
@@ -389,6 +430,7 @@ public class MittKonto extends javax.swing.JPanel {
     private javax.swing.JTextField TfAdress;
     private javax.swing.JTextField TfAnstallningsdatum;
     private javax.swing.JTextField TfAvdelning;
+    private javax.swing.JTextField TfDinMentor;
     private javax.swing.JTextField TfEfternamn;
     private javax.swing.JTextField TfEpost;
     private javax.swing.JTextField TfFornamn;
