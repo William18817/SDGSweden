@@ -49,34 +49,41 @@ public class MittKonto extends javax.swing.JPanel {
 
             
              String sqlMentor = ""
-              + "SELECT fornamn, efternamn "
-              + "FROM anstallda  "
-              + "JOIN anstalld ON handlaggare = aid "
-              + "WHERE mentor = '" + aid + "'";
-            HashMap<String,String> m = idb.fetchRow(sqlMentor);
-            if (m != null) 
-            {
-                TfDinMentor.setText(m.get("fornamn") + " " + m.get("efternamn"));
-            } 
-            else 
-            {
-                TfDinMentor.setText("Ingen mentor");
-            }
-            } 
-            else 
-            {
-                JOptionPane.showMessageDialog(this, "användar data hittades inte");
-            
-            }//Om ingen användare hittas med "aid" visas ett popup-fönster.
-            
-            
-        }//om något går fel i tex databasanropet visas ett felmedelanade, samnt felet loggas i terminal.
-        catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Kunde inte hämnta information");
-        }
+               + "SELECT mentor "
+               + "FROM handlaggare "
+               + "WHERE aid = '" + aid + "'";
+            // OBS: fetchSingle (med två l) hämtar en enstaka kolumn
+            String mentorAid = idb.fetchSingle(sqlMentor);
 
+            if (mentorAid != null && !mentorAid.isEmpty()) {
+                // 3) Hämta mentorens namn ur anstalld
+                String sqlM = ""
+                  + "SELECT fornamn, efternamn "
+                  + "FROM anstalld "
+                  + "WHERE aid = '" + mentorAid + "'";
+                HashMap<String, String> m = idb.fetchRow(sqlM);
+
+                if (m != null) {
+                    TfDinMentor.setText(
+                        m.get("fornamn") + " " + m.get("efternamn")
+                    );
+                } else {
+                    TfDinMentor.setText("Ingen mentor i anställd");
+                }
+            }
+            else {
+                TfDinMentor.setText("Ingen mentor tilldelad");
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Användardata hittades inte");
+        }
     }
+    catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Kunde inte hämta information");
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
