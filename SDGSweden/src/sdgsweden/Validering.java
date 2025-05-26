@@ -60,6 +60,11 @@ public static boolean isValidKostnad(double kostnad)
     return kostnad >= 0 && kostnad <= 5_000_000;
 }
 
-
+public static boolean allaFältIfyllda(String... fält) {
+    for (String fältet : fält) {
+        if (isEmpty(fältet)) return false;
+    }
+    return true;
+}
 
 }

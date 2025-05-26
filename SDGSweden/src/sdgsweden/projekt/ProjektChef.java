@@ -11,6 +11,7 @@ import oru.inf.InfException;
 import javax.swing.table.DefaultTableModel;
 import sdgsweden.MainFrame;
 import sdgsweden.Startsida;
+import sdgsweden.Validering;
 
 /*
  * @author jonas
@@ -54,7 +55,7 @@ public class ProjektChef extends javax.swing.JPanel {
         visaLandInfoButton = new javax.swing.JButton();
         visaProjektchefButton = new javax.swing.JButton();
         jPanelCenter = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPaneProjektChef = new javax.swing.JScrollPane();
         InfoProjectTable = new javax.swing.JTable();
         jPanelSouth = new javax.swing.JPanel();
         addPartnerButton = new javax.swing.JButton();
@@ -250,9 +251,9 @@ public class ProjektChef extends javax.swing.JPanel {
         });
         InfoProjectTable.setToolTipText("");
         InfoProjectTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(InfoProjectTable);
+        jScrollPaneProjektChef.setViewportView(InfoProjectTable);
 
-        jPanelCenter.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        jPanelCenter.add(jScrollPaneProjektChef, java.awt.BorderLayout.CENTER);
 
         addPartnerButton.setText("Lägg till Partner");
         addPartnerButton.setMaximumSize(new java.awt.Dimension(110, 25));
@@ -565,12 +566,12 @@ public class ProjektChef extends javax.swing.JPanel {
     private void addProjektButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProjektButtonActionPerformed
 
         HanteraProjekt laggTillPanel = new HanteraProjekt(idb, this);
-        Container parentProjekt = this.getParent();
+        Container parentProjektChef = this.getParent();
 
-        parentProjekt.removeAll(); // Ta bort nuvarande innehåll i panelen
-        parentProjekt.add(laggTillPanel);
-        parentProjekt.revalidate();
-        parentProjekt.repaint();
+        parentProjektChef.removeAll(); // Ta bort nuvarande innehåll i panelen
+        parentProjektChef.add(laggTillPanel);
+        parentProjektChef.revalidate();
+        parentProjektChef.repaint();
     }//GEN-LAST:event_addProjektButtonActionPerformed
 
     private void StatistikKostnadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatistikKostnadActionPerformed
@@ -939,15 +940,14 @@ public class ProjektChef extends javax.swing.JPanel {
         String datumFran = DateOne.getText().trim();
         String datumTill = DateTwo.getText().trim();
 
-        String datumRegex = "^\\d{4}-\\d{2}-\\d{2}$";
 
         // Kontrollera om datumen är i rätt format (om de är ifyllda)
-        if (!datumFran.isEmpty() && !datumFran.matches(datumRegex)) {
+        if (!datumFran.isEmpty() && !Validering.isValidAnstallningsdatum(datumFran)) {
             JOptionPane.showMessageDialog(this, "Startdatum måste vara i formatet ÅÅÅÅ-MM-DD.");
             return;
         }
 
-        if (!datumTill.isEmpty() && !datumTill.matches(datumRegex)) {
+        if (!datumTill.isEmpty() && !Validering.isValidAnstallningsdatum(datumTill)) {
             JOptionPane.showMessageDialog(this, "Slutdatum måste vara i formatet ÅÅÅÅ-MM-DD.");
             return;
         }
@@ -1135,7 +1135,7 @@ public class ProjektChef extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelCenter;
     private javax.swing.JPanel jPanelNorth;
     private javax.swing.JPanel jPanelSouth;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPaneProjektChef;
     private javax.swing.JComboBox<String> projektComboBox;
     private javax.swing.JButton taBortHandlaggareButton;
     private javax.swing.JButton taBortPartnerButton;
