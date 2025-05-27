@@ -36,6 +36,7 @@ public class AdminPartner extends javax.swing.JPanel {
         
         //Den här raden lägger till en "Lyssnare" till tabellen "Avdelningar".
         //Varje gång användaren markerar en avdelnings så körs koden inuti "e -> {...}"
+        //Det som händer är att så fort man klickar sig in på sidan så syns information om Partners.
         jTablePartner.getSelectionModel().addListSelectionListener(e -> {
             
             //Detta är en if-sats som kontrollerar att koden bara körs när användaren har avslutat sin radmarkering.
@@ -65,16 +66,16 @@ public class AdminPartner extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jLabelPartner = new javax.swing.JLabel();
         btnTillbakaAdmin = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPanePartner = new javax.swing.JScrollPane();
         jTablePartner = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jLabelNamn = new javax.swing.JLabel();
+        jLabelKontaktperson = new javax.swing.JLabel();
+        jLabelKontaktEpost = new javax.swing.JLabel();
+        jLabelTelefon = new javax.swing.JLabel();
+        jLabelAdress = new javax.swing.JLabel();
+        jLabelBranch = new javax.swing.JLabel();
         txtNamn = new javax.swing.JTextField();
         txtKontaktPerson = new javax.swing.JTextField();
         txtKontaktEpost = new javax.swing.JTextField();
@@ -85,7 +86,7 @@ public class AdminPartner extends javax.swing.JPanel {
         btnLaggTill = new javax.swing.JButton();
         btnTaBort = new javax.swing.JButton();
 
-        jLabel1.setText("Partner");
+        jLabelPartner.setText("Partner");
 
         btnTillbakaAdmin.setText("Tillbaka");
         btnTillbakaAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -95,32 +96,32 @@ public class AdminPartner extends javax.swing.JPanel {
         });
 
         jTablePartner.setColumnSelectionAllowed(true);
-        jScrollPane1.setViewportView(jTablePartner);
+        jScrollPanePartner.setViewportView(jTablePartner);
         jTablePartner.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        jLabel2.setText("Namn");
+        jLabelNamn.setText("Namn");
 
-        jLabel3.setText("Kontakperson");
+        jLabelKontaktperson.setText("Kontakperson");
 
-        jLabel4.setText("Kontaktepost");
+        jLabelKontaktEpost.setText("Kontaktepost");
 
-        jLabel5.setText("Telefon");
+        jLabelTelefon.setText("Telefon");
 
-        jLabel6.setText("Adress");
+        jLabelAdress.setText("Adress");
 
-        jLabel7.setText("Branch");
+        jLabelBranch.setText("Branch");
 
         txtNamn.setPreferredSize(new java.awt.Dimension(180, 24));
 
         txtKontaktPerson.setPreferredSize(new java.awt.Dimension(180, 24));
 
-        txtKontaktEpost.setPreferredSize(new java.awt.Dimension(150, 24));
+        txtKontaktEpost.setPreferredSize(new java.awt.Dimension(180, 24));
 
-        txtTelefon.setPreferredSize(new java.awt.Dimension(150, 24));
+        txtTelefon.setPreferredSize(new java.awt.Dimension(180, 24));
 
-        txtAdress.setPreferredSize(new java.awt.Dimension(150, 24));
+        txtAdress.setPreferredSize(new java.awt.Dimension(180, 24));
 
-        txtBranch.setPreferredSize(new java.awt.Dimension(150, 24));
+        txtBranch.setPreferredSize(new java.awt.Dimension(180, 24));
 
         btnSpara.setText("Spara");
         btnSpara.addActionListener(new java.awt.event.ActionListener() {
@@ -151,33 +152,33 @@ public class AdminPartner extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jLabelPartner)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPanePartner, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                                    .addComponent(jLabelNamn)
+                                    .addComponent(jLabelKontaktperson))
+                                .addGap(83, 83, 83)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtKontaktPerson, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtKontaktPerson, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                    .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                                 .addGap(44, 44, 44))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
+                                    .addComponent(jLabelKontaktEpost)
+                                    .addComponent(jLabelTelefon)
+                                    .addComponent(jLabelAdress)
+                                    .addComponent(jLabelBranch))
                                 .addGap(85, 85, 85)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtKontaktEpost, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtTelefon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtAdress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtBranch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(txtKontaktEpost, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                    .addComponent(txtTelefon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                    .addComponent(txtAdress, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                    .addComponent(txtBranch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                                 .addGap(42, 42, 42))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnSpara)
@@ -185,7 +186,7 @@ public class AdminPartner extends javax.swing.JPanel {
                                 .addComponent(btnLaggTill)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnTaBort)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addContainerGap(63, Short.MAX_VALUE))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnTillbakaAdmin)
@@ -195,33 +196,33 @@ public class AdminPartner extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jLabel1)
+                .addComponent(jLabelPartner)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPanePartner, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
+                            .addComponent(jLabelNamn)
                             .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
+                            .addComponent(jLabelKontaktperson)
                             .addComponent(txtKontaktPerson, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
+                            .addComponent(jLabelKontaktEpost)
                             .addComponent(txtKontaktEpost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
+                            .addComponent(jLabelTelefon)
                             .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
+                            .addComponent(jLabelAdress)
                             .addComponent(txtAdress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
+                            .addComponent(jLabelBranch)
                             .addComponent(txtBranch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -235,39 +236,73 @@ public class AdminPartner extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void fyllPartnerITabell() {
-try {
+        
+        //Detta är början på en try-catch sats. All kod mellan try och catch kommer nu att testköras.
+        try {
+            
+            //Här skapas en sql-fråga där vi vill hämta all information från partner.
             String sqlFraga = "SELECT * FROM partner";
+            
+            //Här körs sedan den frågan.
             ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sqlFraga);
 
+            //Här skapas en array kallad "kolumner" med nedan information.
             String[] kolumner = {"pid", "namn", "kontaktperson", "kontaktepost", "telefon", "adress", "branch"};
+            
+            //Här skapas ett nytt tabellobjekt som sedan kommer att fyllas med data.
             DefaultTableModel modell = new DefaultTableModel();
 
-            for (String kolumn : kolumner) {
+            //Här körs en for-each loop som går igenom kolumner i arrayen.
+            for (String kolumn: kolumner) {
+                
+                //Här läggs en ny kolumn till för varje kolumn som gåtts igenom i arrayen.
                 modell.addColumn(kolumn);
             }
 
-            for (HashMap<String, String> rad : resultat) {
+            //Här körs en for-each loop som går igenom resultatet.
+            for (HashMap<String, String> rad: resultat) {
+                
+                //Här skapas en array som har som syfte att lagra alla värden i raden.
                 String[] radensVarden = new String[kolumner.length];
+                
+                //Här körs en for-loop som går igenom kolumner.
                 for (int i = 0; i < kolumner.length; i++) {
+                    
+                    //Här hämtas sedan värdet.
                     radensVarden[i] = rad.get(kolumner[i]);
                 }
+                
+                //Här läggs sedan raden med värden till i tabellen.
                 modell.addRow(radensVarden);
             }
 
+            //Denna kodrad gör att tabellen visas i GUI:t.
             jTablePartner.setModel(modell);
+            
+          //Det är här som eventuella fel fångas.
         } catch (Exception ettFel) {
+            
+            //Detta felmeddelande skrivs då ut.
             JOptionPane.showMessageDialog(this, "Kunde inte visa partner.");
+            
+            //Detta gör att det även skrivs ut i terminalen.
             ettFel.printStackTrace();
         }
     }
 
     private void btnTillbakaAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaAdminActionPerformed
+        
+        //Här skapas ett nytt objekt av "AdminPanel" i form av att ett nytt GUI-panel_fönster dyker upp.
+        //Den får med sig tre saker från konstruktorn i form av "Parent (MainFrame), idb (databaskopplingen) och aid (användarens id).
         AdminPanel adminPanel = new AdminPanel (parent, idb, aid);
+        
+        //Detta är ett metodanrop vars syfte är att visa "adminPanel".
         parent.visaPanel(adminPanel, "adminPanel");
     }//GEN-LAST:event_btnTillbakaAdminActionPerformed
 
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
         
+        //Här blir alla fält inlästa och "trim()" kontrollerar och tar bort mellanslag i kodraden.
         String namn = txtNamn.getText().trim();
         String kontaktperson = txtKontaktPerson.getText().trim();
         String kontaktEpost = txtKontaktEpost.getText().trim();
@@ -275,6 +310,9 @@ try {
         String adress = txtAdress.getText().trim();
         String bransch = txtBranch.getText().trim();
         
+        //Dessa "if;s" nedan är en validering där det ställs olika krav på de attibut som står angivna.
+        //Exempelvis om man anger fel format på e-post så får man felmeddelandet "Ogitlig E-postadress".
+        //Allt detta är sedan kopplat till en egen valideringsklass som importers (Se högst upp).
         if (Validering.isEmpty(txtNamn.getText()))
             
         {
@@ -307,28 +345,33 @@ try {
             return;
         }
         
-        // Kolla att en rad är vald i tabellen
+        //Detta hämtar den rad som är markerad i tabellen "jTablePartner".
         int valdRad = jTablePartner.getSelectedRow();
         
+        //Om inget är valt, alltså om -1 returneras...
         if (valdRad == -1) {
+            
+            //... så visas detta meddelande.
             JOptionPane.showMessageDialog(this, "Du måste klicka på en rad i tabellen först.");
             return;
         }
         
+        //Början på en try-catch sats.
         try {
-    // Hämta ID från vald rad
+            
+    //Här hämtar vi pid från kolumn 0 på vald rad.
     String pid = jTablePartner.getValueAt(valdRad, 0).toString();
 
-    // Skapa SQL-fråga för att uppdatera
+    //Här skapas en sql-fråga (sqlFraga) som uppdaterar informationen i databasen för specifikt valt pid.
     String sqlFraga = "UPDATE partner SET namn = '" + namn + "', kontaktperson = '" + kontaktperson + "', kontaktEpost = '" + kontaktEpost + "', telefon = '" + telefon + "', adress = '" + adress + "', branch = '" + bransch + "' WHERE pid = " + pid;
 
-    // Kör SQL-frågan
+    //Här körs frågan så att uppdateringen implementeras i databasen.
     idb.update(sqlFraga);
 
-    // Visa meddelande
+    //Här visas ett meddelande om hur uppdateringen gick.
     JOptionPane.showMessageDialog(this, "Ändring sparad!");
 
-    // Töm textfälten
+    //Dessa kodrader tömmer varje textfält efter att ädnringen har skett för att underlätta inför nästa gång man ska skriva in något.
     txtNamn.setText("");
     txtKontaktPerson.setText("");
     txtKontaktEpost.setText("");
@@ -336,26 +379,36 @@ try {
     txtAdress.setText("");
     txtBranch.setText("");
 
-    // Uppdatera tabellen
+    //Här sker ett internt metodanrop för att hämta den nya datan.
     fyllPartnerITabell();
 
-} catch (Exception e) {
-    JOptionPane.showMessageDialog(this, "Något gick fel: " + e.getMessage());
-    e.printStackTrace();
+  //Detta är slutet på try-catch satsen. Om något går fel så fångar catch det här.  
+} catch (Exception ettFel) {
+    
+    //Följande meddelande skrivs ut vid fel.
+    JOptionPane.showMessageDialog(this, "Något gick fel: " + ettFel.getMessage());
+    
+    //printStackTrace skriver ut felet i terminalen för att kunna felsöka.
+    ettFel.printStackTrace();
 }
     }//GEN-LAST:event_btnSparaActionPerformed
 
     private void btnLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillActionPerformed
+        
+        //Början på en try-catch sats. All kod mellan try och catch kommer nu att testköras.
         try {
-    // Hämta alla värden från formuläret
+            
+    //Här hämtas alla värden från textfälten där "trim()" tar bort mellanslag i varje kodrad
     String namn = txtNamn.getText().trim();
     String kontaktperson = txtKontaktPerson.getText().trim();
     String kontaktEpost = txtKontaktEpost.getText().trim();
     String telefon = txtTelefon.getText().trim();
     String adress = txtAdress.getText().trim();
-    String bransch = txtBranch.getText().trim();
+    String branch = txtBranch.getText().trim();
 
-    // Validering
+    //Dessa "if;s" nedan är en validering där det ställs olika krav på de attibut som står angivna.
+    //Exempelvis om man anger fel format på e-post så får man felmeddelandet "Ogitlig E-postadress".
+    //Allt detta är sedan kopplat till en egen valideringsklass som importers (Se högst upp).
     if (Validering.isEmpty(txtNamn.getText())) {
         JOptionPane.showMessageDialog(this, "Namn får inte vara tomt.");
         return;
@@ -377,28 +430,35 @@ try {
         return;
     }
     if (Validering.isEmpty(txtBranch.getText())) {
-        JOptionPane.showMessageDialog(this, "Bransch får inte vara tom.");
+        JOptionPane.showMessageDialog(this, "Branch får inte vara tom.");
         return;
     }
 
-    // Hämta nästa lediga pid
+    //Här skapas en sql-fråga vars syfte är att hämta max pid från databasen.
     String sqlNextId = "SELECT MAX(pid) FROM partner";
+    
+    //Detta hämtar endast ett värde från databasen.
     String nextIdStr = idb.fetchSingle(sqlNextId);
-    int nextPid = 1; // starta på 1
+    
+    //Vi har här angett att vi vill att 1 är vårt startvärde ifall tabellen är tom.
+    int nextPid = 1;
+    
+    //OM ett värde redan fanns i databasen så gör denna kod att det ökar med + 1 för att hitta nästa lediga id.
     if (nextIdStr != null && !nextIdStr.isEmpty()) {
         nextPid = Integer.parseInt(nextIdStr) + 1;
     }
 
-    // Skapa SQL-fråga
-    String sql = "INSERT INTO partner (pid, namn, kontaktperson, kontaktEpost, telefon, adress, branch) " +
-                 "VALUES (" + nextPid + ", '" + namn + "', '" + kontaktperson + "', '" + kontaktEpost + "', '" + telefon + "', '" + adress + "', '" + bransch + "')";
+    //Här skapas änu en sql-fråga vars syfte är att implementera partnern i databasen.
+    String sqlFraga = "INSERT INTO partner (pid, namn, kontaktperson, kontaktEpost, telefon, adress, branch) " + 
+            "VALUES (" + nextPid + ", '" + namn + "', '" + kontaktperson + "', '" + kontaktEpost + "', '" + telefon + "', '" + adress + "', '" + branch + "')";
 
-    // Kör INSERT
-    idb.insert(sql);
+    //Här körs sql-frågan.
+    idb.insert(sqlFraga);
 
+    //Om tilläggningen av partner gick bra visas detta meddelande.
     JOptionPane.showMessageDialog(this, "Partner har lagts till i systemet!");
 
-    // Rensa fält
+    //Denna kod rensar textfälten från den tidigare informationen.
     txtNamn.setText("");
     txtKontaktPerson.setText("");
     txtKontaktEpost.setText("");
@@ -406,45 +466,65 @@ try {
     txtAdress.setText("");
     txtBranch.setText("");
         
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Fel: " + e.getMessage());
-            e.printStackTrace();
+          //Här fångas eventuella fel.
+        } catch (Exception ettFel) {
+            
+            //Detta felmeddelande visas isåfall.
+            JOptionPane.showMessageDialog(this, "Fel: " + ettFel.getMessage());
+            
+            //Detta skriver ut det i terminalen.
+            ettFel.printStackTrace();
         }
+        
+        //Detta updaterar tabellen med den nya informationen så att nya partners syns i databasen.
         fyllPartnerITabell();
     }//GEN-LAST:event_btnLaggTillActionPerformed
 
     private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
+        
+        //Det här är början på en try-catch sats. All kod mellan try och catch kommer nu testköras.
         try
-{
-    // Detta visar en popup-ruta där man får ange partner-ID
+        {
+            
+    //Detta visar en popup-ruta där man får ange partner-ID.
     String partnerId = JOptionPane.showInputDialog(this, "Ange partner-ID (pid) för att ta bort:");
 
-    // Om man inte fyller i rutan med ett giltigt pid
+    //Denna kod är för om man inte fyller i rutan med ett giltigt pid.
     if (partnerId == null || partnerId.isEmpty())
     {
+        //Då syns detta felmeddelande.
         JOptionPane.showMessageDialog(this, "Fyll i ett partner-ID först.");
         return;
     }
 
-    // Hämta specifik information om partnern
-    String sql = "SELECT namn FROM partner WHERE pid = " + partnerId;
+    //Här skapas en sql-fråga vars syfte är att hämta namn från partner via ett pid.
+    String sqlFraga = "SELECT namn FROM partner WHERE pid = " + partnerId;
 
-    // Kör SQL-frågan
-    ArrayList<HashMap<String, String>> partnerLista = idb.fetchRows(sql);
+    //Här körs sedan sql-frågan.
+    ArrayList<HashMap<String, String>> partnerLista = idb.fetchRows(sqlFraga);
 
-    // Om ingen partner hittas
+    //Denna kod är till för om ingen partner hittas.
     if (partnerLista == null || partnerLista.isEmpty()) {
+        
+        //Då skrivs detta felmeddelande ut.
         JOptionPane.showMessageDialog(this, "Det finns ingen partner med detta ID.");
         return;
     }
 
-    // Lista namn (även om det bara är en)
+    //Här skapas en array kallad "partnerNamnLista"
     String[] partnerNamnLista = new String[partnerLista.size()];
+    
+    //Här körs en for-loop som går igenom partnerLista.
     for (int i = 0; i < partnerLista.size(); i++) {
+        
+        //Här hämtas namnet.
         partnerNamnLista[i] = partnerLista.get(i).get("namn");
     }
 
-    // Dialog för att bekräfta borttagning
+    //Denna kod handlar om att en bekräftelseruta dyker upp
+    //som vill att användaren ska bekräfta borttagningen av en partner.
+    //partnerNamnLista är de alternativa namn att välja mellan.
+    //partnerNamnLista[0] är ett förvalt alternativ som vi satt till 0.
     String valtPartner = (String) JOptionPane.showInputDialog(
         this, "Bekräfta vilken partner du vill ta bort:", "Ta bort partner",
         JOptionPane.QUESTION_MESSAGE,
@@ -453,20 +533,39 @@ try {
         partnerNamnLista[0]
     );
 
+    //Om använder valde ett namn i rutan.
     if (valtPartner != null) {
-        for (HashMap<String, String> p : partnerLista) {
+        
+        //Då körs denna for-each loop som går igenom partnerlista och hämtar namnet.
+        for (HashMap<String, String> p: partnerLista) {
             String namn = p.get("namn");
+            
+            //namnet är exakt lika med valtPartner-namnet.
             if (namn.equals(valtPartner)) {
+                
+                //Då kommer vi ta bort partnern genom denna sql-fråga.
                 String deleteSql = "DELETE FROM partner WHERE pid = " + partnerId;
+                
+                //Här körs sql-frågan.
                 idb.delete(deleteSql);
+                
+                //Detta meddelande syns ifall borttagningen gick bra.
                 JOptionPane.showMessageDialog(this, "Partnern togs bort.");
+                
+                //Denna kod uppdaterar tabellen med den nya datan.
                 fyllPartnerITabell();
+                
+                //Avslutar loopen.
                 break;
             }
         }
     }
-} catch (InfException e) {
-    JOptionPane.showMessageDialog(this, "Fel vid borttagning av partner: " + e.getMessage());
+    
+  //Vid fel fångas det här.
+} catch (InfException ettFel) {
+    
+    //Då skrivs detta felmeddelande ut.
+    JOptionPane.showMessageDialog(this, "Fel vid borttagning av partner: " + ettFel.getMessage());
 }
     }//GEN-LAST:event_btnTaBortActionPerformed
 
@@ -476,14 +575,14 @@ try {
     private javax.swing.JButton btnSpara;
     private javax.swing.JButton btnTaBort;
     private javax.swing.JButton btnTillbakaAdmin;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabelAdress;
+    private javax.swing.JLabel jLabelBranch;
+    private javax.swing.JLabel jLabelKontaktEpost;
+    private javax.swing.JLabel jLabelKontaktperson;
+    private javax.swing.JLabel jLabelNamn;
+    private javax.swing.JLabel jLabelPartner;
+    private javax.swing.JLabel jLabelTelefon;
+    private javax.swing.JScrollPane jScrollPanePartner;
     private javax.swing.JTable jTablePartner;
     private javax.swing.JTextField txtAdress;
     private javax.swing.JTextField txtBranch;
