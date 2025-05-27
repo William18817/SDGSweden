@@ -266,7 +266,7 @@ private void sattHandCursorPaLabel(javax.swing.JLabel label) {
         LbLarDigMer.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         LbLarDigMer.setText("Tryck på ett av de Globala Målen för att lära dig mer:");
 
-        LbTillGlobalaMalen.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        LbTillGlobalaMalen.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         LbTillGlobalaMalen.setText("Eller lär dig mer här!");
         LbTillGlobalaMalen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
