@@ -1,10 +1,7 @@
 package sdgsweden.projekt;
 
-import java.awt.Container;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -16,6 +13,7 @@ import sdgsweden.Validering;
 /*
  * @author jonas
  */
+
 public class Projekt extends javax.swing.JPanel {
 
     private InfDB idb;
@@ -28,9 +26,7 @@ public class Projekt extends javax.swing.JPanel {
         this.aid = aid;
 
         initComponents();
-
         hamtaAvdelningOchVisa();
-
         hamtaAllaAktuellaProjekt();
     }
 
@@ -420,7 +416,7 @@ public class Projekt extends javax.swing.JPanel {
 
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        // TODO add your handling code here:
+        
         Startsida startsida = new Startsida(parent, idb, aid);
         parent.visaPanel(startsida, "startsida");
     }//GEN-LAST:event_btnTillbakaActionPerformed
@@ -449,7 +445,7 @@ public class Projekt extends javax.swing.JPanel {
             return;
         }
 
-        // Om bara ett datum är ifyllt är det OK – vi hanterar det i SQL-frågan
+        // Om bara ett datum är ifyllt är det OK – hanteras i SQL-frågan
         // Om båda är tomma – hämta alla projekt (inga datumfilter)
         // Kör hämtningen
         hamtaAllaAktuellaProjekt();
@@ -466,6 +462,7 @@ public class Projekt extends javax.swing.JPanel {
     }//GEN-LAST:event_StatusMenuActionPerformed
 
     private void visaPartnerInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaPartnerInfoButtonActionPerformed
+        // Metod för att visa info om partners
         try {
             int radIndex = InfoProjectTable.getSelectedRow();
             if (radIndex == -1) {
@@ -527,6 +524,7 @@ public class Projekt extends javax.swing.JPanel {
     }//GEN-LAST:event_visaPartnerInfoButtonActionPerformed
 
     private void visaLandInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaLandInfoButtonActionPerformed
+        // Metod för att visa info om ett Land
         try {
             int radIndex = InfoProjectTable.getSelectedRow();
             if (radIndex == -1) {
@@ -571,6 +569,7 @@ public class Projekt extends javax.swing.JPanel {
     }//GEN-LAST:event_visaLandInfoButtonActionPerformed
 
     private void visaProjektchefButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaProjektchefButtonActionPerformed
+        // Metod för att visa info om en projektchef till det projekt man väljer i JTable
         try {
             int rad = InfoProjectTable.getSelectedRow();
             if (rad == -1) {

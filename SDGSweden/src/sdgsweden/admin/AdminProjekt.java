@@ -18,15 +18,14 @@ public class AdminProjekt extends javax.swing.JPanel {
 
     private InfDB idb;
     private JPanel projektPanel;
-    private boolean redigering = false;  // flagga: false = lägg till, true = redigera
     private int pid;
 
+    // Konstruktor för AdminProjekt 
     public AdminProjekt(InfDB idb, JPanel projektPanel) {
 
         this.idb = idb;
         this.projektPanel = projektPanel;
         initComponents();
-        redigering = false;
         try {
             fyllProjektchefComboBox();
             fyllLandComboBox();
@@ -292,6 +291,7 @@ public class AdminProjekt extends javax.swing.JPanel {
 
     public void fyllProjektTabell() {
         try {
+            // SQL fråga för att hämta data om projekt 
             String sql = "SELECT "
                     + "p.pid, "
                     + "p.projektnamn, "
@@ -313,6 +313,7 @@ public class AdminProjekt extends javax.swing.JPanel {
             DefaultTableModel modell = (DefaultTableModel) jTableProjekt.getModel();
             modell.setRowCount(0); // Rensa tabellen först
 
+            // For-loop för att trycka ut den hämtade datan i JTable
             for (HashMap<String, String> projekt : projektLista) {
                 modell.addRow(new Object[]{
                     projekt.get("pid"),
@@ -334,6 +335,7 @@ public class AdminProjekt extends javax.swing.JPanel {
     }
 
     private void lasInProjektData(int pid) {
+        // Metod för att fylla alla fält/boxar med data beroende på vilket projekt som vill redigeras (valt pid)
         try {
             this.pid = pid;
             // Fyll comboboxar först
@@ -353,7 +355,7 @@ public class AdminProjekt extends javax.swing.JPanel {
                 prioComboBox.setSelectedItem(projekt.get("prioritet"));
                 beskrivningText.setText(projekt.get("beskrivning"));
 
-                // === Projektchef ===
+                // Projektchef
                 String projektchefId = projekt.get("projektchef");
                 if (projektchefId != null && !projektchefId.isEmpty()) {
                     String chefSql = "SELECT fornamn, efternamn FROM anstalld WHERE aid = " + projektchefId;
@@ -371,7 +373,7 @@ public class AdminProjekt extends javax.swing.JPanel {
                     }
                 }
 
-                // === Land ===
+                //  Land 
                 String landId = projekt.get("land");
                 if (landId != null && !landId.isEmpty()) {
                     String landSql = "SELECT namn FROM land WHERE lid = " + landId;
@@ -399,7 +401,7 @@ public class AdminProjekt extends javax.swing.JPanel {
     }
 
     private void fyllProjektchefComboBox() throws InfException {
-
+        // metod för att fylla data i ComboBox
         projektchefComboBox.removeAllItems();
         String sql = "SELECT aid, fornamn, efternamn FROM anstalld ORDER BY efternamn, fornamn";
         ArrayList<HashMap<String, String>> anstallda = idb.fetchRows(sql);
@@ -412,9 +414,11 @@ public class AdminProjekt extends javax.swing.JPanel {
     }
 
     private void fyllLandComboBox() throws InfException {
+        // metod för att fylla data i ComboBox
 
         landComboBox.removeAllItems();
         ArrayList<HashMap<String, String>> lander = idb.fetchRows("SELECT namn FROM land");
+        
         for (HashMap<String, String> l : lander) {
             landComboBox.addItem(l.get("namn"));
         }

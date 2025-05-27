@@ -384,6 +384,7 @@ public class ProjektChef extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public void hamtaAllaAktuellaProjekt() {
+        // Metod för att hämta och visa all, relevant, info om ett projekt
         try {
             String valdStatus = StatusMenu.getSelectedItem().toString();
             String datumFran = DateOne.getText().trim();
@@ -491,6 +492,7 @@ public class ProjektChef extends javax.swing.JPanel {
     }
 
     public boolean arProjektchef(String aid) {
+        // metod för att kolla ifall en anställd är projektchef eller inte.
         try {
             String sql = "SELECT pid FROM projekt WHERE projektchef = " + aid;
             String resultat = idb.fetchSingle(sql);
@@ -501,8 +503,8 @@ public class ProjektChef extends javax.swing.JPanel {
         }
     }
 
-
     private void AndraUppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AndraUppgifterActionPerformed
+        // Metod för att ändra ett projekt som den inloggade är projektchef över. 
         int radIndex = InfoProjectTable.getSelectedRow();
 
         if (radIndex == -1) {
@@ -542,7 +544,7 @@ public class ProjektChef extends javax.swing.JPanel {
 
     private void StatistikKostnadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatistikKostnadActionPerformed
         try {
-            // Hämta kostnader för projekt där du är projektchef
+            // Hämta kostnader för projekt där den inloggade är projektchef över.
             String sql = "SELECT kostnad FROM projekt WHERE projektchef = " + aid;
             ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sql);
 
@@ -578,12 +580,13 @@ public class ProjektChef extends javax.swing.JPanel {
     }//GEN-LAST:event_StatistikKostnadActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        // TODO add your handling code here:
+        
         Startsida startsida = new Startsida(parent, idb, aid);
         parent.visaPanel(startsida, "startsida");
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
     private void addPartnerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPartnerButtonActionPerformed
+        // Metod för att lägga till en Partner till ett valt projekt i jTable
         try {
             int radIndex = InfoProjectTable.getSelectedRow();
             if (radIndex == -1) {
@@ -654,6 +657,7 @@ public class ProjektChef extends javax.swing.JPanel {
     }//GEN-LAST:event_addPartnerButtonActionPerformed
 
     private void taBortPartnerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taBortPartnerButtonActionPerformed
+        // Metod för att ta bort en partner från ett valt projekt i JTable
         try {
             int rad = InfoProjectTable.getSelectedRow();
             if (rad == -1) {
@@ -718,6 +722,7 @@ public class ProjektChef extends javax.swing.JPanel {
     }//GEN-LAST:event_taBortPartnerButtonActionPerformed
 
     private void addHandlaggareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHandlaggareButtonActionPerformed
+        // Metod för att lägga till en handläggare till ett valt projekt i JTable
         try {
             int radIndex = InfoProjectTable.getSelectedRow();
             if (radIndex == -1) {
@@ -791,6 +796,7 @@ public class ProjektChef extends javax.swing.JPanel {
     }//GEN-LAST:event_addHandlaggareButtonActionPerformed
 
     private void taBortHandlaggareButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taBortHandlaggareButtonActionPerformed
+        // Metod för att ta bort en handläggare för ett valt projekt i JTable
         try {
             int radIndex = InfoProjectTable.getSelectedRow();
             if (radIndex == -1) {
@@ -894,6 +900,7 @@ public class ProjektChef extends javax.swing.JPanel {
     }//GEN-LAST:event_StatusMenuActionPerformed
 
     private void visaPartnerInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaPartnerInfoButtonActionPerformed
+        // Metod för att visa info om en partner
         try {
             int radIndex = InfoProjectTable.getSelectedRow();
             if (radIndex == -1) {
@@ -955,6 +962,7 @@ public class ProjektChef extends javax.swing.JPanel {
     }//GEN-LAST:event_visaPartnerInfoButtonActionPerformed
 
     private void visaLandInfoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaLandInfoButtonActionPerformed
+        // Metod för att visa info om ett land 
         try {
             int radIndex = InfoProjectTable.getSelectedRow();
             if (radIndex == -1) {
@@ -999,6 +1007,7 @@ public class ProjektChef extends javax.swing.JPanel {
     }//GEN-LAST:event_visaLandInfoButtonActionPerformed
 
     private void visaProjektchefButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaProjektchefButtonActionPerformed
+        // Metod för att visa info om aktuell projektchef för valt projekt i JTable
         try {
             int rad = InfoProjectTable.getSelectedRow();
             if (rad == -1) {

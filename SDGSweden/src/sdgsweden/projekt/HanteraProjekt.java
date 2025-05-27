@@ -12,6 +12,7 @@ import sdgsweden.Validering;
 /*
  * @author jonas
  */
+
 public class HanteraProjekt extends javax.swing.JPanel {
 
     private InfDB idb;
@@ -19,7 +20,7 @@ public class HanteraProjekt extends javax.swing.JPanel {
     private boolean redigering = false;  // flagga: false = lägg till, true = redigera
     private int pid;
 
-    // Konstruktor för att redigera ett projekt
+    // Konstruktor för att redigera ett projekt (går att skapa en till konstruktor om projektchefen skulle få lägga till helt nya projekt)
     public HanteraProjekt(InfDB idb, JPanel projektPanel, int pid) {
 
         this.idb = idb;
@@ -291,7 +292,6 @@ public class HanteraProjekt extends javax.swing.JPanel {
             landComboBox.addItem(l.get("namn"));
         }
     }
-
 
     private void avbrytButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avbrytButtonActionPerformed
 
