@@ -36,9 +36,10 @@ public class AdminLand extends javax.swing.JPanel {
         
         //Den här raden lägger till en "Lyssnare" till tabellen "Avdelningar".
         //Varje gång användaren markerar en avdelnings så körs koden inuti "e -> {...}"
+        //Det som händer är att så fort man klickar sig in på sidan så syns information om Länder.
         jTableLand.getSelectionModel().addListSelectionListener(e -> {
             
-            //Detta är en if-sats som kontrollerar att koden bara körs när användaren har avslutat sin radmarkering.
+            //Detta är en if-sats som kontrollerar att koden bara körs när användaren har avslutat sin radmarkering (Alltså när man klickat på landet och släppt musknappen).
             if (!e.getValueIsAdjusting()) {
                 
                 //Här hämtas radnummer för den rad som användaren klickat på.
@@ -70,16 +71,16 @@ public class AdminLand extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jLabelLand = new javax.swing.JLabel();
         btnTillbakaAdmin = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPanelLand = new javax.swing.JScrollPane();
         jTableLand = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jLabelNamn = new javax.swing.JLabel();
+        jLabelSprak = new javax.swing.JLabel();
+        jLabelValuta = new javax.swing.JLabel();
+        jLabelTidszon = new javax.swing.JLabel();
+        jLabelPolitiskStruktur = new javax.swing.JLabel();
+        jLabelEkonomi = new javax.swing.JLabel();
         txtNamn = new javax.swing.JTextField();
         txtSpråk = new javax.swing.JTextField();
         txtValuta = new javax.swing.JTextField();
@@ -90,7 +91,7 @@ public class AdminLand extends javax.swing.JPanel {
         btnLaggTill = new javax.swing.JButton();
         btnTaBort = new javax.swing.JButton();
 
-        jLabel1.setText("Land");
+        jLabelLand.setText("Land");
 
         btnTillbakaAdmin.setText("Tillbaka");
         btnTillbakaAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -100,20 +101,20 @@ public class AdminLand extends javax.swing.JPanel {
         });
 
         jTableLand.setColumnSelectionAllowed(true);
-        jScrollPane1.setViewportView(jTableLand);
+        jScrollPanelLand.setViewportView(jTableLand);
         jTableLand.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        jLabel2.setText("Namn");
+        jLabelNamn.setText("Namn");
 
-        jLabel3.setText("Språk");
+        jLabelSprak.setText("Språk");
 
-        jLabel4.setText("Valuta");
+        jLabelValuta.setText("Valuta");
 
-        jLabel5.setText("Tidszon");
+        jLabelTidszon.setText("Tidszon");
 
-        jLabel6.setText("Politisk struktur");
+        jLabelPolitiskStruktur.setText("Politisk struktur");
 
-        jLabel7.setText("Ekonomi");
+        jLabelEkonomi.setText("Ekonomi");
 
         txtNamn.setPreferredSize(new java.awt.Dimension(180, 24));
 
@@ -156,17 +157,17 @@ public class AdminLand extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPanelLand, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
+                                    .addComponent(jLabelTidszon)
+                                    .addComponent(jLabelValuta)
+                                    .addComponent(jLabelSprak)
+                                    .addComponent(jLabelNamn)
+                                    .addComponent(jLabelPolitiskStruktur)
+                                    .addComponent(jLabelEkonomi))
                                 .addGap(89, 89, 89)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -188,41 +189,41 @@ public class AdminLand extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jLabelLand)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel1)
+                .addComponent(jLabelLand)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPanelLand, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
+                            .addComponent(jLabelNamn)
                             .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtSpråk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabelSprak))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtValuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabelValuta))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtTidszon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabelTidszon))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtPolitiskStruktur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabelPolitiskStruktur))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtEkonomi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))))
+                            .addComponent(jLabelEkonomi))))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSpara)
@@ -236,40 +237,72 @@ public class AdminLand extends javax.swing.JPanel {
 
     private void fyllLandITabell()
     {
+    
+    //Detta är början på en try-catch sats där all kod mellan try och catch nu kommer testköras.
     try {
+        
+            //Detta är en vanlig sql-fråga där vi vill hämta all information från land.
             String sqlFraga = "SELECT * FROM land";
+            
+            //Detta är olika importer i form av arraylist och hashmaps.
+            //Här körs även frågan.
             ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sqlFraga);
 
+            //Här skapas en array med namn "kolumner" som innehåller informationen nedan.
             String[] kolumner = {"lid", "namn", "sprak", "valuta", "tidszon", "politisk_struktur", "ekonomi"};
+            
+            //Här skapas en tom modell som sedan kommer att fyllas i med data.
             DefaultTableModel modell = new DefaultTableModel();
 
-            for (String kolumn : kolumner) {
+            //Detta är en for-each loop som går igenom varje kolumn i arrayen "kolumner" sedan läggs en kolumn till genom "add".
+            for (String kolumn: kolumner) {
                 modell.addColumn(kolumn);
             }
 
-            for (HashMap<String, String> rad : resultat) {
+            //Detta är en for-each loop som går igenom varje rad som hämtats från databasen.
+            for (HashMap<String, String> rad: resultat) {
+                
+                //Här skapas en array med samma längd som antalet kolumner som finns.
                 String[] radensVarden = new String[kolumner.length];
+                
+                //Detta är en for-loop som går igenom varje kolumn och hämtar värdet från hashmapen.
                 for (int i = 0; i < kolumner.length; i++) {
+                    
+                    //Här hämtar vi värdet på en specifik rad.
                     radensVarden[i] = rad.get(kolumner[i]);
                 }
+                
+                //Här lägger vi till den färdiga raden med dess värden i tabellen.
                 modell.addRow(radensVarden);
             }
 
+            //Detta görs att datan kommer visas i GUI-tabellen.
             jTableLand.setModel(modell);
+            
+          //Här är slutet på try-catch satsen och här fångas det eventuella problem.
         } catch (Exception ettFel) {
+            
+            //Detta är det felmeddelandet som visas ifall ett fel fångas i "catch".
             JOptionPane.showMessageDialog(this, "Kunde inte visa land.");
+            
+            //Detta gör att felmeddelandet skrivs ut i terminalen.
             ettFel.printStackTrace();
         }
     }
 
     private void btnTillbakaAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaAdminActionPerformed
+       
+        //Här skapas ett nytt objekt av "AdminPanel" i form av att ett nytt GUI-panel_fönster dyker upp.
+        //Den får med sig tre saker från konstruktorn i form av "Parent (MainFrame), idb (databaskopplingen) och aid (användarens id).
         AdminPanel adminPanel = new AdminPanel (parent, idb, aid);
+        
+        //Detta är ett metodanrop vars syfte är att visa "adminPanel".
         parent.visaPanel(adminPanel, "adminPanel");
     }//GEN-LAST:event_btnTillbakaAdminActionPerformed
 
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
         
-        // Läs in alla värden från textfälten
+        //Här blir alla fält inlästa och "trim()" kontrollerar och tar bort mellanslag i kodraden.
         String namn = txtNamn.getText().trim();
         String sprak = txtSpråk.getText().trim();
         String valuta = txtValuta.getText().trim();
@@ -277,6 +310,9 @@ public class AdminLand extends javax.swing.JPanel {
         String politiskStruktur = txtPolitiskStruktur.getText().trim();
         String ekonomi = txtEkonomi.getText().trim();
         
+        //Dessa "if;s" nedan är en validering där det ställs olika krav på de attibut som står angivna.
+        //Exempelvis om man anger fel format på e-post så får man felmeddelandet "Ogitlig E-postadress".
+        //Allt detta är sedan kopplat till en egen valideringsklass som importers (Se högst upp).
         if (Validering.isEmpty(txtNamn.getText()))
         {
            JOptionPane.showMessageDialog(this, "Namn får inte vara tomt.");
@@ -308,29 +344,33 @@ public class AdminLand extends javax.swing.JPanel {
             return;
         }
         
-        // Kolla att en rad är vald i tabellen
-int valdRad = jTableLand.getSelectedRow();
-
-if (valdRad == -1) {
+        //Detta hämtar den rad som är markerad i tabellen "jTableAvdelningar".
+        int valdRad = jTableLand.getSelectedRow();
+        
+        //Om inget är valt, alltså om -1 returneras...
+        if (valdRad == -1) {
+            
+            //... så visas detta meddelande.
+            JOptionPane.showMessageDialog(this, "Du måste klicka på en rad i tabellen först.");
+            return;
+        }
+        
+        //Början på en try-catch sats.
+        try {
     
-    JOptionPane.showMessageDialog(this, "Du måste klicka på en rad i tabellen först.");
-    return;
-}
-
-try {
-    // Hämta ID från vald rad
+    //Här hämtar vi lid från kolumn 0 på vald rad.
     String lid = jTableLand.getValueAt(valdRad, 0).toString();
 
-    // Skapa SQL-fråga för att uppdatera
+    //Här skapas en sql-fråga (sqlFraga) som uppdaterar informationen i databasen för specifikt valt lid.
     String sqlFraga = "UPDATE land SET namn = '" + namn + "', sprak = '" + sprak + "', valuta = '" + valuta + "', tidszon = '" + tidszon + "', politisk_struktur = '" + politiskStruktur + "', ekonomi = '" + ekonomi + "' WHERE lid = " + lid;
 
-    // Kör SQL-frågan
+    //Här körs frågan så att uppdateringen implementeras i databasen.
     idb.update(sqlFraga);
 
-    // Visa meddelande
+    //Här visas ett meddelande om hur uppdateringen gick.
     JOptionPane.showMessageDialog(this, "Ändring sparad!");
 
-    // Töm textfälten
+    //Dessa kodrader tömmer varje textfält efter att ädnringen har skett för att underlätta inför nästa gång man ska skriva in något.
     txtNamn.setText("");
     txtSpråk.setText("");
     txtValuta.setText("");
@@ -338,18 +378,26 @@ try {
     txtPolitiskStruktur.setText("");
     txtEkonomi.setText("");
 
-    // Uppdatera tabellen
+    //Här sker ett internt metodanrop för att hämta den nya datan.
     fyllLandITabell();
 
-} catch (Exception e) {
-    JOptionPane.showMessageDialog(this, "Något gick fel: " + e.getMessage());
-    e.printStackTrace();
+  //Detta är slutet på try-catch satsen. Om något går fel så fångar catch det här.
+} catch (Exception ettFel) {
+    
+    //Följande meddelande skrivs ut vid fel.
+    JOptionPane.showMessageDialog(this, "Något gick fel: " + ettFel.getMessage());
+    
+    //printStackTrace skriver ut felet i terminalen för att kunna felsöka.
+    ettFel.printStackTrace();
 }
     }//GEN-LAST:event_btnSparaActionPerformed
 
     private void btnLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillActionPerformed
+        
+        //Början på en try-catch sats. All kod mellan try och catch kommer nu att testköras.
         try {
-    // Hämta alla värden från formuläret
+            
+    //Här hämtas alla värden från textfälten där "trim()" tar bort mellanslag i varje kodrad.
     String namn = txtNamn.getText().trim();
     String sprak = txtSpråk.getText().trim();
     String valuta = txtValuta.getText().trim();
@@ -357,7 +405,9 @@ try {
     String politiskStruktur = txtPolitiskStruktur.getText().trim();
     String ekonomi = txtEkonomi.getText().trim();
 
-    // Validering
+    //Dessa "if;s" nedan är en validering där det ställs olika krav på de attibut som står angivna.
+    //Exempelvis om man inte anger namn så får man felmeddelandet "Namn får inte vara tomt".
+    //Allt detta är sedan kopplat till en egen valideringsklass som importers (Se högst upp).
     if (Validering.isEmpty(txtNamn.getText())) {
         JOptionPane.showMessageDialog(this, "Namn får inte vara tomt.");
         return;
@@ -383,23 +433,27 @@ try {
         return;
     }
 
-    // Hämta nästa lediga lid
+    //Här hämtar vi den högsta id-numret som existerar i databasen för att kunna veta vilket id som det nya landet ska få.
     String sqlNextId = "SELECT MAX(lid) FROM land";
     String nextIdStr = idb.fetchSingle(sqlNextId);
-    int nextLid = 1; // starta på 1
+    
+    //Vi börjar alltid på 1.
+    //Om det redan finns länder med det id:t så ökar vi med + 1 tills vi hittar ett tomt.
+    int nextLid = 1;
     if (nextIdStr != null && !nextIdStr.isEmpty()) {
         nextLid = Integer.parseInt(nextIdStr) + 1;
     }
 
-    // Skapa SQL-fråga
-    String sql = "INSERT INTO land (lid, namn, sprak, valuta, tidszon, politisk_struktur, ekonomi) " + "VALUES (" + nextLid + ", '" + namn + "', '" + sprak + "', '" + valuta + "', '" + tidszon + "', '" + politiskStruktur + "', '" + ekonomi + "')";
+    //Här skapar vi en sql-fråga som lägger till ett nytt land och dess värden i databasen genom INSERT INTO land.
+    String sqlFraga = "INSERT INTO land (lid, namn, sprak, valuta, tidszon, politisk_struktur, ekonomi) " + "VALUES (" + nextLid + ", '" + namn + "', '" + sprak + "', '" + valuta + "', '" + tidszon + "', '" + politiskStruktur + "', '" + ekonomi + "')";
 
-    // Kör INSERT
-    idb.insert(sql);
+    //Här kör vi sql-frågan.
+    idb.insert(sqlFraga);
 
+    //Detta är ett meddelande som syns ifall land har lagts till i databasen.
     JOptionPane.showMessageDialog(this, "Land har lagts till i systemet!");
 
-    // Rensa fält
+    //Dessa kodrader tömmer varje textfält efter att ädnringen har skett för att underlätta inför nästa gång man ska skriva in något.
     txtNamn.setText("");
     txtSpråk.setText("");
     txtValuta.setText("");
@@ -407,45 +461,66 @@ try {
     txtPolitiskStruktur.setText("");
     txtEkonomi.setText("");
     
-        } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Fel: " + e.getMessage());
-        e.printStackTrace();
+          //Detta är slutet på try-catch satsen och här fångas eventuella fel.
+        } catch (Exception ettFel) {
+        
+        //Detta meddelande skrivs ut ifall ett problem uppstått.
+        JOptionPane.showMessageDialog(this, "Fel: " + ettFel.getMessage());
+        
+        //Detta skriver även ut det i terminalen.
+        ettFel.printStackTrace();
         }
+        
+        //Denna raden körs oavsett hur det går och dess uppgift är att fylla vår tabell i GUI med den nya datan.
         fyllLandITabell();
     }//GEN-LAST:event_btnLaggTillActionPerformed
 
     private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
+        
+        //Början på en try-catch sats och koden mellan dessa kommer nu testköras.
         try
         {
-    // Detta visar en popup-ruta där man får ange land-ID
+            
+    //Här dyker en liten ruta upp efter man tryck på knappen "Ta bort" där man får välja vilket lid man vill ta bort.
     String landId = JOptionPane.showInputDialog(this, "Ange land-ID (lid) för att ta bort:");
 
-    // Om man inte fyller i rutan med ett giltigt lid
+    //Denna rad skrevs ifall användaren lämnar raden tom.
     if (landId == null || landId.isEmpty())
     {
+        //Då syns detta felmeddelande.
         JOptionPane.showMessageDialog(this, "Fyll i ett land-ID först.");
         return;
     }
 
-    // Hämta specifik information om landet
-    String sql = "SELECT namn FROM land WHERE lid = " + landId;
+    //Här skapas en sql-fråga som hämtar namnet på landet med det angivna id:t.
+    String sqlFraga = "SELECT namn FROM land WHERE lid = " + landId;
 
-    // Kör SQL-frågan
-    ArrayList<HashMap<String, String>> landLista = idb.fetchRows(sql);
+    //Här körs sedan frågan.
+    ArrayList<HashMap<String, String>> landLista = idb.fetchRows(sqlFraga);
 
-    // Om inget land hittas
+    //Om inget land hittas.
     if (landLista == null || landLista.isEmpty()) {
+        
+        //Då skrivs detta felmeddelande ut.
         JOptionPane.showMessageDialog(this, "Det finns inget land med detta ID.");
         return;
     }
 
-    // Lista namn (även om det bara är ett)
+    //Här skapas en array med namnet på specifikt land.
     String[] landNamnLista = new String[landLista.size()];
+    
+    //En for-loop körs.
     for (int i = 0; i < landLista.size(); i++) {
+        
+        //Här hämtas namnet ut.
         landNamnLista[i] = landLista.get(i).get("namn");
     }
 
-    // Dialog för att bekräfta borttagning
+    //Denna koden skapar en pop-up ruta som fungerar som enn bekräftelse
+    //Där användaren får bekräfta borttagningen innan den sker.
+    //Detta "JOptionPane.QUESTION_MESSAGE" är vilken typ av ruta som kommer upp.
+    //landNamnLista är en lista med namn.
+    //landNamnLista[0] är ett förvalt värde i listan.
     String valtLand = (String) JOptionPane.showInputDialog(
         this, "Bekräfta vilket land du vill ta bort:", "Ta bort land",
         JOptionPane.QUESTION_MESSAGE,
@@ -454,20 +529,41 @@ try {
         landNamnLista[0]
     );
 
+    //Denna "if" besrkiver att om användaren valde ett land och tryckte på ok.
     if (valtLand != null) {
-        for (HashMap<String, String> l : landLista) {
+        
+        //Här körs sen en for-each loop som går igenom landlistan.
+        for (HashMap<String, String> l: landLista) {
+            
+            //Här hämtas namnet.
             String namn = l.get("namn");
+            
+            //OM namn är exakt samma som det valda landets namn.
             if (namn.equals(valtLand)) {
+                
+                //Då tas landet bort från databasen.
                 String deleteSql = "DELETE FROM land WHERE lid = " + landId;
+                
+                //Här körs frågan.
                 idb.delete(deleteSql);
+                
+                //Här skrivs meddelandet ut om borttagningen gick bra.
                 JOptionPane.showMessageDialog(this, "Landet togs bort.");
+                
+                //Denna är viktig då den uppdaterar databasen med den nya datan UTAN det borttagna landet.
                 fyllLandITabell();
+                
+                //Här avslutas loopen och allt är klart.
                 break;
             }
         }
     }
-} catch (InfException e) {
-    JOptionPane.showMessageDialog(this, "Fel vid borttagning av land: " + e.getMessage());
+    
+  //Här fångas eventuella fel i "catch".
+} catch (InfException ettFel) {
+    
+    //Vid fel så skrivs sedan detta felmeddelande ut.
+    JOptionPane.showMessageDialog(this, "Fel vid borttagning av land: " + ettFel.getMessage());
 }
     }//GEN-LAST:event_btnTaBortActionPerformed
 
@@ -477,14 +573,14 @@ try {
     private javax.swing.JButton btnSpara;
     private javax.swing.JButton btnTaBort;
     private javax.swing.JButton btnTillbakaAdmin;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabelEkonomi;
+    private javax.swing.JLabel jLabelLand;
+    private javax.swing.JLabel jLabelNamn;
+    private javax.swing.JLabel jLabelPolitiskStruktur;
+    private javax.swing.JLabel jLabelSprak;
+    private javax.swing.JLabel jLabelTidszon;
+    private javax.swing.JLabel jLabelValuta;
+    private javax.swing.JScrollPane jScrollPanelLand;
     private javax.swing.JTable jTableLand;
     private javax.swing.JTextField txtEkonomi;
     private javax.swing.JTextField txtNamn;
