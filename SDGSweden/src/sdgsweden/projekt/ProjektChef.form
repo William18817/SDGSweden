@@ -3,6 +3,9 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
     <Property name="toolTipText" type="java.lang.String" value=""/>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1300, 600]"/>
+    </Property>
   </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -285,6 +288,11 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanelCenter">
+      <Properties>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[1000, 400]"/>
+        </Property>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
       <SubComponents>
@@ -396,11 +404,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="DeleteButton" pref="140" max="32767" attributes="0"/>
-                      <Component id="AndraUppgifter" alignment="0" max="32767" attributes="0"/>
-                      <Component id="addProjektButton" alignment="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="AndraUppgifter" min="-2" pref="140" max="-2" attributes="0"/>
                   <EmptySpace pref="267" max="32767" attributes="0"/>
                   <Component id="StatistikKostnad" min="-2" pref="140" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
@@ -433,13 +437,8 @@
                       <Component id="taBortPartnerButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="taBortHandlaggareButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                  <Component id="addProjektButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnTillbaka" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="DeleteButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                  <Component id="btnTillbaka" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="17" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -533,28 +532,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AndraUppgifterActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="addProjektButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="L&#xe4;gg till Projekt"/>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[120, 25]"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addProjektButtonActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="DeleteButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ta bort Projekt"/>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[120, 25]"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

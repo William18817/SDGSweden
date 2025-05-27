@@ -1,8 +1,6 @@
 package sdgsweden.projekt;
 
 import java.awt.Container;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
@@ -20,24 +18,6 @@ public class HanteraProjekt extends javax.swing.JPanel {
     private JPanel projektPanel;
     private boolean redigering = false;  // flagga: false = lägg till, true = redigera
     private int pid;
-
-    // Konstruktor för att lägga till nytt projekt.
-    public HanteraProjekt(InfDB idb, JPanel projektPanel) {
-
-        this.idb = idb;
-        this.projektPanel = projektPanel;
-        initComponents();
-        redigering = false;
-        hanteraProjektButton.setText("Lägg till");
-        try {
-            fyllProjektchefComboBox();
-            fyllLandComboBox();
-
-        } catch (InfException e) {
-            JOptionPane.showMessageDialog(this, "Kunde inte läsa in data för chef, land & avdelning: " + e.getMessage());
-        }
-
-    }
 
     // Konstruktor för att redigera ett projekt
     public HanteraProjekt(InfDB idb, JPanel projektPanel, int pid) {
