@@ -6,7 +6,7 @@ import oru.inf.InfException;
 import sdgsweden.admin.AdminPanel;
 import sdgsweden.projekt.ProjektChef;
 import sdgsweden.projekt.Projekt;
-import sdgsweden.Personal;
+
 
 /**
  * @author User
