@@ -8,7 +8,6 @@ import sdgsweden.projekt.ProjektChef;
 import sdgsweden.projekt.Projekt;
 import sdgsweden.Personal;
 
-
 /**
  * @author User
  */
@@ -365,6 +364,17 @@ public class Startsida extends javax.swing.JPanel {
         }
     }
 
+    public boolean arAdmin(String aid) {
+        try {
+            String sql = "SELECT aid FROM admin WHERE aid = " + aid;
+            String resultat = idb.fetchSingle(sql);
+            return resultat != null; // true = personen är admin
+        } catch (InfException e) {
+            System.out.println("Fel i arAdmin(): " + e.getMessage());
+            return false;
+        }
+    }
+
     private void btnProjektChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjektChefActionPerformed
         if (arProjektchef(aid)) {
             ProjektChef projektPanel = new ProjektChef(parent, idb, aid);
@@ -382,8 +392,12 @@ public class Startsida extends javax.swing.JPanel {
     }//GEN-LAST:event_btnMittKontoActionPerformed
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
-        AdminPanel adminPanel = new AdminPanel(parent, idb, aid);
-        parent.visaPanel(adminPanel, "adminpanel");
+        if (arAdmin(aid)) {
+            AdminPanel adminPanel = new AdminPanel(parent, idb, aid);
+            parent.visaPanel(adminPanel, "admin");
+        } else {
+            JOptionPane.showMessageDialog(null, "Du måste vara administratör för att öppna detta.");
+        }
     }//GEN-LAST:event_btnAdminActionPerformed
 
     //Vi behöver hjälp att ta bort koden för private void btnLoggaUtActionPerformed
@@ -403,8 +417,8 @@ public class Startsida extends javax.swing.JPanel {
     }//GEN-LAST:event_btnProjektAllaActionPerformed
 
     private void btnPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPersonalActionPerformed
-       Personal personalPanel = new Personal(parent, idb, aid);
-       parent.visaPanel(personalPanel, "personal");
+        Personal personalPanel = new Personal(parent, idb, aid);
+        parent.visaPanel(personalPanel, "personal");
     }//GEN-LAST:event_btnPersonalActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
