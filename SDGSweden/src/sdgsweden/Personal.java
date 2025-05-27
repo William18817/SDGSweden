@@ -25,7 +25,7 @@ public class Personal extends javax.swing.JPanel {
         this.aid = aid;
         initComponents();
         fyllAvdelningar();
-        fyllPersonalTabell("", "", "Alla");
+        sokPersonal();
     }
 
     public void fyllPersonalTabell(String fornamnSok, String epostSok, String valdAvdelning) {
@@ -55,7 +55,7 @@ public class Personal extends javax.swing.JPanel {
                     } else {
                     sqlFraga.append(" AND ");
                 }
-                sqlFraga.append(fornamnFilter);
+                sqlFraga.append(epostFilter);
                 harVillkor = true;
             }
 
@@ -89,6 +89,13 @@ public class Personal extends javax.swing.JPanel {
         }
     }
     
+    private void sokPersonal(){
+        String namn = txtSokFornamn.getText();
+        String epost = txtSokEpost.getText();
+        String avd = (String) CbAvdelning.getSelectedItem();
+        fyllPersonalTabell (namn, epost, avd); 
+    }
+    
     private String fornamnFilter (String fornamnSok) {
         if (fornamnSok != null && !fornamnSok.trim().isEmpty()){
             return " LOWER(a.fornamn) LIKE '%" + fornamnSok.toLowerCase() + "%'";
@@ -98,7 +105,7 @@ public class Personal extends javax.swing.JPanel {
     
     private String epostFilter (String epostSok) {
         if (epostSok != null && !epostSok.trim().isEmpty()){
-            return " LOWER(a.fornamn) LIKE '%" + epostSok.toLowerCase() + "%'";
+            return " LOWER(a.epost) LIKE '%" + epostSok.toLowerCase() + "%'";
         }
         return "";
     }
@@ -133,6 +140,7 @@ public class Personal extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         CbAvdelning = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setLayout(null);
 
@@ -165,7 +173,7 @@ public class Personal extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tabelPersonal);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(20, 120, 790, 320);
+        jScrollPane1.setBounds(20, 120, 820, 320);
 
         txtSokFornamn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,23 +181,28 @@ public class Personal extends javax.swing.JPanel {
             }
         });
         add(txtSokFornamn);
-        txtSokFornamn.setBounds(510, 90, 120, 22);
+        txtSokFornamn.setBounds(480, 90, 120, 22);
 
         jLabel2.setText("Sök på förnamn:");
         add(jLabel2);
-        jLabel2.setBounds(510, 70, 120, 16);
+        jLabel2.setBounds(480, 70, 120, 16);
 
         txtSokEpost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSokEpostActionPerformed(evt);
             }
         });
+        txtSokEpost.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSokEpostKeyReleased(evt);
+            }
+        });
         add(txtSokEpost);
-        txtSokEpost.setBounds(680, 90, 100, 22);
+        txtSokEpost.setBounds(610, 90, 100, 22);
 
         jLabel3.setText("Sök på Epost:");
         add(jLabel3);
-        jLabel3.setBounds(680, 70, 110, 16);
+        jLabel3.setBounds(610, 70, 110, 16);
 
         CbAvdelning.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alla", "" }));
         CbAvdelning.addActionListener(new java.awt.event.ActionListener() {
@@ -202,7 +215,16 @@ public class Personal extends javax.swing.JPanel {
 
         jLabel4.setText("Filtrera efter avdelning:");
         add(jLabel4);
-        jLabel4.setBounds(20, 70, 130, 16);
+        jLabel4.setBounds(20, 70, 210, 16);
+
+        jButton1.setText("Rensa sökning");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1);
+        jButton1.setBounds(720, 90, 120, 23);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
@@ -212,15 +234,16 @@ public class Personal extends javax.swing.JPanel {
 
     private void txtSokFornamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSokFornamnActionPerformed
         String namn = txtSokFornamn.getText();
-
         String avd = (String) CbAvdelning.getSelectedItem();
-
-        fyllPersonalTabell(namn, "", avd);
+        sokPersonal();
 
     }//GEN-LAST:event_txtSokFornamnActionPerformed
 
     private void txtSokEpostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSokEpostActionPerformed
-        // TODO add your handling code here:
+        String namn = txtSokFornamn.getText();
+        String epost = txtSokEpost.getText();
+        String avd = (String) CbAvdelning.getSelectedItem();
+        sokPersonal();
     }//GEN-LAST:event_txtSokEpostActionPerformed
 
     private void CbAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbAvdelningActionPerformed
@@ -229,13 +252,25 @@ public class Personal extends javax.swing.JPanel {
             return;
         }
         String namn = txtSokFornamn.getText();
-        fyllPersonalTabell(namn, "", valdAvdelning);
+        sokPersonal();
     }//GEN-LAST:event_CbAvdelningActionPerformed
+
+    private void txtSokEpostKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSokEpostKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSokEpostKeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        txtSokFornamn.setText("");
+        txtSokEpost.setText("");
+        CbAvdelning.setSelectedItem("Alla");
+        sokPersonal();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CbAvdelning;
     private javax.swing.JButton btnTillbaka;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
