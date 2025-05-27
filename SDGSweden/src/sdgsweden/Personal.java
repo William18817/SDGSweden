@@ -25,11 +25,10 @@ public class Personal extends javax.swing.JPanel {
         this.aid = aid;
         initComponents();
         fyllAvdelningar();
-        fyllPersonalTabell("", "Alla");
-
+        fyllPersonalTabell("", "", "Alla");
     }
 
-    public void fyllPersonalTabell(String fornamnSok, String valdAvdelning) {
+    public void fyllPersonalTabell(String fornamnSok, String epostSok, String valdAvdelning) {
         try {
             StringBuilder sqlFraga = new StringBuilder(
                     "SELECT a.aid, a.fornamn, a.efternamn, a.epost, a.telefon "
@@ -38,11 +37,25 @@ public class Personal extends javax.swing.JPanel {
             );
 
             boolean harVillkor = false;
-
-            if (fornamnSok != null && !fornamnSok.trim().isEmpty()) {
-                sqlFraga.append(" WHERE LOWER(a.fornamn) LIKE '%")
-                        .append(fornamnSok.toLowerCase())
-                        .append("%'");
+            
+            String fornamnFilter = fornamnFilter(fornamnSok);
+            if (!fornamnFilter.isEmpty()){
+                if (harVillkor){
+                    sqlFraga.append(" WHERE ");
+                    }else{
+                    sqlFraga.append(" AND ");
+                }
+                sqlFraga.append(fornamnFilter);
+                harVillkor = true;
+            }
+            String epostFilter = epostFilter(epostSok);
+            if (!epostFilter.isEmpty()) {
+                if (!harVillkor) {
+                    sqlFraga.append(" WHERE ");
+                    } else {
+                    sqlFraga.append(" AND ");
+                }
+                sqlFraga.append(fornamnFilter);
                 harVillkor = true;
             }
 
@@ -75,6 +88,20 @@ public class Personal extends javax.swing.JPanel {
             Logger.getLogger(Personal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    private String fornamnFilter (String fornamnSok) {
+        if (fornamnSok != null && !fornamnSok.trim().isEmpty()){
+            return " LOWER(a.fornamn) LIKE '%" + fornamnSok.toLowerCase() + "%'";
+        }
+        return"";
+    }
+    
+    private String epostFilter (String epostSok) {
+        if (epostSok != null && !epostSok.trim().isEmpty()){
+            return " LOWER(a.fornamn) LIKE '%" + epostSok.toLowerCase() + "%'";
+        }
+        return "";
+    }
 
     private void fyllAvdelningar() {
         try {
@@ -102,7 +129,7 @@ public class Personal extends javax.swing.JPanel {
         tabelPersonal = new javax.swing.JTable();
         txtSokFornamn = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtSokEfternamn = new javax.swing.JTextField();
+        txtSokEpost = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         CbAvdelning = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -152,13 +179,13 @@ public class Personal extends javax.swing.JPanel {
         add(jLabel2);
         jLabel2.setBounds(510, 70, 120, 16);
 
-        txtSokEfternamn.addActionListener(new java.awt.event.ActionListener() {
+        txtSokEpost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSokEfternamnActionPerformed(evt);
+                txtSokEpostActionPerformed(evt);
             }
         });
-        add(txtSokEfternamn);
-        txtSokEfternamn.setBounds(680, 90, 100, 22);
+        add(txtSokEpost);
+        txtSokEpost.setBounds(680, 90, 100, 22);
 
         jLabel3.setText("Sök på Epost:");
         add(jLabel3);
@@ -188,13 +215,13 @@ public class Personal extends javax.swing.JPanel {
 
         String avd = (String) CbAvdelning.getSelectedItem();
 
-        fyllPersonalTabell(namn, avd);
+        fyllPersonalTabell(namn, "", avd);
 
     }//GEN-LAST:event_txtSokFornamnActionPerformed
 
-    private void txtSokEfternamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSokEfternamnActionPerformed
+    private void txtSokEpostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSokEpostActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSokEfternamnActionPerformed
+    }//GEN-LAST:event_txtSokEpostActionPerformed
 
     private void CbAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbAvdelningActionPerformed
         String valdAvdelning = (String) CbAvdelning.getSelectedItem();
@@ -202,7 +229,7 @@ public class Personal extends javax.swing.JPanel {
             return;
         }
         String namn = txtSokFornamn.getText();
-        fyllPersonalTabell(namn, valdAvdelning);
+        fyllPersonalTabell(namn, "", valdAvdelning);
     }//GEN-LAST:event_CbAvdelningActionPerformed
 
 
@@ -215,7 +242,7 @@ public class Personal extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelPersonal;
-    private javax.swing.JTextField txtSokEfternamn;
+    private javax.swing.JTextField txtSokEpost;
     private javax.swing.JTextField txtSokFornamn;
     // End of variables declaration//GEN-END:variables
 }
