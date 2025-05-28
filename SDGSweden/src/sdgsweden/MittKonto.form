@@ -24,40 +24,40 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="BnSparaAndringar" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="LbAvdelning" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="LbLosenord" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="LbAnstallningsdatum" alignment="0" pref="113" max="32767" attributes="0"/>
-                                  <Component id="LbTelefon" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="LbEpost" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="LbAdress" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="LbFornamn" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="LbEfternamn" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="LbAvdelning" alignment="0" max="32767" attributes="0"/>
+                              <Component id="LbLosenord" alignment="0" max="32767" attributes="0"/>
+                              <Component id="LbAnstallningsdatum" alignment="0" pref="113" max="32767" attributes="0"/>
+                              <Component id="LbTelefon" alignment="0" max="32767" attributes="0"/>
+                              <Component id="LbEpost" alignment="0" max="32767" attributes="0"/>
+                              <Component id="LbAdress" alignment="0" max="32767" attributes="0"/>
+                              <Component id="LbFornamn" alignment="0" max="32767" attributes="0"/>
+                              <Component id="LbEfternamn" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="LbDinMentor" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="TfEfternamn" min="-2" pref="95" max="-2" attributes="0"/>
-                          <Component id="TfFornamn" min="-2" pref="95" max="-2" attributes="0"/>
-                          <Component id="TfAnstallningsdatum" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
-                          <Component id="TfLosenord" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
-                          <Component id="TfAvdelning" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
-                          <Component id="TfEpost" pref="153" max="32767" attributes="0"/>
-                          <Component id="TfTelefon" alignment="0" max="32767" attributes="0"/>
-                          <Component id="TfAdress" alignment="0" max="32767" attributes="0"/>
-                          <Component id="TfDinMentor" max="32767" attributes="0"/>
+                          <Component id="TfDinMentor" pref="153" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="TfEfternamn" min="-2" pref="95" max="-2" attributes="0"/>
+                              <Component id="TfFornamn" min="-2" pref="95" max="-2" attributes="0"/>
+                              <Component id="TfAnstallningsdatum" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                              <Component id="TfLosenord" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                              <Component id="TfAvdelning" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                              <Component id="TfEpost" pref="153" max="32767" attributes="0"/>
+                              <Component id="TfTelefon" alignment="0" max="32767" attributes="0"/>
+                              <Component id="TfAdress" alignment="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="10" max="32767" attributes="0"/>
+              <EmptySpace pref="141" max="32767" attributes="0"/>
               <Component id="LbKatten" min="-2" pref="374" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="341" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
               <Component id="btnTillbaka" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
           </Group>
@@ -121,15 +121,15 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                      <Component id="LbKatten" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Component id="btnTillbaka" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="LbKatten" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="8" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -259,7 +259,7 @@
     <Component class="java.awt.Label" name="SidaTitel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="14" style="0"/>
+          <Font name="Arial" size="24" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Dina uppgifter :"/>
       </Properties>
@@ -283,6 +283,11 @@
           <Image iconType="3" name="/sdgsweden/bilder/katten.gif"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel1"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+            <BevelBorder/>
+          </Border>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>
