@@ -107,7 +107,7 @@
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabelProjektAvdelning" min="-2" max="-2" attributes="0"/>
-                      <Component id="projektComboBox" min="-2" pref="110" max="-2" attributes="0"/>
+                      <Component id="projektComboBox" min="-2" pref="135" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
