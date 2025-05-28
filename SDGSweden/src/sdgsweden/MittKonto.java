@@ -131,7 +131,7 @@ public class MittKonto extends javax.swing.JPanel {
         LbAvdelning.setText("Avdelning :");
 
         TfFornamn.setEditable(false);
-        TfFornamn.setForeground(java.awt.Color.black);
+        TfFornamn.setForeground(java.awt.Color.lightGray);
         TfFornamn.setText("jTextField1");
 
         TfEfternamn.setEditable(false);
