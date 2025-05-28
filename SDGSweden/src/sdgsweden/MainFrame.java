@@ -1,7 +1,9 @@
 
 package sdgsweden;
 import java.awt.CardLayout;
+import java.awt.Color;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -91,6 +93,7 @@ import oru.inf.InfException;
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -98,29 +101,29 @@ import oru.inf.InfException;
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainFrame().setVisible(true);
+                // Anpassade Nimbus-färger
+                UIManager.put("control", new Color(240, 240, 255));
+                UIManager.put("info", new Color(200, 200, 255));
+                UIManager.put("nimbusBase", new Color(60, 120, 180));
+                UIManager.put("nimbusBlueGrey", new Color(180, 200, 220));
+                UIManager.put("text", Color.BLACK);
+                UIManager.put("nimbusSelectionBackground", new Color(120, 180, 255));
+
+                break;
             }
-        });
+        }
+    } catch (Exception ex) {
+        java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+
+    // Skapa och visa GUI:t
+    java.awt.EventQueue.invokeLater(() -> {
+        new MainFrame().setVisible(true);
+    });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
