@@ -52,10 +52,10 @@ public class Inloggning extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         PasswordField.setColumns(11);
-        PasswordField.setText("passwordabc");
+        PasswordField.setText("password123");
 
         TextFieldEpost.setColumns(10);
-        TextFieldEpost.setText("sofia.a@example.com");
+        TextFieldEpost.setText("maria.g@example.com");
 
         ButtonLoggaIn.setText("Logga in");
         ButtonLoggaIn.addActionListener(new java.awt.event.ActionListener() {
