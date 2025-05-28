@@ -58,7 +58,7 @@ public class Validering {
         if (adress == null) {
             return false;
         }
-        return adress.matches("^[A-Za-zÅÄÖåäö\\d\\-\\s]{2,12}$");
+        return adress.matches("^[A-Za-zÅÄÖåäö\\d\\-\\s]{50,50}$");
 
     }
     public static boolean isValidValuta(String input) {
