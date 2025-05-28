@@ -154,9 +154,9 @@ public class AdminLand extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jScrollPanelLand, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,16 +181,11 @@ public class AdminLand extends javax.swing.JPanel {
                                 .addGap(15, 15, 15)
                                 .addComponent(btnLaggTill)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnTaBort)))
-                        .addGap(0, 27, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnTillbakaAdmin)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelLand)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btnTaBort)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnTillbakaAdmin))))
+                    .addComponent(jLabelLand))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,10 +223,9 @@ public class AdminLand extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSpara)
                     .addComponent(btnLaggTill)
-                    .addComponent(btnTaBort))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
-                .addComponent(btnTillbakaAdmin)
-                .addContainerGap())
+                    .addComponent(btnTaBort)
+                    .addComponent(btnTillbakaAdmin))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -323,9 +317,9 @@ public class AdminLand extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Språk får inte vara tomt.");
             return;
         }
-        if (Validering.isEmpty(txtValuta.getText()))
+        if (!Validering.isValidValuta(txtValuta.getText()))
         {
-            JOptionPane.showMessageDialog(this, "Valuta får inte vara tomt.");
+            JOptionPane.showMessageDialog(this, "Valuta får inte vara tomt. Måste skrivas ex: 00.00");
             return;
         }
         if (Validering.isEmpty(txtTidszon.getText()))
@@ -416,8 +410,8 @@ public class AdminLand extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Språk får inte vara tomt.");
         return;
     }
-    if (Validering.isEmpty(txtValuta.getText())) {
-        JOptionPane.showMessageDialog(this, "Valuta får inte vara tomt.");
+    if (!Validering.isValidValuta(txtValuta.getText())) {
+        JOptionPane.showMessageDialog(this, "Valuta får inte vara tomt. Måste skrivas ex: 00.00 ");
         return;
     }
     if (Validering.isEmpty(txtTidszon.getText())) {

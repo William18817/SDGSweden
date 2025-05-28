@@ -397,7 +397,7 @@ public class AdminPanel extends javax.swing.JPanel {
             String telefon = txtTelefon.getText().trim();
             String datum = txtAnstallningsdatum.getText().trim();
             String losenord = new String(pwdLosenord.getPassword()).trim();
-            String avdelningStr = txtAvdelning.getText().trim();
+            String avdelningStr = txtAvdelning.getText().trim(); // ComboBox (?)
 
             if (Validering.isEmpty(txtFornamn.getText())) {
                 JOptionPane.showMessageDialog(this, "Förnamn får inte vara tomt.");
@@ -407,24 +407,24 @@ public class AdminPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Efternamn får inte vara tomt.");
                 return;
             }
-            if (Validering.isEmpty(txtAdress.getText())) {
+            if (!Validering.isValidAdress(txtAdress.getText())) {
                 JOptionPane.showMessageDialog(this, "Ogiltig adress.");
                 return;
             }
-            if (Validering.isEmpty(txtEpost.getText())) {
-                JOptionPane.showMessageDialog(this, "Ogiltig E-postadress.");
+            if (!Validering.isValidEpost(txtEpost.getText())) {
+                JOptionPane.showMessageDialog(this, "Ogiltig E-postadress. Måste exempelvis skrivas: namn.efternamn@example.com");
                 return;
             }
-            if (Validering.isEmpty(txtTelefon.getText())) {
-                JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer.");
+            if (!Validering.isValidTelefon(txtTelefon.getText())) {
+                JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer. Måste vara mellan 7-15 siffror.");
                 return;
             }
-            if (Validering.isEmpty(txtAnstallningsdatum.getText())) {
-                JOptionPane.showMessageDialog(this, "Ogiltigt anställningsdatum.");
+            if (!Validering.isValidAnstallningsdatum(txtAnstallningsdatum.getText())) {
+                JOptionPane.showMessageDialog(this, "Ogiltigt anställningsdatum. Måste skrivas: YYYY-MM-DD.");
                 return;
             }
-            if (Validering.isEmpty(new String(pwdLosenord.getPassword()))) {
-                JOptionPane.showMessageDialog(this, "Lösenord får inte vara tomt.");
+            if (!Validering.isValidLosenord(new String(pwdLosenord.getPassword()))) {
+                JOptionPane.showMessageDialog(this, "Lösenord får inte vara tomt. Måste vara minst 11 tecken.");
                 return;
             }
             if (Validering.isEmpty(txtAvdelning.getText())) {
@@ -470,9 +470,9 @@ public class AdminPanel extends javax.swing.JPanel {
             pwdLosenord.setText("");
             txtAvdelning.setText("");
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Fel: " + e.getMessage());
-            e.printStackTrace();
+        } catch (Exception ettFel) {
+            JOptionPane.showMessageDialog(this, "Fel: " + ettFel.getMessage());
+            ettFel.printStackTrace();
         }
     }//GEN-LAST:event_btnLaggTillAnstalldActionPerformed
 
@@ -541,7 +541,9 @@ public class AdminPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnTaBortAnstalldActionPerformed
 
     private void btnRedigeraLand1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraLand1ActionPerformed
-        // TODO add your handling code here:
+        AdminLand adminLandPanel = new AdminLand(parent, idb, aid);
+        parent.visaPanel(adminLandPanel, "adminLand");
+
     }//GEN-LAST:event_btnRedigeraLand1ActionPerformed
 
     private void btnRedigeraProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraProjektActionPerformed
