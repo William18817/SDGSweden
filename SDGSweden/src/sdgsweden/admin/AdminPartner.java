@@ -186,11 +186,9 @@ public class AdminPartner extends javax.swing.JPanel {
                                 .addComponent(btnLaggTill)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnTaBort)
-                                .addContainerGap(63, Short.MAX_VALUE))))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnTillbakaAdmin)
-                .addContainerGap())
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnTillbakaAdmin)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,10 +226,9 @@ public class AdminPartner extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSpara)
                             .addComponent(btnLaggTill)
-                            .addComponent(btnTaBort))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addComponent(btnTillbakaAdmin)
-                .addContainerGap())
+                            .addComponent(btnTaBort)
+                            .addComponent(btnTillbakaAdmin))))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -325,12 +322,12 @@ public class AdminPartner extends javax.swing.JPanel {
         }
         if (!Validering.isValidEpost(txtKontaktEpost.getText()))
         {
-            JOptionPane.showMessageDialog(this, "Ogiltig E-postadress.");
+            JOptionPane.showMessageDialog(this, "Ogiltig E-postadress. Måste skrivas: namn.namn@example.com");
             return;
         }
         if (!Validering.isValidTelefon(txtTelefon.getText()))
         {
-            JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer.");
+            JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer. Måste vara mellan 7-15 siffror.");
             return;
         }
         if (!Validering.isValidAdress(txtAdress.getText()))
@@ -416,15 +413,15 @@ public class AdminPartner extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Kontaktperson får inte vara tomt.");
         return;
     }
-    if (Validering.isEmpty(txtKontaktEpost.getText())) {
-        JOptionPane.showMessageDialog(this, "KontaktEpost får inte vara tom.");
+    if (!Validering.isValidEpost(txtKontaktEpost.getText())) {
+        JOptionPane.showMessageDialog(this, "Ogiltig E-postadress. Måste skrivas: namn.namn@example.com");
         return;
     }
-    if (Validering.isEmpty(txtTelefon.getText())) {
-        JOptionPane.showMessageDialog(this, "Telefon får inte vara tom.");
+    if (!Validering.isValidTelefon(txtTelefon.getText())) {
+        JOptionPane.showMessageDialog(this, "Telefon får inte vara tom. Måste vara mellan 7-15 siffror.");
         return;
     }
-    if (Validering.isEmpty(txtAdress.getText())) {
+    if (!Validering.isValidAdress(txtAdress.getText())) {
         JOptionPane.showMessageDialog(this, "Adress får inte vara tom.");
         return;
     }

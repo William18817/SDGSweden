@@ -412,7 +412,7 @@ public class AdminPanel extends javax.swing.JPanel {
                 return;
             }
             if (!Validering.isValidEpost(txtEpost.getText())) {
-                JOptionPane.showMessageDialog(this, "Ogiltig E-postadress. Måste skrivas: namn.efternamn@example.com");
+                JOptionPane.showMessageDialog(this, "Ogiltig E-postadress. Måste exempelvis skrivas: namn.efternamn@example.com");
                 return;
             }
             if (!Validering.isValidTelefon(txtTelefon.getText())) {

@@ -164,11 +164,20 @@ public class AdminAvdelning extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPaneAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelAvdelning))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPaneAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelAvdelning))
+                        .addComponent(btnSpara)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnLaggTill)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnTaBort)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTillbakaAdmin)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,25 +194,15 @@ public class AdminAvdelning extends javax.swing.JPanel {
                                     .addComponent(jLabelChef))
                                 .addGap(15, 15, 15)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtStadNamn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtStadNamn, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                                     .addComponent(txtTelefon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtBeskrivning, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtChef, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtAdress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtEpost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(txtEpost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtNamn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jLabelStad))
-                        .addGap(282, 282, 282))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSpara)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnLaggTill)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnTaBort)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnTillbakaAdmin)))
-                .addContainerGap())
+                        .addGap(288, 288, 288))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,14 +241,14 @@ public class AdminAvdelning extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtStadNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelStad))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnSpara)
                         .addComponent(btnLaggTill)
                         .addComponent(btnTaBort))
                     .addComponent(btnTillbakaAdmin))
-                .addContainerGap())
+                .addContainerGap(78, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -344,8 +343,8 @@ public class AdminAvdelning extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Ogiltig adress.");
             return;
         }
-        if (!Validering.isValidEpost(txtEpost.getText())) {
-            JOptionPane.showMessageDialog(this, "Ogiltig E-postadress. Måste skrivas: namn@ngo.org");
+        if (!Validering.isValidEpostAvdelining(txtEpost.getText())) {
+            JOptionPane.showMessageDialog(this, "Ogiltig E-postadress. Måste exempelvis skrivas: namn@ngo.org");
             return;
         }
         if (!Validering.isValidTelefon(txtTelefon.getText())) {
@@ -466,7 +465,6 @@ public class AdminAvdelning extends javax.swing.JPanel {
         
             String[] namnArray = chefStr.split(" ");
             
-
             //Dessa "if;s" nedan är en validering där det ställs olika krav på de attibut som står angivna.
             //Exempelvis om man anger fel format på e-post så får man felmeddelandet "Ogitlig E-postadress".
             //Allt detta är sedan kopplat till en egen valideringsklass som importers (Se högst upp).
@@ -478,8 +476,8 @@ public class AdminAvdelning extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Adress får inte vara tomt.");
                 return;
             }
-            if (!Validering.isValidEpost(txtEpost.getText())) {
-                JOptionPane.showMessageDialog(this, "Ogiltig E-postadress.");
+            if (!Validering.isValidEpostAvdelining(txtEpost.getText())) {
+                JOptionPane.showMessageDialog(this, "Ogiltig E-postadress. Måste exempelvis skrivas: namn@ngo.org");
                 return;
             }
             if (!Validering.isValidTelefon(txtTelefon.getText())) {
@@ -491,24 +489,29 @@ public class AdminAvdelning extends javax.swing.JPanel {
                 return;
             }
             if (Validering.isEmpty(txtChef.getText())) {
-                JOptionPane.showMessageDialog(this, "Chef (ID) får inte vara tomt.");
+                JOptionPane.showMessageDialog(this, "Chef får inte vara tomt.");
                 return;
             }
             if (Validering.isEmpty(txtStadNamn.getText())) {
-                JOptionPane.showMessageDialog(this, "Stad (ID) får inte vara tomt.");
+                JOptionPane.showMessageDialog(this, "Stad får inte vara tomt.");
                 return;
             }
-            
 
+            if (namnArray.length != 2){
+            JOptionPane.showMessageDialog(this, "Vänligen ange både för - och efternamn");
+            return;
+            }
+            
             //Här ställs en sql-fråga där vi vill hämta "aid" från anställd.
             String sqlChef = "SELECT aid FROM anstalld WHERE fornamn = '" + namnArray[0] + "' AND efternamn = '" + namnArray[1] + "'";
-
+             
             //Om inget resultat hittas, Om resultat är exakt icke-existerande (==) så returneras nedan meddelande.
             String chefResultat = idb.fetchSingle(sqlChef);
             if (chefResultat == null) {
-                JOptionPane.showMessageDialog(this, "Chef-ID finns inte.");
+                JOptionPane.showMessageDialog(this, "Chef finns inte.");
                 return;
             }
+            
 
             //Här ställs en sql-fråga där vi vill hämta "sid" från stad.
             String sqlStad = "SELECT sid FROM stad WHERE namn = '" + stadStr + "'";
@@ -516,7 +519,7 @@ public class AdminAvdelning extends javax.swing.JPanel {
             //Om inget resultat hittas, Om resultat är exakt icke-existerande (==) så returneras nedan meddelande.
             String stadResultat = idb.fetchSingle(sqlStad);
             if (stadResultat == null) {
-                JOptionPane.showMessageDialog(this, "Stad-ID finns inte.");
+                JOptionPane.showMessageDialog(this, "Stad finns inte.");
                 return;
             }
 
@@ -533,7 +536,7 @@ public class AdminAvdelning extends javax.swing.JPanel {
             //Här skapas en sql-fråga där vi vill inserta (lägga till en ny rad) i avdelningstabellen.
             String sqlFraga = "INSERT INTO avdelning (avdid, namn, adress, epost, telefon, beskrivning, chef, stad) "
                     + "VALUES (" + nextAvdid + ", '" + namn + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + beskrivning + "', " + chefResultat + ", " + stadResultat + ")";
-
+            
             //Här körs sql frågan.
             idb.insert(sqlFraga);
 
