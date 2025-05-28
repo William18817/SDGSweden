@@ -23,6 +23,13 @@ public class Validering {
         }
         return epost.matches("^[a-zA-ZÅÄÖåäö]+\\.[a-zA-ZÅÄÖåäö]+@example\\.com$");
     }
+    
+    public static boolean isValidEpostAvdelining(String epost){
+        if (epost == null){
+            return false;
+        }
+        return epost.matches("^[a-zA-ZåäöÅÄÖ0-9._%+-]+@[a-zA-ZåäöÅÄÖ0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
 
     public static boolean isValidTelefon(String telefon) {
         if (telefon == null) {
