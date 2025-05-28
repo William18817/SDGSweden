@@ -122,7 +122,6 @@ public class Projekt extends javax.swing.JPanel {
 
         jPanelCenter.setLayout(new java.awt.BorderLayout());
 
-        InfoProjectTable.setBackground(new java.awt.Color(204, 204, 204));
         InfoProjectTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null},

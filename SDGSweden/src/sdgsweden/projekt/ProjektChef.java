@@ -146,7 +146,6 @@ public class ProjektChef extends javax.swing.JPanel {
         jPanelCenter.setPreferredSize(new java.awt.Dimension(1000, 400));
         jPanelCenter.setLayout(new java.awt.BorderLayout());
 
-        InfoProjectTable.setBackground(new java.awt.Color(204, 204, 204));
         InfoProjectTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null},
