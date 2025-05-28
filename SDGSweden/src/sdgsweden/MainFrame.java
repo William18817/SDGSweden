@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
 package sdgsweden;
 import java.awt.CardLayout;
@@ -13,7 +9,6 @@ import oru.inf.InfException;
     public class MainFrame extends javax.swing.JFrame {
     private InfDB idb;
     private String aid;
-
     
 //Konstruktorn tar emot databasanslutningen och användarID på den inloggade personen.
     public MainFrame(InfDB idb, String aid) {
