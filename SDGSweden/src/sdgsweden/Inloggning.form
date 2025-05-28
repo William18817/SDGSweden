@@ -101,9 +101,6 @@
         <Property name="columns" type="int" value="10"/>
         <Property name="text" type="java.lang.String" value="sofia.a@example.com"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextFieldEpostActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="ButtonLoggaIn">
       <Properties>

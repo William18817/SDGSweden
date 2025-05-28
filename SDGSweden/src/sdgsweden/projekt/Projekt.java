@@ -35,38 +35,28 @@ public class Projekt extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanelNorth = new javax.swing.JPanel();
-        DateTwo = new javax.swing.JTextField();
-        DateOne = new javax.swing.JTextField();
-        jLabelSlutdatum = new javax.swing.JLabel();
-        jLabelStartdatum = new javax.swing.JLabel();
-        DatumLabel = new javax.swing.JLabel();
         StatusMenu = new javax.swing.JComboBox<>();
         StatusLabel = new javax.swing.JLabel();
-        UppdateButton = new javax.swing.JButton();
         projektComboBox = new javax.swing.JComboBox<>();
         jLabelProjektAvdelning = new javax.swing.JLabel();
-        jLabelProjektVy = new javax.swing.JLabel();
         avdelningLabel = new javax.swing.JLabel();
-        visaPartnerInfoButton = new javax.swing.JButton();
-        visaLandInfoButton = new javax.swing.JButton();
-        visaProjektchefButton = new javax.swing.JButton();
         jPanelCenter = new javax.swing.JPanel();
         jScrollPaneProjekt = new javax.swing.JScrollPane();
         InfoProjectTable = new javax.swing.JTable();
         jPanelSouth = new javax.swing.JPanel();
+        DatumLabel = new javax.swing.JLabel();
+        DateOne = new javax.swing.JTextField();
+        jLabelStartdatum = new javax.swing.JLabel();
+        DateTwo = new javax.swing.JTextField();
+        jLabelSlutdatum = new javax.swing.JLabel();
+        UppdateButton = new javax.swing.JButton();
+        visaProjektchefButton = new javax.swing.JButton();
+        visaLandInfoButton = new javax.swing.JButton();
+        visaPartnerInfoButton = new javax.swing.JButton();
         btnTillbaka = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setToolTipText("");
-
-        DateTwo.setColumns(12);
-
-        DateOne.setColumns(12);
-
-        jLabelSlutdatum.setText("Slutdatum");
-
-        jLabelStartdatum.setText("Startdatum");
-
-        DatumLabel.setText("Sök datum (YYYY-MM-DD)");
 
         StatusMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alla", "Pågående", "Planerat", "Avslutat" }));
         StatusMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -77,13 +67,6 @@ public class Projekt extends javax.swing.JPanel {
 
         StatusLabel.setText("Status");
 
-        UppdateButton.setText("Filtrera");
-        UppdateButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UppdateButtonActionPerformed(evt);
-            }
-        });
-
         projektComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mina projekt", "Avdelningens projekt" }));
         projektComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,9 +76,7 @@ public class Projekt extends javax.swing.JPanel {
 
         jLabelProjektAvdelning.setText("Projekt");
 
-        jLabelProjektVy.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabelProjektVy.setText("Projekt ALLA");
-
+        avdelningLabel.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         avdelningLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         avdelningLabel.setToolTipText("");
         avdelningLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
@@ -103,103 +84,40 @@ public class Projekt extends javax.swing.JPanel {
         avdelningLabel.setMinimumSize(new java.awt.Dimension(255, 25));
         avdelningLabel.setPreferredSize(new java.awt.Dimension(255, 25));
 
-        visaPartnerInfoButton.setText("Visa Partnerinfo");
-        visaPartnerInfoButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                visaPartnerInfoButtonActionPerformed(evt);
-            }
-        });
-
-        visaLandInfoButton.setText("Visa Landinfo");
-        visaLandInfoButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                visaLandInfoButtonActionPerformed(evt);
-            }
-        });
-
-        visaProjektchefButton.setText("Visa Projektchef");
-        visaProjektchefButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                visaProjektchefButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanelNorthLayout = new javax.swing.GroupLayout(jPanelNorth);
         jPanelNorth.setLayout(jPanelNorthLayout);
         jPanelNorthLayout.setHorizontalGroup(
             jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelNorthLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(avdelningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(avdelningLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanelNorthLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelProjektVy)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelNorthLayout.createSequentialGroup()
-                                .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(DatumLabel)
-                                    .addGroup(jPanelNorthLayout.createSequentialGroup()
-                                        .addComponent(DateOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(DateTwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(UppdateButton)
-                                .addGap(38, 38, 38))
-                            .addGroup(jPanelNorthLayout.createSequentialGroup()
-                                .addComponent(jLabelStartdatum)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabelSlutdatum)
-                                .addGap(207, 207, 207)))))
-                .addGap(90, 90, 90)
+                    .addComponent(StatusMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(StatusLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelNorthLayout.createSequentialGroup()
-                        .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(StatusMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(StatusLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelProjektAvdelning)
-                            .addComponent(projektComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanelNorthLayout.createSequentialGroup()
-                        .addComponent(visaPartnerInfoButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(visaLandInfoButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(visaProjektchefButton)))
-                .addGap(50, 50, 50))
+                    .addComponent(jLabelProjektAvdelning)
+                    .addComponent(projektComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22))
         );
         jPanelNorthLayout.setVerticalGroup(
             jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelNorthLayout.createSequentialGroup()
-                .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNorthLayout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelNorthLayout.createSequentialGroup()
                         .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(DatumLabel)
                             .addComponent(StatusLabel)
                             .addComponent(jLabelProjektAvdelning))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(DateOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DateTwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(StatusMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(UppdateButton)
                             .addComponent(projektComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelNorthLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelProjektVy)))
-                .addGap(6, 6, 6)
-                .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelSlutdatum)
-                    .addComponent(jLabelStartdatum))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(visaPartnerInfoButton)
-                        .addComponent(visaLandInfoButton)
-                        .addComponent(visaProjektchefButton))
-                    .addComponent(avdelningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(9, Short.MAX_VALUE))
+                        .addComponent(avdelningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)))
+                .addGap(10, 10, 10))
         );
 
         jPanelCenter.setLayout(new java.awt.BorderLayout());
@@ -242,11 +160,20 @@ public class Projekt extends javax.swing.JPanel {
 
         jPanelCenter.add(jScrollPaneProjekt, java.awt.BorderLayout.CENTER);
 
-        btnTillbaka.setText("Tillbaka");
-        btnTillbaka.setPreferredSize(new java.awt.Dimension(110, 25));
-        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
+        DatumLabel.setText("Sök datum (YYYY-MM-DD)");
+
+        DateOne.setColumns(12);
+
+        jLabelStartdatum.setText("Startdatum");
+
+        DateTwo.setColumns(12);
+
+        jLabelSlutdatum.setText("Slutdatum");
+
+        UppdateButton.setText("Filtrera");
+        UppdateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTillbakaActionPerformed(evt);
+                UppdateButtonActionPerformed(evt);
             }
         });
 
@@ -255,17 +182,72 @@ public class Projekt extends javax.swing.JPanel {
         jPanelSouthLayout.setHorizontalGroup(
             jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSouthLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnTillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap()
+                .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelSouthLayout.createSequentialGroup()
+                        .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(DatumLabel)
+                            .addGroup(jPanelSouthLayout.createSequentialGroup()
+                                .addComponent(DateOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(DateTwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(UppdateButton))
+                    .addGroup(jPanelSouthLayout.createSequentialGroup()
+                        .addComponent(jLabelStartdatum)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelSlutdatum)
+                        .addGap(169, 169, 169)))
+                .addGap(541, 541, 541))
         );
         jPanelSouthLayout.setVerticalGroup(
             jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelSouthLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnTillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addComponent(DatumLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DateOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DateTwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UppdateButton))
+                .addGap(6, 6, 6)
+                .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelSlutdatum)
+                    .addComponent(jLabelStartdatum))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
+
+        visaProjektchefButton.setText("Visa Projektchef");
+        visaProjektchefButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visaProjektchefButtonActionPerformed(evt);
+            }
+        });
+
+        visaLandInfoButton.setText("Visa Landinfo");
+        visaLandInfoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visaLandInfoButtonActionPerformed(evt);
+            }
+        });
+
+        visaPartnerInfoButton.setText("Visa Partnerinfo");
+        visaPartnerInfoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visaPartnerInfoButtonActionPerformed(evt);
+            }
+        });
+
+        btnTillbaka.setText("Tillbaka");
+        btnTillbaka.setPreferredSize(new java.awt.Dimension(110, 25));
+        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTillbakaActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sdgsweden/bilder/global-goals-logo.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -274,24 +256,45 @@ public class Projekt extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelNorth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanelNorth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(visaProjektchefButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(visaLandInfoButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnTillbaka, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(visaPartnerInfoButton, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanelCenter, javax.swing.GroupLayout.DEFAULT_SIZE, 923, Short.MAX_VALUE)
-                            .addComponent(jPanelSouth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(60, Short.MAX_VALUE))
+                            .addComponent(jPanelCenter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanelSouth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelNorth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelCenter, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanelSouth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanelNorth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanelCenter, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jPanelSouth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(visaProjektchefButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(visaLandInfoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(visaPartnerInfoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -618,8 +621,8 @@ public class Projekt extends javax.swing.JPanel {
     private javax.swing.JButton UppdateButton;
     private javax.swing.JLabel avdelningLabel;
     private javax.swing.JButton btnTillbaka;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelProjektAvdelning;
-    private javax.swing.JLabel jLabelProjektVy;
     private javax.swing.JLabel jLabelSlutdatum;
     private javax.swing.JLabel jLabelStartdatum;
     private javax.swing.JPanel jPanelCenter;

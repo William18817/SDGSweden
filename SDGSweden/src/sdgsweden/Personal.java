@@ -141,23 +141,26 @@ public class Personal extends javax.swing.JPanel {
         CbAvdelning = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        LbGlobalGoalsLogo = new javax.swing.JLabel();
 
         setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Personal");
         add(jLabel1);
-        jLabel1.setBounds(0, 0, 840, 30);
+        jLabel1.setBounds(10, 30, 200, 30);
 
         btnTillbaka.setText("Tillbaka");
+        btnTillbaka.setPreferredSize(new java.awt.Dimension(77, 23));
         btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTillbakaActionPerformed(evt);
             }
         });
         add(btnTillbaka);
-        btnTillbaka.setBounds(710, 20, 110, 23);
+        btnTillbaka.setBounds(730, 20, 110, 23);
 
         tabelPersonal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -218,6 +221,7 @@ public class Personal extends javax.swing.JPanel {
         jLabel4.setBounds(20, 70, 210, 16);
 
         jButton1.setText("Rensa sökning");
+        jButton1.setPreferredSize(new java.awt.Dimension(77, 23));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -225,6 +229,11 @@ public class Personal extends javax.swing.JPanel {
         });
         add(jButton1);
         jButton1.setBounds(720, 90, 120, 23);
+
+        LbGlobalGoalsLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sdgsweden/bilder/global-goals-logo-lite-större.png"))); // NOI18N
+        LbGlobalGoalsLogo.setText("jLabel5");
+        add(LbGlobalGoalsLogo);
+        LbGlobalGoalsLogo.setBounds(940, 0, 360, 680);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
@@ -269,6 +278,7 @@ public class Personal extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CbAvdelning;
+    private javax.swing.JLabel LbGlobalGoalsLogo;
     private javax.swing.JButton btnTillbaka;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

@@ -47,43 +47,39 @@ public class MittKonto extends javax.swing.JPanel {
                 TfLosenord.setText(anvandarData.get("losenord"));
                 TfAvdelning.setText(anvandarData.get("avdelning"));
 
-            
-             String sqlMentor = ""
-               + "SELECT mentor "
-               + "FROM handlaggare "
-               + "WHERE aid = '" + aid + "'";
-            // OBS: fetchSingle (med två l) hämtar en enstaka kolumn
-            String mentorAid = idb.fetchSingle(sqlMentor);
+                String sqlMentor = ""
+                        + "SELECT mentor "
+                        + "FROM handlaggare "
+                        + "WHERE aid = '" + aid + "'";
+                // OBS: fetchSingle (med två l) hämtar en enstaka kolumn
+                String mentorAid = idb.fetchSingle(sqlMentor);
 
-            if (mentorAid != null && !mentorAid.isEmpty()) {
-                // 3) Hämta mentorens namn ur anstalld
-                String sqlM = ""
-                  + "SELECT fornamn, efternamn "
-                  + "FROM anstalld "
-                  + "WHERE aid = '" + mentorAid + "'";
-                HashMap<String, String> m = idb.fetchRow(sqlM);
+                if (mentorAid != null && !mentorAid.isEmpty()) {
+                    // 3) Hämta mentorens namn ur anstalld
+                    String sqlM = ""
+                            + "SELECT fornamn, efternamn "
+                            + "FROM anstalld "
+                            + "WHERE aid = '" + mentorAid + "'";
+                    HashMap<String, String> m = idb.fetchRow(sqlM);
 
-                if (m != null) {
-                    TfDinMentor.setText(
-                        m.get("fornamn") + " " + m.get("efternamn")
-                    );
+                    if (m != null) {
+                        TfDinMentor.setText(
+                                m.get("fornamn") + " " + m.get("efternamn")
+                        );
+                    } else {
+                        TfDinMentor.setText("Ingen mentor i anställd");
+                    }
                 } else {
-                    TfDinMentor.setText("Ingen mentor i anställd");
+                    TfDinMentor.setText("Ingen mentor tilldelad");
                 }
+            } else {
+                JOptionPane.showMessageDialog(this, "Användardata hittades inte");
             }
-            else {
-                TfDinMentor.setText("Ingen mentor tilldelad");
-            }
-        }
-        else {
-            JOptionPane.showMessageDialog(this, "Användardata hittades inte");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Kunde inte hämta information");
         }
     }
-    catch (Exception e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Kunde inte hämta information");
-    }
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -116,6 +112,7 @@ public class MittKonto extends javax.swing.JPanel {
         SidaTitel = new java.awt.Label();
         TfDinMentor = new javax.swing.JTextField();
         LbDinMentor = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         LbFornamn.setText("Förnamn :");
 
@@ -189,7 +186,7 @@ public class MittKonto extends javax.swing.JPanel {
             }
         });
 
-        SidaTitel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        SidaTitel.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         SidaTitel.setText("Dina uppgifter :");
 
         TfDinMentor.setEditable(false);
@@ -201,21 +198,19 @@ public class MittKonto extends javax.swing.JPanel {
 
         LbDinMentor.setText("Din Mentor :");
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sdgsweden/bilder/global-goals-logo-lite-större.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SidaTitel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(CbRedigeraUppgifter)
-                        .addGap(18, 18, 18)
-                        .addComponent(BnSparaAndringar)
-                        .addGap(33, 33, 33))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(LbAvdelning, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(LbLosenord, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -225,40 +220,37 @@ public class MittKonto extends javax.swing.JPanel {
                                 .addComponent(LbAdress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(LbFornamn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(LbEfternamn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(25, 25, 25)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(TfEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(TfFornamn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(TfAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(TfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(TfAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(TfEpost, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                                .addComponent(TfTelefon)
-                                .addComponent(TfAdress)))
-                        .addComponent(SidaTitel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
-                .addComponent(LbDinMentor, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(TfDinMentor, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnTillbaka)
-                .addGap(21, 21, 21))
+                            .addComponent(LbDinMentor, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(TfDinMentor, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                            .addComponent(TfEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TfFornamn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TfAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TfAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TfEpost, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                            .addComponent(TfTelefon)
+                            .addComponent(TfAdress)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnTillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CbRedigeraUppgifter))
+                        .addGap(18, 18, 18)
+                        .addComponent(BnSparaAndringar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 415, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(SidaTitel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LbFornamn)
-                            .addComponent(TfFornamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TfDinMentor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LbDinMentor)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(btnTillbaka)))
+                .addGap(55, 55, 55)
+                .addComponent(SidaTitel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LbFornamn)
+                    .addComponent(TfFornamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LbEfternamn)
@@ -287,11 +279,20 @@ public class MittKonto extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LbAvdelning)
                     .addComponent(TfAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TfDinMentor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LbDinMentor))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BnSparaAndringar)
                     .addComponent(CbRedigeraUppgifter))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnTillbaka)
+                .addContainerGap(145, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -307,7 +308,6 @@ public class MittKonto extends javax.swing.JPanel {
         TfEpost.setEditable(redigera);
         TfTelefon.setEditable(redigera);
         TfLosenord.setEditable(redigera);
-        
 
 
     }//GEN-LAST:event_CbRedigeraUppgifterActionPerformed
@@ -318,43 +318,37 @@ public class MittKonto extends javax.swing.JPanel {
      */
 
     private void BnSparaAndringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BnSparaAndringarActionPerformed
-       
-    if (Validering.isEmpty(TfFornamn.getText())) 
-    {
-        JOptionPane.showMessageDialog(this, "Förnamn får inte vara tomt.");
-        return;
-    }
-    
-    if (Validering.isEmpty(TfEfternamn.getText()))
-    {
-        JOptionPane.showMessageDialog(this, "Efternamn får inte vara tomt");
-        return;
-    
-    }
 
-    if (!Validering.isValidEpost(TfEpost.getText())) 
-    {
-        JOptionPane.showMessageDialog(this, "Ogiltig e-postadress.");
-        return;
-    }
+        if (Validering.isEmpty(TfFornamn.getText())) {
+            JOptionPane.showMessageDialog(this, "Förnamn får inte vara tomt.");
+            return;
+        }
 
-    if (!Validering.isValidTelefon(TfTelefon.getText())) 
-    {
-        JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer.");
-        return;
-    }
+        if (Validering.isEmpty(TfEfternamn.getText())) {
+            JOptionPane.showMessageDialog(this, "Efternamn får inte vara tomt");
+            return;
 
-    if (!Validering.isValidAnstallningsdatum(TfAnstallningsdatum.getText())) 
-    {
-        JOptionPane.showMessageDialog(this, "Anställningsdatum måste ha formatet ÅÅÅÅ-MM-DD.");
-        return;
-    }
+        }
 
-    if (!Validering.isValidLosenord(TfLosenord.getText())) 
-    {
-        JOptionPane.showMessageDialog(this, "Lösenordet måste vara minst 8 tecken långt och innehålla både bokstäver och siffror.");
-        return;
-    } 
+        if (!Validering.isValidEpost(TfEpost.getText())) {
+            JOptionPane.showMessageDialog(this, "Ogiltig e-postadress.");
+            return;
+        }
+
+        if (!Validering.isValidTelefon(TfTelefon.getText())) {
+            JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer.");
+            return;
+        }
+
+        if (!Validering.isValidAnstallningsdatum(TfAnstallningsdatum.getText())) {
+            JOptionPane.showMessageDialog(this, "Anställningsdatum måste ha formatet ÅÅÅÅ-MM-DD.");
+            return;
+        }
+
+        if (!Validering.isValidLosenord(TfLosenord.getText())) {
+            JOptionPane.showMessageDialog(this, "Lösenordet måste vara minst 8 tecken långt och innehålla både bokstäver och siffror.");
+            return;
+        }
         //om validering fungerar sparas datan.
         try {
             String sql = "UPDATE anstalld SET "
@@ -444,5 +438,6 @@ public class MittKonto extends javax.swing.JPanel {
     private javax.swing.JTextField TfLosenord;
     private javax.swing.JTextField TfTelefon;
     private javax.swing.JButton btnTillbaka;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

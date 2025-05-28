@@ -7,7 +7,6 @@ import sdgsweden.admin.AdminPanel;
 import sdgsweden.projekt.ProjektChef;
 import sdgsweden.projekt.Projekt;
 
-
 /**
  * @author User
  */
@@ -27,38 +26,36 @@ public class Startsida extends javax.swing.JPanel {
         this.idb = idb;
         this.aid = aid;
         initComponents();
-        
+
         LbTillGlobalaMalen.setText("<html><font color='blue'><u>Lär dig mer här!</u></font></html>");
 
         initHandCursorForAllaLabels();
     }
-    
+
     //Arraylist som ger oss en loop och gör koden lättare att underhålla.
+    private void initHandCursorForAllaLabels() {
+        javax.swing.JLabel[] labels = {
+            LbMal1, LbMal2, LbMal3, LbMal4, LbMal5,
+            LbMal6, LbMal7, LbMal8, LbMal9, LbMal10,
+            LbMal11, LbMal12, LbMal13, LbMal14, LbMal15,
+            LbMal16, LbMal17, LbTillGlobalaMalen
+        };
 
-private void initHandCursorForAllaLabels() {
-    javax.swing.JLabel[] labels = {
-        LbMal1, LbMal2, LbMal3, LbMal4, LbMal5,
-        LbMal6, LbMal7, LbMal8, LbMal9, LbMal10,
-        LbMal11, LbMal12, LbMal13, LbMal14, LbMal15,
-        LbMal16, LbMal17, LbTillGlobalaMalen
-    };
-
-    for (javax.swing.JLabel lbl : labels) {
-        sattHandCursorPaLabel(lbl);
+        for (javax.swing.JLabel lbl : labels) {
+            sattHandCursorPaLabel(lbl);
+        }
     }
-}
 
-private void sattHandCursorPaLabel(javax.swing.JLabel label) {
-    label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-}
-
+    private void sattHandCursorPaLabel(javax.swing.JLabel label) {
+        label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         btnProjektChef = new javax.swing.JButton();
-        label1 = new java.awt.Label();
+        LbStartsida = new java.awt.Label();
         btnMittKonto = new javax.swing.JButton();
         btnAdmin = new javax.swing.JButton();
         btnLoggaUt_v2 = new javax.swing.JButton();
@@ -83,6 +80,7 @@ private void sattHandCursorPaLabel(javax.swing.JLabel label) {
         LbMal17 = new javax.swing.JLabel();
         LbLarDigMer = new java.awt.Label();
         LbTillGlobalaMalen = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         btnProjektChef.setText("Projektchef");
         btnProjektChef.addActionListener(new java.awt.event.ActionListener() {
@@ -91,7 +89,8 @@ private void sattHandCursorPaLabel(javax.swing.JLabel label) {
             }
         });
 
-        label1.setText("STARTSIDA");
+        LbStartsida.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        LbStartsida.setText("STARTSIDA");
 
         btnMittKonto.setText("Mitt Konto");
         btnMittKonto.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +113,7 @@ private void sattHandCursorPaLabel(javax.swing.JLabel label) {
             }
         });
 
-        btnProjektAlla.setText("Projekt Alla");
+        btnProjektAlla.setText("Projekt");
         btnProjektAlla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProjektAllaActionPerformed(evt);
@@ -274,14 +273,17 @@ private void sattHandCursorPaLabel(javax.swing.JLabel label) {
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sdgsweden/bilder/global-goals-logo-lite-större.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnProjektChef, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnProjektAlla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -289,7 +291,7 @@ private void sattHandCursorPaLabel(javax.swing.JLabel label) {
                             .addComponent(btnAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnLoggaUt_v2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnPersonal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(86, 86, 86)
+                        .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(LbMal16, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -307,6 +309,10 @@ private void sattHandCursorPaLabel(javax.swing.JLabel label) {
                                 .addGap(18, 18, 18)
                                 .addComponent(LbMal5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(LbMal17, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
+                                .addComponent(LbTillGlobalaMalen))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(LbMal12, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -323,74 +329,73 @@ private void sattHandCursorPaLabel(javax.swing.JLabel label) {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(LbMal10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(LbMal15, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(LbMal17, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(53, 53, 53)
-                                .addComponent(LbTillGlobalaMalen)))
-                        .addGap(18, 18, 18))
+                                    .addComponent(LbMal15, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
-                        .addComponent(LbLarDigMer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 139, Short.MAX_VALUE))))
+                        .addComponent(LbStartsida, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LbLarDigMer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(LbLarDigMer, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnProjektChef)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnProjektAlla)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnMittKonto)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAdmin)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPersonal)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnLoggaUt_v2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LbMal1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LbMal2)
-                            .addComponent(LbMal3)
-                            .addComponent(LbMal4)
-                            .addComponent(LbMal5))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LbMal6)
-                            .addComponent(LbMal7)
-                            .addComponent(LbMal8)
-                            .addComponent(LbMal9)
-                            .addComponent(LbMal10))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LbMal11)
-                            .addComponent(LbMal12)
-                            .addComponent(LbMal13)
-                            .addComponent(LbMal14)
-                            .addComponent(LbMal15))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(LbMal16)
-                                .addComponent(LbMal17))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(LbTillGlobalaMalen, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)))))
-                .addContainerGap(36, Short.MAX_VALUE))
+                            .addComponent(LbStartsida, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LbLarDigMer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(LbMal1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(LbMal2)
+                                    .addComponent(LbMal3)
+                                    .addComponent(LbMal4)
+                                    .addComponent(LbMal5))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(LbMal6)
+                                    .addComponent(LbMal7)
+                                    .addComponent(LbMal8)
+                                    .addComponent(LbMal9)
+                                    .addComponent(LbMal10))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(LbMal11)
+                                    .addComponent(LbMal12)
+                                    .addComponent(LbMal13)
+                                    .addComponent(LbMal14)
+                                    .addComponent(LbMal15))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(LbMal16)
+                                        .addComponent(LbMal17))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(LbTillGlobalaMalen, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(6, 6, 6))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnProjektChef, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnProjektAlla, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnMittKonto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnLoggaUt_v2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        label1.getAccessibleContext().setAccessibleName("Startsida");
+        LbStartsida.getAccessibleContext().setAccessibleName("Startsida");
     }// </editor-fold>//GEN-END:initComponents
 
     public boolean arProjektchef(String aid) {
@@ -637,11 +642,10 @@ private void sattHandCursorPaLabel(javax.swing.JLabel label) {
 
     private void LbTillGlobalaMalenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LbTillGlobalaMalenMouseClicked
         try {
-    java.awt.Desktop.getDesktop().browse(new java.net.URI("https://globalamalen.se/"));
-} 
-        catch (Exception e) {
-    javax.swing.JOptionPane.showMessageDialog(this, "Kunde inte öppna webbsidan.");
-}
+            java.awt.Desktop.getDesktop().browse(new java.net.URI("https://globalamalen.se/"));
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Kunde inte öppna webbsidan.");
+        }
 
     }//GEN-LAST:event_LbTillGlobalaMalenMouseClicked
 
@@ -665,6 +669,7 @@ private void sattHandCursorPaLabel(javax.swing.JLabel label) {
     private javax.swing.JLabel LbMal7;
     private javax.swing.JLabel LbMal8;
     private javax.swing.JLabel LbMal9;
+    private java.awt.Label LbStartsida;
     private javax.swing.JLabel LbTillGlobalaMalen;
     private javax.swing.JButton btnAdmin;
     private javax.swing.JButton btnLoggaUt_v2;
@@ -672,6 +677,6 @@ private void sattHandCursorPaLabel(javax.swing.JLabel label) {
     private javax.swing.JButton btnPersonal;
     private javax.swing.JButton btnProjektAlla;
     private javax.swing.JButton btnProjektChef;
-    private java.awt.Label label1;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
