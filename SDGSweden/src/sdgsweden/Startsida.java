@@ -7,7 +7,6 @@ import sdgsweden.admin.AdminPanel;
 import sdgsweden.projekt.ProjektChef;
 import sdgsweden.projekt.Projekt;
 
-
 /**
  * @author User
  */
@@ -27,38 +26,36 @@ public class Startsida extends javax.swing.JPanel {
         this.idb = idb;
         this.aid = aid;
         initComponents();
-        
+
         LbTillGlobalaMalen.setText("<html><font color='blue'><u>Lär dig mer här!</u></font></html>");
 
         initHandCursorForAllaLabels();
     }
-    
+
     //Arraylist som ger oss en loop och gör koden lättare att underhålla.
+    private void initHandCursorForAllaLabels() {
+        javax.swing.JLabel[] labels = {
+            LbMal1, LbMal2, LbMal3, LbMal4, LbMal5,
+            LbMal6, LbMal7, LbMal8, LbMal9, LbMal10,
+            LbMal11, LbMal12, LbMal13, LbMal14, LbMal15,
+            LbMal16, LbMal17, LbTillGlobalaMalen
+        };
 
-private void initHandCursorForAllaLabels() {
-    javax.swing.JLabel[] labels = {
-        LbMal1, LbMal2, LbMal3, LbMal4, LbMal5,
-        LbMal6, LbMal7, LbMal8, LbMal9, LbMal10,
-        LbMal11, LbMal12, LbMal13, LbMal14, LbMal15,
-        LbMal16, LbMal17, LbTillGlobalaMalen
-    };
-
-    for (javax.swing.JLabel lbl : labels) {
-        sattHandCursorPaLabel(lbl);
+        for (javax.swing.JLabel lbl : labels) {
+            sattHandCursorPaLabel(lbl);
+        }
     }
-}
 
-private void sattHandCursorPaLabel(javax.swing.JLabel label) {
-    label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-}
-
+    private void sattHandCursorPaLabel(javax.swing.JLabel label) {
+        label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         btnProjektChef = new javax.swing.JButton();
-        label1 = new java.awt.Label();
+        LbStartsida = new java.awt.Label();
         btnMittKonto = new javax.swing.JButton();
         btnAdmin = new javax.swing.JButton();
         btnLoggaUt_v2 = new javax.swing.JButton();
@@ -91,7 +88,7 @@ private void sattHandCursorPaLabel(javax.swing.JLabel label) {
             }
         });
 
-        label1.setText("STARTSIDA");
+        LbStartsida.setText("STARTSIDA");
 
         btnMittKonto.setText("Mitt Konto");
         btnMittKonto.addActionListener(new java.awt.event.ActionListener() {
@@ -330,7 +327,7 @@ private void sattHandCursorPaLabel(javax.swing.JLabel label) {
                                 .addComponent(LbTillGlobalaMalen)))
                         .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(LbStartsida, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
                         .addComponent(LbLarDigMer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 139, Short.MAX_VALUE))))
@@ -339,7 +336,7 @@ private void sattHandCursorPaLabel(javax.swing.JLabel label) {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LbStartsida, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(LbLarDigMer, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -390,7 +387,7 @@ private void sattHandCursorPaLabel(javax.swing.JLabel label) {
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        label1.getAccessibleContext().setAccessibleName("Startsida");
+        LbStartsida.getAccessibleContext().setAccessibleName("Startsida");
     }// </editor-fold>//GEN-END:initComponents
 
     public boolean arProjektchef(String aid) {
@@ -637,11 +634,10 @@ private void sattHandCursorPaLabel(javax.swing.JLabel label) {
 
     private void LbTillGlobalaMalenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LbTillGlobalaMalenMouseClicked
         try {
-    java.awt.Desktop.getDesktop().browse(new java.net.URI("https://globalamalen.se/"));
-} 
-        catch (Exception e) {
-    javax.swing.JOptionPane.showMessageDialog(this, "Kunde inte öppna webbsidan.");
-}
+            java.awt.Desktop.getDesktop().browse(new java.net.URI("https://globalamalen.se/"));
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Kunde inte öppna webbsidan.");
+        }
 
     }//GEN-LAST:event_LbTillGlobalaMalenMouseClicked
 
@@ -665,6 +661,7 @@ private void sattHandCursorPaLabel(javax.swing.JLabel label) {
     private javax.swing.JLabel LbMal7;
     private javax.swing.JLabel LbMal8;
     private javax.swing.JLabel LbMal9;
+    private java.awt.Label LbStartsida;
     private javax.swing.JLabel LbTillGlobalaMalen;
     private javax.swing.JButton btnAdmin;
     private javax.swing.JButton btnLoggaUt_v2;
@@ -672,6 +669,5 @@ private void sattHandCursorPaLabel(javax.swing.JLabel label) {
     private javax.swing.JButton btnPersonal;
     private javax.swing.JButton btnProjektAlla;
     private javax.swing.JButton btnProjektChef;
-    private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 }

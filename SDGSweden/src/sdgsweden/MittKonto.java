@@ -47,43 +47,39 @@ public class MittKonto extends javax.swing.JPanel {
                 TfLosenord.setText(anvandarData.get("losenord"));
                 TfAvdelning.setText(anvandarData.get("avdelning"));
 
-            
-             String sqlMentor = ""
-               + "SELECT mentor "
-               + "FROM handlaggare "
-               + "WHERE aid = '" + aid + "'";
-            // OBS: fetchSingle (med två l) hämtar en enstaka kolumn
-            String mentorAid = idb.fetchSingle(sqlMentor);
+                String sqlMentor = ""
+                        + "SELECT mentor "
+                        + "FROM handlaggare "
+                        + "WHERE aid = '" + aid + "'";
+                // OBS: fetchSingle (med två l) hämtar en enstaka kolumn
+                String mentorAid = idb.fetchSingle(sqlMentor);
 
-            if (mentorAid != null && !mentorAid.isEmpty()) {
-                // 3) Hämta mentorens namn ur anstalld
-                String sqlM = ""
-                  + "SELECT fornamn, efternamn "
-                  + "FROM anstalld "
-                  + "WHERE aid = '" + mentorAid + "'";
-                HashMap<String, String> m = idb.fetchRow(sqlM);
+                if (mentorAid != null && !mentorAid.isEmpty()) {
+                    // 3) Hämta mentorens namn ur anstalld
+                    String sqlM = ""
+                            + "SELECT fornamn, efternamn "
+                            + "FROM anstalld "
+                            + "WHERE aid = '" + mentorAid + "'";
+                    HashMap<String, String> m = idb.fetchRow(sqlM);
 
-                if (m != null) {
-                    TfDinMentor.setText(
-                        m.get("fornamn") + " " + m.get("efternamn")
-                    );
+                    if (m != null) {
+                        TfDinMentor.setText(
+                                m.get("fornamn") + " " + m.get("efternamn")
+                        );
+                    } else {
+                        TfDinMentor.setText("Ingen mentor i anställd");
+                    }
                 } else {
-                    TfDinMentor.setText("Ingen mentor i anställd");
+                    TfDinMentor.setText("Ingen mentor tilldelad");
                 }
+            } else {
+                JOptionPane.showMessageDialog(this, "Användardata hittades inte");
             }
-            else {
-                TfDinMentor.setText("Ingen mentor tilldelad");
-            }
-        }
-        else {
-            JOptionPane.showMessageDialog(this, "Användardata hittades inte");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Kunde inte hämta information");
         }
     }
-    catch (Exception e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Kunde inte hämta information");
-    }
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -307,7 +303,6 @@ public class MittKonto extends javax.swing.JPanel {
         TfEpost.setEditable(redigera);
         TfTelefon.setEditable(redigera);
         TfLosenord.setEditable(redigera);
-        
 
 
     }//GEN-LAST:event_CbRedigeraUppgifterActionPerformed
@@ -318,43 +313,37 @@ public class MittKonto extends javax.swing.JPanel {
      */
 
     private void BnSparaAndringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BnSparaAndringarActionPerformed
-       
-    if (Validering.isEmpty(TfFornamn.getText())) 
-    {
-        JOptionPane.showMessageDialog(this, "Förnamn får inte vara tomt.");
-        return;
-    }
-    
-    if (Validering.isEmpty(TfEfternamn.getText()))
-    {
-        JOptionPane.showMessageDialog(this, "Efternamn får inte vara tomt");
-        return;
-    
-    }
 
-    if (!Validering.isValidEpost(TfEpost.getText())) 
-    {
-        JOptionPane.showMessageDialog(this, "Ogiltig e-postadress.");
-        return;
-    }
+        if (Validering.isEmpty(TfFornamn.getText())) {
+            JOptionPane.showMessageDialog(this, "Förnamn får inte vara tomt.");
+            return;
+        }
 
-    if (!Validering.isValidTelefon(TfTelefon.getText())) 
-    {
-        JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer.");
-        return;
-    }
+        if (Validering.isEmpty(TfEfternamn.getText())) {
+            JOptionPane.showMessageDialog(this, "Efternamn får inte vara tomt");
+            return;
 
-    if (!Validering.isValidAnstallningsdatum(TfAnstallningsdatum.getText())) 
-    {
-        JOptionPane.showMessageDialog(this, "Anställningsdatum måste ha formatet ÅÅÅÅ-MM-DD.");
-        return;
-    }
+        }
 
-    if (!Validering.isValidLosenord(TfLosenord.getText())) 
-    {
-        JOptionPane.showMessageDialog(this, "Lösenordet måste vara minst 8 tecken långt och innehålla både bokstäver och siffror.");
-        return;
-    } 
+        if (!Validering.isValidEpost(TfEpost.getText())) {
+            JOptionPane.showMessageDialog(this, "Ogiltig e-postadress.");
+            return;
+        }
+
+        if (!Validering.isValidTelefon(TfTelefon.getText())) {
+            JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer.");
+            return;
+        }
+
+        if (!Validering.isValidAnstallningsdatum(TfAnstallningsdatum.getText())) {
+            JOptionPane.showMessageDialog(this, "Anställningsdatum måste ha formatet ÅÅÅÅ-MM-DD.");
+            return;
+        }
+
+        if (!Validering.isValidLosenord(TfLosenord.getText())) {
+            JOptionPane.showMessageDialog(this, "Lösenordet måste vara minst 8 tecken långt och innehålla både bokstäver och siffror.");
+            return;
+        }
         //om validering fungerar sparas datan.
         try {
             String sql = "UPDATE anstalld SET "
