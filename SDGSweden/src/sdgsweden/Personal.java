@@ -141,6 +141,7 @@ public class Personal extends javax.swing.JPanel {
         CbAvdelning = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        LbGlobalGoalsLogo = new javax.swing.JLabel();
 
         setLayout(null);
 
@@ -149,7 +150,7 @@ public class Personal extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Personal");
         add(jLabel1);
-        jLabel1.setBounds(0, 10, 200, 30);
+        jLabel1.setBounds(10, 30, 200, 30);
 
         btnTillbaka.setText("Tillbaka");
         btnTillbaka.setPreferredSize(new java.awt.Dimension(77, 23));
@@ -228,6 +229,11 @@ public class Personal extends javax.swing.JPanel {
         });
         add(jButton1);
         jButton1.setBounds(720, 90, 120, 23);
+
+        LbGlobalGoalsLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sdgsweden/bilder/global-goals-logo-lite-större.png"))); // NOI18N
+        LbGlobalGoalsLogo.setText("jLabel5");
+        add(LbGlobalGoalsLogo);
+        LbGlobalGoalsLogo.setBounds(940, 0, 360, 680);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
@@ -272,6 +278,7 @@ public class Personal extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CbAvdelning;
+    private javax.swing.JLabel LbGlobalGoalsLogo;
     private javax.swing.JButton btnTillbaka;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
