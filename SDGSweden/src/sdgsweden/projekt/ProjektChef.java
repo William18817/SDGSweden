@@ -87,7 +87,7 @@ public class ProjektChef extends javax.swing.JPanel {
         jLabelProjektAvdelning.setText("Projekt");
 
         avdelningLabel.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        avdelningLabel.setForeground(new java.awt.Color(0, 0, 0));
+        avdelningLabel.setForeground(new java.awt.Color(255, 255, 255));
         avdelningLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         avdelningLabel.setToolTipText("");
         avdelningLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
@@ -98,7 +98,7 @@ public class ProjektChef extends javax.swing.JPanel {
         StatusLabel.setText("Status");
 
         jLabelProjektVy.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabelProjektVy.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelProjektVy.setForeground(new java.awt.Color(255, 255, 255));
         jLabelProjektVy.setText("Projektchef");
 
         javax.swing.GroupLayout jPanelNorthLayout = new javax.swing.GroupLayout(jPanelNorth);
