@@ -64,6 +64,7 @@ public class Inloggning extends javax.swing.JFrame {
             }
         });
 
+        LabelRubrik.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         LabelRubrik.setText("Inloggning  SDG Sweden");
 
         CheckBoxVisaLosenord.setText("Visa Lösenord");
@@ -80,7 +81,7 @@ public class Inloggning extends javax.swing.JFrame {
         LabelLosenord.setText("Lösenord:");
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("THE GLOBA GOALS");
+        jLabel1.setText("THE GLOBAL GOALS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,11 +106,9 @@ public class Inloggning extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addComponent(LabelRubrik)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(LabelRubrik)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

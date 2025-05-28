@@ -53,13 +53,11 @@
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" alignment="1" min="-2" pref="187" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="LabelRubrik" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" pref="187" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
-              <Component id="LabelRubrik" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -117,6 +115,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="LabelRubrik">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Inloggning  SDG Sweden"/>
       </Properties>
     </Component>
@@ -150,7 +151,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="THE GLOBA GOALS"/>
+        <Property name="text" type="java.lang.String" value="THE GLOBAL GOALS"/>
       </Properties>
     </Component>
   </SubComponents>
