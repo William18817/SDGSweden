@@ -146,7 +146,7 @@ public class Personal extends javax.swing.JPanel {
         setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Personal");
         add(jLabel1);
@@ -176,7 +176,7 @@ public class Personal extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tabelPersonal);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(20, 120, 820, 320);
+        jScrollPane1.setBounds(20, 120, 820, 440);
 
         txtSokFornamn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,9 +231,8 @@ public class Personal extends javax.swing.JPanel {
         jButton1.setBounds(720, 90, 120, 23);
 
         LbGlobalGoalsLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sdgsweden/bilder/global-goals-logo-lite-större.png"))); // NOI18N
-        LbGlobalGoalsLogo.setText("jLabel5");
         add(LbGlobalGoalsLogo);
-        LbGlobalGoalsLogo.setBounds(940, 0, 360, 680);
+        LbGlobalGoalsLogo.setBounds(920, -40, 830, 860);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed

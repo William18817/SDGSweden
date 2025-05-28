@@ -131,7 +131,7 @@ public class MittKonto extends javax.swing.JPanel {
         LbAvdelning.setText("Avdelning :");
 
         TfFornamn.setEditable(false);
-        TfFornamn.setForeground(java.awt.Color.black);
+        TfFornamn.setForeground(java.awt.Color.lightGray);
         TfFornamn.setText("jTextField1");
 
         TfEfternamn.setEditable(false);
@@ -187,6 +187,7 @@ public class MittKonto extends javax.swing.JPanel {
         });
 
         SidaTitel.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        SidaTitel.setForeground(new java.awt.Color(255, 255, 255));
         SidaTitel.setText("Dina uppgifter :");
 
         TfDinMentor.setEditable(false);

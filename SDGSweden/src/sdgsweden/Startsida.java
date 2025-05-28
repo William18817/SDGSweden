@@ -27,7 +27,7 @@ public class Startsida extends javax.swing.JPanel {
         this.aid = aid;
         initComponents();
 
-        LbTillGlobalaMalen.setText("<html><font color='blue'><u>Lär dig mer här!</u></font></html>");
+        LbTillGlobalaMalen.setText("<html><font color='white'><u>Lär dig mer här!</u></font></html>");
 
         initHandCursorForAllaLabels();
     }
