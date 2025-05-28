@@ -325,7 +325,7 @@ public class AdminLand extends javax.swing.JPanel {
         }
         if (Validering.isEmpty(txtValuta.getText()))
         {
-            JOptionPane.showMessageDialog(this, "Valuta får inte vara tomt.");
+            JOptionPane.showMessageDialog(this, "Valuta får inte vara tomt. Måste skrivas ex: 00.00");
             return;
         }
         if (Validering.isEmpty(txtTidszon.getText()))

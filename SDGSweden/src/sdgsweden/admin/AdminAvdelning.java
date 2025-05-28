@@ -2,6 +2,8 @@ package sdgsweden.admin;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -338,16 +340,16 @@ public class AdminAvdelning extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Namn får inte tomt.");
             return;
         }
-        if (Validering.isEmpty(txtAdress.getText())) {
+        if (!Validering.isValidAdress(txtAdress.getText())) {
             JOptionPane.showMessageDialog(this, "Ogiltig adress.");
             return;
         }
-        if (Validering.isEmpty(txtEpost.getText())) {
-            JOptionPane.showMessageDialog(this, "Ogiltig E-postadress.");
+        if (!Validering.isValidEpost(txtEpost.getText())) {
+            JOptionPane.showMessageDialog(this, "Ogiltig E-postadress. Måste skrivas: namn@ngo.org");
             return;
         }
-        if (Validering.isEmpty(txtTelefon.getText())) {
-            JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer.");
+        if (!Validering.isValidTelefon(txtTelefon.getText())) {
+            JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer. Måste vara mellan 7-15 siffror.");
             return;
         }
         if (Validering.isEmpty(txtBeskrivning.getText())) {
@@ -382,6 +384,32 @@ public class AdminAvdelning extends javax.swing.JPanel {
         String beskrivning = txtBeskrivning.getText().trim();
         String chef = txtChef.getText().trim();
         String stad = txtStadNamn.getText().trim();
+        String anstalldID = null;
+        String stadID = null;
+        
+        String[] namnArray = chef.split(" ");
+        if (namnArray.length != 2)
+            JOptionPane.showMessageDialog(this, "Vänligen ange både för - och efternamn");
+            
+        try {
+            anstalldID = idb.fetchSingle("SELECT aid FROM anstalld WHERE fornamn = '" + namnArray[0] + "' AND efternamn = '" + namnArray[1] + "'");
+        } catch (InfException ex) {
+            Logger.getLogger(AdminAvdelning.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            stadID = idb.fetchSingle("SELECT sid FROM stad WHERE namn = '" + stad + "'");
+        } catch (InfException ex) {
+            Logger.getLogger(AdminAvdelning.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+                if (Validering.isEmpty(stadID) || stadID == null) {
+            JOptionPane.showMessageDialog(this, "Hittade ingen stad. Ange en stad som redan finns i databasen");
+            return;
+        }
+                if (Validering.isEmpty(anstalldID) || anstalldID == null) {
+            JOptionPane.showMessageDialog(this, "Hittade ingen anställd. Ange en anställd som redan finns i databasen.");
+            return;
+        }
 
         //Början på en try-catch sats.
         try {
@@ -390,7 +418,7 @@ public class AdminAvdelning extends javax.swing.JPanel {
             String avdid = jTableAvdelningar.getValueAt(valdRad, 0).toString();
 
             //Här skapas en sql-fråga (sqlFraga) som uppdaterar informationen i databasen för specifikt valt avdid.
-            String sqlFraga = "UPDATE avdelning SET namn = '" + namn + "', adress = '" + adress + "', epost = '" + epost + "', telefon = '" + telefon + "', beskrivning = '" + beskrivning + "', chef = " + chef + ", stad = " + stad + " WHERE avdid = " + avdid;
+            String sqlFraga = "UPDATE avdelning SET namn = '" + namn + "', adress = '" + adress + "', epost = '" + epost + "', telefon = '" + telefon + "', beskrivning = '" + beskrivning + "', chef = " + anstalldID + ", stad = " + stadID + " WHERE avdid = " + avdid;
 
             //Här körs frågan så att uppdateringen implementeras i databasen.
             idb.update(sqlFraga);
@@ -435,6 +463,9 @@ public class AdminAvdelning extends javax.swing.JPanel {
             String beskrivning = txtBeskrivning.getText().trim();
             String chefStr = txtChef.getText().trim();
             String stadStr = txtStadNamn.getText().trim();
+        
+            String[] namnArray = chefStr.split(" ");
+            
 
             //Dessa "if;s" nedan är en validering där det ställs olika krav på de attibut som står angivna.
             //Exempelvis om man anger fel format på e-post så får man felmeddelandet "Ogitlig E-postadress".
@@ -443,16 +474,16 @@ public class AdminAvdelning extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Namn får inte vara tomt.");
                 return;
             }
-            if (Validering.isEmpty(txtAdress.getText())) {
+            if (!Validering.isValidAdress(txtAdress.getText())) {
                 JOptionPane.showMessageDialog(this, "Adress får inte vara tomt.");
                 return;
             }
-            if (Validering.isEmpty(txtEpost.getText())) {
+            if (!Validering.isValidEpost(txtEpost.getText())) {
                 JOptionPane.showMessageDialog(this, "Ogiltig E-postadress.");
                 return;
             }
-            if (Validering.isEmpty(txtTelefon.getText())) {
-                JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer.");
+            if (!Validering.isValidTelefon(txtTelefon.getText())) {
+                JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer. Måste vara mellan 7-15 siffror.");
                 return;
             }
             if (Validering.isEmpty(txtBeskrivning.getText())) {
@@ -467,13 +498,10 @@ public class AdminAvdelning extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Stad (ID) får inte vara tomt.");
                 return;
             }
-
-            //Här sker en konvertering där "chef" och "stad" görs om till helttal (int).
-            int chef = Integer.parseInt(chefStr);
-            int stad = Integer.parseInt(stadStr);
+            
 
             //Här ställs en sql-fråga där vi vill hämta "aid" från anställd.
-            String sqlChef = "SELECT aid FROM anstalld WHERE aid = " + chef;
+            String sqlChef = "SELECT aid FROM anstalld WHERE fornamn = '" + namnArray[0] + "' AND efternamn = '" + namnArray[1] + "'";
 
             //Om inget resultat hittas, Om resultat är exakt icke-existerande (==) så returneras nedan meddelande.
             String chefResultat = idb.fetchSingle(sqlChef);
@@ -483,7 +511,7 @@ public class AdminAvdelning extends javax.swing.JPanel {
             }
 
             //Här ställs en sql-fråga där vi vill hämta "sid" från stad.
-            String sqlStad = "SELECT sid FROM stad WHERE sid = " + stad;
+            String sqlStad = "SELECT sid FROM stad WHERE namn = '" + stadStr + "'";
 
             //Om inget resultat hittas, Om resultat är exakt icke-existerande (==) så returneras nedan meddelande.
             String stadResultat = idb.fetchSingle(sqlStad);
@@ -504,7 +532,7 @@ public class AdminAvdelning extends javax.swing.JPanel {
 
             //Här skapas en sql-fråga där vi vill inserta (lägga till en ny rad) i avdelningstabellen.
             String sqlFraga = "INSERT INTO avdelning (avdid, namn, adress, epost, telefon, beskrivning, chef, stad) "
-                    + "VALUES (" + nextAvdid + ", '" + namn + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + beskrivning + "', " + chef + ", " + stad + ")";
+                    + "VALUES (" + nextAvdid + ", '" + namn + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + beskrivning + "', " + chefResultat + ", " + stadResultat + ")";
 
             //Här körs sql frågan.
             idb.insert(sqlFraga);

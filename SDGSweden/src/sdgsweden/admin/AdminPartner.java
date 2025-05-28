@@ -313,8 +313,7 @@ public class AdminPartner extends javax.swing.JPanel {
         //Dessa "if;s" nedan är en validering där det ställs olika krav på de attibut som står angivna.
         //Exempelvis om man anger fel format på e-post så får man felmeddelandet "Ogitlig E-postadress".
         //Allt detta är sedan kopplat till en egen valideringsklass som importers (Se högst upp).
-        if (Validering.isEmpty(txtNamn.getText()))
-            
+        if (Validering.isEmpty(txtNamn.getText()))    
         {
            JOptionPane.showMessageDialog(this, "Namn får inte tomt.");
            return;
@@ -324,17 +323,17 @@ public class AdminPartner extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Kontaktperson får inte vara tomt.");
             return;
         }
-        if (Validering.isEmpty(txtKontaktEpost.getText()))
+        if (!Validering.isValidEpost(txtKontaktEpost.getText()))
         {
             JOptionPane.showMessageDialog(this, "Ogiltig E-postadress.");
             return;
         }
-        if (Validering.isEmpty(txtTelefon.getText()))
+        if (!Validering.isValidTelefon(txtTelefon.getText()))
         {
             JOptionPane.showMessageDialog(this, "Ogiltigt telefonnummer.");
             return;
         }
-        if (Validering.isEmpty(txtAdress.getText()))
+        if (!Validering.isValidAdress(txtAdress.getText()))
         {
             JOptionPane.showMessageDialog(this, "Ogiltig adress.");
             return;
