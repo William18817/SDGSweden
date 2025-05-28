@@ -61,10 +61,24 @@ public class Validering {
         return adress.matches("^[A-Za-zÅÄÖåäö\\d\\-\\s]{2,12}$");
 
     }
+    public static boolean isValidValuta(String input) {
+    if (input == null || input.isBlank()) {
+        return false;
+    }
+
+    try {
+        // Byt ut komma till punkt så vi kan parsa till double
+        double kostnad = Double.parseDouble(input.replace(",", "."));
+        return kostnad >= 0 && kostnad <= 5_000_000;
+    } catch (NumberFormatException e) {
+        return false; // ogiltigt tal, t.ex. bokstäver eller fel formatering
+    }
+}
 
     public static boolean isValidKostnad(double kostnad) {
         return kostnad >= 0 && kostnad <= 5_000_000;
     }
+   
 
     public static boolean allaFältIfyllda(String... fält) {
         for (String fältet : fält) {
