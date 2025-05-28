@@ -144,20 +144,22 @@ public class Personal extends javax.swing.JPanel {
 
         setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Personal");
         add(jLabel1);
-        jLabel1.setBounds(0, 0, 840, 30);
+        jLabel1.setBounds(0, 10, 200, 30);
 
         btnTillbaka.setText("Tillbaka");
+        btnTillbaka.setPreferredSize(new java.awt.Dimension(77, 23));
         btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTillbakaActionPerformed(evt);
             }
         });
         add(btnTillbaka);
-        btnTillbaka.setBounds(710, 20, 110, 23);
+        btnTillbaka.setBounds(730, 20, 110, 23);
 
         tabelPersonal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -218,6 +220,7 @@ public class Personal extends javax.swing.JPanel {
         jLabel4.setBounds(20, 70, 210, 16);
 
         jButton1.setText("Rensa sökning");
+        jButton1.setPreferredSize(new java.awt.Dimension(77, 23));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

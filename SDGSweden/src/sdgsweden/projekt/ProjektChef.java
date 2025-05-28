@@ -44,6 +44,7 @@ public class ProjektChef extends javax.swing.JPanel {
         jLabelProjektAvdelning = new javax.swing.JLabel();
         avdelningLabel = new javax.swing.JLabel();
         StatusLabel = new javax.swing.JLabel();
+        jLabelProjektVy = new javax.swing.JLabel();
         jPanelCenter = new javax.swing.JPanel();
         jScrollPaneProjektChef = new javax.swing.JScrollPane();
         InfoProjectTable = new javax.swing.JTable();
@@ -52,7 +53,6 @@ public class ProjektChef extends javax.swing.JPanel {
         taBortPartnerButton = new javax.swing.JButton();
         addHandlaggareButton = new javax.swing.JButton();
         taBortHandlaggareButton = new javax.swing.JButton();
-        btnTillbaka = new javax.swing.JButton();
         DateOne = new javax.swing.JTextField();
         DatumLabel = new javax.swing.JLabel();
         jLabelStartdatum = new javax.swing.JLabel();
@@ -63,8 +63,8 @@ public class ProjektChef extends javax.swing.JPanel {
         visaProjektchefButton = new javax.swing.JButton();
         visaLandInfoButton = new javax.swing.JButton();
         visaPartnerInfoButton = new javax.swing.JButton();
-        jLabelProjektVy = new javax.swing.JLabel();
         AndraUppgifter = new javax.swing.JButton();
+        btnTillbaka = new javax.swing.JButton();
 
         setToolTipText("");
         setPreferredSize(new java.awt.Dimension(1300, 600));
@@ -85,7 +85,8 @@ public class ProjektChef extends javax.swing.JPanel {
 
         jLabelProjektAvdelning.setText("Projekt");
 
-        avdelningLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        avdelningLabel.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        avdelningLabel.setForeground(new java.awt.Color(0, 0, 0));
         avdelningLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         avdelningLabel.setToolTipText("");
         avdelningLabel.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
@@ -95,14 +96,20 @@ public class ProjektChef extends javax.swing.JPanel {
 
         StatusLabel.setText("Status");
 
+        jLabelProjektVy.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabelProjektVy.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelProjektVy.setText("Projektchef");
+
         javax.swing.GroupLayout jPanelNorthLayout = new javax.swing.GroupLayout(jPanelNorth);
         jPanelNorth.setLayout(jPanelNorthLayout);
         jPanelNorthLayout.setHorizontalGroup(
             jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelNorthLayout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
-                .addComponent(avdelningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(61, 61, 61)
+                .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelProjektVy, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
+                    .addComponent(avdelningLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
                 .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelNorthLayout.createSequentialGroup()
                         .addComponent(StatusLabel)
@@ -113,12 +120,12 @@ public class ProjektChef extends javax.swing.JPanel {
                 .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelProjektAvdelning)
                     .addComponent(projektComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanelNorthLayout.setVerticalGroup(
             jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelNorthLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(StatusLabel)
                     .addComponent(jLabelProjektAvdelning))
@@ -126,11 +133,13 @@ public class ProjektChef extends javax.swing.JPanel {
                 .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(StatusMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(projektComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNorthLayout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanelNorthLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
                 .addComponent(avdelningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelProjektVy)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanelCenter.setPreferredSize(new java.awt.Dimension(1000, 400));
@@ -211,14 +220,6 @@ public class ProjektChef extends javax.swing.JPanel {
             }
         });
 
-        btnTillbaka.setText("Tillbaka");
-        btnTillbaka.setPreferredSize(new java.awt.Dimension(110, 25));
-        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTillbakaActionPerformed(evt);
-            }
-        });
-
         DateOne.setColumns(12);
 
         DatumLabel.setText("Sök datum (YYYY-MM-DD)");
@@ -261,8 +262,7 @@ public class ProjektChef extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(addPartnerButton, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(taBortPartnerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnTillbaka, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(taBortPartnerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(15, 15, 15))
         );
         jPanelSouthLayout.setVerticalGroup(
@@ -284,9 +284,7 @@ public class ProjektChef extends javax.swing.JPanel {
                 .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelStartdatum)
                     .addComponent(jLabelSlutdatum))
-                .addGap(18, 18, 18)
-                .addComponent(btnTillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         StatistikKostnad.setText("Kostnadsstatistik");
@@ -318,14 +316,19 @@ public class ProjektChef extends javax.swing.JPanel {
             }
         });
 
-        jLabelProjektVy.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabelProjektVy.setText("Projektchef");
-
         AndraUppgifter.setText("Ändra Uppgifter");
         AndraUppgifter.setPreferredSize(new java.awt.Dimension(120, 25));
         AndraUppgifter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AndraUppgifterActionPerformed(evt);
+            }
+        });
+
+        btnTillbaka.setText("Tillbaka");
+        btnTillbaka.setPreferredSize(new java.awt.Dimension(110, 25));
+        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTillbakaActionPerformed(evt);
             }
         });
 
@@ -349,23 +352,23 @@ public class ProjektChef extends javax.swing.JPanel {
                                     .addComponent(visaProjektchefButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(visaLandInfoButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(visaPartnerInfoButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(AndraUppgifter, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                                    .addComponent(jLabelProjektVy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(AndraUppgifter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnTillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(110, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanelNorth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTillbaka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanelNorth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelCenter, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabelProjektVy)
-                        .addGap(49, 49, 49)
+                        .addGap(23, 23, 23)
                         .addComponent(StatistikKostnad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(visaProjektchefButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -377,7 +380,7 @@ public class ProjektChef extends javax.swing.JPanel {
                         .addComponent(AndraUppgifter, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelSouth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
