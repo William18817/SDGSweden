@@ -19,24 +19,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPaneAvdelning" alignment="0" min="-2" pref="494" max="-2" attributes="0"/>
-                  <Component id="jLabelAvdelning" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="btnSpara" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnLaggTill" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnTaBort" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnTillbakaAdmin" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
+                      <Component id="jScrollPaneAvdelning" min="-2" pref="494" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                                       <Component id="jLabelNamn" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -55,7 +42,7 @@
                               </Group>
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtStadNamn" pref="230" max="32767" attributes="0"/>
+                                  <Component id="txtStadNamn" pref="223" max="32767" attributes="0"/>
                                   <Component id="txtTelefon" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtBeskrivning" alignment="1" max="32767" attributes="0"/>
                                   <Component id="txtChef" alignment="1" max="32767" attributes="0"/>
@@ -66,9 +53,28 @@
                           </Group>
                           <Component id="jLabelStad" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="288" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jLabelAvdelning" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btnSpara" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="btnLaggTill" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="btnTaBort" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnTillbakaAdmin" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
+              <Component id="LbKosmetiskt" min="-2" pref="231" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -77,58 +83,65 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jLabelAvdelning" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="LbKosmetiskt" pref="0" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPaneAvdelning" min="-2" pref="268" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabelNamn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNamn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtAdress" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelAdress" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtEpost" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelEpost" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtTelefon" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelTelefon" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="jLabelAvdelning" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelBeskrivning" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtBeskrivning" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPaneAvdelning" min="-2" pref="268" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabelNamn" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtNamn" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtAdress" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelAdress" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtEpost" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelEpost" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtTelefon" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelTelefon" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabelBeskrivning" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtBeskrivning" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtChef" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelChef" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtStadNamn" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelStad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtChef" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelChef" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="btnSpara" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnLaggTill" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnTaBort" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="btnTillbakaAdmin" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtStadNamn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelStad" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace pref="92" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="btnSpara" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnLaggTill" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnTaBort" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="btnTillbakaAdmin" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="78" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -136,6 +149,9 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabelAvdelning">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="24" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Avdelning"/>
       </Properties>
     </Component>
@@ -272,6 +288,13 @@
       <Properties>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[180, 24]"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LbKosmetiskt">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/sdgsweden/bilder/global-goals-logo-lite-st&#xf6;rre.png"/>
         </Property>
       </Properties>
     </Component>

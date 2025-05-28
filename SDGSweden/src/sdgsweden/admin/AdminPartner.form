@@ -16,15 +16,23 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jLabelPartner" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jScrollPanePartner" alignment="0" min="-2" pref="337" max="-2" attributes="0"/>
+                  <Component id="jLabelPartner" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jScrollPanePartner" min="-2" pref="337" max="-2" attributes="0"/>
+                      <Component id="btnSpara" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnLaggTill" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnTaBort" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnTillbakaAdmin" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
@@ -34,8 +42,8 @@
                               </Group>
                               <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtKontaktPerson" pref="0" max="32767" attributes="0"/>
-                                  <Component id="txtNamn" pref="0" max="32767" attributes="0"/>
+                                  <Component id="txtKontaktPerson" pref="556" max="32767" attributes="0"/>
+                                  <Component id="txtNamn" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="44" pref="44" max="-2" attributes="0"/>
                           </Group>
@@ -48,24 +56,19 @@
                               </Group>
                               <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtKontaktEpost" alignment="1" pref="0" max="32767" attributes="0"/>
-                                  <Component id="txtTelefon" alignment="1" pref="0" max="32767" attributes="0"/>
-                                  <Component id="txtAdress" pref="0" max="32767" attributes="0"/>
-                                  <Component id="txtBranch" alignment="1" pref="0" max="32767" attributes="0"/>
+                                  <Component id="txtKontaktEpost" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="txtTelefon" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="txtAdress" max="32767" attributes="0"/>
+                                  <Component id="txtBranch" alignment="1" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="btnSpara" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnLaggTill" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnTaBort" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnTillbakaAdmin" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
                       </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="LbKosmetiskt" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -77,8 +80,18 @@
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Component id="jLabelPartner" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jScrollPanePartner" min="-2" pref="310" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPanePartner" min="-2" pref="310" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnSpara" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLaggTill" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnTaBort" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnTillbakaAdmin" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabelNamn" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -110,15 +123,9 @@
                           <Component id="txtBranch" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnSpara" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnLaggTill" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnTaBort" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnTillbakaAdmin" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="LbKosmetiskt" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="103" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -126,6 +133,9 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabelPartner">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="24" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Partner"/>
       </Properties>
     </Component>
@@ -252,6 +262,13 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTaBortActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LbKosmetiskt">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/sdgsweden/bilder/global-goals-logo-lite-st&#xf6;rre.png"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

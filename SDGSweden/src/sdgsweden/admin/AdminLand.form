@@ -17,32 +17,16 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jScrollPanelLand" min="-2" pref="357" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabelLand" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPanelLand" alignment="0" min="-2" pref="357" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabelTidszon" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelValuta" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelSprak" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelNamn" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelPolitiskStruktur" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelEkonomi" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtNamn" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtSpråk" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtValuta" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtTidszon" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtPolitiskStruktur" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtEkonomi" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                               <Component id="btnSpara" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               <Component id="btnLaggTill" min="-2" max="-2" attributes="0"/>
@@ -52,10 +36,29 @@
                               <Component id="btnTillbakaAdmin" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabelTidszon" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelValuta" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelSprak" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelNamn" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelPolitiskStruktur" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelEkonomi" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtNamn" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtSpråk" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtValuta" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTidszon" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPolitiskStruktur" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtEkonomi" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Component id="jLabelLand" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="33" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="LbKosmetiskt" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -66,8 +69,17 @@
               <Component id="jLabelLand" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPanelLand" min="-2" pref="309" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jScrollPanelLand" min="-2" pref="309" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnSpara" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLaggTill" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnTaBort" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnTillbakaAdmin" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabelNamn" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtNamn" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -99,14 +111,12 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnSpara" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnLaggTill" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnTaBort" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnTillbakaAdmin" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="183" max="32767" attributes="0"/>
+              <EmptySpace min="174" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="LbKosmetiskt" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -114,6 +124,9 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabelLand">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="24" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Land"/>
       </Properties>
     </Component>
@@ -240,6 +253,13 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTaBortActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="LbKosmetiskt">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/sdgsweden/bilder/global-goals-logo-lite-st&#xf6;rre.png"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
