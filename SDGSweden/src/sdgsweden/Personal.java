@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package sdgsweden;
 
 import java.util.ArrayList;
@@ -28,47 +24,41 @@ public class Personal extends javax.swing.JPanel {
         sokPersonal();
     }
 
-    public void fyllPersonalTabell(String fornamnSok, String epostSok, String valdAvdelning) {
+    public void fyllPersonalTabell(String fornamnSok, String epostSok, String valdAvdelning, String valdRoll) {
         try {
             StringBuilder sqlFraga = new StringBuilder(
                     "SELECT a.aid, a.fornamn, a.efternamn, a.epost, a.telefon "
                     + "FROM anstalld a "
-                    + "JOIN avdelning avd ON a.avdelning = avd.avdid"
+                    + "JOIN avdelning avd ON a.avdelning = avd.avdid "
             );
 
             boolean harVillkor = false;
-            
+
             String fornamnFilter = fornamnFilter(fornamnSok);
-            if (!fornamnFilter.isEmpty()){
-                if (harVillkor){
-                    sqlFraga.append(" WHERE ");
-                    }else{
-                    sqlFraga.append(" AND ");
-                }
-                sqlFraga.append(fornamnFilter);
+            if (!fornamnFilter.isEmpty()) {
+                sqlFraga.append(" WHERE ").append(fornamnFilter);
                 harVillkor = true;
             }
+
             String epostFilter = epostFilter(epostSok);
             if (!epostFilter.isEmpty()) {
-                if (!harVillkor) {
-                    sqlFraga.append(" WHERE ");
-                    } else {
-                    sqlFraga.append(" AND ");
-                }
-                sqlFraga.append(epostFilter);
+                sqlFraga.append(harVillkor ? " AND " : " WHERE").append(" ").append(epostFilter);
                 harVillkor = true;
             }
 
             if (valdAvdelning != null && !valdAvdelning.equalsIgnoreCase("Alla")) {
-                if (harVillkor) {
-                    sqlFraga.append(" AND");
-                } else {
-                    sqlFraga.append(" WHERE");
-                }
-                sqlFraga.append(" avd.namn = '").append(valdAvdelning).append("'");
+                sqlFraga.append(harVillkor ? " AND " : " WHERE").append(" avd.namn = '").append(valdAvdelning).append("'");
+                harVillkor = true;
             }
 
-            // Lägg till sortering med mellanslag
+            if (valdRoll != null && !valdRoll.equalsIgnoreCase("Alla")) {
+                if (valdRoll.equalsIgnoreCase("Admin")) {
+                    sqlFraga.append(harVillkor ? " AND " : " WHERE").append(" a.aid IN (SELECT aid FROM admin)");
+                } else if (valdRoll.equalsIgnoreCase("Handläggare")) {
+                    sqlFraga.append(harVillkor ? " AND " : " WHERE").append(" a.aid IN (SELECT aid FROM handlaggare)");
+                }
+            }
+
             sqlFraga.append(" ORDER BY a.aid ASC");
 
             ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sqlFraga.toString());
@@ -88,23 +78,24 @@ public class Personal extends javax.swing.JPanel {
             Logger.getLogger(Personal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    private void sokPersonal(){
+
+    private void sokPersonal() {
         String namn = txtSokFornamn.getText();
         String epost = txtSokEpost.getText();
         String avd = (String) CbAvdelning.getSelectedItem();
-        fyllPersonalTabell (namn, epost, avd); 
+        String roll = (String) cbRoll.getSelectedItem();
+        fyllPersonalTabell(namn, epost, avd, roll);
     }
-    
-    private String fornamnFilter (String fornamnSok) {
-        if (fornamnSok != null && !fornamnSok.trim().isEmpty()){
+
+    private String fornamnFilter(String fornamnSok) {
+        if (fornamnSok != null && !fornamnSok.trim().isEmpty()) {
             return " LOWER(a.fornamn) LIKE '%" + fornamnSok.toLowerCase() + "%'";
         }
-        return"";
+        return "";
     }
-    
-    private String epostFilter (String epostSok) {
-        if (epostSok != null && !epostSok.trim().isEmpty()){
+
+    private String epostFilter(String epostSok) {
+        if (epostSok != null && !epostSok.trim().isEmpty()) {
             return " LOWER(a.epost) LIKE '%" + epostSok.toLowerCase() + "%'";
         }
         return "";
@@ -140,8 +131,10 @@ public class Personal extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         CbAvdelning = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        rensaButton = new javax.swing.JButton();
         LbGlobalGoalsLogo = new javax.swing.JLabel();
+        cbRoll = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
 
         setLayout(null);
 
@@ -214,25 +207,38 @@ public class Personal extends javax.swing.JPanel {
             }
         });
         add(CbAvdelning);
-        CbAvdelning.setBounds(20, 90, 450, 22);
+        CbAvdelning.setBounds(20, 90, 320, 22);
 
-        jLabel4.setText("Filtrera efter avdelning:");
+        jLabel4.setText("Filtrera efter roll:");
         add(jLabel4);
-        jLabel4.setBounds(20, 70, 210, 16);
+        jLabel4.setBounds(350, 70, 90, 16);
 
-        jButton1.setText("Rensa sökning");
-        jButton1.setPreferredSize(new java.awt.Dimension(77, 23));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        rensaButton.setText("Rensa sökning");
+        rensaButton.setPreferredSize(new java.awt.Dimension(77, 23));
+        rensaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                rensaButtonActionPerformed(evt);
             }
         });
-        add(jButton1);
-        jButton1.setBounds(720, 90, 120, 23);
+        add(rensaButton);
+        rensaButton.setBounds(720, 90, 120, 23);
 
         LbGlobalGoalsLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sdgsweden/bilder/global-goals-logo-lite-större.png"))); // NOI18N
         add(LbGlobalGoalsLogo);
         LbGlobalGoalsLogo.setBounds(920, -40, 830, 860);
+
+        cbRoll.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alla", "Admin", "Handläggare" }));
+        cbRoll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbRollActionPerformed(evt);
+            }
+        });
+        add(cbRoll);
+        cbRoll.setBounds(350, 90, 120, 22);
+
+        jLabel5.setText("Filtrera efter avdelning:");
+        add(jLabel5);
+        jLabel5.setBounds(20, 70, 210, 16);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
@@ -267,24 +273,31 @@ public class Personal extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSokEpostKeyReleased
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void rensaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rensaButtonActionPerformed
         txtSokFornamn.setText("");
         txtSokEpost.setText("");
         CbAvdelning.setSelectedItem("Alla");
+        cbRoll.setSelectedItem("Alla");
         sokPersonal();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_rensaButtonActionPerformed
+
+    private void cbRollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRollActionPerformed
+        sokPersonal();
+    }//GEN-LAST:event_cbRollActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CbAvdelning;
     private javax.swing.JLabel LbGlobalGoalsLogo;
     private javax.swing.JButton btnTillbaka;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> cbRoll;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton rensaButton;
     private javax.swing.JTable tabelPersonal;
     private javax.swing.JTextField txtSokEpost;
     private javax.swing.JTextField txtSokFornamn;
