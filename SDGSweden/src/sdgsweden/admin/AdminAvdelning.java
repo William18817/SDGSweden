@@ -352,7 +352,7 @@ public class AdminAvdelning extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Namn får inte tomt.");
             return;
         }
-        if (!Validering.isValidAdress(txtAdress.getText())) {
+        if (Validering.isValidAdress(txtAdress.getText())) {
             JOptionPane.showMessageDialog(this, "Ogiltig adress.");
             return;
         }

@@ -23,9 +23,16 @@ public class Validering {
         }
         return epost.matches("^[a-zA-ZÅÄÖåäö]+\\.[a-zA-ZÅÄÖåäö]+@example\\.com$");
     }
-    
-    public static boolean isValidEpostAvdelining(String epost){
-        if (epost == null){
+
+    public static boolean isValidEpostPartner(String epost) {
+        if (epost == null) {
+            return false;
+        }
+        return epost.matches("^[^@\\s]+@[^@\\s]+\\.com$");
+    }
+
+    public static boolean isValidEpostAvdelining(String epost) {
+        if (epost == null) {
             return false;
         }
         return epost.matches("^[a-zA-ZåäöÅÄÖ0-9._%+-]+@[a-zA-ZåäöÅÄÖ0-9.-]+\\.[a-zA-Z]{2,}$");
@@ -35,7 +42,7 @@ public class Validering {
         if (telefon == null) {
             return false;
         }
-        return telefon.matches("^[\\d-]{7,15}$");
+        return telefon.matches("^\\+?[\\d-]{7,15}$");
     }
 
     public static boolean isValidAnstallningsdatum(String anstallningsdatum) {
@@ -58,27 +65,26 @@ public class Validering {
         if (adress == null) {
             return false;
         }
-        return adress.matches("^[A-Za-zÅÄÖåäö\\d\\-\\s]{50,50}$");
-
+        return adress.matches("^[A-Za-zÅÄÖåäö\\d\\-\\s,\\.]{5,100}$");
     }
+
     public static boolean isValidValuta(String input) {
-    if (input == null || input.isBlank()) {
-        return false;
-    }
+        if (input == null || input.isBlank()) {
+            return false;
+        }
 
-    try {
-        // Byt ut komma till punkt så vi kan parsa till double
-        double kostnad = Double.parseDouble(input.replace(",", "."));
-        return kostnad >= 0 && kostnad <= 5_000_000;
-    } catch (NumberFormatException e) {
-        return false; // ogiltigt tal, t.ex. bokstäver eller fel formatering
+        try {
+            // Byt ut komma till punkt så vi kan parsa till double
+            double kostnad = Double.parseDouble(input.replace(",", "."));
+            return kostnad >= 0 && kostnad <= 5_000_000;
+        } catch (NumberFormatException e) {
+            return false; // ogiltigt tal, t.ex. bokstäver eller fel formatering
+        }
     }
-}
 
     public static boolean isValidKostnad(double kostnad) {
         return kostnad >= 0 && kostnad <= 5_000_000;
     }
-   
 
     public static boolean allaFältIfyllda(String... fält) {
         for (String fältet : fält) {
