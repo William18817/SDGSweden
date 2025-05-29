@@ -21,37 +21,25 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="jScrollPaneAvdelning" min="-2" pref="494" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                      <Component id="jLabelNamn" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabelAdress" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabelEpost" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                                      <Component id="jLabelTelefon" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                      <Component id="jLabelBeskrivning" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jLabelChef" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtStadNamn" pref="223" max="32767" attributes="0"/>
-                                  <Component id="txtTelefon" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtBeskrivning" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="txtChef" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="txtAdress" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtEpost" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtNamn" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="jLabelTelefon" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelBeskrivning" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelEpost" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelAdress" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelNamn" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelChef" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelStad" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtStadNamn" pref="223" max="32767" attributes="0"/>
+                          <Component id="txtTelefon" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtBeskrivning" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txtChef" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txtAdress" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtEpost" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtNamn" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
@@ -114,9 +102,9 @@
                                   <Component id="jLabelTelefon" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabelBeskrivning" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtBeskrivning" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtBeskrivning" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelBeskrivning" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
