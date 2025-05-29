@@ -52,7 +52,6 @@ public class Inloggning extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         PasswordField.setColumns(11);
-        PasswordField.setText("password789");
         PasswordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PasswordFieldActionPerformed(evt);
@@ -60,7 +59,6 @@ public class Inloggning extends javax.swing.JFrame {
         });
 
         TextFieldEpost.setColumns(10);
-        TextFieldEpost.setText("ahmed.khan@example.com");
 
         ButtonLoggaIn.setText("Logga in");
         ButtonLoggaIn.addActionListener(new java.awt.event.ActionListener() {
