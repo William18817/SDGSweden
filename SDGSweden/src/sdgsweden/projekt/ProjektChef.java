@@ -400,11 +400,9 @@ public class ProjektChef extends javax.swing.JPanel {
             String datumTill = DateTwo.getText().trim();
             String valdVy = projektComboBox.getSelectedItem().toString(); // "Mina projekt" eller "Avdelningens projekt"
 
-            String fraga
-                    = "SELECT p.pid, p.status, p.projektnamn, p.beskrivning, p.startdatum, p.slutdatum, "
+            String fraga = "SELECT p.pid, p.status, p.projektnamn, p.beskrivning, p.startdatum, p.slutdatum, "
                     + "p.kostnad, p.prioritet, "
                     + "GROUP_CONCAT(DISTINCT pa.namn SEPARATOR ', ') AS partnernamn, "
-                    + "GROUP_CONCAT(DISTINCT CONCAT(a.fornamn, ' ', a.efternamn) SEPARATOR ', ') AS handlaggare, "
                     + "l.namn "
                     + "FROM projekt p "
                     + "LEFT JOIN land l ON p.land = l.lid "
@@ -413,7 +411,6 @@ public class ProjektChef extends javax.swing.JPanel {
 
             boolean harVillkor = false;
 
-            // Hantera vyval
             if (valdVy.equals("Mina projekt")) {
                 fraga += "LEFT JOIN ans_proj ap ON p.pid = ap.pid "
                         + "LEFT JOIN anstalld a ON ap.aid = a.aid "
@@ -456,9 +453,13 @@ public class ProjektChef extends javax.swing.JPanel {
             model.setRowCount(0);
 
             for (HashMap<String, String> rad : resultat) {
+                String pid = rad.get("pid");
+
+                // Hämta bara riktiga handläggare separat
+                String handlaggare = hamtaHandlaggareForProjekt(pid);
 
                 model.addRow(new Object[]{
-                    rad.get("pid"),
+                    pid,
                     rad.get("projektnamn"),
                     rad.get("prioritet"),
                     rad.get("status"),
@@ -467,13 +468,35 @@ public class ProjektChef extends javax.swing.JPanel {
                     rad.get("kostnad"),
                     rad.get("beskrivning"),
                     rad.get("partnernamn"),
-                    rad.get("handlaggare"),
-                    rad.get("namn")
+                    handlaggare, // Endast handläggare!
+                    rad.get("namn") // landets namn
                 });
             }
 
         } catch (InfException e) {
             JOptionPane.showMessageDialog(this, "Kunde inte hämta projekt: " + e.getMessage());
+        }
+    }
+
+    private String hamtaHandlaggareForProjekt(String pid) {
+        try {
+            String fraga = "SELECT CONCAT(a.fornamn, ' ', a.efternamn) AS namn "
+                    + "FROM ans_proj ap "
+                    + "JOIN anstalld a ON ap.aid = a.aid "
+                    + "WHERE ap.pid = " + pid + " "
+                    + "AND ap.aid IN (SELECT aid FROM handlaggare)";
+
+            ArrayList<HashMap<String, String>> resultat = idb.fetchRows(fraga);
+
+            ArrayList<String> namnLista = new ArrayList<>();
+            for (HashMap<String, String> rad : resultat) {
+                namnLista.add(rad.get("namn"));
+            }
+
+            return String.join(", ", namnLista);
+        } catch (InfException e) {
+            System.out.println("Fel vid hämtning av handläggare: " + e.getMessage());
+            return "";
         }
     }
 
@@ -589,7 +612,7 @@ public class ProjektChef extends javax.swing.JPanel {
     }//GEN-LAST:event_StatistikKostnadActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        
+
         Startsida startsida = new Startsida(parent, idb, aid);
         parent.visaPanel(startsida, "startsida");
     }//GEN-LAST:event_btnTillbakaActionPerformed
@@ -879,7 +902,6 @@ public class ProjektChef extends javax.swing.JPanel {
 
         String datumFran = DateOne.getText().trim();
         String datumTill = DateTwo.getText().trim();
-
 
         // Kontrollera om datumen är i rätt format (om de är ifyllda)
         if (!datumFran.isEmpty() && !Validering.isValidAnstallningsdatum(datumFran)) {

@@ -13,7 +13,6 @@ import sdgsweden.Validering;
 /*
  * @author jonas
  */
-
 public class Projekt extends javax.swing.JPanel {
 
     private InfDB idb;
@@ -67,7 +66,7 @@ public class Projekt extends javax.swing.JPanel {
 
         StatusLabel.setText("Status");
 
-        projektComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mina projekt", "Avdelningens projekt" }));
+        projektComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Projekt jag handlägger", "Avdelningens projekt" }));
         projektComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 projektComboBoxActionPerformed(evt);
@@ -91,15 +90,15 @@ public class Projekt extends javax.swing.JPanel {
             .addGroup(jPanelNorthLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(avdelningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(StatusMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(StatusLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelProjektAvdelning)
-                    .addComponent(projektComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22))
+                    .addComponent(projektComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanelNorthLayout.setVerticalGroup(
             jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,11 +303,9 @@ public class Projekt extends javax.swing.JPanel {
             String datumTill = DateTwo.getText().trim();
             String valdVy = projektComboBox.getSelectedItem().toString(); // "Mina projekt" eller "Avdelningens projekt"
 
-            String fraga
-                    = "SELECT p.pid, p.status, p.projektnamn, p.beskrivning, p.startdatum, p.slutdatum, "
+            String fraga = "SELECT p.pid, p.status, p.projektnamn, p.beskrivning, p.startdatum, p.slutdatum, "
                     + "p.kostnad, p.prioritet, "
                     + "GROUP_CONCAT(DISTINCT pa.namn SEPARATOR ', ') AS partnernamn, "
-                    + "GROUP_CONCAT(DISTINCT CONCAT(a.fornamn, ' ', a.efternamn) SEPARATOR ', ') AS handlaggare, "
                     + "l.namn "
                     + "FROM projekt p "
                     + "LEFT JOIN land l ON p.land = l.lid "
@@ -317,11 +314,11 @@ public class Projekt extends javax.swing.JPanel {
 
             boolean harVillkor = false;
 
-            // Hantera vyval
-            if (valdVy.equals("Mina projekt")) {
-                fraga += "LEFT JOIN ans_proj ap ON p.pid = ap.pid "
-                        + "LEFT JOIN anstalld a ON ap.aid = a.aid "
-                        + "WHERE p.projektchef = " + this.aid + " ";
+            if (valdVy.equals("Projekt jag handlägger")) {
+                // Visa projekt där användaren är handläggare 
+                fraga += "JOIN ans_proj ap ON p.pid = ap.pid "
+                        + "JOIN handlaggare h ON ap.aid = h.aid "
+                        + "WHERE h.aid = " + this.aid + " ";
                 harVillkor = true;
             } else if (valdVy.equals("Avdelningens projekt")) {
                 fraga += "JOIN ans_proj ap ON p.pid = ap.pid "
@@ -360,9 +357,13 @@ public class Projekt extends javax.swing.JPanel {
             model.setRowCount(0);
 
             for (HashMap<String, String> rad : resultat) {
+                String pid = rad.get("pid");
+
+                // Hämta bara riktiga handläggare separat
+                String handlaggare = hamtaHandlaggareForProjekt(pid);
 
                 model.addRow(new Object[]{
-                    rad.get("pid"),
+                    pid,
                     rad.get("projektnamn"),
                     rad.get("prioritet"),
                     rad.get("status"),
@@ -371,15 +372,36 @@ public class Projekt extends javax.swing.JPanel {
                     rad.get("kostnad"),
                     rad.get("beskrivning"),
                     rad.get("partnernamn"),
-                    rad.get("handlaggare"),
-                    rad.get("namn")
+                    handlaggare, // Endast handläggare!
+                    rad.get("namn") // landets namn
                 });
             }
 
         } catch (InfException e) {
             JOptionPane.showMessageDialog(this, "Kunde inte hämta projekt: " + e.getMessage());
         }
+    }
 
+    private String hamtaHandlaggareForProjekt(String pid) {
+        try {
+            String fraga = "SELECT CONCAT(a.fornamn, ' ', a.efternamn) AS namn "
+                    + "FROM ans_proj ap "
+                    + "JOIN anstalld a ON ap.aid = a.aid "
+                    + "WHERE ap.pid = " + pid + " "
+                    + "AND ap.aid IN (SELECT aid FROM handlaggare)";
+
+            ArrayList<HashMap<String, String>> resultat = idb.fetchRows(fraga);
+
+            ArrayList<String> namnLista = new ArrayList<>();
+            for (HashMap<String, String> rad : resultat) {
+                namnLista.add(rad.get("namn"));
+            }
+
+            return String.join(", ", namnLista);
+        } catch (InfException e) {
+            System.out.println("Fel vid hämtning av handläggare: " + e.getMessage());
+            return "";
+        }
     }
 
     private void hamtaAvdelningOchVisa() {
@@ -418,7 +440,7 @@ public class Projekt extends javax.swing.JPanel {
 
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        
+
         Startsida startsida = new Startsida(parent, idb, aid);
         parent.visaPanel(startsida, "startsida");
     }//GEN-LAST:event_btnTillbakaActionPerformed

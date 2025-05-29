@@ -52,10 +52,15 @@ public class Inloggning extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         PasswordField.setColumns(11);
-        PasswordField.setText("password123");
+        PasswordField.setText("password789");
+        PasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PasswordFieldActionPerformed(evt);
+            }
+        });
 
         TextFieldEpost.setColumns(10);
-        TextFieldEpost.setText("maria.g@example.com");
+        TextFieldEpost.setText("ahmed.khan@example.com");
 
         ButtonLoggaIn.setText("Logga in");
         ButtonLoggaIn.addActionListener(new java.awt.event.ActionListener() {
@@ -188,6 +193,10 @@ public class Inloggning extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_ButtonLoggaInActionPerformed
+
+    private void PasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PasswordFieldActionPerformed
 
     /**
      * @param args the command line arguments
