@@ -7,20 +7,12 @@ import sdgsweden.admin.AdminPanel;
 import sdgsweden.projekt.ProjektChef;
 import sdgsweden.projekt.Projekt;
 
-/**
- * @author User
- */
 public class Startsida extends javax.swing.JPanel {
 
-    private MainFrame parent;
-    private InfDB idb;
-    private String aid;
+    private MainFrame parent; // Referens till MainFrame - används för att byta JPanel i fönstret.
+    private InfDB idb; // Databasanslutningen
+    private String aid;// ID för inloggad användare
 
-    /*
-     * Creates new form Startsida
-     *
-     * @param parent
-     */
     public Startsida(MainFrame parent, InfDB idb, String aid) {
         this.parent = parent;
         this.idb = idb;
@@ -445,8 +437,6 @@ public class Startsida extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnAdminActionPerformed
 
-    //Vi behöver hjälp att ta bort koden för private void btnLoggaUtActionPerformed
-    //Knappen går inte att hitta i designläget eller ta bort manuellt.
 
     private void btnLoggaUt_v2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUt_v2ActionPerformed
         // stänger Jframen som innehåller den här panelen, alltså MainFrame.

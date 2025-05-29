@@ -1,55 +1,55 @@
-
 package sdgsweden;
+
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
 // MainFrame ärver klassen JFrame från java
-    public class MainFrame extends javax.swing.JFrame {
+// aid används för att identifiera vilken användare som är inloggad.
+public class MainFrame extends javax.swing.JFrame {
+
     private InfDB idb;
     private String aid;
-    
+
 //Konstruktorn tar emot databasanslutningen och användarID på den inloggade personen.
+    // Den här konstrukotrn används efter inloggningen och visar startsidan.
     public MainFrame(InfDB idb, String aid) {
-    this.idb = idb;
-    this.aid = aid;
-    initComponents();
+        this.idb = idb;
+        this.aid = aid;
+        initComponents();
 
-   
-    Startsida startsida = new Startsida(this, idb, aid);
-    mainPanel.add(startsida, "startsida");
-
-    CardLayout cl = (CardLayout) mainPanel.getLayout();
-    cl.show(mainPanel, "startsida");
-}
-
-    
- //Gamla konstrukorn, används bara om man vill starta direkt från MainFrame istället för Inloggningsrutan.
-    public MainFrame() {
-         initComponents();
-        try {
-        InfDB idb = new InfDB ("sdgsweden", "3306", "dbAdmin2024", "dbAdmin2024PW");
         Startsida startsida = new Startsida(this, idb, aid);
         mainPanel.add(startsida, "startsida");
 
-        // Visa startsidan som första vy
         CardLayout cl = (CardLayout) mainPanel.getLayout();
         cl.show(mainPanel, "startsida");
-        }
-        catch (InfException ex){
+    }
+
+    //Alterativ konstrukr, används om man vill starta direkt från MainFrame istället för Inloggningsrutan.
+    public MainFrame() {
+        initComponents();
+        try {
+            InfDB idb = new InfDB("sdgsweden", "3306", "dbAdmin2024", "dbAdmin2024PW");
+            Startsida startsida = new Startsida(this, idb, aid);
+            mainPanel.add(startsida, "startsida");
+
+            // Visa startsidan som första vy
+            CardLayout cl = (CardLayout) mainPanel.getLayout();
+            cl.show(mainPanel, "startsida");
+        } catch (InfException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(this, "Kunde inte ansluta till databasen: " + ex.getMessage());
         }
     }
- // Metoden som används av andra klasser för att byta sida som visas i MainFrame-fönstret
+    // Metoden som används av andra klasser för att byta sida som visas i MainFrame-fönstret
+
     public void visaPanel(javax.swing.JPanel panel, String namn) {
         mainPanel.add(panel, namn);
         CardLayout cl = (CardLayout) mainPanel.getLayout();
-        cl.show(mainPanel,namn);
+        cl.show(mainPanel, namn);
     }
-    
-    
+
 // Kod från designläget
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -86,8 +86,7 @@ import oru.inf.InfException;
     /**
      * @param args the command line arguments
      */
-    
-   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel mainPanel;
