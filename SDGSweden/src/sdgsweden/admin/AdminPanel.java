@@ -11,7 +11,6 @@ import oru.inf.InfException;
 import sdgsweden.Validering;
 
 /**
- *
  * @author willi
  */
 public class AdminPanel extends javax.swing.JPanel {
@@ -25,17 +24,20 @@ public class AdminPanel extends javax.swing.JPanel {
         this.idb = idb;
         this.aid = aid;
         initComponents();
+        
+        //Här förösker vi köra metoden "fyllAvdelningComboBox()" vars syfte är att fyllla i en combobox med information.
         try {
             fyllAvdelningComboBox();
 
+          //Om något går fel under tiden metoden körs så fångas felet här.
         } catch (InfException e) {
+            
+            //Då skrivs detta felmeddelande ut.
             JOptionPane.showMessageDialog(this, "Kunde inte läsa in data för avdelningar " + e.getMessage());
         }
     }
 
-    /**
-     * Creates new form AdminPanel
-     */
+    
     public AdminPanel() {
         initComponents();
     }
@@ -324,59 +326,86 @@ public class AdminPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGenereraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenereraLosenordActionPerformed
+        
+        //Detta betyder att den kan generera ett lösenord som inenhåller bokstäver mellan a-z (Stora och små bokstäver) samt siffrorna 0-9.
         String tecken = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-        //Detta betyder att den kan generera ett lösenord som inenhåller bokstäver mellan a-z (Stora och små bokstäver) samt siffrorna 0-9.
-        StringBuilder losenord = new StringBuilder();
         //Här skapas ett tomt objekt av typen "StringBuilder". Går att använda "String" också men "StringBuilder" anses som ett bättre val gällande kommande for-loop.
+        StringBuilder losenord = new StringBuilder();
 
-        for (int i = 0; i < 11; i++) //Detta är en for-loop som beskriver att loopen körs 10 gånger vilket också innebär att lösenordet är 10 tecken långt.
+        //Detta är en for-loop som beskriver att loopen körs 10 gånger vilket också innebär att lösenordet är 10 tecken långt.
+        for (int i = 0; i < 11; i++) 
         {
-            int index = (int) (Math.random() * tecken.length());
+            
             //Raden ovan väljer ett slumpmässigt tal som visar vilket tal och/eller tecken som ska väljas från "String tecken".
             //Math.random() genererar ett slumpmässigt tal mellan 0 och 1.
             //tecken.length() = Hur många tecken som finns i "String tecken".
             //(int) = Detta tar bort decimalerna vilekt bidrar till att lösenordet blir av heltal.
-
-            losenord.append(tecken.charAt(index));
+            int index = (int) (Math.random() * tecken.length());
+            
             //Här hämtar vi ett tecken från "String tecken" på platsen "index" och lägger det i lösenordet.
+            losenord.append(tecken.charAt(index));
         }
-        pwdLosenord.setText(losenord.toString());
+        
         //Losenord.toString() = omvandlar "StringBuilder" till en textsträng.
         //setText = Gör att lösenordet visas i textfältet.
-
+        pwdLosenord.setText(losenord.toString());
 
     }//GEN-LAST:event_btnGenereraLosenordActionPerformed
 
     private void chkVisaLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkVisaLosenordActionPerformed
-        if (chkVisaLosenord.isSelected()) //En if-sats där det här kontrolleras om rutan är ikryssad.
+        
+        //En if-sats där det här kontrolleras om rutan är ikryssad.
+        if (chkVisaLosenord.isSelected())
         {
-            pwdLosenord.setEchoChar((char) 0);
+            
             //Sista stycket i denna rad säger att lösenordet ska visas i vanlig text.
-        } else //Detta körs om inte rutan är ikryssad.
+            pwdLosenord.setEchoChar((char) 0);
+           
+          //Detta körs om inte rutan är ikryssad.  
+        } else
         {
-            pwdLosenord.setEchoChar('•');
+            
             //Lösenordet visas isåfall i denna formen "•••••".
+            pwdLosenord.setEchoChar('•');
+            
         }
-
-
     }//GEN-LAST:event_chkVisaLosenordActionPerformed
 
     private void btnRedigeraAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraAvdelningActionPerformed
+        
+        //Skapar ett nytt objekt av klassen AdminAvdelning och skickar med tre argument:
+        //parent är huvudfönstret (ofta ett MainFrame eller liknande som styr vilket panel som visas).
+        //idb är databasanslutningen (InfDB-objektet).
+        //aid är den inloggade användarens ID (anställnings-ID)
+        //Resultatet sparas i en variabel som heter adminAvdelningPanel.
         AdminAvdelning adminAvdelningPanel = new AdminAvdelning(parent, idb, aid);
+        
+        //Anropar en metod i parent (huvudfönstret) som visar det nya panel-objektet (adminAvdelningPanel)
+        //och ger det ett namn ("adminAvdelning") som kan användas för att byta paneler i ett CardLayout. 
         parent.visaPanel(adminAvdelningPanel, "adminAvdelning");
 
 
     }//GEN-LAST:event_btnRedigeraAvdelningActionPerformed
 
     private void btnRedigeraPartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraPartnerActionPerformed
+        
+        //Skapar ett nytt objekt av klassen AdminPartner och skickar med tre argument:
+        //parent är huvudfönstret (ofta ett MainFrame eller liknande som styr vilket panel som visas).
+        //idb är databasanslutningen (InfDB-objektet).
+        //aid är den inloggade användarens ID (anställnings-ID)
+        //Resultatet sparas i en variabel som heter adminPartnerPanel.
         AdminPartner adminPartnerPanel = new AdminPartner(parent, idb, aid);
+        
+        //Anropar en metod i parent (huvudfönstret) som visar det nya panel-objektet (adminPartnerPanel)
+        //och ger det ett namn ("adminPartner") som kan användas för att byta paneler i ett CardLayout. 
         parent.visaPanel(adminPartnerPanel, "adminPartner");
     }//GEN-LAST:event_btnRedigeraPartnerActionPerformed
 
     private void btnLaggTillAnstalldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillAnstalldActionPerformed
         try {
-            // Hämta alla värden från formuläret
+            
+            // Hämta inmatade värden från formuläret (tar bort onödiga mellanslag med trim()).
             String fornamn = txtFornamn.getText().trim();
             String efternamn = txtEfternamn.getText().trim();
             String adress = txtAdress.getText().trim();
@@ -415,22 +444,28 @@ public class AdminPanel extends javax.swing.JPanel {
                 return;
             }
 
-            // hämtar avdid baserat på den avdelning man valt i comboBox
+            //hämtar avdid baserat på den avdelning man valt i comboBox.
             String avdelningsId = idb.fetchSingle("SELECT avdid FROM avdelning WHERE namn = '" + valdAvdelning + "'");
             if (avdelningsId == null) {
+                
+                //Detta felmeddelande skrivs ut ifall ingen avdelning hittades.
                 JOptionPane.showMessageDialog(this, "Avdelningen hittades inte i databasen.");
                 return;
             }
 
-            // Hämta nästa lediga aid
+            //Här hämtar vi nästa lediga aid.
             String sqlNextId = "SELECT MAX(aid) + 1 FROM anstalld";
             String nextIdStr = idb.fetchSingle(sqlNextId);
+            
+            //Om det inte finns några anställda i systemet så börjar vi på 1.
             if (nextIdStr == null) {
                 nextIdStr = "1";
             }
+            
+            //Här konverteras id:t till ett heltal.
             int nextAid = Integer.parseInt(nextIdStr);
 
-            // Skapa INSERT-fråga
+            //Skapar en INSERT-fråga.
             String sql = "INSERT INTO anstalld (aid, fornamn, efternamn, adress, epost, telefon, anstallningsdatum, losenord, avdelning) "
                     + "VALUES (" + nextAid + ", "
                     + "'" + fornamn + "', "
@@ -442,12 +477,13 @@ public class AdminPanel extends javax.swing.JPanel {
                     + "'" + losenord + "', "
                     + avdelningsId + ")";
 
-            // Kör INSERT
+            //Kör INSERT där frågan skickas till databasen för att lägga till personen.
             idb.insert(sql);
 
+            //Detta meddelande skrivs ut om det lyckas.
             JOptionPane.showMessageDialog(this, "Anställd har lagts till i systemet!");
 
-            // Rensa fält
+            //Detta rensar sedan textfälten.
             txtFornamn.setText("");
             txtEfternamn.setText("");
             txtAdress.setText("");
@@ -457,14 +493,22 @@ public class AdminPanel extends javax.swing.JPanel {
             pwdLosenord.setText("");
             //txtAvdelning.setText("");
 
+          //Här fångas eventuella fel upp.
         } catch (Exception ettFel) {
+            
+            //Detta felmeddelande skrivs då ut.
             JOptionPane.showMessageDialog(this, "Fel: " + ettFel.getMessage());
             ettFel.printStackTrace();
         }
     }//GEN-LAST:event_btnLaggTillAnstalldActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
+        
+        //Här skapas ett nytt objekt av "AdminPanel" i form av att ett nytt GUI-panel_fönster dyker upp.
+        //Den får med sig tre saker från konstruktorn i form av "Parent (MainFrame), idb (databaskopplingen) och aid (användarens id).
         Startsida startsida = new Startsida(parent, idb, aid);
+        
+        //Detta är ett metodanrop vars syfte är att visa "startsida".
         parent.visaPanel(startsida, "startsida");
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
@@ -498,13 +542,17 @@ public class AdminPanel extends javax.swing.JPanel {
                 return;
             }
 
-            // Lista namn (tekniskt sett en person, men vi håller samma struktur)
+            //Här skapas en array "anstalldNamnLista".
             String[] anstalldNamnLista = new String[anstallda.size()];
+            
+            //Här sker en for-loop som går igenom alla naställda i listan och lägger in deras fullständiga namn i arrayen.
             for (int i = 0; i < anstallda.size(); i++) {
                 anstalldNamnLista[i] = anstallda.get(i).get("fornamn") + " " + anstallda.get(i).get("efternamn");
             }
 
-            // Dialog för att bekräfta borttagning
+            //Visar en popup-dialog där användaren kan välja en person att ta bort.
+            //Den använder arrayen med namn som alternativ i rullgardinsmenyn.
+            //Förvalt val är det första namnet i listan.
             String valdAnstalld = (String) JOptionPane.showInputDialog(
                     this,
                     "Bekräfta vilken anställd du vill ta bort:",
@@ -515,32 +563,67 @@ public class AdminPanel extends javax.swing.JPanel {
                     anstalldNamnLista[0]
             );
 
+            //Om användaren inte valt ett namn...
             if (valdAnstalld != null) {
+                
+                //Så körs denna loop som går igenom listan med anställda för att hitta rätt person.
                 for (HashMap<String, String> a : anstallda) {
+                    
+                    //Här skapas det ett fullständigt namn från varje rad (förnamn + efternamn).
                     String namn = a.get("fornamn") + " " + a.get("efternamn");
+                    
+                    //Här jämförs namnet med det namn som användaren valde i popup-rutan.
                     if (namn.equals(valdAnstalld)) {
+                        
+                        //Om rätt person hittas, så tas personen bort.
                         String deleteSql = "DELETE FROM anstalld WHERE aid = " + anstalldId;
+                        
+                        //Denna kod kör frågan i databasen.
                         idb.delete(deleteSql);
+                        
+                        //Detta meddelande skrivs sedan ut.
                         JOptionPane.showMessageDialog(this, "Den anställde togs bort.");
                         break;
                     }
                 }
             }
+          
+          //Här fångas eventuella fel.  
         } catch (InfException e) {
+            
+            //Vid fel skrivs detta felmeddelande ut.
             JOptionPane.showMessageDialog(this, "Fel vid borttagning av anställd: " + e.getMessage());
         }
 
     }//GEN-LAST:event_btnTaBortAnstalldActionPerformed
 
     private void btnRedigeraLand1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraLand1ActionPerformed
+        
+        //Skapar ett nytt objekt av klassen AdminLand.
+        //Tre saker skickas med till konstruktorn:
+        //parent är huvudfönstret (t.ex. ett objekt av MainFrame eller liknande)
+        //idb är anslutningen till databasen (InfDB-objekt)
+        //aid är inloggad användares ID (anställnings-ID)
+        //Detta gör att panelen "AdminLand" får tillgång till både databas och användarinformation.
         AdminLand adminLandPanel = new AdminLand(parent, idb, aid);
+        
+        //Anropar metoden "visaPanel" i huvudfönstret (parent).
+        //Den byter ut den nuvarande panelen i GUI:t till adminLandPanel.
+        //"adminLand" används som namn för att identifiera panelen i ett CardLayout-system.
         parent.visaPanel(adminLandPanel, "adminLand");
 
     }//GEN-LAST:event_btnRedigeraLand1ActionPerformed
 
     private void btnRedigeraProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraProjektActionPerformed
+        
+        //Skapar ett nytt objekt av klassen AdminProjekt.
+        //Skickar med:
+        // - idb: databasanslutningen (så att panelen kan hämta och spara projekt)
+        // - this: referens till den nuvarande panelen (Admin), om AdminProjekt behöver kommunicera tillbaka.
         AdminProjekt adminProjektPanel = new AdminProjekt(idb, this); // this = referens till Admin om det behövs
 
+        // Hämtar containern (föräldern) som den nuvarande panelen ligger i.
+        // Detta behövs för att kunna byta ut panelen som visas i fönstret.
         Container parentAdminPanel = this.getParent();
         parentAdminPanel.removeAll();
         parentAdminPanel.add(adminProjektPanel);
