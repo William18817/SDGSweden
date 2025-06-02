@@ -412,7 +412,7 @@ public class AdminPartner extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Kontaktperson får inte vara tomt.");
                 return;
             }
-            if (!Validering.isValidEpost(txtKontaktEpost.getText())) {
+            if (!Validering.isValidEpostPartner(txtKontaktEpost.getText())) {
                 JOptionPane.showMessageDialog(this, "Ogiltig E-postadress. Måste skrivas: namn.namn@example.com");
                 return;
             }
