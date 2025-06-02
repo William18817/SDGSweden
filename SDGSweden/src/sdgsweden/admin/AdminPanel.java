@@ -423,7 +423,7 @@ public class AdminPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Efternamn får inte vara tomt.");
                 return;
             }
-            if (Validering.isValidAdress(txtAdress.getText())) {
+            if (!Validering.isValidAdress(txtAdress.getText())) {
                 JOptionPane.showMessageDialog(this, "Ogiltig adress.");
                 return;
             }
