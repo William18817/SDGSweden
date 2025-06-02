@@ -26,7 +26,7 @@
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="HanteraProjektLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -53,7 +53,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="startdatumText" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="startDKontroll" min="-2" max="-2" attributes="0"/>
+                              <Component id="startDKontrollLbl" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -61,7 +61,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="slutdatumText" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="slutDKontroll" min="-2" max="-2" attributes="0"/>
+                                      <Component id="slutDKontrollLbl" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
@@ -86,7 +86,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="HanteraProjektLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -110,13 +110,13 @@
                       </Group>
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="startDKontroll" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="startDKontrollLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="startdatumText" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="startDatumLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="slutDKontroll" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="slutDKontrollLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="slutdatumText" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="slutDatumLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -268,12 +268,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="slutDKontroll">
+    <Component class="javax.swing.JLabel" name="slutDKontrollLbl">
       <Properties>
         <Property name="text" type="java.lang.String" value="YYYY-MM-DD"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="startDKontroll">
+    <Component class="javax.swing.JLabel" name="startDKontrollLbl">
       <Properties>
         <Property name="text" type="java.lang.String" value="YYYY-MM-DD"/>
       </Properties>
@@ -324,7 +324,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="HanteraProjektLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="24" style="1"/>

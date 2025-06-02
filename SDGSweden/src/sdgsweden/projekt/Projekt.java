@@ -53,7 +53,7 @@ public class Projekt extends javax.swing.JPanel {
         visaLandInfoButton = new javax.swing.JButton();
         visaPartnerInfoButton = new javax.swing.JButton();
         btnTillbaka = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        designLabel = new javax.swing.JLabel();
 
         setToolTipText("");
 
@@ -244,8 +244,8 @@ public class Projekt extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sdgsweden/bilder/global-goals-logo.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        designLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sdgsweden/bilder/global-goals-logo.png"))); // NOI18N
+        designLabel.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -268,7 +268,7 @@ public class Projekt extends javax.swing.JPanel {
                             .addComponent(jPanelCenter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanelSouth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(40, 40, 40)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(designLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -291,7 +291,7 @@ public class Projekt extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(visaPartnerInfoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(designLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -642,7 +642,7 @@ public class Projekt extends javax.swing.JPanel {
     private javax.swing.JButton UppdateButton;
     private javax.swing.JLabel avdelningLabel;
     private javax.swing.JButton btnTillbaka;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel designLabel;
     private javax.swing.JLabel jLabelProjektAvdelning;
     private javax.swing.JLabel jLabelSlutdatum;
     private javax.swing.JLabel jLabelStartdatum;
