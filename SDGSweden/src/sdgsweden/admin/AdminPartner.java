@@ -99,7 +99,7 @@ public class AdminPartner extends javax.swing.JPanel {
 
         jLabelNamn.setText("Namn");
 
-        jLabelKontaktperson.setText("Kontakperson");
+        jLabelKontaktperson.setText("Kontaktperson");
 
         jLabelKontaktEpost.setText("Kontaktepost");
 
@@ -171,7 +171,7 @@ public class AdminPartner extends javax.swing.JPanel {
                                     .addComponent(jLabelKontaktperson))
                                 .addGap(83, 83, 83)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtKontaktPerson, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
+                                    .addComponent(txtKontaktPerson, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
                                     .addComponent(txtNamn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(44, 44, 44))
                             .addGroup(layout.createSequentialGroup()

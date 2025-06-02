@@ -391,11 +391,12 @@ public class AdminAvdelning extends javax.swing.JPanel {
         String stad = txtStadNamn.getText().trim();
         String anstalldID = null;
         String stadID = null;
-        
+
         String[] namnArray = chef.split(" ");
-        if (namnArray.length != 2)
+        if (namnArray.length != 2) {
             JOptionPane.showMessageDialog(this, "Vänligen ange både för - och efternamn");
-            
+        }
+
         try {
             anstalldID = idb.fetchSingle("SELECT aid FROM anstalld WHERE fornamn = '" + namnArray[0] + "' AND efternamn = '" + namnArray[1] + "'");
         } catch (InfException ex) {
@@ -406,12 +407,12 @@ public class AdminAvdelning extends javax.swing.JPanel {
         } catch (InfException ex) {
             Logger.getLogger(AdminAvdelning.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-                if (Validering.isEmpty(stadID) || stadID == null) {
+
+        if (Validering.isEmpty(stadID) || stadID == null) {
             JOptionPane.showMessageDialog(this, "Hittade ingen stad. Ange en stad som redan finns i databasen");
             return;
         }
-                if (Validering.isEmpty(anstalldID) || anstalldID == null) {
+        if (Validering.isEmpty(anstalldID) || anstalldID == null) {
             JOptionPane.showMessageDialog(this, "Hittade ingen anställd. Ange en anställd som redan finns i databasen.");
             return;
         }
@@ -468,9 +469,9 @@ public class AdminAvdelning extends javax.swing.JPanel {
             String beskrivning = txtBeskrivning.getText().trim();
             String chefStr = txtChef.getText().trim();
             String stadStr = txtStadNamn.getText().trim();
-        
+
             String[] namnArray = chefStr.split(" ");
-            
+
             //Dessa "if;s" nedan är en validering där det ställs olika krav på de attibut som står angivna.
             //Exempelvis om man anger fel format på e-post så får man felmeddelandet "Ogitlig E-postadress".
             //Allt detta är sedan kopplat till en egen valideringsklass som importers (Se högst upp).
@@ -503,21 +504,20 @@ public class AdminAvdelning extends javax.swing.JPanel {
                 return;
             }
 
-            if (namnArray.length != 2){
-            JOptionPane.showMessageDialog(this, "Vänligen ange både för - och efternamn");
-            return;
+            if (namnArray.length != 2) {
+                JOptionPane.showMessageDialog(this, "Vänligen ange både för - och efternamn");
+                return;
             }
-            
+
             //Här ställs en sql-fråga där vi vill hämta "aid" från anställd.
             String sqlChef = "SELECT aid FROM anstalld WHERE fornamn = '" + namnArray[0] + "' AND efternamn = '" + namnArray[1] + "'";
-             
+
             //Om inget resultat hittas, Om resultat är exakt icke-existerande (==) så returneras nedan meddelande.
             String chefResultat = idb.fetchSingle(sqlChef);
             if (chefResultat == null) {
                 JOptionPane.showMessageDialog(this, "Chef finns inte.");
                 return;
             }
-            
 
             //Här ställs en sql-fråga där vi vill hämta "sid" från stad.
             String sqlStad = "SELECT sid FROM stad WHERE namn = '" + stadStr + "'";
@@ -542,7 +542,7 @@ public class AdminAvdelning extends javax.swing.JPanel {
             //Här skapas en sql-fråga där vi vill inserta (lägga till en ny rad) i avdelningstabellen.
             String sqlFraga = "INSERT INTO avdelning (avdid, namn, adress, epost, telefon, beskrivning, chef, stad) "
                     + "VALUES (" + nextAvdid + ", '" + namn + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + beskrivning + "', " + chefResultat + ", " + stadResultat + ")";
-            
+
             //Här körs sql frågan.
             idb.insert(sqlFraga);
 
