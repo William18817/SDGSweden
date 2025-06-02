@@ -376,7 +376,7 @@ public class MittKonto extends javax.swing.JPanel {
         }
 
         if (!Validering.isValidLosenord(TfLosenord.getText())) {
-            JOptionPane.showMessageDialog(this, "Lösenordet måste vara minst 8 tecken långt och innehålla både bokstäver och siffror.");
+            JOptionPane.showMessageDialog(this, "Lösenordet måste vara minst 11 tecken långt och innehålla både bokstäver och siffror.");
             return;
         }
         //om validering fungerar sparas datan.
