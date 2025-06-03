@@ -160,11 +160,7 @@ public class Inloggning extends javax.swing.JFrame {
         if (Validering.isEmpty(losenord)){ 
             JOptionPane.showMessageDialog(this, "Skriv in ditt lösenord.");
             return;
-        }
-        if (Validering.isValidEpost(epost)){ 
-            JOptionPane.showMessageDialog(this, "Ogiltig/eller fel E-postadress. Måste exempelvis skrivas: namn.efternamn@example.com");
-            return;
-        }        
+        }     
 
         try {
             // Undvik SQL-injektion genom att ersätta ' med ''
@@ -186,7 +182,8 @@ public class Inloggning extends javax.swing.JFrame {
                     main.setVisible(true);
                     this.dispose();
                 } else {
-                    JOptionPane.showMessageDialog(this, "Fel e-post eller lösenord.");
+                    JOptionPane.showMessageDialog(this, "Fel e-post eller lösenord. "
+                            + "Epost måste exemplevis skrivas: namn.efternamn@example.com");
                 }
             }
         } catch (Exception ex) {
