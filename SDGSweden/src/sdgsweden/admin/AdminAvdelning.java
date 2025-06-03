@@ -200,9 +200,9 @@ public class AdminAvdelning extends javax.swing.JPanel {
                                 .addComponent(btnLaggTill)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnTaBort)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnTillbakaAdmin)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 551, Short.MAX_VALUE)))
                 .addComponent(LbKosmetiskt, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -248,11 +248,10 @@ public class AdminAvdelning extends javax.swing.JPanel {
                                     .addComponent(txtStadNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabelStad))))
                         .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnSpara)
-                                .addComponent(btnLaggTill)
-                                .addComponent(btnTaBort))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSpara)
+                            .addComponent(btnLaggTill)
+                            .addComponent(btnTaBort)
                             .addComponent(btnTillbakaAdmin))
                         .addContainerGap(92, Short.MAX_VALUE))))
         );
@@ -530,13 +529,13 @@ public class AdminAvdelning extends javax.swing.JPanel {
             }
 
             //Här hämtas det högsta avdid som existerar för stunden och lägger till + 1.
-            String sqlNextId = "SELECT MAX(avdid) FROM avdelning";
+            String sqlNextId = "SELECT MAX(avdid) + 1 FROM avdelning";
             String nextIdStr = idb.fetchSingle(sqlNextId);
 
             //Om inga avdelningar finns så vill vi starta på 1.
             int nextAvdid = 1;
             if (nextIdStr != null && !nextIdStr.isEmpty()) {
-                nextAvdid = Integer.parseInt(nextIdStr) + 1;
+                nextAvdid = Integer.parseInt(nextIdStr);
             }
 
             //Här skapas en sql-fråga där vi vill inserta (lägga till en ny rad) i avdelningstabellen.

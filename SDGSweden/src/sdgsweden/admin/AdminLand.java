@@ -429,14 +429,14 @@ public class AdminLand extends javax.swing.JPanel {
             }
 
             //Här hämtar vi den högsta id-numret som existerar i databasen för att kunna veta vilket id som det nya landet ska få.
-            String sqlNextId = "SELECT MAX(lid) FROM land";
+            String sqlNextId = "SELECT MAX(lid) + 1 FROM land";
             String nextIdStr = idb.fetchSingle(sqlNextId);
 
             //Vi börjar alltid på 1.
             //Om det redan finns länder med det id:t så ökar vi med + 1 tills vi hittar ett tomt.
             int nextLid = 1;
             if (nextIdStr != null && !nextIdStr.isEmpty()) {
-                nextLid = Integer.parseInt(nextIdStr) + 1;
+                nextLid = Integer.parseInt(nextIdStr);
             }
 
             //Här skapar vi en sql-fråga som lägger till ett nytt land och dess värden i databasen genom INSERT INTO land.
