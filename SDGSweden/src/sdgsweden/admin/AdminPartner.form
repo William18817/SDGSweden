@@ -40,12 +40,11 @@
                                   <Component id="jLabelNamn" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelKontaktperson" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                              <EmptySpace min="78" pref="78" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtKontaktPerson" pref="556" max="32767" attributes="0"/>
+                                  <Component id="txtKontaktPerson" max="32767" attributes="0"/>
                                   <Component id="txtNamn" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="44" pref="44" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -61,14 +60,14 @@
                                   <Component id="txtAdress" max="32767" attributes="0"/>
                                   <Component id="txtBranch" alignment="1" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="LbKosmetiskt" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="35" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -174,7 +173,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelKontaktperson">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Kontakperson"/>
+        <Property name="text" type="java.lang.String" value="Kontaktperson"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelKontaktEpost">
@@ -210,6 +209,9 @@
           <Dimension value="[180, 24]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtKontaktPersonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtKontaktEpost">
       <Properties>

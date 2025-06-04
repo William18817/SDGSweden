@@ -52,11 +52,6 @@ public class Inloggning extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         PasswordField.setColumns(11);
-        PasswordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PasswordFieldActionPerformed(evt);
-            }
-        });
 
         TextFieldEpost.setColumns(10);
 
@@ -157,10 +152,15 @@ public class Inloggning extends javax.swing.JFrame {
         String losenord = new String(PasswordField.getPassword()).trim();
 
         // Kontrollera om fälten är tomma
-        if (epost.isEmpty() || losenord.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Fyll i både e-post och lösenord.");
+        if (Validering.isEmpty(epost)){ 
+            JOptionPane.showMessageDialog(this, "Fyll i din epost");
             return;
         }
+        
+        if (Validering.isEmpty(losenord)){ 
+            JOptionPane.showMessageDialog(this, "Skriv in ditt lösenord.");
+            return;
+        }     
 
         try {
             // Undvik SQL-injektion genom att ersätta ' med ''
@@ -182,7 +182,8 @@ public class Inloggning extends javax.swing.JFrame {
                     main.setVisible(true);
                     this.dispose();
                 } else {
-                    JOptionPane.showMessageDialog(this, "Fel e-post eller lösenord.");
+                    JOptionPane.showMessageDialog(this, "Fel e-post eller lösenord. "
+                            + "Epost måste exemplevis skrivas: namn.efternamn@example.com");
                 }
             }
         } catch (Exception ex) {
@@ -191,10 +192,6 @@ public class Inloggning extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_ButtonLoggaInActionPerformed
-
-    private void PasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordFieldActionPerformed
 
     /**
      * @param args the command line arguments

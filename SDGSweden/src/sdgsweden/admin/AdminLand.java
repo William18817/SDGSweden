@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package sdgsweden.admin;
 
 import java.util.ArrayList;
@@ -22,46 +18,46 @@ public class AdminLand extends javax.swing.JPanel {
     private MainFrame parent;
     private InfDB idb;
     String aid;
-    
+
     /**
      * Creates new form AdminLand
      */
-    public AdminLand(MainFrame parent,InfDB idb, String aid) {
-            this.parent = parent;
-            this.idb = idb;
-            this.aid = aid;
-            
+    public AdminLand(MainFrame parent, InfDB idb, String aid) {
+        this.parent = parent;
+        this.idb = idb;
+        this.aid = aid;
+
         initComponents();
         fyllLandITabell();
-        
+
         //Den här raden lägger till en "Lyssnare" till tabellen "Avdelningar".
         //Varje gång användaren markerar en avdelnings så körs koden inuti "e -> {...}"
         //Det som händer är att så fort man klickar sig in på sidan så syns information om Länder.
         jTableLand.getSelectionModel().addListSelectionListener(e -> {
-            
+
             //Detta är en if-sats som kontrollerar att koden bara körs när användaren har avslutat sin radmarkering (Alltså när man klickat på landet och släppt musknappen).
             if (!e.getValueIsAdjusting()) {
-                
+
                 //Här hämtas radnummer för den rad som användaren klickat på.
                 //rad är av datatypen "int" vilket innebär att resultatet visar siffor.
                 int rad = jTableLand.getSelectedRow();
-                
+
                 //Om en rad inte är vald kommer kommer "-1" att "visas". Om en rad är ifylld som kommer koden här nedan att visas i textfälten.
                 if (rad != -1) {
-                
-                //Dessa kodrader hämtar värden från varje kolumn i "jTableAvdelning". 
-                //Den informationen visas sen i respektive textält till höger, exempelvis "txtAdress" - textfältet.   
-                txtNamn.setText(jTableLand.getValueAt(rad,1).toString());
-                txtSpråk.setText(jTableLand.getValueAt(rad,2).toString());
-                txtValuta.setText(jTableLand.getValueAt(rad,3).toString());
-                txtTidszon.setText(jTableLand.getValueAt(rad,4).toString());
-                txtPolitiskStruktur.setText(jTableLand.getValueAt(rad,5).toString());
-                txtEkonomi.setText(jTableLand.getValueAt(rad,6).toString());
+
+                    //Dessa kodrader hämtar värden från varje kolumn i "jTableAvdelning". 
+                    //Den informationen visas sen i respektive textält till höger, exempelvis "txtAdress" - textfältet.   
+                    txtNamn.setText(jTableLand.getValueAt(rad, 1).toString());
+                    txtSpråk.setText(jTableLand.getValueAt(rad, 2).toString());
+                    txtValuta.setText(jTableLand.getValueAt(rad, 3).toString());
+                    txtTidszon.setText(jTableLand.getValueAt(rad, 4).toString());
+                    txtPolitiskStruktur.setText(jTableLand.getValueAt(rad, 5).toString());
+                    txtEkonomi.setText(jTableLand.getValueAt(rad, 6).toString());
                 }
-                }
+            }
         });
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -241,73 +237,72 @@ public class AdminLand extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void fyllLandITabell()
-    {
-    
-    //Detta är början på en try-catch sats där all kod mellan try och catch nu kommer testköras.
-    try {
-        
+    private void fyllLandITabell() {
+
+        //Detta är början på en try-catch sats där all kod mellan try och catch nu kommer testköras.
+        try {
+
             //Detta är en vanlig sql-fråga där vi vill hämta all information från land.
             String sqlFraga = "SELECT * FROM land";
-            
+
             //Detta är olika importer i form av arraylist och hashmaps.
             //Här körs även frågan.
             ArrayList<HashMap<String, String>> resultat = idb.fetchRows(sqlFraga);
 
             //Här skapas en array med namn "kolumner" som innehåller informationen nedan.
             String[] kolumner = {"lid", "namn", "sprak", "valuta", "tidszon", "politisk_struktur", "ekonomi"};
-            
+
             //Här skapas en tom modell som sedan kommer att fyllas i med data.
             DefaultTableModel modell = new DefaultTableModel();
 
             //Detta är en for-each loop som går igenom varje kolumn i arrayen "kolumner" sedan läggs en kolumn till genom "add".
-            for (String kolumn: kolumner) {
+            for (String kolumn : kolumner) {
                 modell.addColumn(kolumn);
             }
 
             //Detta är en for-each loop som går igenom varje rad som hämtats från databasen.
-            for (HashMap<String, String> rad: resultat) {
-                
+            for (HashMap<String, String> rad : resultat) {
+
                 //Här skapas en array med samma längd som antalet kolumner som finns.
                 String[] radensVarden = new String[kolumner.length];
-                
+
                 //Detta är en for-loop som går igenom varje kolumn och hämtar värdet från hashmapen.
                 for (int i = 0; i < kolumner.length; i++) {
-                    
+
                     //Här hämtar vi värdet på en specifik rad.
                     radensVarden[i] = rad.get(kolumner[i]);
                 }
-                
+
                 //Här lägger vi till den färdiga raden med dess värden i tabellen.
                 modell.addRow(radensVarden);
             }
 
             //Detta görs att datan kommer visas i GUI-tabellen.
             jTableLand.setModel(modell);
-            
-          //Här är slutet på try-catch satsen och här fångas det eventuella problem.
+
+            //Här är slutet på try-catch satsen och här fångas det eventuella problem.
         } catch (Exception ettFel) {
-            
+
             //Detta är det felmeddelandet som visas ifall ett fel fångas i "catch".
             JOptionPane.showMessageDialog(this, "Kunde inte visa land.");
-            
+
             //Detta gör att felmeddelandet skrivs ut i terminalen.
             ettFel.printStackTrace();
         }
     }
 
     private void btnTillbakaAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaAdminActionPerformed
-       
+
         //Här skapas ett nytt objekt av "AdminPanel" i form av att ett nytt GUI-panel_fönster dyker upp.
         //Den får med sig tre saker från konstruktorn i form av "Parent (MainFrame), idb (databaskopplingen) och aid (användarens id).
-        AdminPanel adminPanel = new AdminPanel (parent, idb, aid);
-        
+        AdminPanel adminPanel = new AdminPanel(parent, idb, aid);
+
         //Detta är ett metodanrop vars syfte är att visa "adminPanel".
         parent.visaPanel(adminPanel, "adminPanel");
     }//GEN-LAST:event_btnTillbakaAdminActionPerformed
 
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
-        
+
         //Här blir alla fält inlästa och "trim()" kontrollerar och tar bort mellanslag i kodraden.
         String namn = txtNamn.getText().trim();
         String sprak = txtSpråk.getText().trim();
@@ -315,262 +310,254 @@ public class AdminLand extends javax.swing.JPanel {
         String tidszon = txtTidszon.getText().trim();
         String politiskStruktur = txtPolitiskStruktur.getText().trim();
         String ekonomi = txtEkonomi.getText().trim();
-        
+
         //Dessa "if;s" nedan är en validering där det ställs olika krav på de attibut som står angivna.
         //Exempelvis om man anger fel format på e-post så får man felmeddelandet "Ogitlig E-postadress".
         //Allt detta är sedan kopplat till en egen valideringsklass som importers (Se högst upp).
-        if (Validering.isEmpty(txtNamn.getText()))
-        {
-           JOptionPane.showMessageDialog(this, "Namn får inte vara tomt.");
-           return;
+        if (Validering.isEmpty(txtNamn.getText())) {
+            JOptionPane.showMessageDialog(this, "Namn får inte vara tomt.");
+            return;
         }
-        if (Validering.isEmpty(txtSpråk.getText()))
-        {
+        if (Validering.isEmpty(txtSpråk.getText())) {
             JOptionPane.showMessageDialog(this, "Språk får inte vara tomt.");
             return;
         }
-        if (!Validering.isValidValuta(txtValuta.getText()))
-        {
+        if (!Validering.isValidValuta(txtValuta.getText())) {
             JOptionPane.showMessageDialog(this, "Valuta får inte vara tomt. Måste skrivas ex: 00.00");
             return;
         }
-        if (Validering.isEmpty(txtTidszon.getText()))
-        {
+        if (Validering.isEmpty(txtTidszon.getText())) {
             JOptionPane.showMessageDialog(this, "Tidszon får inte vara tomt.");
             return;
         }
-        if (Validering.isEmpty(txtPolitiskStruktur.getText()))
-        {
+        if (Validering.isEmpty(txtPolitiskStruktur.getText())) {
             JOptionPane.showMessageDialog(this, "Politisk struktur får inte vara tomt.");
             return;
         }
-        if (Validering.isEmpty(txtEkonomi.getText()))
-        {
+        if (Validering.isEmpty(txtEkonomi.getText())) {
             JOptionPane.showMessageDialog(this, "Ekonomi får inte vara tomt.");
             return;
         }
-        
+
         //Detta hämtar den rad som är markerad i tabellen "jTableAvdelningar".
         int valdRad = jTableLand.getSelectedRow();
-        
+
         //Om inget är valt, alltså om -1 returneras...
         if (valdRad == -1) {
-            
+
             //... så visas detta meddelande.
             JOptionPane.showMessageDialog(this, "Du måste klicka på en rad i tabellen först.");
             return;
         }
-        
+
         //Början på en try-catch sats.
         try {
-    
-    //Här hämtar vi lid från kolumn 0 på vald rad.
-    String lid = jTableLand.getValueAt(valdRad, 0).toString();
 
-    //Här skapas en sql-fråga (sqlFraga) som uppdaterar informationen i databasen för specifikt valt lid.
-    String sqlFraga = "UPDATE land SET namn = '" + namn + "', sprak = '" + sprak + "', valuta = '" + valuta + "', tidszon = '" + tidszon + "', politisk_struktur = '" + politiskStruktur + "', ekonomi = '" + ekonomi + "' WHERE lid = " + lid;
+            //Här hämtar vi lid från kolumn 0 på vald rad.
+            String lid = jTableLand.getValueAt(valdRad, 0).toString();
 
-    //Här körs frågan så att uppdateringen implementeras i databasen.
-    idb.update(sqlFraga);
+            //Här skapas en sql-fråga (sqlFraga) som uppdaterar informationen i databasen för specifikt valt lid.
+            String sqlFraga = "UPDATE land SET namn = '" + namn + "', sprak = '" + sprak + "', valuta = '" + valuta + "', tidszon = '" + tidszon + "', politisk_struktur = '" + politiskStruktur + "', ekonomi = '" + ekonomi + "' WHERE lid = " + lid;
 
-    //Här visas ett meddelande om hur uppdateringen gick.
-    JOptionPane.showMessageDialog(this, "Ändring sparad!");
+            //Här körs frågan så att uppdateringen implementeras i databasen.
+            idb.update(sqlFraga);
 
-    //Dessa kodrader tömmer varje textfält efter att ädnringen har skett för att underlätta inför nästa gång man ska skriva in något.
-    txtNamn.setText("");
-    txtSpråk.setText("");
-    txtValuta.setText("");
-    txtTidszon.setText("");
-    txtPolitiskStruktur.setText("");
-    txtEkonomi.setText("");
+            //Här visas ett meddelande om hur uppdateringen gick.
+            JOptionPane.showMessageDialog(this, "Ändring sparad!");
 
-    //Här sker ett internt metodanrop för att hämta den nya datan.
-    fyllLandITabell();
+            //Dessa kodrader tömmer varje textfält efter att ädnringen har skett för att underlätta inför nästa gång man ska skriva in något.
+            txtNamn.setText("");
+            txtSpråk.setText("");
+            txtValuta.setText("");
+            txtTidszon.setText("");
+            txtPolitiskStruktur.setText("");
+            txtEkonomi.setText("");
 
-  //Detta är slutet på try-catch satsen. Om något går fel så fångar catch det här.
-} catch (Exception ettFel) {
-    
-    //Följande meddelande skrivs ut vid fel.
-    JOptionPane.showMessageDialog(this, "Något gick fel: " + ettFel.getMessage());
-    
-    //printStackTrace skriver ut felet i terminalen för att kunna felsöka.
-    ettFel.printStackTrace();
-}
+            //Här sker ett internt metodanrop för att hämta den nya datan.
+            fyllLandITabell();
+
+            //Detta är slutet på try-catch satsen. Om något går fel så fångar catch det här.
+        } catch (Exception ettFel) {
+
+            //Följande meddelande skrivs ut vid fel.
+            JOptionPane.showMessageDialog(this, "Något gick fel: " + ettFel.getMessage());
+
+            //printStackTrace skriver ut felet i terminalen för att kunna felsöka.
+            ettFel.printStackTrace();
+        }
     }//GEN-LAST:event_btnSparaActionPerformed
 
     private void btnLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillActionPerformed
-        
+
         //Början på en try-catch sats. All kod mellan try och catch kommer nu att testköras.
         try {
-            
-    //Här hämtas alla värden från textfälten där "trim()" tar bort mellanslag i varje kodrad.
-    String namn = txtNamn.getText().trim();
-    String sprak = txtSpråk.getText().trim();
-    String valuta = txtValuta.getText().trim();
-    String tidszon = txtTidszon.getText().trim();
-    String politiskStruktur = txtPolitiskStruktur.getText().trim();
-    String ekonomi = txtEkonomi.getText().trim();
 
-    //Dessa "if;s" nedan är en validering där det ställs olika krav på de attibut som står angivna.
-    //Exempelvis om man inte anger namn så får man felmeddelandet "Namn får inte vara tomt".
-    //Allt detta är sedan kopplat till en egen valideringsklass som importers (Se högst upp).
-    if (Validering.isEmpty(txtNamn.getText())) {
-        JOptionPane.showMessageDialog(this, "Namn får inte vara tomt.");
-        return;
-    }
-    if (Validering.isEmpty(txtSpråk.getText())) {
-        JOptionPane.showMessageDialog(this, "Språk får inte vara tomt.");
-        return;
-    }
-    if (!Validering.isValidValuta(txtValuta.getText())) {
-        JOptionPane.showMessageDialog(this, "Valuta får inte vara tomt. Måste skrivas ex: 00.00 ");
-        return;
-    }
-    if (Validering.isEmpty(txtTidszon.getText())) {
-        JOptionPane.showMessageDialog(this, "Tidszon får inte vara tomt.");
-        return;
-    }
-    if (Validering.isEmpty(txtPolitiskStruktur.getText())) {
-        JOptionPane.showMessageDialog(this, "Politisk struktur får inte vara tom.");
-        return;
-    }
-    if (Validering.isEmpty(txtEkonomi.getText())) {
-        JOptionPane.showMessageDialog(this, "Ekonomi får inte vara tom.");
-        return;
-    }
+            //Här hämtas alla värden från textfälten där "trim()" tar bort mellanslag i varje kodrad.
+            String namn = txtNamn.getText().trim();
+            String sprak = txtSpråk.getText().trim();
+            String valuta = txtValuta.getText().trim();
+            String tidszon = txtTidszon.getText().trim();
+            String politiskStruktur = txtPolitiskStruktur.getText().trim();
+            String ekonomi = txtEkonomi.getText().trim();
 
-    //Här hämtar vi den högsta id-numret som existerar i databasen för att kunna veta vilket id som det nya landet ska få.
-    String sqlNextId = "SELECT MAX(lid) FROM land";
-    String nextIdStr = idb.fetchSingle(sqlNextId);
-    
-    //Vi börjar alltid på 1.
-    //Om det redan finns länder med det id:t så ökar vi med + 1 tills vi hittar ett tomt.
-    int nextLid = 1;
-    if (nextIdStr != null && !nextIdStr.isEmpty()) {
-        nextLid = Integer.parseInt(nextIdStr) + 1;
-    }
+            //Dessa "if;s" nedan är en validering där det ställs olika krav på de attibut som står angivna.
+            //Exempelvis om man inte anger namn så får man felmeddelandet "Namn får inte vara tomt".
+            //Allt detta är sedan kopplat till en egen valideringsklass som importers (Se högst upp).
+            if (Validering.isEmpty(txtNamn.getText())) {
+                JOptionPane.showMessageDialog(this, "Namn får inte vara tomt.");
+                return;
+            }
+            if (Validering.isEmpty(txtSpråk.getText())) {
+                JOptionPane.showMessageDialog(this, "Språk får inte vara tomt.");
+                return;
+            }
+            if (!Validering.isValidValuta(txtValuta.getText())) {
+                JOptionPane.showMessageDialog(this, "Valuta får inte vara tomt. Måste skrivas ex: 00.00 ");
+                return;
+            }
+            if (Validering.isEmpty(txtTidszon.getText())) {
+                JOptionPane.showMessageDialog(this, "Tidszon får inte vara tomt.");
+                return;
+            }
+            if (Validering.isEmpty(txtPolitiskStruktur.getText())) {
+                JOptionPane.showMessageDialog(this, "Politisk struktur får inte vara tom.");
+                return;
+            }
+            if (Validering.isEmpty(txtEkonomi.getText())) {
+                JOptionPane.showMessageDialog(this, "Ekonomi får inte vara tom.");
+                return;
+            }
 
-    //Här skapar vi en sql-fråga som lägger till ett nytt land och dess värden i databasen genom INSERT INTO land.
-    String sqlFraga = "INSERT INTO land (lid, namn, sprak, valuta, tidszon, politisk_struktur, ekonomi) " + "VALUES (" + nextLid + ", '" + namn + "', '" + sprak + "', '" + valuta + "', '" + tidszon + "', '" + politiskStruktur + "', '" + ekonomi + "')";
+            //Här hämtar vi den högsta id-numret som existerar i databasen för att kunna veta vilket id som det nya landet ska få.
+            String sqlNextId = "SELECT MAX(lid) + 1 FROM land";
+            String nextIdStr = idb.fetchSingle(sqlNextId);
 
-    //Här kör vi sql-frågan.
-    idb.insert(sqlFraga);
+            //Vi börjar alltid på 1.
+            //Om det redan finns länder med det id:t så ökar vi med + 1 tills vi hittar ett tomt.
+            int nextLid = 1;
+            if (nextIdStr != null && !nextIdStr.isEmpty()) {
+                nextLid = Integer.parseInt(nextIdStr);
+            }
 
-    //Detta är ett meddelande som syns ifall land har lagts till i databasen.
-    JOptionPane.showMessageDialog(this, "Land har lagts till i systemet!");
+            //Här skapar vi en sql-fråga som lägger till ett nytt land och dess värden i databasen genom INSERT INTO land.
+            String sqlFraga = "INSERT INTO land (lid, namn, sprak, valuta, tidszon, politisk_struktur, ekonomi) " + "VALUES (" + nextLid + ", '" + namn + "', '" + sprak + "', '" + valuta + "', '" + tidszon + "', '" + politiskStruktur + "', '" + ekonomi + "')";
 
-    //Dessa kodrader tömmer varje textfält efter att ädnringen har skett för att underlätta inför nästa gång man ska skriva in något.
-    txtNamn.setText("");
-    txtSpråk.setText("");
-    txtValuta.setText("");
-    txtTidszon.setText("");
-    txtPolitiskStruktur.setText("");
-    txtEkonomi.setText("");
-    
-          //Detta är slutet på try-catch satsen och här fångas eventuella fel.
+            //Här kör vi sql-frågan.
+            idb.insert(sqlFraga);
+
+            //Detta är ett meddelande som syns ifall land har lagts till i databasen.
+            JOptionPane.showMessageDialog(this, "Land har lagts till i systemet!");
+
+            //Dessa kodrader tömmer varje textfält efter att ädnringen har skett för att underlätta inför nästa gång man ska skriva in något.
+            txtNamn.setText("");
+            txtSpråk.setText("");
+            txtValuta.setText("");
+            txtTidszon.setText("");
+            txtPolitiskStruktur.setText("");
+            txtEkonomi.setText("");
+
+            //Detta är slutet på try-catch satsen och här fångas eventuella fel.
         } catch (Exception ettFel) {
-        
-        //Detta meddelande skrivs ut ifall ett problem uppstått.
-        JOptionPane.showMessageDialog(this, "Fel: " + ettFel.getMessage());
-        
-        //Detta skriver även ut det i terminalen.
-        ettFel.printStackTrace();
+
+            //Detta meddelande skrivs ut ifall ett problem uppstått.
+            JOptionPane.showMessageDialog(this, "Fel: " + ettFel.getMessage());
+
+            //Detta skriver även ut det i terminalen.
+            ettFel.printStackTrace();
         }
-        
+
         //Denna raden körs oavsett hur det går och dess uppgift är att fylla vår tabell i GUI med den nya datan.
         fyllLandITabell();
     }//GEN-LAST:event_btnLaggTillActionPerformed
 
     private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
-        
+
         //Början på en try-catch sats och koden mellan dessa kommer nu testköras.
-        try
-        {
-            
-    //Här dyker en liten ruta upp efter man tryck på knappen "Ta bort" där man får välja vilket lid man vill ta bort.
-    String landId = JOptionPane.showInputDialog(this, "Ange land-ID (lid) för att ta bort:");
+        try {
 
-    //Denna rad skrevs ifall användaren lämnar raden tom.
-    if (landId == null || landId.isEmpty())
-    {
-        //Då syns detta felmeddelande.
-        JOptionPane.showMessageDialog(this, "Fyll i ett land-ID först.");
-        return;
-    }
+            //Här dyker en liten ruta upp efter man tryck på knappen "Ta bort" där man får välja vilket lid man vill ta bort.
+            String landId = JOptionPane.showInputDialog(this, "Ange land-ID (lid) för att ta bort:");
 
-    //Här skapas en sql-fråga som hämtar namnet på landet med det angivna id:t.
-    String sqlFraga = "SELECT namn FROM land WHERE lid = " + landId;
-
-    //Här körs sedan frågan.
-    ArrayList<HashMap<String, String>> landLista = idb.fetchRows(sqlFraga);
-
-    //Om inget land hittas.
-    if (landLista == null || landLista.isEmpty()) {
-        
-        //Då skrivs detta felmeddelande ut.
-        JOptionPane.showMessageDialog(this, "Det finns inget land med detta ID.");
-        return;
-    }
-
-    //Här skapas en array med namnet på specifikt land.
-    String[] landNamnLista = new String[landLista.size()];
-    
-    //En for-loop körs.
-    for (int i = 0; i < landLista.size(); i++) {
-        
-        //Här hämtas namnet ut.
-        landNamnLista[i] = landLista.get(i).get("namn");
-    }
-
-    //Denna koden skapar en pop-up ruta som fungerar som enn bekräftelse
-    //Där användaren får bekräfta borttagningen innan den sker.
-    //Detta "JOptionPane.QUESTION_MESSAGE" är vilken typ av ruta som kommer upp.
-    //landNamnLista är en lista med namn.
-    //landNamnLista[0] är ett förvalt värde i listan.
-    String valtLand = (String) JOptionPane.showInputDialog(
-        this, "Bekräfta vilket land du vill ta bort:", "Ta bort land",
-        JOptionPane.QUESTION_MESSAGE,
-        null,
-        landNamnLista,
-        landNamnLista[0]
-    );
-
-    //Denna "if" besrkiver att om användaren valde ett land och tryckte på ok.
-    if (valtLand != null) {
-        
-        //Här körs sen en for-each loop som går igenom landlistan.
-        for (HashMap<String, String> l: landLista) {
-            
-            //Här hämtas namnet.
-            String namn = l.get("namn");
-            
-            //OM namn är exakt samma som det valda landets namn.
-            if (namn.equals(valtLand)) {
-                
-                //Då tas landet bort från databasen.
-                String deleteSql = "DELETE FROM land WHERE lid = " + landId;
-                
-                //Här körs frågan.
-                idb.delete(deleteSql);
-                
-                //Här skrivs meddelandet ut om borttagningen gick bra.
-                JOptionPane.showMessageDialog(this, "Landet togs bort.");
-                
-                //Denna är viktig då den uppdaterar databasen med den nya datan UTAN det borttagna landet.
-                fyllLandITabell();
-                
-                //Här avslutas loopen och allt är klart.
-                break;
+            //Denna rad skrevs ifall användaren lämnar raden tom.
+            if (landId == null || landId.isEmpty()) {
+                //Då syns detta felmeddelande.
+                JOptionPane.showMessageDialog(this, "Fyll i ett land-ID först.");
+                return;
             }
+
+            //Här skapas en sql-fråga som hämtar namnet på landet med det angivna id:t.
+            String sqlFraga = "SELECT namn FROM land WHERE lid = " + landId;
+
+            //Här körs sedan frågan.
+            ArrayList<HashMap<String, String>> landLista = idb.fetchRows(sqlFraga);
+
+            //Om inget land hittas.
+            if (landLista == null || landLista.isEmpty()) {
+
+                //Då skrivs detta felmeddelande ut.
+                JOptionPane.showMessageDialog(this, "Det finns inget land med detta ID.");
+                return;
+            }
+
+            //Här skapas en array med namnet på specifikt land.
+            String[] landNamnLista = new String[landLista.size()];
+
+            //En for-loop körs.
+            for (int i = 0; i < landLista.size(); i++) {
+
+                //Här hämtas namnet ut.
+                landNamnLista[i] = landLista.get(i).get("namn");
+            }
+
+            //Denna koden skapar en pop-up ruta som fungerar som enn bekräftelse
+            //Där användaren får bekräfta borttagningen innan den sker.
+            //Detta "JOptionPane.QUESTION_MESSAGE" är vilken typ av ruta som kommer upp.
+            //landNamnLista är en lista med namn.
+            //landNamnLista[0] är ett förvalt värde i listan.
+            String valtLand = (String) JOptionPane.showInputDialog(
+                    this, "Bekräfta vilket land du vill ta bort:", "Ta bort land",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    landNamnLista,
+                    landNamnLista[0]
+            );
+
+            //Denna "if" besrkiver att om användaren valde ett land och tryckte på ok.
+            if (valtLand != null) {
+
+                //Här körs sen en for-each loop som går igenom landlistan.
+                for (HashMap<String, String> l : landLista) {
+
+                    //Här hämtas namnet.
+                    String namn = l.get("namn");
+
+                    //OM namn är exakt samma som det valda landets namn.
+                    if (namn.equals(valtLand)) {
+
+                        //Då tas landet bort från databasen.
+                        String deleteSql = "DELETE FROM land WHERE lid = " + landId;
+
+                        //Här körs frågan.
+                        idb.delete(deleteSql);
+
+                        //Här skrivs meddelandet ut om borttagningen gick bra.
+                        JOptionPane.showMessageDialog(this, "Landet togs bort.");
+
+                        //Denna är viktig då den uppdaterar databasen med den nya datan UTAN det borttagna landet.
+                        fyllLandITabell();
+
+                        //Här avslutas loopen och allt är klart.
+                        break;
+                    }
+                }
+            }
+
+            //Här fångas eventuella fel i "catch".
+        } catch (InfException ettFel) {
+
+            //Vid fel så skrivs sedan detta felmeddelande ut.
+            JOptionPane.showMessageDialog(this, "Fel vid borttagning av land: " + ettFel.getMessage());
         }
-    }
-    
-  //Här fångas eventuella fel i "catch".
-} catch (InfException ettFel) {
-    
-    //Vid fel så skrivs sedan detta felmeddelande ut.
-    JOptionPane.showMessageDialog(this, "Fel vid borttagning av land: " + ettFel.getMessage());
-}
     }//GEN-LAST:event_btnTaBortActionPerformed
 
 

@@ -99,7 +99,7 @@ public class AdminPartner extends javax.swing.JPanel {
 
         jLabelNamn.setText("Namn");
 
-        jLabelKontaktperson.setText("Kontakperson");
+        jLabelKontaktperson.setText("Kontaktperson");
 
         jLabelKontaktEpost.setText("Kontaktepost");
 
@@ -112,6 +112,11 @@ public class AdminPartner extends javax.swing.JPanel {
         txtNamn.setPreferredSize(new java.awt.Dimension(180, 24));
 
         txtKontaktPerson.setPreferredSize(new java.awt.Dimension(180, 24));
+        txtKontaktPerson.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtKontaktPersonActionPerformed(evt);
+            }
+        });
 
         txtKontaktEpost.setPreferredSize(new java.awt.Dimension(180, 24));
 
@@ -169,11 +174,10 @@ public class AdminPartner extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelNamn)
                                     .addComponent(jLabelKontaktperson))
-                                .addGap(83, 83, 83)
+                                .addGap(78, 78, 78)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtKontaktPerson, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
-                                    .addComponent(txtNamn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(44, 44, 44))
+                                    .addComponent(txtKontaktPerson, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtNamn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelKontaktEpost)
@@ -185,12 +189,12 @@ public class AdminPartner extends javax.swing.JPanel {
                                     .addComponent(txtKontaktEpost, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtTelefon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtAdress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtBranch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(42, 42, 42))))
+                                    .addComponent(txtBranch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(42, 42, 42))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(LbKosmetiskt)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 35, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,7 +416,7 @@ public class AdminPartner extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Kontaktperson får inte vara tomt.");
                 return;
             }
-            if (!Validering.isValidEpost(txtKontaktEpost.getText())) {
+            if (!Validering.isValidEpostPartner(txtKontaktEpost.getText())) {
                 JOptionPane.showMessageDialog(this, "Ogiltig E-postadress. Måste skrivas: namn.namn@example.com");
                 return;
             }
@@ -430,7 +434,7 @@ public class AdminPartner extends javax.swing.JPanel {
             }
 
             //Här skapas en sql-fråga vars syfte är att hämta max pid från databasen.
-            String sqlNextId = "SELECT MAX(pid) FROM partner";
+            String sqlNextId = "SELECT MAX(pid) + 1 FROM partner";
 
             //Detta hämtar endast ett värde från databasen.
             String nextIdStr = idb.fetchSingle(sqlNextId);
@@ -440,7 +444,7 @@ public class AdminPartner extends javax.swing.JPanel {
 
             //OM ett värde redan fanns i databasen så gör denna kod att det ökar med + 1 för att hitta nästa lediga id.
             if (nextIdStr != null && !nextIdStr.isEmpty()) {
-                nextPid = Integer.parseInt(nextIdStr) + 1;
+                nextPid = Integer.parseInt(nextIdStr);
             }
 
             //Här skapas änu en sql-fråga vars syfte är att implementera partnern i databasen.
@@ -561,6 +565,10 @@ public class AdminPartner extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Fel vid borttagning av partner: " + ettFel.getMessage());
         }
     }//GEN-LAST:event_btnTaBortActionPerformed
+
+    private void txtKontaktPersonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKontaktPersonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtKontaktPersonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

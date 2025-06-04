@@ -65,7 +65,7 @@ public class ProjektChef extends javax.swing.JPanel {
         visaPartnerInfoButton = new javax.swing.JButton();
         AndraUppgifter = new javax.swing.JButton();
         btnTillbaka = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        designLabel = new javax.swing.JLabel();
 
         setToolTipText("");
         setPreferredSize(new java.awt.Dimension(1300, 600));
@@ -332,8 +332,8 @@ public class ProjektChef extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sdgsweden/bilder/global-goals-logo.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        designLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sdgsweden/bilder/global-goals-logo.png"))); // NOI18N
+        designLabel.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -349,7 +349,7 @@ public class ProjektChef extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanelSouth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(36, 36, 36)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(designLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanelCenter, javax.swing.GroupLayout.PREFERRED_SIZE, 972, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -387,7 +387,7 @@ public class ProjektChef extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(AndraUppgifter, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1)))
+                        .addComponent(designLabel)))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -1091,7 +1091,7 @@ public class ProjektChef extends javax.swing.JPanel {
     private javax.swing.JButton addPartnerButton;
     private javax.swing.JLabel avdelningLabel;
     private javax.swing.JButton btnTillbaka;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel designLabel;
     private javax.swing.JLabel jLabelProjektAvdelning;
     private javax.swing.JLabel jLabelProjektVy;
     private javax.swing.JLabel jLabelSlutdatum;

@@ -53,15 +53,15 @@ public class HanteraProjekt extends javax.swing.JPanel {
         BeskrivningLabel = new javax.swing.JLabel();
         BeskrivningScrollPane = new javax.swing.JScrollPane();
         beskrivningText = new javax.swing.JTextArea();
-        slutDKontroll = new javax.swing.JLabel();
-        startDKontroll = new javax.swing.JLabel();
+        slutDKontrollLbl = new javax.swing.JLabel();
+        startDKontrollLbl = new javax.swing.JLabel();
         avbrytButton = new javax.swing.JButton();
         hanteraProjektButton = new javax.swing.JButton();
         projektchefLabel = new javax.swing.JLabel();
         landLabel = new javax.swing.JLabel();
         projektchefComboBox = new javax.swing.JComboBox<>();
         landComboBox = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
+        HanteraProjektLabel = new javax.swing.JLabel();
 
         setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(800, 500));
@@ -101,9 +101,9 @@ public class HanteraProjekt extends javax.swing.JPanel {
         beskrivningText.setWrapStyleWord(true);
         BeskrivningScrollPane.setViewportView(beskrivningText);
 
-        slutDKontroll.setText("YYYY-MM-DD");
+        slutDKontrollLbl.setText("YYYY-MM-DD");
 
-        startDKontroll.setText("YYYY-MM-DD");
+        startDKontrollLbl.setText("YYYY-MM-DD");
 
         avbrytButton.setText("Avbryt");
         avbrytButton.addActionListener(new java.awt.event.ActionListener() {
@@ -123,9 +123,9 @@ public class HanteraProjekt extends javax.swing.JPanel {
 
         landLabel.setText("Land");
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Hantera projekt");
+        HanteraProjektLabel.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        HanteraProjektLabel.setForeground(new java.awt.Color(255, 255, 255));
+        HanteraProjektLabel.setText("Hantera projekt");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -135,7 +135,7 @@ public class HanteraProjekt extends javax.swing.JPanel {
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(HanteraProjektLabel)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,14 +159,14 @@ public class HanteraProjekt extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(startdatumText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(startDKontroll))
+                                .addComponent(startDKontrollLbl))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(kostnadText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(slutdatumText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(slutDKontroll)))
+                                        .addComponent(slutDKontrollLbl)))
                                 .addGap(34, 34, 34)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(landLabel)
@@ -181,7 +181,7 @@ public class HanteraProjekt extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(HanteraProjektLabel)
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -200,12 +200,12 @@ public class HanteraProjekt extends javax.swing.JPanel {
                             .addComponent(kostnadLabel))
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(startDKontroll)
+                            .addComponent(startDKontrollLbl)
                             .addComponent(startdatumText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(startDatumLabel))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(slutDKontroll)
+                            .addComponent(slutDKontrollLbl)
                             .addComponent(slutdatumText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(slutDatumLabel))
                         .addGap(19, 19, 19)
@@ -433,10 +433,10 @@ public class HanteraProjekt extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BeskrivningLabel;
     private javax.swing.JScrollPane BeskrivningScrollPane;
+    private javax.swing.JLabel HanteraProjektLabel;
     private javax.swing.JButton avbrytButton;
     private javax.swing.JTextArea beskrivningText;
     private javax.swing.JButton hanteraProjektButton;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel kostnadLabel;
     private javax.swing.JTextField kostnadText;
     private javax.swing.JComboBox<String> landComboBox;
@@ -447,10 +447,10 @@ public class HanteraProjekt extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> projektchefComboBox;
     private javax.swing.JLabel projektchefLabel;
     private javax.swing.JTextField projektnamnText;
-    private javax.swing.JLabel slutDKontroll;
+    private javax.swing.JLabel slutDKontrollLbl;
     private javax.swing.JLabel slutDatumLabel;
     private javax.swing.JTextField slutdatumText;
-    private javax.swing.JLabel startDKontroll;
+    private javax.swing.JLabel startDKontrollLbl;
     private javax.swing.JLabel startDatumLabel;
     private javax.swing.JTextField startdatumText;
     private javax.swing.JComboBox<String> statusComboBox;
